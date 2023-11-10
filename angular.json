@@ -3,5 +3,104 @@
   "version": 1,
   "newProjectRoot": "projects/libs",
   "projects": {
+    "critical-web": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/apps/critical-web",
+      "sourceRoot": "projects/apps/critical-web/src",
+      "prefix": "cw",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/critical-web",
+            "index": "projects/apps/critical-web/src/index.html",
+            "browser": "projects/apps/critical-web/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/apps/critical-web/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/apps/critical-web/src/favicon.ico",
+              "projects/apps/critical-web/src/assets"
+            ],
+            "styles": [
+              "projects/apps/critical-web/src/styles.scss"
+            ],
+            "scripts": [],
+            "server": "projects/apps/critical-web/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/apps/critical-web/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "critical-web:build:production"
+            },
+            "development": {
+              "buildTarget": "critical-web:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "critical-web:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/apps/critical-web/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/apps/critical-web/src/favicon.ico",
+              "projects/apps/critical-web/src/assets"
+            ],
+            "styles": [
+              "projects/apps/critical-web/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
