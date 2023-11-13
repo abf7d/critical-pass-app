@@ -2,6 +2,26 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "data-access": [
+        "./dist/data-access"
+      ],
+      "environments": [
+        "./dist/environments"
+      ],
+      "file-management": [
+        "./dist/file-management"
+      ],
+      "layout": [
+        "./dist/layout"
+      ],
+      "project-utils": [
+        "./dist/project-utils"
+      ],
+      "serializers": [
+        "./dist/serializers"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
