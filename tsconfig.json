@@ -3,8 +3,20 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "auth": [
+        "./dist/auth"
+      ],
+      "charts": [
+        "./dist/charts"
+      ],
+      "core": [
+        "./dist/core"
+      ],
       "data-access": [
         "./dist/data-access"
+      ],
+      "desktop-lib": [
+        "./dist/desktop-lib"
       ],
       "environments": [
         "./dist/environments"
@@ -50,6 +62,9 @@
       ],
       "types": [
         "./dist/types"
+      ],
+      "web-lib": [
+        "./dist/web-lib"
       ]
     },
     "outDir": "./dist/out-tsc",
