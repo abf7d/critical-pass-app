@@ -15,11 +15,17 @@
       "layout": [
         "./dist/layout"
       ],
+      "processor": [
+        "./dist/processor"
+      ],
       "project-utils": [
         "./dist/project-utils"
       ],
       "serializers": [
         "./dist/serializers"
+      ],
+      "types": [
+        "./dist/types"
       ]
     },
     "outDir": "./dist/out-tsc",
