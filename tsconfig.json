@@ -12,17 +12,41 @@
       "file-management": [
         "./dist/file-management"
       ],
+      "history": [
+        "./dist/history"
+      ],
+      "jira": [
+        "./dist/jira"
+      ],
+      "landing": [
+        "./dist/landing"
+      ],
       "layout": [
         "./dist/layout"
+      ],
+      "library": [
+        "./dist/library"
+      ],
+      "network": [
+        "./dist/network"
       ],
       "processor": [
         "./dist/processor"
       ],
+      "profile": [
+        "./dist/profile"
+      ],
       "project-utils": [
         "./dist/project-utils"
       ],
+      "resources": [
+        "./dist/resources"
+      ],
       "serializers": [
         "./dist/serializers"
+      ],
+      "spreadsheet": [
+        "./dist/spreadsheet"
       ],
       "types": [
         "./dist/types"
