@@ -34,7 +34,8 @@ export class ProjectSerializerService implements Serializer<Project> {
             tags: json?.tags ? json.tags.map((t: any) => tagSerializer.fromJson(t)) : [],
         };
         return obj;
-    } fasd
+    }
+    fas;
     toJson(obj: Project): any {}
 }
 
