@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Project } from '@critical-pass/project/types';
 import { DashboardService, DASHBOARD_TOKEN } from '@critical-pass/shared/data-access';
 import { EndNodesLocatorService } from '@critical-pass/shared/project-utils';
-import { NodeArrangerService } from 'libs/shared/project-utils/src/lib/services/node-arranger/node-arranger.service';
+import { NodeArrangerService } from '@critical-pass/shared/project-utils'
 import { filter } from 'rxjs/operators';
 
 @Component({

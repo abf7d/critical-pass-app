@@ -9,8 +9,8 @@
       "charts": [
         "./dist/charts"
       ],
-      "core": [
-        "./dist/core"
+      "@critical-pass/core": [
+        "./dist/core","./projects/libs/core/src"
       ],
       "@critical-pass/shared/data-access":  [
         "./projects/libs/shared/data-access/src"
