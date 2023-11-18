@@ -33,9 +33,10 @@ export class ProjectSerializerService implements Serializer<Project> {
             roles: json?.roles ? json.roles.map((r: any) => roleSerializer.fromJson(r)) : [],
             tags: json?.tags ? json.tags.map((t: any) => tagSerializer.fromJson(t)) : [],
         };
+        var test = 0;
         return obj;
     }
-    fas;
+
     toJson(obj: Project): any {}
 }
 
