@@ -1,6 +1,2 @@
-/*
- * Public API Surface of project-utils
- */
-
-export * from './lib/project-utils.service';
-export * from './lib/project-utils.component';
+export * from './lib/services/index';
+export * as UTIL_CONST from './lib/constants';

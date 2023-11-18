@@ -13,7 +13,6 @@
         "./dist/core"
       ],
       "@critical-pass/shared/data-access":  [
-        "./dist/data-access",
         "./projects/libs/shared/data-access/src"
       ],
       "desktop-lib": [
@@ -43,14 +42,16 @@
       "network": [
         "./dist/network"
       ],
-      "processor": [
-        "./dist/processor"
+      "@critical-pass/project/processor": [
+        "./dist/processor",
+        "./projects/libs/project/processor/src"
       ],
       "profile": [
         "./dist/profile"
       ],
-      "project-utils": [
-        "./dist/project-utils"
+      "@critical-pass/shared/project-utils": [
+        "./dist/project-utils",
+        "./projects/libs/shared/project-utils/src"
       ],
       "resources": [
         "./dist/resources"
@@ -63,7 +64,6 @@
         "./dist/spreadsheet"
       ],
       "@critical-pass/project/types": [
-        "./dist/types",
         "./projects/libs/project/types/src"
       ],
       "web-lib": [

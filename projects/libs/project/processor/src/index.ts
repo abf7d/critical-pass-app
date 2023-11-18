@@ -1,6 +1,2 @@
-/*
- * Public API Surface of processor
- */
-
-export * from './lib/processor.service';
-export * from './lib/processor.component';
+export * from './lib';
+export * as P_CONST from './lib/constants';
