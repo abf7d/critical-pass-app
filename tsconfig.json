@@ -18,8 +18,8 @@
       "desktop-lib": [
         "./dist/desktop-lib"
       ],
-      "environments": [
-        "./dist/environments"
+      "@critical-pass/shared/environments": [
+        "./projects/libs/shared/environments/src"
       ],
       "file-management": [
         "./dist/file-management"
