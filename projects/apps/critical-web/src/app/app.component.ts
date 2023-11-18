@@ -18,6 +18,5 @@ export class AppComponent {
         this.eventService.get('test').subscribe(data => {
             console.log(data);
         });
-        var test2 = 'asdfsadfsdf asdf asdf sadf ads afd sasdf sd fdas ad dsa sfd asd fa dsd af df ds dsa asd ds af sd asd fsd fsd fsad fds ';
     }
 }
