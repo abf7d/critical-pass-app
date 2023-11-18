@@ -19,6 +19,5 @@ export class AppComponent {
             console.log(data);
         });
         var test = 'e';
-        var test = 'e';
     }
 }
