@@ -21,8 +21,8 @@
       "@critical-pass/shared/environments": [
         "./projects/libs/shared/environments/src"
       ],
-      "file-management": [
-        "./dist/file-management"
+      "@critical-pass/shared/file-management": [
+        "./projects/libs/shared/file-management/src"
       ],
       "history": [
         "./dist/history"
