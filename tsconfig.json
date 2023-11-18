@@ -12,8 +12,9 @@
       "core": [
         "./dist/core"
       ],
-      "data-access": [
-        "./dist/data-access"
+      "@critical-pass/shared/data-access":  [
+        "./dist/data-access",
+        "./projects/libs/shared/data-access/src"
       ],
       "desktop-lib": [
         "./dist/desktop-lib"
@@ -54,14 +55,16 @@
       "resources": [
         "./dist/resources"
       ],
-      "serializers": [
-        "./dist/serializers"
+      "@critical-pass/shared/serializers": [
+        "./dist/serializers",
+        "./projects/libs/shared/serializers/src"
       ],
       "spreadsheet": [
         "./dist/spreadsheet"
       ],
-      "types": [
-        "./dist/types"
+      "@critical-pass/project/types": [
+        "./dist/types",
+        "./projects/libs/project/types/src"
       ],
       "web-lib": [
         "./dist/web-lib"
