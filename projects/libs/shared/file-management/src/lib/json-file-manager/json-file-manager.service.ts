@@ -6,7 +6,7 @@ import { FileManagerBaseService } from '../file-manager-base.service';
 import { API_CONST } from '@critical-pass/shared/data-access';
 import { HistoryMapperService } from '../history-file-manager/history-mapper/history-mapper.service';
 import { ProjectSanatizerService } from '@critical-pass/shared/project-utils';
-import { ProjectTreeNodeSerializerService } from '@critical-pass/charts';
+import { ProjectTreeNodeSerializerService } from '@critical-pass/shared/serializers';
 @Injectable({
     providedIn: 'root',
 })

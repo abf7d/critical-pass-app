@@ -17,7 +17,7 @@ import {
     RoleSummarySerializerService,
     SubprojectSerializerService,
 } from '@critical-pass/shared/serializers';
-import { ProjectTreeNodeSerializerService } from '@critical-pass/charts';
+import { ProjectTreeNodeSerializerService } from '@critical-pass/shared/serializers';
 import {
     Activity,
     ActivityProfile,
