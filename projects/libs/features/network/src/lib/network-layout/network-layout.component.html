@@ -49,7 +49,12 @@
 
                 <div class="proj-id">{{ node.profile.id }} {{ node.profile!.name }}</div>
                 <a (click)="load(node.profile.id)">
-                    <cp-arrow-snapshot [project]="node" [width]="300" [height]="200" [refresh]="node.profile.id === project.profile.id ? refreshCount : 0"></cp-arrow-snapshot>
+                    <cp-arrow-snapshot
+                        [project]="node"
+                        [width]="300"
+                        [height]="200"
+                        [refresh]="node.profile.id === project.profile.id ? refreshCount : 0"
+                    ></cp-arrow-snapshot>
                 </a>
             </div>
         </div>

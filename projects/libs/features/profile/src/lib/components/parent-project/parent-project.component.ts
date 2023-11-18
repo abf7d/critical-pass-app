@@ -19,7 +19,10 @@ export class ParentProjectComponent implements OnInit, OnDestroy {
     public data!: Observable<any>;
     public subscription!: Subscription;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, public compiler: ProjectCompilerService) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        public compiler: ProjectCompilerService,
+    ) {}
 
     ngOnInit() {
         if (this.id != null) {

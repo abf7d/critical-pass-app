@@ -34,7 +34,11 @@ export class SelectedActivityComponent implements OnInit, OnDestroy {
 
     @Input() projectPool: Project[] | null = null;
     @ViewChild('activityName', { static: true }) activityName!: ElementRef;
-    constructor(private controller: SelectedActivityControllerService, private route: ActivatedRoute, private cd: ChangeDetectorRef) {}
+    constructor(
+        private controller: SelectedActivityControllerService,
+        private route: ActivatedRoute,
+        private cd: ChangeDetectorRef,
+    ) {}
 
     ngOnInit() {
         this.controller.ngOnInit();

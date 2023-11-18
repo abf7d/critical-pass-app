@@ -16,7 +16,11 @@ export class MsalService {
     public isLoggedIn$: BehaviorSubject<boolean | null>;
     private msalInstance: Msal.PublicClientApplication;
 
-    constructor(private claimsService: ClaimsService, private authState: AuthStateService, configFactory: MsalConfigFactoryService) {
+    constructor(
+        private claimsService: ClaimsService,
+        private authState: AuthStateService,
+        configFactory: MsalConfigFactoryService,
+    ) {
         this.loginRequest = {
             scopes: environment.loginScopes,
             extraScopesToConsent: [environment.exposedApiScope],

@@ -21,7 +21,7 @@
                     <span class="arrowParentName">{{ project.profile.name }}</span>
                 </span>
             </div>
-    
+
             <div>
                 <div class="parent-risk-container">
                     <!-- <div class="parent-risk"> <span>Criticality Risk:</span> <span>{{vm.reducedGraph.criticalityRisk}}</span></div>
@@ -31,21 +31,23 @@
                 </div>
                 <div class="arrow-parent-details">
                     <div class="parent-count low">
-                        <div class="count-label ">Low Risk:</div> <div>{{ parentProject.profile.risk.greenCount }}</div>
+                        <div class="count-label">Low Risk:</div>
+                        <div>{{ parentProject.profile.risk.greenCount }}</div>
                     </div>
                     <div class="parent-count medium">
-                        <div class="count-label  ">Medium Risk :</div><div>{{ parentProject.profile.risk.yellowCount }}</div>
+                        <div class="count-label">Medium Risk :</div>
+                        <div>{{ parentProject.profile.risk.yellowCount }}</div>
                     </div>
                     <div class="parent-count high">
-                        <div class="count-label ">High Risk :</div><div>{{ parentProject.profile.risk.redCount }}</div>
+                        <div class="count-label">High Risk :</div>
+                        <div>{{ parentProject.profile.risk.redCount }}</div>
                     </div>
                     <div class="parent-count critical">
-                        <div class="count-label ">Critical Risk:</div><div>{{ parentProject.profile.risk.criticalCount }}</div>
+                        <div class="count-label">Critical Risk:</div>
+                        <div>{{ parentProject.profile.risk.criticalCount }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
-

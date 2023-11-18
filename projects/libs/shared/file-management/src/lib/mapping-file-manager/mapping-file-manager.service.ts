@@ -9,19 +9,19 @@ export class MappingFileManagerService implements FileManagerBaseService<Workshe
     public export(spreadsheet: Worksheet[]): void {}
 
     private getHeaderRow(sheet: XLSX.WorkSheet): string[] {
-        var headers = [];
+        const headers = [];
         if (sheet['!ref'] === undefined) {
             return [];
         }
-        var range = XLSX.utils.decode_range(sheet['!ref']);
+        const range = XLSX.utils.decode_range(sheet['!ref']);
 
-        var C,
+        let C,
             R = range.s.r; /* start in the first row */
         /* walk every column in the range */
         for (C = range.s.c; C <= range.e.c; ++C) {
-            var cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]; /* find the cell in the first row */
+            const cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]; /* find the cell in the first row */
 
-            var hdr = 'UNKNOWN ' + C; // <-- replace with your desired default
+            let hdr = 'UNKNOWN ' + C; // <-- replace with your desired default
             if (cell && cell.t) hdr = XLSX.utils.format_cell(cell);
 
             headers.push(hdr);

@@ -52,14 +52,14 @@ export class NetworkFileManagerService implements FileManagerBaseService<Project
         const proj: XLSX.WorkSheet = XLSX.utils.json_to_sheet(projProfiles);
         const subProjWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(subProjects);
 
-        let phasesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(phases);
-        let rolesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(roles);
-        let resourcesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(resources);
-        let activityResourcesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(activityResources);
-        let activityPhasesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(activityPhases);
-        let resourceRolesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(resourceRoles);
-        let tagPoolWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(tagPool);
-        let activityTagsWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(activityTags);
+        const phasesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(phases);
+        const rolesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(roles);
+        const resourcesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(resources);
+        const activityResourcesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(activityResources);
+        const activityPhasesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(activityPhases);
+        const resourceRolesWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(resourceRoles);
+        const tagPoolWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(tagPool);
+        const activityTagsWs: XLSX.WorkSheet = XLSX.utils.json_to_sheet(activityTags);
 
         // generate workbook and add the worksheet
         const wb: XLSX.WorkBook = XLSX.utils.book_new();

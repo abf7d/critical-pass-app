@@ -25,7 +25,15 @@
                     <i class="fas fa-chevron-down" *ngIf="!isSelFileType" (click)="isSelFileType = true"></i>
                     <div class="peek file-types" *ngIf="isSelFileType">
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="multi" name="create" [checked]="fileType === 'json'" (change)="fileType = 'json'" value="multi" />
+                            <input
+                                type="radio"
+                                class="custom-control-input"
+                                id="multi"
+                                name="create"
+                                [checked]="fileType === 'json'"
+                                (change)="fileType = 'json'"
+                                value="multi"
+                            />
                             <label class="custom-control-label" for="multi">json</label>
                         </div>
                         <div class="custom-control custom-radio">
@@ -34,7 +42,6 @@
                         </div>
                     </div>
                 </a>
-                
             </div>
             <div class="btns">
                 <i class="fas fa-times"></i>

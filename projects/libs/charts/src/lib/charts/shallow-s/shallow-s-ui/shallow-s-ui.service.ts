@@ -422,12 +422,12 @@ export class ShallowSUiService {
 
     private drawLines(props: Stats, xScale: any, yScale: any): void {
         const curve = props.step ? d3.curveStepAfter : d3.curveLinear;
-        var plannedLine = d3
+        const plannedLine = d3
             .line<ShallowSPoint>()
             .x(d => xScale(d.planned))
             .y(d => yScale(d.percentPlannedFinished))
             .curve(curve);
-        var actualLine = d3
+        const actualLine = d3
             .line<ShallowSPoint>()
             .x(d => xScale(d.actual))
             .y(d => yScale(d.percentActualFinished))

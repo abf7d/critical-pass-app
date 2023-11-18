@@ -23,7 +23,7 @@ export class MetaTagService {
     }
     public removeTagFromActivities(project: Project, groupName: string, tag: TagSelection) {
         project.activities.forEach(a => {
-            if (!!a.tags) {
+            if (a.tags) {
                 const group = a.tags.find(x => x.name === groupName);
                 if (group) {
                     group.tags = group.tags.filter(x => x.name !== tag.name);

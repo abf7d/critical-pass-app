@@ -16,7 +16,10 @@ export class ArrowSnapshotUiService {
     private slot!: string | undefined;
     private parentId!: string;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, private ngZone: NgZone) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        private ngZone: NgZone,
+    ) {}
 
     public init(width: number, height: number, id: number, parentId: string, el: any, slot: string | undefined) {
         this.id = id;

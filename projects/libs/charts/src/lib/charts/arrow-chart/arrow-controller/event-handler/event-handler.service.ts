@@ -106,8 +106,8 @@ export class EventHandlerService {
         this.st.nodes.selectAll('circle').attr('transform', (p: Integration) => {
             return '';
         });
-        let source = this.st.mousedown_node;
-        let target = this.st.mouseup_node;
+        const source = this.st.mousedown_node;
+        const target = this.st.mouseup_node;
         if (source === target) {
             return false;
         }

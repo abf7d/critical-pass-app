@@ -4,8 +4,10 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project landing` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project landing`.
-> Note: Don't forget to add `--project landing` or else it will be added to the default project in your `angular.json` file. 
+Run `ng generate component component-name --project landing` to generate a new component. You can also use
+`ng generate directive|pipe|service|class|guard|interface|enum|module --project landing`.
+
+> Note: Don't forget to add `--project landing` or else it will be added to the default project in your `angular.json` file.
 
 ## Build
 

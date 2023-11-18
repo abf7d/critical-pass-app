@@ -24,7 +24,7 @@ export class ShallowSCalcService {
     private calculateCompletionPercent(dataset: ShallowSPoint[]): void {
         const actual = dataset.filter(d => !!d.actual).sort((a, b) => this.getSortComparator(a.actual, b.actual));
         const pcd = dataset.filter(d => !!d.planned).sort((a, b) => this.getSortComparator(a.planned, b.planned));
-        let total = dataset.reduce((a, c) => {
+        const total = dataset.reduce((a, c) => {
             if (c.duration) return a + c.duration;
             else return a;
         }, 0);

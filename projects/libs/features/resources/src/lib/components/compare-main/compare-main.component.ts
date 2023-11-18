@@ -13,7 +13,10 @@ import { filter } from 'rxjs/operators';
 export class CompareMainComponent implements OnInit, OnDestroy {
     private sub!: Subscription;
     public completedNodes: TreeNode[] = [];
-    constructor(@Inject(EVENT_SERVICE_TOKEN) private eventService: EventService, private completed: CompletionNodeCalcService) {}
+    constructor(
+        @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
+        private completed: CompletionNodeCalcService,
+    ) {}
 
     ngOnInit(): void {
         this.completedNodes = [];

@@ -11,7 +11,10 @@ import * as CONST from '../../constants/constants';
     providedIn: 'root',
 })
 export class ZametekApiService {
-    constructor(private http: HttpClient, private projectSerializer: ProjectSerializerService /*, @Inject(Keys.APP_CONFIG) private config: PdConfig*/) {}
+    constructor(
+        private http: HttpClient,
+        private projectSerializer: ProjectSerializerService /*, @Inject(Keys.APP_CONFIG) private config: PdConfig*/,
+    ) {}
 
     public compileMsProject(file: File): Observable<Project> {
         const formData: FormData = new FormData();
@@ -28,6 +31,6 @@ export class ZametekApiService {
             .post(urlJoin(environment.mappingApi, CONST.BUILD_ARROW_GRAPH_ENDPOINT), body, {
                 headers: headers,
             })
-            .pipe(map(x => (!!x ? this.projectSerializer.fromJson(x) : null)));
+            .pipe(map(x => (x ? this.projectSerializer.fromJson(x) : null)));
     }
 }

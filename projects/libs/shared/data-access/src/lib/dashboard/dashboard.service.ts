@@ -7,7 +7,10 @@ import { ProjectCompilerService } from '@critical-pass/project/processor';
     providedIn: 'root',
 })
 export class DashboardService {
-    constructor(public projSerializer: ProjectSerializerService, public compiler: ProjectCompilerService) {
+    constructor(
+        public projSerializer: ProjectSerializerService,
+        public compiler: ProjectCompilerService,
+    ) {
         const emptyProj = projSerializer.fromJson();
         this._activeProject = new BehaviorSubject<Project>(emptyProj);
         this._secondaryProject = new BehaviorSubject<Project | null>(null);
@@ -32,7 +35,7 @@ export class DashboardService {
     get cache(): Map<number, Project> {
         return this._cache;
     }
-    
+
     public cleanSlateForNewPage(project: Project) {
         this._activeProject = new BehaviorSubject<Project>(project);
     }

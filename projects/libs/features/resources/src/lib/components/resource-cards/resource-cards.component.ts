@@ -17,7 +17,11 @@ export class ResourceCardsComponent implements OnInit, OnDestroy {
     private subscription!: Subscription;
     private id: number;
     public roles!: any[];
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, route: ActivatedRoute, private rsF: RoleFactoryService) {
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        route: ActivatedRoute,
+        private rsF: RoleFactoryService,
+    ) {
         this.id = +route.snapshot.params['id'];
     }
     public ngOnInit() {

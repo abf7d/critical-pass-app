@@ -17,7 +17,11 @@ export class AssignLayoutComponent implements OnInit {
     private subscription!: Subscription;
     public id: number;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, route: ActivatedRoute, private router: Router) {
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        route: ActivatedRoute,
+        private router: Router,
+    ) {
         this.id = +route.snapshot.params['id'];
         this.project$ = this.dashboard.activeProject$;
     }

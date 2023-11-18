@@ -476,7 +476,7 @@ export class NetworkMapperService {
             )
             .map(o => (resourceRoles = [...o, ...resourceRoles]));
 
-        let activityTags: TagEntry[] = [];
+        const activityTags: TagEntry[] = [];
         project.activities.forEach(a => {
             a.tags?.forEach(g => {
                 g.tags.forEach(t => {

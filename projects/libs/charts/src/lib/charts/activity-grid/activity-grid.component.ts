@@ -18,7 +18,10 @@ export class ActivityGridComponent implements OnInit, OnDestroy {
     private subscription: Subscription | null = null;
     private viewDumSub: Subscription | null = null;
 
-    constructor(private zone: NgZone, private events: GridEventsService) {}
+    constructor(
+        private zone: NgZone,
+        private events: GridEventsService,
+    ) {}
 
     public ngOnInit() {
         this.events.id = this.id;

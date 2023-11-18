@@ -1,27 +1,28 @@
 <div class="page-content">
     <div class="jira-header">
         <div class="jira-buttons">
-            
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': selectedTab === 'projects'}" (click)="selectedTab = 'projects'">Projects List</a>
+                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{ active: selectedTab === 'projects' }" (click)="selectedTab = 'projects'"
+                        >Projects List</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': selectedTab === 'viz'}" (click)="selectedTab = 'viz'">Project Viz</a>
+                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{ active: selectedTab === 'viz' }" (click)="selectedTab = 'viz'">Project Viz</a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': selectedTab === 'new-proj'}" (click)="selectedTab = 'new-proj'">New Project</a>
+                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{ active: selectedTab === 'new-proj' }" (click)="selectedTab = 'new-proj'"
+                        >New Project</a
+                    >
                 </li>
             </ul>
             <div>
                 <button class="btn btn-primary" (click)="toJira()">Authorize Jira</button>
             </div>
-           
-            
         </div>
         <div>
-            <div *ngIf="authExpireTime !== null">Auth Expires: {{ authExpireTime | date : 'long' }}</div>
-            <div *ngIf="me !== null">{{me.displayName}}</div>
+            <div *ngIf="authExpireTime !== null">Auth Expires: {{ authExpireTime | date: 'long' }}</div>
+            <div *ngIf="me !== null">{{ me.displayName }}</div>
         </div>
     </div>
     <div *ngIf="projects.length > 0 && selectedTab === 'projects'" class="project-list">
@@ -69,7 +70,7 @@
         </div>
     </div>
     <div class="jira-issues" *ngIf="issuesProject !== null && selectedTab === 'viz'">
-        <div class="jira-issue" *ngFor="let activity of issuesProject?.activities">{{activity.profile.name}}</div>
+        <div class="jira-issue" *ngFor="let activity of issuesProject?.activities">{{ activity.profile.name }}</div>
     </div>
     <div class="project-actions" *ngIf="selectedTab === 'new-proj'">
         <!-- -->
@@ -103,7 +104,7 @@
                 </div>
                 <div class="p-flex">
                     <div>Project Template</div>
-                    <select name=""  id="" formControlName="template">
+                    <select name="" id="" formControlName="template">
                         <option value="">Team Run</option>
                         <option value="">Company Run</option>
                     </select>
@@ -115,10 +116,9 @@
                     </select>
                 </div>
                 <div class="submit-button">
-
                     <div *ngIf="newProjectForm.errors">
                         <div *ngFor="let error of newProjectForm.errors | keyvalue">
-                            <div>{{error.key}}: {{error.value}}</div>
+                            <div>{{ error.key }}: {{ error.value }}</div>
                         </div>
                     </div>
                     <button class="btn btn-secondary" type="submit" [disabled]="!newProjectForm.valid || !project?.integrations?.length">

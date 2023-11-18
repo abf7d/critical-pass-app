@@ -117,7 +117,7 @@ export class GridEventsService {
         if (!pcdA) return;
         pcdA.profile.planned_completion_date = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
         pcdA.profile.planned_completion_date_dt = date;
-        if (!!activity.profile.duration) {
+        if (activity.profile.duration) {
             const start = subBusinessDays(pcdA.profile.planned_completion_date_dt, +activity.profile.duration - 1);
             pcdA.profile.start_date = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
             pcdA.profile.start_date_dt = new Date(start);

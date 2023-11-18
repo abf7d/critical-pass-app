@@ -14,7 +14,10 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
     private data!: Observable<any>;
     public project!: Project | null;
     private subscription!: Subscription;
-    constructor(private route: ActivatedRoute, @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService) {}
+    constructor(
+        private route: ActivatedRoute,
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+    ) {}
 
     public ngOnInit() {
         this.project = null;

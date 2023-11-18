@@ -17,7 +17,11 @@ export class StackedResourcesUiService {
     private sub!: Subscription;
     private projIsEmpty!: BehaviorSubject<boolean>;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, private ngZone: NgZone, private scheduler: StackedResourcesSchedulerService) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        private ngZone: NgZone,
+        private scheduler: StackedResourcesSchedulerService,
+    ) {}
 
     public init(width: number, height: number, margin: Margin, showAxes: boolean, id: number, barWidth: number, el: any) {
         this.id = id;
@@ -123,7 +127,7 @@ export class StackedResourcesUiService {
         x.domain(layers[0].map(d => d.data['midDate']) as unknown as string[]);
         y.domain([0, d3.max(layers[layers.length - 1], (d: any) => d[1])]).nice();
 
-        let indices = [];
+        const indices = [];
 
         const layer = this.st.mainG
             .selectAll('layer')
@@ -148,7 +152,7 @@ export class StackedResourcesUiService {
             .attr('top', (d: any) => d[1])
             .attr('height', (d: any) => {
                 if (d[1] - d[0] == 2) {
-                    let b = 5;
+                    const b = 5;
                 }
                 return y(d[0]) - y(d[1]);
             })

@@ -7,7 +7,10 @@ import { DateUtilsService, RiskCompilerService } from '@critical-pass/project/pr
     providedIn: 'root',
 })
 export class ParentCompilerService {
-    constructor(private dateUtils: DateUtilsService, private riskCompiler: RiskCompilerService /*, private parentRiskRefresh: ParentRiskRefreshService*/) {}
+    constructor(
+        private dateUtils: DateUtilsService,
+        private riskCompiler: RiskCompilerService /*, private parentRiskRefresh: ParentRiskRefreshService*/,
+    ) {}
 
     public compile(project: Project): void {
         if (project.profile.parentProject !== null) {

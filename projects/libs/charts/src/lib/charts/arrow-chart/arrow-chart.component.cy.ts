@@ -15,9 +15,9 @@ import { ArrowChartModule } from './arrow-chart.module';
 import { ArrowStateService } from './arrow-state/arrow-state';
 
 let data: Project | undefined;
-let serializer = new ProjectSerializerService();
-let dashboard = configureDashboard();
-let state = new ArrowStateService();
+const serializer = new ProjectSerializerService();
+const dashboard = configureDashboard();
+const state = new ArrowStateService();
 before(function () {
     // cy.fixture('project.json').then(function (json) {
     //     data = serializer.fromJson(json);

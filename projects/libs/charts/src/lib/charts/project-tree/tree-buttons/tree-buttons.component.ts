@@ -13,7 +13,10 @@ export class TreeButtonsComponent implements OnInit {
 
     private history!: TreeNode[];
 
-    constructor(@Inject(EVENT_SERVICE_TOKEN) private eventService: EventService, private fileManager: HistoryFileManagerService) {
+    constructor(
+        @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
+        private fileManager: HistoryFileManagerService,
+    ) {
         this.eventService.get<TreeNode[]>(CONST.HISTORY_ARRAY_KEY).subscribe(history => {
             this.history = history;
         });

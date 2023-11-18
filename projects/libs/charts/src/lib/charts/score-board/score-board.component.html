@@ -22,33 +22,35 @@
             <div class="list">
                 <div>
                     <div>Activity</div>
-                    <div class="value">{{ !!project!.profile!.risk.activityRisk ? project.profile.risk.activityRisk : '--'}}</div>
+                    <div class="value">{{ !!project!.profile!.risk.activityRisk ? project.profile.risk.activityRisk : '--' }}</div>
                 </div>
                 <div>
                     <div>Criticality</div>
-                    <div class="value">{{ !!project!.profile!.risk.criticalityRisk ? project.profile.risk.criticalityRisk : '--'}}</div>
+                    <div class="value">{{ !!project!.profile!.risk.criticalityRisk ? project.profile.risk.criticalityRisk : '--' }}</div>
                 </div>
                 <div>
                     <div>Fibonacci</div>
-                    <div class="value">{{ !!project!.profile!.risk.fibonacciRisk ? project.profile.risk.fibonacciRisk : '--'}}</div>
-                </div> 
+                    <div class="value">{{ !!project!.profile!.risk.fibonacciRisk ? project.profile.risk.fibonacciRisk : '--' }}</div>
+                </div>
             </div>
         </div>
     </div>
     <div class="d-flex">
         <div class="title"><i class="fas fa-male"></i>Averaage Staffing:</div>
-        <div class="value"> {{project.profile.staffing.averageStaffing}}</div>
+        <div class="value">{{ project.profile.staffing.averageStaffing }}</div>
     </div>
     <div class="d-flex">
         <div class="title"><i class="fas fa-calendar"></i>Duration Months:</div>
-        <div class="value">{{project.profile.staffing.durationInMonths}}</div>
+        <div class="value">{{ project.profile.staffing.durationInMonths }}</div>
     </div>
     <div class="d-flex">
         <div class="title"><i class="fas fa-percent"></i>Effeciency Factor (9/1):</div>
-        <div class="value" *ngIf="project != null && project.profile.staffing.effeciencyFactor9to1 !== -1">{{project.profile.staffing.effeciencyFactor9to1}}</div>
+        <div class="value" *ngIf="project != null && project.profile.staffing.effeciencyFactor9to1 !== -1">
+            {{ project.profile.staffing.effeciencyFactor9to1 }}
+        </div>
     </div>
     <div class="d-flex">
         <div class="title"><i class="fas fa-flag-checkered"></i>Earliest Finish Date</div>
-        <div class="value">{{ !!project!.profile!.staffing.earliestFinishDate ? project.profile.staffing.earliestFinishDate: '--'}}</div>
+        <div class="value">{{ !!project!.profile!.staffing.earliestFinishDate ? project.profile.staffing.earliestFinishDate : '--' }}</div>
     </div>
 </div>

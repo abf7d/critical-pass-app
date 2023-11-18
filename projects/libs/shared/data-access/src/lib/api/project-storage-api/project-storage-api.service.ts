@@ -8,7 +8,10 @@ import * as CONST from '../../constants/constants';
     providedIn: 'root',
 })
 export class ProjectStorageApiService {
-    constructor(private serializer: ProjectSerializerService, private nodeConnector: NodeConnectorService) {}
+    constructor(
+        private serializer: ProjectSerializerService,
+        private nodeConnector: NodeConnectorService,
+    ) {}
 
     public get(storageType: string): Project | null {
         let stored: any;

@@ -7,9 +7,13 @@ import { ArrowStateService } from '../../arrow-state/arrow-state';
     providedIn: 'root',
 })
 export class ProjectElFactory {
-    constructor(private st: ArrowStateService, private actBuilder: ActivityBuilder, private msFactory: MilestoneFactoryService) {}
+    constructor(
+        private st: ArrowStateService,
+        private actBuilder: ActivityBuilder,
+        private msFactory: MilestoneFactoryService,
+    ) {}
     public addProjectActivity(source: Integration, target: Integration, proj: Project): Activity {
-        let maxId = Math.max(...proj.activities.map(a => a.profile.id), 0);
+        const maxId = Math.max(...proj.activities.map(a => a.profile.id), 0);
         const id = maxId + 1;
 
         const newActivity = new ActivitySerializerService().new(id, id.toString(), source.id, target.id, 0, 0);
@@ -31,7 +35,7 @@ export class ProjectElFactory {
         }
         this.clearSelectedLink(proj);
         this.clearSelectedNode(proj);
-        let id = Math.max(...proj.integrations.map(x => x.id), 0) + 1;
+        const id = Math.max(...proj.integrations.map(x => x.id), 0) + 1;
         const node = new IntegrationSerializerService().new(id, id.toString(), 0, point[0], point[1]);
         node.x = Math.round(point[0]);
         node.y = Math.round(point[1]);

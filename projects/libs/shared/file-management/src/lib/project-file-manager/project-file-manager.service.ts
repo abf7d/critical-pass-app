@@ -14,7 +14,11 @@ import { ProjectSanatizerService } from '@critical-pass/shared/project-utils';
     providedIn: 'root',
 })
 export class ProjectFileManagerService implements FileManagerBaseService<Project> {
-    constructor(private mapper: ProjectMapperService, private serializer: ProjectSerializerService, private projSanitizer: ProjectSanatizerService) {}
+    constructor(
+        private mapper: ProjectMapperService,
+        private serializer: ProjectSerializerService,
+        private projSanitizer: ProjectSanatizerService,
+    ) {}
     public export(project: Project) {
         const profiles = project.activities.map(x => {
             return { ...x.profile, graphId: project.profile.id };

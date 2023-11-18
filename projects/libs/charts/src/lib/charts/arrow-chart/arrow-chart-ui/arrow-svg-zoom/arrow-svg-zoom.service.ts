@@ -9,7 +9,10 @@ import { ArrowStateService } from '../../arrow-state/arrow-state';
     providedIn: 'root',
 })
 export class ArrowSvgZoomService {
-    constructor(/*@Inject(CONST.ARROW_STATE_TOKEN)*/ private st: ArrowStateService, private lassoTool: LassoToolService) {}
+    constructor(
+        /*@Inject(CONST.ARROW_STATE_TOKEN)*/ private st: ArrowStateService,
+        private lassoTool: LassoToolService,
+    ) {}
     public zoom(project: Project): void {
         if (project.profile.view.lassoOn == true) {
             this.st.svg.on('.zoom', null);

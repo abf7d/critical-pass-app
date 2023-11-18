@@ -132,7 +132,7 @@ export class IndirectCostCalculatorService {
         if (!isNaN(pcdIsValid.getTime())) {
             activity.profile.planned_completion_date_dt = pcdIsValid; //pcd.toDate();
         }
-        let durationMs = activity.profile.duration * 1000 * 60 * 60 * 24;
+        const durationMs = activity.profile.duration * 1000 * 60 * 60 * 24;
         return activity.profile.planned_completion_date_dt.getTime() + durationMs;
     }
 

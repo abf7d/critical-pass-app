@@ -19,9 +19,7 @@
                         <div><input [(ngModel)]="project.profile.redLimit" (ngModelChange)="updateProject()" class="form-control" type="number" /></div>
                     </div>
                     <div>
-                        <div>
-                            Yellow:<span class="start-range">{{ project.profile.redLimit + 1 }} -</span>
-                        </div>
+                        <div>Yellow:<span class="start-range">{{ project.profile.redLimit + 1 }} -</span></div>
                         <div><input [(ngModel)]="project.profile.yellowLimit" (ngModelChange)="updateProject()" class="form-control" type="number" /></div>
                     </div>
                     <div>
@@ -74,7 +72,5 @@
             </div>
         </div>
     </div>
-    <div class="right">
-       
-    </div>
+    <div class="right"></div>
 </div>

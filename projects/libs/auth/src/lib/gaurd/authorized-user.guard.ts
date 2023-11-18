@@ -9,7 +9,11 @@ import { ClaimsService, MsalService } from '@critical-pass/auth';
 })
 export class AuthorizedUserGuard implements CanLoad {
     jwtHelper: JwtHelperService;
-    constructor(private authService: MsalService, private accountData: ClaimsService, private router: Router) {
+    constructor(
+        private authService: MsalService,
+        private accountData: ClaimsService,
+        private router: Router,
+    ) {
         this.jwtHelper = new JwtHelperService();
     }
 

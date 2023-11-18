@@ -13,7 +13,10 @@ import { Subscription } from 'rxjs';
 export class RiskBarComponent implements OnInit, OnDestroy {
     public decompressAmount!: number;
     public sub!: Subscription;
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
+    ) {}
 
     public ngOnInit(): void {
         this.decompressAmount = 0;

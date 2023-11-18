@@ -4,7 +4,7 @@
         <i [hidden]="+currentPage > 0" class="fa fa-arrow-circle-left fa-2x pointer disabled-a" name="arrow-circle-left" inverse="true"></i>
         <div class="page-label">
             <div>Navigate Library</div>
-            <div>Page {{ currentPage }} / {{maxPage}}</div>
+            <div>Page {{ currentPage }} / {{ maxPage }}</div>
         </div>
         <i [hidden]="+currentPage >= maxPage" class="fa fa-arrow-circle-right fa-2x pointer enabled-a" (click)="pageRight()" inverse="true"></i>
         <i [hidden]="+currentPage < maxPage" class="fa fa-arrow-circle-right fa-2x pointer disabled-a" inverse="true"></i>

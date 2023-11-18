@@ -17,7 +17,11 @@ export class ShallowSSnapshotUiService {
     private height!: number;
     private width!: number;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, private ngZone: NgZone, private calc: ShallowSCalcService) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        private ngZone: NgZone,
+        private calc: ShallowSCalcService,
+    ) {}
 
     public init(width: number, height: number, id: number, el: any) {
         this.height = height;
@@ -68,7 +72,7 @@ export class ShallowSSnapshotUiService {
         this.st.mainG.selectAll('*').remove();
         this.st.svg.select('g.empty-msg').remove();
         if (isEmpty) {
-            let message = 'No data exists for Shallow S Diagram';
+            const message = 'No data exists for Shallow S Diagram';
             this.st.svg.attr('transform', null);
             this.st.svg
                 .append('g')
@@ -146,12 +150,12 @@ export class ShallowSSnapshotUiService {
     }
 
     private drawLines(props: Stats, xScale: any, yScale: any): void {
-        var plannedLine = d3
+        const plannedLine = d3
             .line<ShallowSPoint>()
             .x(d => xScale(d.planned))
             .y(d => yScale(d.percentPlannedFinished))
             .curve(d3.curveLinear);
-        var actualLine = d3
+        const actualLine = d3
             .line<ShallowSPoint>()
             .x(d => xScale(d.actual))
             .y(d => yScale(d.percentActualFinished))

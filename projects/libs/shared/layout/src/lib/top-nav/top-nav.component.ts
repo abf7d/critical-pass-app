@@ -7,7 +7,10 @@ import { MsalService } from '@critical-pass/auth';
     styleUrls: ['./top-nav.component.scss'],
 })
 export class TopNavComponent implements OnInit {
-    constructor(private router: Router, private msalService: MsalService) {}
+    constructor(
+        private router: Router,
+        private msalService: MsalService,
+    ) {}
 
     ngOnInit(): void {}
 

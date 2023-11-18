@@ -20,7 +20,10 @@ export class RiskDonutUiService {
     private width!: number;
     private height!: number;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, private ngZone: NgZone) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        private ngZone: NgZone,
+    ) {}
 
     public init(width: number, height: number, id: number, el: any) {
         this.id = id;
@@ -213,7 +216,7 @@ export class RiskDonutUiService {
                     .attr('class', 'criticality');
             }
         } else {
-            let message = 'No data exists for Risk Donut';
+            const message = 'No data exists for Risk Donut';
             this.svg.attr('transform', null);
             this.svg
                 .append('g')
@@ -352,8 +355,8 @@ export class RiskDonutUiService {
         return (d = this.findPreceding(i, data0, data1, key))
             ? { startAngle: d.endAngle, endAngle: d.endAngle }
             : (d = this.findFollowing(i, data0, data1, key))
-            ? { startAngle: d.startAngle, endAngle: d.startAngle }
-            : null;
+              ? { startAngle: d.startAngle, endAngle: d.startAngle }
+              : null;
     }
 
     // Find the element in data0 that joins the highest preceding element in data1.

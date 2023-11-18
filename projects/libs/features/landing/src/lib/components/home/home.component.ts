@@ -18,7 +18,10 @@ export class HomeComponent implements OnInit {
     public isLoggedIn!: boolean;
     public thirdPartyCookiesBlocked: boolean;
 
-    constructor(private authService: MsalService, private authStore: AuthStateService) {
+    constructor(
+        private authService: MsalService,
+        private authStore: AuthStateService,
+    ) {
         this.isLoggedIn$ = this.authStore.isLoggedIn$;
         this.thirdPartyCookiesBlocked = false;
         this.online$ = merge(of(navigator.onLine), fromEvent(window, 'online').pipe(mapTo(true)), fromEvent(window, 'offline').pipe(mapTo(false)));

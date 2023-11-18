@@ -2,7 +2,7 @@
     <div class="list-empty" [hidden]="project.activities.length !== 0">
         This project has no activities. Either click 'Add Activity' in the side bar or go to the Arrow diagram to draw some.
     </div>
-    
+
     <table class="table-fixed" [hidden]="project.activities.length === 0">
         <thead>
             <tr>
@@ -22,7 +22,7 @@
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="drop($event)">
             <tr cdkDrag *ngFor="let a of project.activities" [hidden]="a.chartInfo.isDummy && !showDummies && a.chartInfo.milestoneNodeId === null">
-                <td style="padding-right: 20px"> 
+                <td style="padding-right: 20px">
                     <div class="example-handle" cdkDragHandle>
                         <i class="fa fa-bars"></i>
                     </div>
@@ -36,14 +36,8 @@
                     <span [hidden]="a.chartInfo.milestoneNodeId === null">*</span>
                 </td>
                 <td>
-                    <input
-                        class="name-txt"
-                        placeholder=""
-                        [value]="a.profile.name"
-                        [(ngModel)]="a.profile.name"
-                        (blur)="updatName()"
-                    />
-                 
+                    <input class="name-txt" placeholder="" [value]="a.profile.name" [(ngModel)]="a.profile.name" (blur)="updatName()" />
+
                     <div [hidden]="a.processInfo.editingDependencies || a.processInfo.showBucket" class="dependency-button click-to-edit"></div>
                     <span [hidden]="a.processInfo.editingDependencies || a.processInfo.showBucket" class="dependency-button dep-edit"></span>
                     <div class="confirm-btns">
@@ -67,7 +61,7 @@
                         </span>
                     </div>
                 </td>
-                <td >
+                <td>
                     <div class="d-flex">
                         <i
                             [hidden]="a.processInfo.editingDependencies || a.processInfo.showBucket"
@@ -93,7 +87,6 @@
                     />
                 </td>
                 <td>
-
                     <mat-datepicker-toggle class="icon picker-toggle" matSuffix [for]="picker">
                         <mat-icon class="mat-icon-rtl-mirror"></mat-icon>
                     </mat-datepicker-toggle>

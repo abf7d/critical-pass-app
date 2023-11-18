@@ -12,7 +12,10 @@ import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 })
 export class ProjectApiService {
     private baseUrl!: string;
-    constructor(private httpClient: HttpClient, private serializer: ProjectSerializerService) {
+    constructor(
+        private httpClient: HttpClient,
+        private serializer: ProjectSerializerService,
+    ) {
         this.baseUrl = environment.criticalPathApi;
     }
 

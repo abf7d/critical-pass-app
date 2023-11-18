@@ -9,7 +9,11 @@ import { tap } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class ButtonEventsService {
-    constructor(private zametekApi: ZametekApiService, private projectSanitizer: ProjectSanatizerService, private fCompiler: FileCompilerService) {}
+    constructor(
+        private zametekApi: ZametekApiService,
+        private projectSanitizer: ProjectSanatizerService,
+        private fCompiler: FileCompilerService,
+    ) {}
 
     public compileMsProject(file: File): Observable<Project> {
         return this.zametekApi.compileMsProject(file).pipe(

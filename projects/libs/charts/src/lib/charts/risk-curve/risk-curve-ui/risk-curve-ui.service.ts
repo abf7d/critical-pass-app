@@ -502,12 +502,12 @@ export class RiskCurveUiService {
     }
     private setSecondDerivative() {
         this.st.secondDerivativeZero = this.secondDerivativeZero();
-        let type = this.riskCurveType$.getValue();
+        const type = this.riskCurveType$.getValue();
         const y = this.getRiskForDays(this.st.secondDerivativeZero, type);
         this.decompressAmount$.next(+y.toFixed(3));
     }
     private getRiskValue(option: RiskOption) {
-        let type = this.riskCurveType$.getValue();
+        const type = this.riskCurveType$.getValue();
         let value;
         switch (type) {
             case CONST.ACTIVITY_RISK_KEY:

@@ -68,7 +68,7 @@ export class TimeCostUiService {
             this.st.mainG.selectAll('*').remove();
             this.st.svg.select('g.empty-msg').remove();
             if (isEmpty) {
-                let message = 'No data exists for Time Cost curve';
+                const message = 'No data exists for Time Cost curve';
                 this.st.svg.attr('transform', null);
                 this.st.svg
                     .append('g')

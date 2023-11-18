@@ -168,7 +168,7 @@ export class RiskCompilerService {
 
     private calculateFloats(forwardPath: Route) {
         let float;
-        let flattenedPath: Edge[] = forwardPath.edges.sort((a, b) => a.id);
+        const flattenedPath: Edge[] = forwardPath.edges.sort((a, b) => a.id);
 
         const floats: FloatInfo[] = [];
         for (const edge of flattenedPath) {

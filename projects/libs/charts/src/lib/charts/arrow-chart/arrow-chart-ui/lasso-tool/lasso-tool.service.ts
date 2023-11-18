@@ -29,7 +29,11 @@ export class LassoToolService {
     private lassoEnd: number | null = null;
     private id!: number;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService, private arrowController: ArrowControllerService, private st: ArrowStateService) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        private arrowController: ArrowControllerService,
+        private st: ArrowStateService,
+    ) {}
 
     public setTransform(transform: SvgTranform) {
         this.transform = transform;

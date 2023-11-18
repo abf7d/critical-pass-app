@@ -33,7 +33,7 @@ export class TableFactoryService {
         schema.forEach(x => (x.selected = false));
         const lowerSchema = schema.map(x => x.name.toLowerCase());
         colDef.forEach(c => {
-            let index = lowerSchema.indexOf(c.headerName!.toLowerCase());
+            const index = lowerSchema.indexOf(c.headerName!.toLowerCase());
             if (index > -1) {
                 c.headerClass = 'matched';
                 schema[index].selected = true;

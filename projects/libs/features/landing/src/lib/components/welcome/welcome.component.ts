@@ -24,7 +24,11 @@ export class WelcomeComponent implements OnInit {
     public isAuthorized$: BehaviorSubject<boolean | null>;
     public loginError$: BehaviorSubject<boolean | null>;
 
-    constructor(private authService: MsalService, private router: Router, private authStore: AuthStateService) {
+    constructor(
+        private authService: MsalService,
+        private router: Router,
+        private authStore: AuthStateService,
+    ) {
         this.isLoggedIn$ = this.authStore.isLoggedIn$;
         this.errorLoadingProject = false;
         this.thirdPartyCookiesBlocked = false;

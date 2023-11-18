@@ -98,7 +98,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     public getMe(): void {
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
         if (auth_token !== null) {
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             const userUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, CONST.JIRA_ME_URL);
 
@@ -137,7 +137,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     public getCloudId(): void {
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
         if (auth_token !== null) {
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             this.httpClient.get(CONST.JIRA_CLOUD_ID_URL, requestOptions).subscribe(
                 (res: any) => {
@@ -177,7 +177,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     public getJiraProjectResult(project: JiraProject): Observable<JiraProjectResult> | null {
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
         if (auth_token !== null) {
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             const projectUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, `${CONST.JIRA_PROJECT_QUERY}${project.key}`);
             return this.httpClient.get<JiraProjectResult>(projectUrl, requestOptions); /*.subscribe((res: any) => {
@@ -196,7 +196,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     public getProjects() {
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
         if (auth_token !== null) {
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             const projectsUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, CONST.JIRA_PROJECTS_ENDPOINT);
 
@@ -210,7 +210,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     }
 
     public async setProjectProperty(jiraProj: JiraProjectResponse | null = null): Promise<void> {
-        let projKey = jiraProj?.key ?? this.selectedProject?.key;
+        const projKey = jiraProj?.key ?? this.selectedProject?.key;
         // const project = this.selectedProject;
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
         if (auth_token !== null) {
@@ -237,7 +237,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
                 CONST.JIRA_PROJECT_PROPERTY_ENDPOINT,
                 propertyKey,
             );
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             this.httpClient.put(propertyUrl, body, requestOptions).subscribe((res: any) => {
                 console.log(res);
@@ -257,7 +257,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
                 CONST.JIRA_PROJECT_PROPERTY_ENDPOINT,
                 propertyKey,
             );
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             this.httpClient.get(propertyUrl, requestOptions).subscribe(
                 (res: any) => {
@@ -319,7 +319,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
             //     string: projectTxt,
             // };
             // const body = JSON.stringify(bodyData);
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
 
             // const projCategoriesUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, CONST.JIRA_PROJ_CATEGORIES_URL);
@@ -355,7 +355,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     public projIssueTypes: IssueType[] = [];
     public getIssueTypes(): void {
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
-        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
         const requestOptions = { headers: headers };
         const issueTypeUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, CONST.JIRA_ISSUE_TYPE_URL);
         this.issueTypes = [];
@@ -392,7 +392,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     public createFullJiraProject(): void {
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
         const leadAccountId = this.me!.accountId;
-        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
         const requestOptions = { headers: headers };
         const key = this.newProjectForm.get('key')?.value;
         const name = this.newProjectForm.get('name')?.value;
@@ -481,7 +481,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
             const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
             const createIssueUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, CONST.JIRA_ISSUE_URL);
             const body = JSON.stringify(issue);
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             return this.httpClient.post<SaveIssueResponse>(createIssueUrl, body, requestOptions);
         });
@@ -502,7 +502,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
             if (auth_token !== null) {
                 const project = this.selectedProject;
                 const deleteProjUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, CONST.JIRA_PROJECT_PROPERTY_URL, project!.key);
-                let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+                const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
                 const requestOptions = { headers: headers };
                 this.httpClient.delete(deleteProjUrl, requestOptions).subscribe((res: any) => {
                     console.log(res);
@@ -519,7 +519,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
             const issueTarget = 'P1-10';
             const dependencyIssue = 'P1-8';
             const body = this.importer.createIssueLinkBody(dependencyIssue, issueTarget);
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             this.httpClient.post(createIssueLinkUrl, body, requestOptions).subscribe((res: any) => {
                 console.log(res);
@@ -530,7 +530,7 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
         const auth_token = localStorage.getItem(CORE_CONST.JIRA_TOKEN_KEY);
         if (auth_token !== null) {
             const createIssueLinkUrl = urlJoin(CONST.JIRA_QUERY_BASE_URL, this.cloudId!, CONST.JIRA_ISSUE_LINK_URL);
-            let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
+            const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', `Bearer ${auth_token}`);
             const requestOptions = { headers: headers };
             const issueLinkApiCalls$ = links.map(linkBody => {
                 // const body = JSON.stringify(link);

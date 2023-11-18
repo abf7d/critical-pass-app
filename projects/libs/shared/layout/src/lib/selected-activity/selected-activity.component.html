@@ -1,7 +1,7 @@
-<div class="title">Selected {{ selectedNode === null? 'Activity' : 'Node'}}</div>
-<div class="form nothing-selected keep-selected-item" [hidden]="selectedNode === null"> 
+<div class="title">Selected {{ selectedNode === null ? 'Activity' : 'Node' }}</div>
+<div class="form nothing-selected keep-selected-item" [hidden]="selectedNode === null">
     <div>
-        <div>Id: {{selectedNode?.id}}</div>
+        <div>Id: {{ selectedNode?.id }}</div>
     </div>
     <div>
         <div>Label</div>
@@ -21,7 +21,6 @@
             <button class="btn btn-secondary" (click)="revertMilestone()">Revert from Milestone</button>
         </div>
     </div>
-
 </div>
 <div class="form keep-selected-item" [hidden]="!showPanel">
     <div>
@@ -36,7 +35,7 @@
         <div>Planned Completion Date</div>
         <div class="dt-picker">
             <mat-datepicker-toggle class="icon picker-toggle" matSuffix [for]="picker">
-                <mat-icon class="mat-icon-rtl-mirror" ></mat-icon>
+                <mat-icon class="mat-icon-rtl-mirror"></mat-icon>
             </mat-datepicker-toggle>
             <input #input class="dateinput" [matDatepicker]="picker" placeholder="---" [(ngModel)]="pcd" (ngModelChange)="updateDate(pcd, 'pcd')" />
             <mat-datepicker #picker (closed)="input.blur()"></mat-datepicker>
@@ -48,7 +47,14 @@
             <mat-datepicker-toggle class="icon picker-toggle" matSuffix [for]="pickerfinish">
                 <mat-icon class="mat-icon-rtl-mirror"></mat-icon>
             </mat-datepicker-toggle>
-            <input #inputfinish class="dateinput" [matDatepicker]="pickerfinish" placeholder="---" [(ngModel)]="finish" (ngModelChange)="updateDate(finish, 'finish')"  />
+            <input
+                #inputfinish
+                class="dateinput"
+                [matDatepicker]="pickerfinish"
+                placeholder="---"
+                [(ngModel)]="finish"
+                (ngModelChange)="updateDate(finish, 'finish')"
+            />
             <mat-datepicker #pickerfinish (closed)="input.blur()"></mat-datepicker>
         </div>
     </div>
