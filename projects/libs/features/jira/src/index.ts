@@ -1,6 +1,1 @@
-/*
- * Public API Surface of jira
- */
-
-export * from './lib/jira.service';
-export * from './lib/jira.component';
+export * from './lib/jira.module';

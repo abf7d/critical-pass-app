@@ -3,11 +3,12 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "auth": [
-        "./dist/auth"
+      "@critical-pass/auth": [
+        "./dist/auth",
+        "./projects/libs/auth/src"
       ],
-      "charts": [
-        "./dist/charts"
+      "@critical-pass/charts": [
+        "./projects/libs/charts/src"
       ],
       "@critical-pass/core": [
         "./dist/core","./projects/libs/core/src"
@@ -24,44 +25,54 @@
       "@critical-pass/shared/file-management": [
         "./projects/libs/shared/file-management/src"
       ],
-      "history": [
-        "./dist/history"
+      "@critical-pass/features/history": [
+        "./dist/history",
+        "./projects/libs/features/history/src"
       ],
-      "jira": [
-        "./dist/jira"
+      "@critical-pass/features/jira": [
+        "./dist/jira",
+        "./projects/libs/features/jira/src"
       ],
-      "landing": [
-        "./dist/landing"
+      "@critical-pass/features/landing": [
+        "./dist/landing",
+        "./projects/libs/features/landing/src"
       ],
-      "layout": [
-        "./dist/layout"
+      "@critical-pass/shared/layout": [
+        "./dist/layout",
+        "./projects/libs/shared/layout/src"
       ],
-      "library": [
-        "./dist/library"
+      "@critical-pass/features/library": [
+        "./dist/library",
+        "./projects/libs/features/library/src"
       ],
-      "network": [
-        "./dist/network"
+      "@critical-pass/features/network": [
+        "./dist/network",
+        "./projects/libs/features/network/src"
       ],
       "@critical-pass/project/processor": [
         "./dist/processor",
         "./projects/libs/project/processor/src"
       ],
-      "profile": [
-        "./dist/profile"
+      "@critical-pass/features/profile": [
+        "./dist/profile",
+        "./projects/libs/features/profile/src"
       ],
       "@critical-pass/shared/project-utils": [
         "./dist/project-utils",
         "./projects/libs/shared/project-utils/src"
       ],
-      "resources": [
-        "./dist/resources"
+      "@critical-pass/features/resources": [
+        "./dist/resources",
+        "./projects/libs/features/resources/src"
       ],
       "@critical-pass/shared/serializers": [
         "./dist/serializers",
         "./projects/libs/shared/serializers/src"
       ],
-      "spreadsheet": [
-        "./dist/spreadsheet"
+      "@critical-pass/features/spreadsheet": [
+        "./dist/spreadsheet",
+        "./projects/libs/features/spreadsheet/src"
+        
       ],
       "@critical-pass/project/types": [
         "./projects/libs/project/types/src"

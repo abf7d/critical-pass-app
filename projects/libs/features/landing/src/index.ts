@@ -1,6 +1,3 @@
-/*
- * Public API Surface of landing
- */
-
-export * from './lib/landing.service';
-export * from './lib/landing.component';
+export * from './lib/components/landing.module';
+export * from './lib/components/home/home.component';
+export * from './lib/components/welcome/welcome.component';
