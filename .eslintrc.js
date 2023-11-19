@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    parser: '@angular-eslint/template-parser',
+    parser: '@typescript-eslint/parser',
     plugins: ['@typescript-eslint', 'prettier'],
     extends: ['eslint:recommended', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
     rules: {
@@ -8,5 +8,17 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'no-prototype-builtins': 'off',
+        '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+        '@typescript-eslint/no-this-alias': 'off',
     },
+    overrides: [
+        {
+            files: ['*.html'],
+            parser: '@angular-eslint/template-parser',
+            plugins: ['@angular-eslint/template'],
+            rules: {
+                // your rules for Angular templates here
+            },
+        },
+    ],
 };

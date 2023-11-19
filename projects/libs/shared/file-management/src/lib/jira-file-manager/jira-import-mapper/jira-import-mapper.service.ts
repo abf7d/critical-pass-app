@@ -286,7 +286,7 @@ export interface SaveIssueResponse {
         status: number;
         errorCollection: {
             errorMessages: [];
-            errors: {};
+            errors: object;
         };
     };
 }

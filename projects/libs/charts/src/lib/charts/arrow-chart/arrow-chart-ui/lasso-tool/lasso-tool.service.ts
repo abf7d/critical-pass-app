@@ -258,15 +258,10 @@ export class LassoToolService {
     private pointInPolygon(point: number[], polygon: number[][]): boolean {
         // ray-casting algorithm based on
         // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-        let xi,
-            xj,
-            yi,
-            yj,
-            i,
-            intersect,
-            x = point[0],
-            y = point[1],
-            inside = false;
+        let xi, xj, yi, yj, i, intersect;
+        const x = point[0];
+        const y = point[1];
+        let inside = false;
         for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
             (xi = polygon[i][0]),
                 (yi = polygon[i][1]),

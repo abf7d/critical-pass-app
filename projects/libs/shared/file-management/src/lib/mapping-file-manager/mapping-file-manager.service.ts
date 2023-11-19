@@ -15,8 +15,8 @@ export class MappingFileManagerService implements FileManagerBaseService<Workshe
         }
         const range = XLSX.utils.decode_range(sheet['!ref']);
 
-        let C,
-            R = range.s.r; /* start in the first row */
+        let C;
+        const R = range.s.r; /* start in the first row */
         /* walk every column in the range */
         for (C = range.s.c; C <= range.e.c; ++C) {
             const cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]; /* find the cell in the first row */

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Project } from '@critical-pass/project/types';
-// @ts-ignore
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"d3-dag"' has no exported member 'dagStratify'.
 import * as d3dag from 'd3-dag';
 import { tr } from 'date-fns/locale';
 

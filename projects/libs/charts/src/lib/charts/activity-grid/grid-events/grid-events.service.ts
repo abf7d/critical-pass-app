@@ -176,14 +176,15 @@ export class GridEventsService {
             this.isAscending = true;
         }
         switch (column) {
-            case 'id':
+            case 'id': {
                 if (this.isAscending) {
                     project.activities.sort((a, b) => a.profile.id - b.profile.id);
                 } else {
                     project.activities.sort((a, b) => b.profile.id - a.profile.id);
                 }
                 break;
-            case 'name':
+            }
+            case 'name': {
                 project.activities.sort((a, b) => {
                     const nameA = a.profile.name ? a.profile.name.toUpperCase() : '';
                     const nameB = b.profile.name ? b.profile.name.toUpperCase() : '';
@@ -205,7 +206,8 @@ export class GridEventsService {
                     return 0;
                 });
                 break;
-            case 'start':
+            }
+            case 'start': {
                 project.activities.sort((a, b) => {
                     const nameA = a.profile.start_date_dt ?? '';
                     const nameB = b.profile.start_date_dt ?? '';
@@ -227,7 +229,8 @@ export class GridEventsService {
                     return 0;
                 });
                 break;
-            case 'pcd':
+            }
+            case 'pcd': {
                 project.activities.sort((a, b) => {
                     const nameA = a.profile.planned_completion_date_dt ?? '';
                     const nameB = b.profile.planned_completion_date_dt ?? '';
@@ -257,6 +260,7 @@ export class GridEventsService {
                 });
                 this.depCrawler.setDependencyDataFromGraph(project);
                 break;
+            }
         }
         this.lastSearch = column;
         project.activities.forEach((a, i) => {

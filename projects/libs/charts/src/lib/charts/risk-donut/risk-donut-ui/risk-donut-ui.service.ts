@@ -150,7 +150,7 @@ export class RiskDonutUiService {
         path.enter()
             .append('path')
             .each(function (d: any, i: any) {
-                // @ts-ignore
+                // @ts-expect-error - this is a hack to get around the fact that d3 doesn't know about _current
                 this._current = _this.findNeighborArc(i, data0, data1, this.key) || d;
             })
             .attr('fill', (d: any) => d.data.color)
@@ -159,9 +159,9 @@ export class RiskDonutUiService {
             .attrTween('d', arcTween);
 
         function arcTween(d: any) {
-            // @ts-ignore
+            // @ts-expect-error - this is a hack to get around the fact that d3 doesn't know about _current
             const i = d3.interpolate(this._current, d);
-            // @ts-ignore
+            // @ts-expect-error - this is a hack to get around the fact that d3 doesn't know about _current
             this._current = i(1);
             return function (t: any) {
                 return _this.arc(i(t));
@@ -351,12 +351,16 @@ export class RiskDonutUiService {
     }
 
     private findNeighborArc(i: any, data0: any, data1: any, key: any) {
-        let d;
-        return (d = this.findPreceding(i, data0, data1, key))
-            ? { startAngle: d.endAngle, endAngle: d.endAngle }
-            : (d = this.findFollowing(i, data0, data1, key))
-              ? { startAngle: d.startAngle, endAngle: d.startAngle }
-              : null;
+        const preceding = this.findPreceding(i, data0, data1, key);
+        if (preceding) {
+            return { startAngle: preceding.endAngle, endAngle: preceding.endAngle };
+        }
+        const following = this.findFollowing(i, data0, data1, key);
+        if (following) {
+            return { startAngle: following.startAngle, endAngle: following.startAngle };
+        }
+
+        return null;
     }
 
     // Find the element in data0 that joins the highest preceding element in data1.

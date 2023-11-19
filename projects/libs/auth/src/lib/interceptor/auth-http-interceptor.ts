@@ -14,7 +14,6 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const _this = this;
         return from(this.authenticationService.getAuthToken()).pipe(
             switchMap(token => {
                 const existingBearer = req.headers.get('Authorization');

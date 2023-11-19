@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "npm run prettier:check && ng lint",
-    "lint:fix": "ng lint --fix && npm run prettier:fix",
+    "lint:fix": "ng lint --fix --cache && npm run prettier:fix",
     "prettier": "prettier \"**/*.ts\" \"**/*.js\" \"**/*.md\"",
     "prettier:check": "npm run prettier -- -l",
     "prettier:cli": "npm run prettier -- -c",

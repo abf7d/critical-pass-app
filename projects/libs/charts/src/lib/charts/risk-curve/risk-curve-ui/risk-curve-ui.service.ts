@@ -6,7 +6,7 @@ import * as d3 from 'd3';
 import { RiskCurveState, RiskCurveStateFactory } from '../risk-curve-state/risk-curve-state';
 import { RiskCurveDecompressorService } from '../risk-curve-decompressor/risk-curve-decompressor.service';
 // import { RiskOption } from '../../../models/charts/risk-curve';
-// @ts-ignore
+// @ts-expect-error d3reg has no exported types
 import * as d3reg from 'd3-regression';
 import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN } from '@critical-pass/shared/data-access';
 import { Project } from '@critical-pass/project/types';
