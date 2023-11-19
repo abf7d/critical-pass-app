@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { EventService } from '@critical-pass/shared/data-access';
-import { Project } from '@critical-pass/project/types';
 
 @Component({
     selector: 'cw-root',
