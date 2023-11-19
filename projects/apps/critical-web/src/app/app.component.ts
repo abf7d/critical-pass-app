@@ -18,5 +18,6 @@ export class AppComponent {
         this.eventService.get('test').subscribe(data => {
             console.log(data);
         });
+        const a = 0;
     }
 }
