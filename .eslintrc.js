@@ -10,6 +10,7 @@ module.exports = {
         'no-prototype-builtins': 'off',
         '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
         '@typescript-eslint/no-this-alias': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
     },
     overrides: [
         {

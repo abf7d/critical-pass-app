@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import * as d3 from 'd3';
 import { ShallowSCalcService } from '../shallow-s-calc/shallow-s-calc.service';
 import { lightFormat } from 'date-fns';
-// "@ts-expect-error" d3 regression has no exported types
+// @ts-ignore d3 regression has no exported types
 import * as d3reg from 'd3-regression';
 import * as CONST from '../../../constants/constants';
 import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN } from '@critical-pass/shared/data-access';

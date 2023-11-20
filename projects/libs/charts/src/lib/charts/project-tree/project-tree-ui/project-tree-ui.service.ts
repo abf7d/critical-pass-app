@@ -162,8 +162,8 @@ export class ProjectTreeUiService {
 
     private drawChart(): void {
         this.st.mainG.selectAll('*').remove();
-        let tree = d3.tree().size([this.st.innerHeight!, this.st.innerWidth!]);
-        const layout = d3.hierarchy(this.st.head);
+        let tree = d3.tree<TreeNode | null>().size([this.st.innerHeight!, this.st.innerWidth!]);
+        const layout = d3.hierarchy<TreeNode | null>(this.st.head);
         const newHeight = layout.height * 75;
         tree = tree.size([this.st.innerWidth!, newHeight]);
         const nodes = tree(layout);

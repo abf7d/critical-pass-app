@@ -77,8 +77,8 @@
       "@critical-pass/project/types": [
         "./projects/libs/project/types/src"
       ],
-      "web-lib": [
-        "./dist/web-lib"
+      "@critical-pass/web-lib": [
+        "./projects/libs/app-libs/web-lib/src"
       ]
     },
     "outDir": "./dist/out-tsc",
@@ -107,6 +107,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "enableIvy": false 
   }
 }

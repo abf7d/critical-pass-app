@@ -5,16 +5,14 @@ import { ExplorerLibModule } from '@critical-pass/web-lib';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { AppModule } from './app.module';
-import { ExplorerRoutingModule } from '../../../../libs/app-libs/web-lib/src/lib/explorer.routes';
 @Component({
-    selector: 'critical-pass-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [RouterOutlet, AppModule, HttpClientModule], //[AppModule, , ],
+    selector: 'test-root',
+    standalone: false,
+    template: `<div>Test</div>`,
+    styles: [''],
+    // imports: [RouterOutlet, AppModule], //[AppModule, , ],
     // exportAs: [RouterModule],
 })
-export class AppComponent {
+export class TestComponent {
     title = 'Critical Pass';
 }

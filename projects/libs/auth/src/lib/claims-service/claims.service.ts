@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ClaimsApiService } from '@critical-pass/shared/data-access';
 import * as CONST from '../constants';
-declare let require: any;
-const urljoin = require('url-join');
+
 @Injectable({
     providedIn: 'root',
 })
