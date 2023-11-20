@@ -12,9 +12,12 @@ import { AppModule } from './app.module';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [RouterOutlet, AppModule, HttpClientModule], //[AppModule, , ],
+    imports: [RouterOutlet, AppModule, HttpClientModule, ExplorerLibModule], //[AppModule, , ],
     // exportAs: [RouterModule],
 })
 export class AppComponent {
     title = 'Critical Pass';
 }
+
+// auth interceptor
+// https://stackoverflow.com/a/75948192
