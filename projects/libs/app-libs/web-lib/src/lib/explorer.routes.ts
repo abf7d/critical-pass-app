@@ -4,7 +4,7 @@ import { HomeComponent } from '@critical-pass/features/landing';
 import { WelcomeComponent } from '@critical-pass/features/landing';
 import { AuthorizedUserGuard } from '@critical-pass/auth';
 
-const routes: Routes = [
+export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     {
         path: 'home',
@@ -50,9 +50,10 @@ const routes: Routes = [
         canLoad: [AuthorizedUserGuard],
     },
 ];
-
+/*
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
 export class ExplorerRoutingModule {}
+*/

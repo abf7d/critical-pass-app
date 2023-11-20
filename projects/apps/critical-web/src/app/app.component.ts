@@ -6,7 +6,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppModule } from './app.module';
-import { ExplorerRoutingModule } from '../../../../libs/app-libs/web-lib/src/lib/explorer.routes';
+// import { ExplorerRoutingModule } from '../../../../libs/app-libs/web-lib/src/lib/explorer.routes';
 @Component({
     selector: 'critical-pass-root',
     templateUrl: './app.component.html',

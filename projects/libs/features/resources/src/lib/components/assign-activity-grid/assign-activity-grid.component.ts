@@ -36,7 +36,8 @@ export class AssignActivityGridComponent implements OnInit {
     }
 
     public isAssigned(activity: Activity) {
-        const colorBy = 'resource';
+        let colorBy = null;
+        colorBy = 'resource';
         let assigned = false;
         switch (colorBy) {
             case 'phase':
