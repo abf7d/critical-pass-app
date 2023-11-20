@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { AuthHttpInterceptor } from '@critical-pass/auth';
 import { DASHBOARD_TOKEN, DashboardService, EVENT_SERVICE_TOKEN, EventService } from '@critical-pass/shared/data-access';
 import { CanDeactivateGuard } from '@critical-pass/core';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
         { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
         CanDeactivateGuard,
         provideClientHydration(),
+        provideToastr(),
     ],
 };
 
