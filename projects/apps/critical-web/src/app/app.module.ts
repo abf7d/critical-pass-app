@@ -9,7 +9,11 @@ import { LandingsModule } from '@critical-pass/features/landing';
 
 @NgModule({
     // declarations: [AppComponent],
-    imports: [/*BrowserAnimationsModule,*/ LandingsModule /*RouterModule,*/ /* HttpClientModule  ExplorerLibModule*/],
+    imports: [
+        /*BrowserAnimationsModule,*/
+        /*RouterModule,*/
+        /* HttpClientModule  ExplorerLibModule*/
+    ],
     // bootstrap: [AppComponent],
     // exports: [RouterModule],
 })

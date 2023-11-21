@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '@critical-pass/features/landing';
 import { WelcomeComponent } from '@critical-pass/features/landing';
 import { AuthorizedUserGuard } from '@critical-pass/auth';
+import { AboutComponent } from '../../../../features/landing/src/lib/components/about/about.component';
+import { TutorialsComponent } from '../../../../features/landing/src/lib/components/tutorials/tutorials.component';
+import { DonateComponent } from '../../../../features/landing/src/lib/components/donate/donate.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,6 +16,18 @@ export const routes: Routes = [
     {
         path: 'welcome',
         component: WelcomeComponent,
+    },
+    {
+        path: 'about',
+        component: AboutComponent,
+    },
+    {
+        path: 'tutorials',
+        component: TutorialsComponent,
+    },
+    {
+        path: 'donate',
+        component: DonateComponent,
     },
     {
         path: 'library',

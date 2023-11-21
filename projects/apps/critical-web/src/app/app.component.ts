@@ -1,38 +1,15 @@
 import { Component } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
 import { ExplorerLibModule } from '@critical-pass/web-lib';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { RouterOutlet } from '@angular/router';
 import { AppModule } from './app.module';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { ExplorerRoutingModule } from '../../../../libs/app-libs/web-lib/src/lib/explorer.routes';
+import { LandingsModule } from '@critical-pass/features/landing';
 @Component({
     selector: 'critical-pass-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [
-        RouterOutlet,
-        AppModule,
-        HttpClientModule,
-        ExplorerLibModule,
-        // BrowserAnimationsModule
-        // MatFormFieldModule,
-        // MatDatepickerModule,
-        // MatNativeDateModule,
-        // FormsModule,
-        // ReactiveFormsModule,
-    ], //[AppModule, , ],
-    // exportAs: [RouterModule],
+    imports: [RouterOutlet, AppModule, ExplorerLibModule, LandingsModule],
 })
 export class AppComponent {
     title = 'Critical Pass';
 }
-
-// auth interceptor
-// https://stackoverflow.com/a/75948192
