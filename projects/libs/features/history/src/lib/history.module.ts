@@ -5,10 +5,23 @@ import { HistoryLayoutComponent } from './history-layout/history-layout.componen
 import { HistoryRoutingModule } from './history.routes';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ArrowChartModule, ArrowSnapshotModule, ProjectTreeModule } from '@critical-pass/charts';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [HistoryActionButtonsComponent, HistoryLayoutComponent],
-    imports: [CommonModule, HistoryRoutingModule, MatTooltipModule, ArrowChartModule, ArrowSnapshotModule, ProjectTreeModule],
+    imports: [
+        CommonModule,
+        HistoryRoutingModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatTooltipModule,
+        ArrowChartModule,
+        ArrowSnapshotModule,
+        ProjectTreeModule,
+    ],
     exports: [HistoryActionButtonsComponent],
 })
 export class HistoryModule {}

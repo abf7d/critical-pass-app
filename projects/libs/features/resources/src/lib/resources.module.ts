@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AssignBarComponent } from './sidebars/assign-bar/assign-bar.component';
 import { AssignActivityGridComponent } from './components/assign-activity-grid/assign-activity-grid.component';
-// import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { AssignLayoutComponent } from './assign-layout/assign-layout.component';
 import { TagSelectionComponent } from './components/tag-selection/tag-selection.component';
 import { ActivityTagsComponent } from './components/activity-tags/activity-tags.component';
@@ -23,7 +22,9 @@ import { ArrowChartModule, ProjectTreeModule, ShallowSSnapshotModule, StackedRes
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ResourceArrowComponent } from './components/resource-arrow/resource-arrow.component';
-// import { ProjectTreeModule, TimeCostModule } from '@critical-pass/critical-charts';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
     declarations: [
         AssignBarComponent,
@@ -43,8 +44,6 @@ import { ResourceArrowComponent } from './components/resource-arrow/resource-arr
     imports: [
         CommonModule,
         ResourcesRoutingModule,
-        // AssignRoutingModule,
-        // PerfectScrollbarModule,
         TimeCostModule,
         ProjectTreeModule,
         FormsModule,
@@ -58,7 +57,8 @@ import { ResourceArrowComponent } from './components/resource-arrow/resource-arr
         MatAutocompleteModule,
         MatIconModule,
         MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
     ],
-    // exports: [TagSelectionComponent],
 })
 export class ResourcesModule {}

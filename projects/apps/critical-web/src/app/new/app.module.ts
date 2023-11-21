@@ -8,7 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     // declarations: [AppComponent],
-    imports: [BrowserAnimationsModule, ToastrModule.forRoot(), /*RouterModule,*/ HttpClientModule, ExplorerLibModule],
+    imports: [/*BrowserAnimationsModule,*/ ToastrModule.forRoot(), /*RouterModule,*/ HttpClientModule, ExplorerLibModule],
     // bootstrap: [AppComponent],
 })
 export class AppModule {}

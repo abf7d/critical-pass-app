@@ -6,13 +6,28 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppModule } from './app.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { ExplorerRoutingModule } from '../../../../libs/app-libs/web-lib/src/lib/explorer.routes';
 @Component({
     selector: 'critical-pass-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [RouterOutlet, AppModule, HttpClientModule, ExplorerLibModule], //[AppModule, , ],
+    imports: [
+        RouterOutlet,
+        AppModule,
+        HttpClientModule,
+        ExplorerLibModule,
+        // BrowserAnimationsModule
+        // MatFormFieldModule,
+        // MatDatepickerModule,
+        // MatNativeDateModule,
+        // FormsModule,
+        // ReactiveFormsModule,
+    ], //[AppModule, , ],
     // exportAs: [RouterModule],
 })
 export class AppComponent {
