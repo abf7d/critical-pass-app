@@ -54,6 +54,9 @@ export class ArrowControllerService {
     public getArrowColor(old: boolean, a: Activity, proj: Project, risks: Map<number, number>, skipAnim: boolean): string {
         return this.props.getArrowColor(old, a, proj, risks, skipAnim);
     }
+    public getWrappedTextColor(a: Activity, proj: Project): string {
+        return this.props.getWrappedTextColor(a, proj);
+    }
     public getLinkTextPosY(d: Activity, proj: Project): number {
         return this.props.getLinkTextPosY(d, proj);
     }

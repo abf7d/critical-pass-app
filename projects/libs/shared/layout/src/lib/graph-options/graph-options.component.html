@@ -18,11 +18,15 @@
         <div class="btn-group">
             <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
                 <input class="form-check-input" (click)="setArrowUperText('abbreviated')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
-                Abbrev.
+                Abrv.
             </label>
             <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
                 <input class="form-check-input" (click)="setArrowUperText('resource')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
-                Resource
+                Rsrce
+            </label>
+            <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('wrap') }">
+                <input class="form-check-input" (click)="setArrowUperText('wrap')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
+                Wrap
             </label>
         </div>
     </div>

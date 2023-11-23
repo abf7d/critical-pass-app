@@ -114,6 +114,36 @@ export class ArrowPropertyService {
         }
         return color;
     }
+    public getWrappedTextColor(d: Activity, proj: Project): string {
+        const color = this.getArrowColor(false, d, proj, new Map<number, number>(), true);
+        const expandColor = this.expandColor(color);
+        const darkerColor = this.darkenColor(expandColor, 0.3);
+        return darkerColor;
+    }
+
+    private expandColor(hex: string): string {
+        if (hex.length === 4) {
+            return '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
+        } else {
+            return hex;
+        }
+    }
+    private darkenColor(hex: string, factor: number): string {
+        // Convert the hex color to RGB
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+
+        // Calculate the darker color
+        const darkR = Math.floor(r * (1 - factor));
+        const darkG = Math.floor(g * (1 - factor));
+        const darkB = Math.floor(b * (1 - factor));
+
+        // Convert the darker color back to hex
+        const darkHex = '#' + darkR.toString(16).padStart(2, '0') + darkG.toString(16).padStart(2, '0') + darkB.toString(16).padStart(2, '0');
+
+        return darkHex;
+    }
     public getNodeColor(old: boolean, a: Integration, proj: Project, risks: Map<number, number>, skipAnim: boolean): string {
         const groupName = proj.profile.view.selectedTagGroup;
         if (groupName) {
@@ -273,7 +303,7 @@ export class ArrowPropertyService {
             text = d.profile.id;
         } else if (proj.profile.view.displayText === 'duration') {
             text = d.profile.duration;
-        } else if (proj.profile.view.displayText === 'name') {
+        } else if (proj.profile.view.displayText === 'name' || proj.profile.view.displayText === 'wrap') {
             if (d.chartInfo.isDummy && !proj.profile.view.showDummies) {
                 return '';
             }

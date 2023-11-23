@@ -137,16 +137,35 @@ export class ChartElFactory {
         proj.profile.view.activeSubProjectId = undefined;
     }
     private createMainArrowText(proj: Project, enterLinks: any): void {
-        enterLinks
-            .append('text')
-            .attr('class', 'label')
-            .classed('selected', (d: Activity) => d === this.st.selected_link)
-            .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj))
-            .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj))
-            .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
-            .style('text-anchor', 'middle')
-            .text((l: Activity) => this.controller.getLinkText(l, proj));
+        if (proj.profile.view.displayText !== 'wrap') {
+            enterLinks
+                .append('text')
+                .attr('class', 'label')
+                .classed('selected', (d: Activity) => d === this.st.selected_link)
+                .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj))
+                .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj))
+                .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
+                .style('text-anchor', 'middle')
+                .text((l: Activity) => this.controller.getLinkText(l, proj));
+        } else {
+            enterLinks
+                .append('foreignObject')
+                .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj) - 25)
+                .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj) - 15)
+                .attr('width', '80px')
+                .attr('height', '70px')
+                .append('xhtml:div')
+                .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
+                .style('color', '#aaa')
+                .style('font-weight', 'bold')
+                .style('color', (l: Activity) => {
+                    if (l === proj.profile.view.selectedActivity) return null;
+                    return this.controller.getWrappedTextColor(l, proj);
+                })
+                .text((l: Activity) => this.controller.getLinkText(l, proj));
+        }
     }
+
     private createArrowBody(proj: Project, enterLinks: any): void {
         enterLinks
             .append('svg:path')
@@ -158,13 +177,15 @@ export class ChartElFactory {
     }
 
     private createTextGlow(proj: Project, enterLinks: any): void {
-        enterLinks
-            .insert('text', 'text')
-            .attr('class', 'glow')
-            .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
-            .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj))
-            .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj))
-            .text((l: Activity) => this.controller.getLinkText(l, proj));
+        if (proj.profile.view.displayText !== 'wrap') {
+            enterLinks
+                .insert('text', 'text')
+                .attr('class', 'glow')
+                .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
+                .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj))
+                .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj))
+                .text((l: Activity) => this.controller.getLinkText(l, proj));
+        }
     }
     private createLowerText(proj: Project, enterLinks: any): void {
         enterLinks
