@@ -12,12 +12,14 @@ export class ElPositionerService {
         this.repositionConnectedArrows();
         this.repositionArrowText('text.label', proj);
         this.repositionArrowText('text.glow', proj);
+        this.repositionArrowText('foreignObject', proj, null, -25, -15);
         this.repositionArrowFloatText(proj);
     }
     public updateGroupPosition(project: Project, selectedNodes: number[]): void {
         this.repositionConnectedArrows(selectedNodes);
         this.repositionArrowText('text.label', project, selectedNodes);
         this.repositionArrowText('text.glow', project, selectedNodes);
+        this.repositionArrowText('foreignObject', project, null, -25, -15);
         this.repositionArrowFloatText(project, selectedNodes);
     }
 
@@ -53,7 +55,7 @@ export class ElPositionerService {
             .select('path')
             .attr('d', (d: Activity) => this.getPath(d));
     }
-    private repositionArrowText(selector: string, proj: Project, selectedNodes: number[] | null = null): void {
+    private repositionArrowText(selector: string, proj: Project, selectedNodes: number[] | null = null, xOffset: number = 0, yOffset: number = 0): void {
         this.st.links
             .filter((d: Activity) => {
                 // selectedNodes is not null when we are using lasso
@@ -68,14 +70,14 @@ export class ElPositionerService {
                 if (proj.profile.view.displayText === 'name') {
                     return cInfo.source!.y! + (cInfo.target!.y! - cInfo.source!.y!) / 2 - 14;
                 }
-                return cInfo.source!.y! + (cInfo.target!.y! - cInfo.source!.y!) / 2 - 6;
+                return cInfo.source!.y! + (cInfo.target!.y! - cInfo.source!.y!) / 2 - 6 + yOffset;
             })
             .attr('x', function (a: Activity) {
                 const cInfo = a.chartInfo;
                 if (proj.profile.view.displayText === 'name') {
                     return cInfo.source!.x! + (cInfo.target!.x! - cInfo.source!.x!) / 4;
                 }
-                return cInfo.source!.x! + (cInfo.target!.x! - cInfo.source!.x!) / 2;
+                return cInfo.source!.x! + (cInfo.target!.x! - cInfo.source!.x!) / 2 + xOffset;
             });
     }
     private repositionArrowFloatText(proj: Project, selectedNodes: number[] | null = null): void {

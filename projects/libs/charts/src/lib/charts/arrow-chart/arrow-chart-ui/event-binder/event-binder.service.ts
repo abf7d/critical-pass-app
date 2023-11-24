@@ -9,14 +9,12 @@ import { ArrowControllerService } from '../../arrow-controller/arrow-controller.
     providedIn: 'root',
 })
 export class EventBinderService {
-    // TODO: make arrowState a service instead of an interface
     constructor(
-        /*@Inject(CONST.ARROW_STATE_TOKEN)*/ private st: ArrowStateService,
+        private st: ArrowStateService,
         private controller: ArrowControllerService,
         private lassoTool: LassoToolService,
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
     ) {}
-    // private st!: ArrowState;
     public bindGlobalEvents(): void {
         this.st.svg
             .on('dblclick', (event: any) => {

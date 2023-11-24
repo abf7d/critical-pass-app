@@ -298,12 +298,22 @@ export class EventHandlerService {
             if (source.id === target.id) {
                 return false;
             }
+            if (this.existsDirectConnectingLink(source.id, target.id, proj)) {
+                return false;
+            }
             this.st.drag_node = null;
             this.networkOps.joinNodes(source, target, proj);
 
             return true;
         }
         return false;
+    }
+    private existsDirectConnectingLink(sourceId: number, targetId: number, proj: Project): boolean {
+        return proj.activities.some(
+            a =>
+                (a.chartInfo.source_id === sourceId && a.chartInfo.target_id === targetId) ||
+                (a.chartInfo.source_id === targetId && a.chartInfo.target_id === sourceId),
+        );
     }
     public makeDummy(): void {
         if (this.st.selected_node) {

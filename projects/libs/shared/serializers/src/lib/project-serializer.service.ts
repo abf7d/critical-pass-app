@@ -26,7 +26,11 @@ export class ProjectSerializerService implements Serializer<Project> {
         const tagSerializer = new TagSerializerService();
         const obj: Project = {
             profile: new ProjectProfileSerializerService().fromJson(json?.profile),
-            activities: json?.activities ? json.activities.map((a: any) => actSerializer.fromJson(a)) : [],
+            activities: json?.activities
+                ? json.activities
+                      .filter((x: any) => x.chartInfo.target_id != x.chartInfo.source_id || x.chartInfo.source_id === null)
+                      .map((a: any) => actSerializer.fromJson(a))
+                : [],
             integrations: json?.integrations ? json.integrations.map((i: any) => intSerializer.fromJson(i)) : [],
             phases: json?.phases ? json.phases.map((p: any) => phaseSerializer.fromJson(p)) : [],
             resources: json?.resources ? json.resources.map((r: any) => resSerializer.fromJson(r)) : [],
