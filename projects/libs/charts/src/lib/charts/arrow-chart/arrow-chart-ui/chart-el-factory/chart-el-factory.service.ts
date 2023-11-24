@@ -174,22 +174,6 @@ export class ChartElFactory {
                         d3.select(this).attr('height', bbox.height + 'px');
                     }
                 });
-
-            // enterLinks
-            //     .append('foreignObject')
-            //     .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj) - 25)
-            //     .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj) - 15)
-            //     .attr('width', '80px')
-            //     .attr('height', '30px')
-            //     .append('xhtml:div')
-            //     .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
-            //     .style('color', '#aaa')
-            //     .style('font-weight', 'bold')
-            //     .style('color', (l: Activity) => {
-            //         if (l === proj.profile.view.selectedActivity) return null;
-            //         return this.controller.getWrappedTextColor(l, proj);
-            //     })
-            //     .text((l: Activity) => this.controller.getLinkText(l, proj));
         }
     }
 
