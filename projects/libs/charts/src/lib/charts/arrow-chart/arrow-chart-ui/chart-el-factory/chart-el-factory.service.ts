@@ -148,21 +148,48 @@ export class ChartElFactory {
                 .style('text-anchor', 'middle')
                 .text((l: Activity) => this.controller.getLinkText(l, proj));
         } else {
+            const _this = this;
             enterLinks
                 .append('foreignObject')
                 .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj) - 25)
                 .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj) - 15)
                 .attr('width', '80px')
-                .attr('height', '70px')
-                .append('xhtml:div')
-                .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
-                .style('color', '#aaa')
-                .style('font-weight', 'bold')
-                .style('color', (l: Activity) => {
-                    if (l === proj.profile.view.selectedActivity) return null;
-                    return this.controller.getWrappedTextColor(l, proj);
-                })
-                .text((l: Activity) => this.controller.getLinkText(l, proj));
+                .each(function (l: Activity) {
+                    let color: string | null = null;
+                    if (l !== proj.profile.view.selectedActivity) {
+                        color = _this.controller.getWrappedTextColor(l, proj);
+                    }
+                    const div = d3
+                        // @ts-ignore
+                        .select(this)
+                        .append('xhtml:div')
+                        .style('font-size', _this.controller.getActivityFontSize(l, proj))
+                        .style('color', '#aaa')
+                        .style('font-weight', 'bold')
+                        .style('color', () => color)
+                        .text(_this.controller.getLinkText(l, proj));
+                    if (div) {
+                        const bbox = (div.node() as HTMLElement)!.getBoundingClientRect();
+                        // @ts-ignore
+                        d3.select(this).attr('height', bbox.height + 'px');
+                    }
+                });
+
+            // enterLinks
+            //     .append('foreignObject')
+            //     .attr('x', (l: Activity) => this.controller.getLinkTextPosX(l, proj) - 25)
+            //     .attr('y', (l: Activity) => this.controller.getLinkTextPosY(l, proj) - 15)
+            //     .attr('width', '80px')
+            //     .attr('height', '30px')
+            //     .append('xhtml:div')
+            //     .style('font-size', (l: Activity) => this.controller.getActivityFontSize(l, proj))
+            //     .style('color', '#aaa')
+            //     .style('font-weight', 'bold')
+            //     .style('color', (l: Activity) => {
+            //         if (l === proj.profile.view.selectedActivity) return null;
+            //         return this.controller.getWrappedTextColor(l, proj);
+            //     })
+            //     .text((l: Activity) => this.controller.getLinkText(l, proj));
         }
     }
 

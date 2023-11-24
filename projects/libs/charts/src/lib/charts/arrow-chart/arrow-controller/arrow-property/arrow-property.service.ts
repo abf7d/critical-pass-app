@@ -309,7 +309,7 @@ export class ArrowPropertyService {
             }
             text = d.profile.name;
         } else if (proj.profile.view.displayText === 'resource') {
-            return d.assign.resources.map(r => r.initials).join(', ');
+            return d.assign.resources.map(r => r.name).join(', ');
         } else if (proj.profile.view.displayText === 'abbreviated') {
             if (d.chartInfo.isDummy && !proj.profile.view.showDummies) {
                 return '';
