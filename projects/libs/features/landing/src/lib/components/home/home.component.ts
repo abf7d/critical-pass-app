@@ -1,11 +1,11 @@
 import { BehaviorSubject, fromEvent, merge, Observable, of } from 'rxjs';
 import { Component, OnInit, HostListener } from '@angular/core';
-// import { AuthStoreService } from '../../core/services/auth-store';
-// import * as Keys from '../../core/constants/keys';
-// import { AuthService } from '../../core/services/auth/auth.service';
 import { mapTo } from 'rxjs/operators';
 import * as CONST from '../../constants';
 import { AuthStateService, MsalService } from '@critical-pass/auth';
+import { from } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -24,7 +24,11 @@ export class HomeComponent implements OnInit {
     ) {
         this.isLoggedIn$ = this.authStore.isLoggedIn$;
         this.thirdPartyCookiesBlocked = false;
-        this.online$ = merge(of(navigator.onLine), fromEvent(window, 'online').pipe(mapTo(true)), fromEvent(window, 'offline').pipe(mapTo(false)));
+        this.online$ = this.checkInternetConnection();
+        // this.online$ =
+        //     typeof window !== 'undefined' && typeof navigator !== 'undefined'
+        //         ? merge(of(navigator.onLine), fromEvent(window, 'online').pipe(mapTo(true)), fromEvent(window, 'offline').pipe(mapTo(false)))
+        //         : of(false);
     }
 
     public ngOnInit() {
@@ -49,5 +53,12 @@ export class HomeComponent implements OnInit {
         } else if (event.data === CONST.COOKIES_AVAIL_ID) {
             this.thirdPartyCookiesBlocked = false;
         }
+    }
+
+    private checkInternetConnection(): Observable<boolean> {
+        return from(fetch('https://cors-anywhere.herokuapp.com/https://www.google.com')).pipe(
+            map(() => true),
+            catchError(() => of(false)),
+        );
     }
 }

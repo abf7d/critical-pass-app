@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Project } from '@critical-pass/project/types';
+import { Project, TagGroupOption } from '@critical-pass/project/types';
 import { DashboardService, DASHBOARD_TOKEN } from '@critical-pass/shared/data-access';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -14,6 +14,10 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
     private data!: Observable<any>;
     public project!: Project | null;
     private subscription!: Subscription;
+    public hasTagGroups: boolean = false;
+    public showTags: boolean = false;
+    public tagGroup: string = 'resource';
+    public tagGroups: TagGroupOption[] | undefined = [];
     constructor(
         private route: ActivatedRoute,
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
@@ -24,6 +28,8 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
         this.data = this.dashboard.activeProject$;
         this.subscription = this.data.pipe(filter(x => !!x)).subscribe(project => {
             this.project = project;
+            this.tagGroups = this.project?.tags;
+            this.hasTagGroups = this.tagGroups ? this.tagGroups.length > 0 : false;
         });
     }
     public updateProject() {
@@ -37,6 +43,12 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
     public setArrowUperText(type: string) {
         if (this.project !== null) {
             this.project.profile.view.displayText = type;
+            this.updateProject();
+        }
+    }
+    public setArrowUperTextTagGroup(name: string) {
+        if (this.project !== null) {
+            this.project.profile.view.displayText = name;
             this.updateProject();
         }
     }
@@ -69,5 +81,11 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
             return this.project.profile.view.lowerArrowText === type;
         }
         return false;
+    }
+    public toggleTags(on: boolean) {
+        if (this.project !== null) {
+            //this.project.profile.view.showTags = !this.project.profile.view.showTags;
+            this.updateProject();
+        }
     }
 }

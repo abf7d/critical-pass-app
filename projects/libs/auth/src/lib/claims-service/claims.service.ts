@@ -24,33 +24,39 @@ export class ClaimsService {
                     username: auth_token.sub,
                     token: { auth_token: token.Result.Token },
                 });
-                sessionStorage.setItem(CONST.CLAIMS_TOKEN_CACHE_KEY, tokenString);
+                if (typeof sessionStorage !== 'undefined') {
+                    sessionStorage.setItem(CONST.CLAIMS_TOKEN_CACHE_KEY, tokenString);
+                }
                 const isAuthorized = this.isAuthorized();
                 return isAuthorized;
             });
     }
 
     public clearClaims(): void {
-        sessionStorage.removeItem(CONST.CLAIMS_TOKEN_CACHE_KEY);
+        if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.removeItem(CONST.CLAIMS_TOKEN_CACHE_KEY);
+        }
     }
 
     public hasClaims(): boolean {
-        return !!sessionStorage.getItem(CONST.CLAIMS_TOKEN_CACHE_KEY);
+        return typeof sessionStorage !== 'undefined' && !!sessionStorage.getItem(CONST.CLAIMS_TOKEN_CACHE_KEY);
     }
 
     private decodeClaims(): string[] {
-        const token = sessionStorage.getItem(CONST.CLAIMS_TOKEN_CACHE_KEY);
-        if (token === null) {
-            return [];
-        }
-
-        const tokenJson = JSON.parse(token);
-        if (tokenJson?.token?.auth_token) {
-            const info = this.jwtHelper.decodeToken(tokenJson.token.auth_token);
-            if (info === null || info.group === undefined) {
+        if (typeof sessionStorage !== 'undefined') {
+            const token = sessionStorage.getItem(CONST.CLAIMS_TOKEN_CACHE_KEY);
+            if (token === null) {
                 return [];
             }
-            return info.group;
+
+            const tokenJson = JSON.parse(token);
+            if (tokenJson?.token?.auth_token) {
+                const info = this.jwtHelper.decodeToken(tokenJson.token.auth_token);
+                if (info === null || info.group === undefined) {
+                    return [];
+                }
+                return info.group;
+            }
         }
         return [];
     }
