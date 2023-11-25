@@ -327,6 +327,21 @@ export class ArrowPropertyService {
                 ' ' +
                 d.profile.duration +
                 'd';
+        } else if (proj.profile.view.displayText.startsWith('tag')) {
+            const index = parseInt(proj.profile.view.displayText.split('.')[1]) ?? -1;
+            if (index !== -1) {
+                const tagGroup = d.tags?.find(x => x.name === proj.tags?.[index].name);
+                if (tagGroup) {
+                    const firstTag = tagGroup.tags[0];
+                    if (firstTag) {
+                        // return firstTag.name;
+                        return tagGroup.tags.map(r => r.name).join(', ');
+                    }
+                }
+            } else {
+                return d.assign.resources.map(r => r.name).join(', ');
+            }
+            return '';
         }
 
         text = this.getSubProjMarkerText(d, text?.toString() ?? '');

@@ -22,10 +22,22 @@
             </label>
             <label class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
                 <input class="form-check-input" (click)="setArrowUperText('resource')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
-                Rsrce
+                Tag
                 <i class="fas fa-chevron-up" *ngIf="showTags && hasTagGroups" (click)="showTags = false;toggleTags(true)"></i>
                 <i class="fas fa-chevron-down" *ngIf="!showTags && hasTagGroups" (click)="showTags = true; toggleTags(false)"></i>
                 <div class="peek file-types" *ngIf="showTags">
+                    <div class="custom-control custom-radio">
+                        <input
+                            id="tag-group-resource"
+                            type="radio"
+                            class="custom-control-input"
+                            name="group-tag"
+                            [checked]="tagGroup === 'resource'"
+                            (change)="tagGroup === 'resource'; setArrowUperTextTagGroup(-1)"
+                            [value]="'resource'"
+                        />
+                        <label class="custom-control-label" for="tag-group-resource">Resource*</label>
+                    </div>
                     <div *ngFor="let group of tagGroups; let i = index" class="custom-control custom-radio">
                         <input
                             id="tag-group-{{i}}"
@@ -33,7 +45,7 @@
                             class="custom-control-input"
                             name="group-tag"
                             [checked]="tagGroup === group.name"
-                            (change)="tagGroup === group.name; setArrowUperTextTagGroup(group.name)"
+                            (change)="tagGroup === group.name; setArrowUperTextTagGroup(i)"
                             [value]="i"
                         />
                         <label class="custom-control-label" for="tag-group-{{i}}">{{group.name}}</label>
