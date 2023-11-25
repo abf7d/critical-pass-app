@@ -9,5 +9,26 @@
     </head>
     <body>
         <critical-pass-root></critical-pass-root>
+
+         <!-- Ybug code -->
+        <script type="text/javascript">
+            (function () {
+            window.ybug_settings = {
+                id: "8ftc7rk2fr",
+                translate: {
+                "launcherButton.Title": "Report Bug",
+                "feedbackTypeForm.Heading": "Report a Bug",
+                },
+            };
+            var ybug = document.createElement("script");
+            ybug.type = "text/javascript";
+            ybug.async = true;
+            ybug.src =
+                "https://widget.ybug.io/button/" + window.ybug_settings.id + ".js";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(ybug, s);
+            })();
+        </script>
+      <!-- Ybug code end -->
     </body>
 </html>

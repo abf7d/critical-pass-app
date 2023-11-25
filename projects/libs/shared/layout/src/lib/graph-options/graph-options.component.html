@@ -22,7 +22,7 @@
             </label>
             <label class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
                 <input class="form-check-input" (click)="setArrowUperText('resource')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
-                Rsrce 
+                Rsrce
                 <i class="fas fa-chevron-up" *ngIf="showTags && hasTagGroups" (click)="showTags = false;toggleTags(true)"></i>
                 <i class="fas fa-chevron-down" *ngIf="!showTags && hasTagGroups" (click)="showTags = true; toggleTags(false)"></i>
                 <div class="peek file-types" *ngIf="showTags">
@@ -39,7 +39,6 @@
                         <label class="custom-control-label" for="tag-group-{{i}}">{{group.name}}</label>
                     </div>
                 </div>
-            
             </label>
             <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('wrap') }">
                 <input class="form-check-input" (click)="setArrowUperText('wrap')" type="radio" id="abbrv" value="abbreviated" name="top-text" />

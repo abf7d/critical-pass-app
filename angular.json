@@ -41,12 +41,7 @@
             "styles": [
               "projects/apps/critical-web/src/styles.scss"
             ],
-            "scripts": [],
-            "server": "projects/apps/critical-web/src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "projects/apps/critical-web/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
