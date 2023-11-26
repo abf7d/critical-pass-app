@@ -21,20 +21,21 @@
                 Abrv.
             </label>
             <label class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
-                <input class="form-check-input" (click)="setArrowUperText('resource')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
+                <input class="form-check-input"  type="radio" id="abbrv" value="abbreviated" name="top-text" />
                 Tag
-                <i class="fas fa-chevron-up" *ngIf="showTags && hasTagGroups" (click)="showTags = false;toggleTags(true)"></i>
-                <i class="fas fa-chevron-down" *ngIf="!showTags && hasTagGroups" (click)="showTags = true; toggleTags(false)"></i>
-                <div class="peek file-types" *ngIf="showTags">
+                <i class="fas fa-chevron-up" *ngIf="showTagGroups && hasTagGroups" (click)="showTagGroups = false"></i>
+                <i class="fas fa-chevron-down" *ngIf="!showTagGroups && hasTagGroups" (click)="showTagGroups = true"></i>
+                <div class="peek file-types" *ngIf="showTagGroups">
                     <div class="custom-control custom-radio">
                         <input
                             id="tag-group-resource"
                             type="radio"
                             class="custom-control-input"
                             name="group-tag"
-                            [checked]="tagGroup === 'resource'"
+                            
                             (change)="tagGroup === 'resource'; setArrowUperTextTagGroup(-1)"
                             [value]="'resource'"
+                            [(ngModel)]="groupTextValue"  
                         />
                         <label class="custom-control-label" for="tag-group-resource">Resource*</label>
                     </div>
@@ -44,9 +45,10 @@
                             type="radio"
                             class="custom-control-input"
                             name="group-tag"
-                            [checked]="tagGroup === group.name"
+                           
                             (change)="tagGroup === group.name; setArrowUperTextTagGroup(i)"
                             [value]="i"
+                            [(ngModel)]="groupTextValue"
                         />
                         <label class="custom-control-label" for="tag-group-{{i}}">{{group.name}}</label>
                     </div>
@@ -116,16 +118,23 @@
             </div>
         </div>
         <div class="btn-group-toggle">
-            <label class="btn btn-secondary" [ngClass]="{ active: project.profile.view.markCompleted }">
-                <input type="checkbox" autocomplete="off" (click)="project.profile.view.markCompleted = !project.profile.view.markCompleted; updateProject()" />
-                {{ project.profile.view.markCompleted ? 'Hide' : 'Fade' }} Completed
-            </label>
-        </div>
-        <div class="btn-group-toggle">
             <label class="btn btn-secondary" [ngClass]="{ active: project.profile.view.createAsDummy }">
                 <input type="checkbox" autocomplete="off" (click)="project.profile.view.createAsDummy = !project.profile.view.createAsDummy; updateProject()" />
                 Turn {{ project.profile.view.createAsDummy ? 'off' : 'on' }} Dummy Mode
             </label>
+        </div>
+        <div class="btn-group-toggle">
+            <div class="fade-options">
+                <select class="group-select" (change)="selectFadeGroup($event)">
+                    <option>Fade Group</option>
+                    <option [value]="-2">No Fade</option>
+                    <option [value]="-1">Completed</option>
+                    <option *ngFor="let group of tagGroups; let i = index" [value]="i">{{group.name}}</option></select
+                ><select class="tag-select" (change)="fadeToTag($event)" *ngIf="fadeTags !== null">
+                    <option>Tag</option>
+                    <option *ngFor="let tag of fadeTags; let i = index" [value]="i" class="custom-control custom-radio">{{tag.name}}</option>
+                </select>
+            </div>
         </div>
     </div>
 </div>

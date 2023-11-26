@@ -23,7 +23,7 @@ export class ProjectCompilerService {
     public compile(project: Project): void {
         this.nodeConstructor.connectArrowsToNodes(project);
         this.riskCompiler.compileRiskProperties(project);
-        this.completionCalc.calculateCompleted(project);
+        this.completionCalc.calcFaded(project);
         this.dateUtils.calculateEarliestFinishDate(project);
         this.dateUtils.setMaxPCDs(project);
         this.projectUtils.calculateDanglingActivities(project);

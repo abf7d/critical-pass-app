@@ -28,4 +28,5 @@ export interface View {
     autoZoom: boolean;
     toggleZoom: boolean;
     activeSubProjectId?: number | null; // FeaturesNetwork analysis highlight active
+    fade?: string; // For fading nodes and arrows, used for tags: tag.groupIndex.tagIndex
 }

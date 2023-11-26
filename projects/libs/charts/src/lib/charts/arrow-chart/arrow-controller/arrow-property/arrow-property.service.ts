@@ -109,7 +109,9 @@ export class ArrowPropertyService {
         if (proj.profile.view.showOrphaned) {
             color = CONST.RISK_COLOR.UNPROCESSED;
         }
-        if (proj.profile.view.markCompleted && a.processInfo.completed) {
+        if (!!proj.profile.view.fade && a.processInfo.completed) {
+            color = CONST.RISK_COLOR.COMPLETED;
+        } else if (proj.profile.view.fade && a.processInfo.completed) {
             color = CONST.RISK_COLOR.COMPLETED;
         }
         return color;
@@ -160,7 +162,7 @@ export class ArrowPropertyService {
         if (a.lft === null || a.lft === Infinity) {
             color = CONST.RISK_COLOR.UNPROCESSED;
         }
-        if (proj.profile.view.markCompleted && a.completed) {
+        if (!!proj.profile.view.fade && a.completed) {
             color = CONST.RISK_COLOR.COMPLETED;
         }
         if (proj.profile.view.showOrphaned) {
