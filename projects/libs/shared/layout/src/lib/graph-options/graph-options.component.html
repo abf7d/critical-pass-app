@@ -21,7 +21,7 @@
                 Abrv.
             </label>
             <label class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
-                <input class="form-check-input"  type="radio" id="abbrv" value="abbreviated" name="top-text" />
+                <input class="form-check-input" type="radio" id="abbrv" value="abbreviated" name="top-text" />
                 Tag
                 <i class="fas fa-chevron-up" *ngIf="showTagGroups && hasTagGroups" (click)="showTagGroups = false"></i>
                 <i class="fas fa-chevron-down" *ngIf="!showTagGroups && hasTagGroups" (click)="showTagGroups = true"></i>
@@ -32,10 +32,9 @@
                             type="radio"
                             class="custom-control-input"
                             name="group-tag"
-                            
                             (change)="tagGroup === 'resource'; setArrowUperTextTagGroup(-1)"
                             [value]="'resource'"
-                            [(ngModel)]="groupTextValue"  
+                            [(ngModel)]="groupTextValue"
                         />
                         <label class="custom-control-label" for="tag-group-resource">Resource*</label>
                     </div>
@@ -45,7 +44,6 @@
                             type="radio"
                             class="custom-control-input"
                             name="group-tag"
-                           
                             (change)="tagGroup === group.name; setArrowUperTextTagGroup(i)"
                             [value]="i"
                             [(ngModel)]="groupTextValue"
