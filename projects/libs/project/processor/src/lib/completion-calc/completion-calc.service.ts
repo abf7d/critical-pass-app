@@ -77,12 +77,8 @@ export class CompletionCalcService {
                     if (link.chartInfo.target == null || link.chartInfo.source == null) {
                         continue;
                     }
-                    if (!link.chartInfo.target.completed) {
-                        link.chartInfo.target.completed = completed;
-                    }
-                    if (!link.chartInfo.source.completed) {
-                        link.chartInfo.source.completed = completed;
-                    }
+                    link.chartInfo.target.completed = completed;
+                    link.chartInfo.source.completed = completed;
                 }
             }
         }
