@@ -1,0 +1,11 @@
+<p>Activity List</p>
+<div *ngIf="project !== undefined">
+    <div class="activity" *ngFor="let activity of project.activities">
+        <ng-container *ngIf="!activity.chartInfo.isDummy">
+            <div class="cursor-pointer" [ngClass]="{selected: selectedActivity === activity}" (click)="selectActivity(activity)">{{activity.profile.id}}</div>
+            <div><input [title]="activity.profile.name" type="text" [(ngModel)]="activity.profile.name" (ngModelChange)="updateProject()" /></div>
+            <div><input class="depends-on" type="text" [(ngModel)]="activity.profile.depends_on" (ngModelChange)="updateProject()" /></div>
+            <div><input class="duration" type="number" [(ngModel)]="activity.profile.duration" (ngModelChange)="updateProject()" /></div>
+        </ng-container>
+    </div>
+</div>
