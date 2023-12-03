@@ -21,11 +21,11 @@
                 Abrv.
             </label>
             <label *ngIf="hasTagGroups" class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('tag') }">
-                <input class="form-check-input" type="radio" id="abbrv" value="tag" name="top-text" />
+                <input class="form-check-input" type="radio" id="abbrv" value="tag" (click)="showTagGroups = !showTagGroups" />
                 Tags
-                <i class="fas fa-chevron-up" *ngIf="showTagGroups" (click)="showTagGroups = false"></i>
-                <i class="fas fa-chevron-down" *ngIf="!showTagGroups" (click)="showTagGroups = true"></i>
-                <div class="peek file-types" *ngIf="showTagGroups">
+                <i class="fas fa-chevron-up" [hidden]="!showTagGroups"></i>
+                <i class="fas fa-chevron-down" [hidden]="showTagGroups"></i>
+                <div class="peek file-types" [hidden]="!showTagGroups">
                     <div class="custom-control custom-radio">
                         <input
                             id="tag-group-resource"
@@ -36,7 +36,7 @@
                             [value]="'resource'"
                             [(ngModel)]="groupTextValue"
                         />
-                        <label class="custom-control-label" for="tag-group-resource">Resource*</label>
+                        <label class="custom-control-label" for="tag-group-resource">Resource</label>
                     </div>
                     <div *ngFor="let group of tagGroups; let i = index" class="custom-control custom-radio">
                         <input
