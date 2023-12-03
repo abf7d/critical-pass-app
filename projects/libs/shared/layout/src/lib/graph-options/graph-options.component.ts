@@ -54,6 +54,12 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
             this.updateProject();
         }
     }
+    public toggleTextWrap() {
+        if (this.project !== null) {
+            this.project.profile.view.wrapText = !this.project.profile.view.wrapText;
+            this.updateProject();
+        }
+    }
     public setArrowUperTextTagGroup(index: number) {
         if (this.project !== null) {
             this.selectedTagGroup = this.tagGroups ? this.tagGroups[index] : undefined;

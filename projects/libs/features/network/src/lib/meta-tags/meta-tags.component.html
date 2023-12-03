@@ -2,7 +2,6 @@
     <proj-tag-group
         *ngIf="isResourceView"
         title="Tag Groups"
-        [singleSelection]="true"
         [tags]="tagGroups.tags"
         [hideAssignLinks]="true"
         (selectTag)="selectGroup($event)"
@@ -15,7 +14,7 @@
         *ngIf="!!activeGroup"
         [title]="activeGroup.name"
         [tags]="activeGroup.tags"
-        [singleSelection]="true"
+        [multiselect]="true"
         (assignTags)="assignToActivities($event)"
         (unassignTags)="unassignFromActivities()"
         (selectTag)="selectTag($event)"

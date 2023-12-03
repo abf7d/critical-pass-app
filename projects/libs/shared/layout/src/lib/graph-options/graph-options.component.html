@@ -20,18 +20,18 @@
                 <input class="form-check-input" (click)="setArrowUperText('abbreviated')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
                 Abrv.
             </label>
-            <label class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
-                <input class="form-check-input" type="radio" id="abbrv" value="abbreviated" name="top-text" />
+            <label *ngIf="hasTagGroups" class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('tag') }">
+                <input class="form-check-input" type="radio" id="abbrv" value="tag" name="top-text" />
                 Tag
-                <i class="fas fa-chevron-up" *ngIf="showTagGroups && hasTagGroups" (click)="showTagGroups = false"></i>
-                <i class="fas fa-chevron-down" *ngIf="!showTagGroups && hasTagGroups" (click)="showTagGroups = true"></i>
+                <i class="fas fa-chevron-up" *ngIf="showTagGroups" (click)="showTagGroups = false"></i>
+                <i class="fas fa-chevron-down" *ngIf="!showTagGroups" (click)="showTagGroups = true"></i>
                 <div class="peek file-types" *ngIf="showTagGroups">
                     <div class="custom-control custom-radio">
                         <input
                             id="tag-group-resource"
                             type="radio"
                             class="custom-control-input"
-                            name="group-tag"
+                            name="top-text"
                             (change)="tagGroup === 'resource'; setArrowUperTextTagGroup(-1)"
                             [value]="'resource'"
                             [(ngModel)]="groupTextValue"
@@ -43,7 +43,7 @@
                             id="tag-group-{{i}}"
                             type="radio"
                             class="custom-control-input"
-                            name="group-tag"
+                            name="top-text"
                             (change)="tagGroup === group.name; setArrowUperTextTagGroup(i)"
                             [value]="i"
                             [(ngModel)]="groupTextValue"
@@ -53,7 +53,7 @@
                 </div>
             </label>
             <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('wrap') }">
-                <input class="form-check-input" (click)="setArrowUperText('wrap')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
+                <input class="form-check-input" (click)="toggleTextWrap()" type="checkbox" id="abbrv" value="abbreviated" />
                 Wrap
             </label>
         </div>

@@ -305,7 +305,7 @@ export class ArrowPropertyService {
             text = d.profile.id;
         } else if (proj.profile.view.displayText === 'duration') {
             text = d.profile.duration;
-        } else if (proj.profile.view.displayText === 'name' || proj.profile.view.displayText === 'wrap') {
+        } else if (proj.profile.view.displayText === 'name') {
             if (d.chartInfo.isDummy && !proj.profile.view.showDummies) {
                 return '';
             }

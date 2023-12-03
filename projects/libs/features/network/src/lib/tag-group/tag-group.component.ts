@@ -10,7 +10,7 @@ export class TagGroupComponent implements OnInit {
     @Input() title!: string;
     @Input() nameAttr!: string;
     @Input() colorBucket!: string;
-    @Input() singleSelection: boolean = false;
+    @Input() multiselect: boolean = false;
     @Input() tags: TagSelection[] = [];
 
     @Input() hideAssignLinks!: boolean;
@@ -25,7 +25,7 @@ export class TagGroupComponent implements OnInit {
     public removeAll = () => this.unassignTags.emit();
     public select = (tag: TagSelection) => {
         this.selectTag.emit(tag.name);
-        if (this.singleSelection) {
+        if (!this.multiselect) {
             this.tags.forEach(x => {
                 if (x.name !== tag.name) x.isSelected = false;
             });

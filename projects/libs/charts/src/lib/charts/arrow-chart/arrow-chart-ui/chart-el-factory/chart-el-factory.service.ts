@@ -137,7 +137,7 @@ export class ChartElFactory {
         proj.profile.view.activeSubProjectId = undefined;
     }
     private createMainArrowText(proj: Project, enterLinks: any): void {
-        if (proj.profile.view.displayText !== 'wrap') {
+        if (!proj.profile.view.wrapText) {
             enterLinks
                 .append('text')
                 .attr('class', 'label')
@@ -166,8 +166,14 @@ export class ChartElFactory {
                         .style('font-size', _this.controller.getActivityFontSize(l, proj))
                         .style('color', '#aaa')
                         .style('font-weight', 'bold')
-                        .style('color', () => color)
-                        .text(_this.controller.getLinkText(l, proj));
+                        .style('color', () => color);
+                    const text = _this.controller.getLinkText(l, proj).split(',');
+                    div.selectAll('div')
+                        .data(text)
+                        .enter()
+                        .append('xhtml:div')
+                        .style('font-size', _this.controller.getActivityFontSize(l, proj))
+                        .text(d => d);
                     if (div) {
                         const bbox = (div.node() as HTMLElement)!.getBoundingClientRect();
                         // @ts-ignore
@@ -188,7 +194,7 @@ export class ChartElFactory {
     }
 
     private createTextGlow(proj: Project, enterLinks: any): void {
-        if (proj.profile.view.displayText !== 'wrap') {
+        if (!proj.profile.view.wrapText) {
             enterLinks
                 .insert('text', 'text')
                 .attr('class', 'glow')
