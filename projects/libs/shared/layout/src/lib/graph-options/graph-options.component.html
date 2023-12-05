@@ -22,7 +22,7 @@
             </label>
             <label *ngIf="hasTagGroups" class="btn btn-secondary tag-btn" [ngClass]="{ active: isArrowUpperText('tag') }">
                 <input class="form-check-input" type="radio" id="abbrv" value="tag" (click)="showTagGroups = !showTagGroups" />
-                Tags
+                Tag
                 <i class="fas fa-chevron-up" [hidden]="!showTagGroups"></i>
                 <i class="fas fa-chevron-down" [hidden]="showTagGroups"></i>
                 <div class="peek file-types" [hidden]="!showTagGroups">
