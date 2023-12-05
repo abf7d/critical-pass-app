@@ -85,6 +85,7 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
         }
         let x = 0;
         let y = 0;  
+        let z = 0;
     }
     public setArrowLowerText(type: string) {
         if (this.project !== null) {
