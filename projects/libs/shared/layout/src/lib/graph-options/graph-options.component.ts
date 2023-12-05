@@ -83,9 +83,7 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
             this.project.profile.view.showEftLft = type;
             this.updateProject();
         }
-        let x = 0;
-        let y = 0;  
-        let z = 0;
+        const y = 0;
     }
     public setArrowLowerText(type: string) {
         if (this.project !== null) {
