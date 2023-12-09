@@ -33,7 +33,8 @@ jobs:
         echo "PATH: $PATH"
         pwd
         ls -l
-
+    - name: Print Angular CLI Version
+      run: ./node_modules/.bin/ng --version
     - name: Check Angular CLI
       run: npx ng --version
     - name: Print npm and Angular CLI versions
