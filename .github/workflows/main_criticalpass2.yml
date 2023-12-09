@@ -44,5 +44,5 @@ jobs:
       with: 
           app-name: 'CriticalPass2'
           slot-name: 'Production'
-          package: .
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB6ECD217478422C84000F5DEF4FDA57 }}
