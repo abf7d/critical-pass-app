@@ -28,6 +28,15 @@ jobs:
       run: npm install -g @angular/cli@17.0.0
     - name: Build the project
       run: ng build --configuration=production --project=critical-web
+
+    - name: Print environment debug information
+      run: |
+        echo "PATH: $PATH"
+        pwd
+        ls -l
+        cd ./dist/critical-web/browser
+        ls -l
+
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
