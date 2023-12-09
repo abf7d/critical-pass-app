@@ -25,9 +25,16 @@ jobs:
     - name: Install npm dependencies
       run: npm install
 
-    - name: Install Angular CLI
-      run: npm install -g @angular/cli@17
+   
 
+    - name: Print environment debug information
+      run: |
+        echo "PATH: $PATH"
+        pwd
+        ls -l
+
+    - name: Check Angular CLI
+      run: npx ng --version
     - name: Print npm and Angular CLI versions
       run: |
         npm --version
