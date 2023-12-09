@@ -24,40 +24,10 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Install npm dependencies
       run: npm install
-
     - name: Install Angular CLI
       run: npm install -g @angular/cli@17.0.0
-
-    - name: Check global Angular CLI version
-      run: ng version || true
-
-    - name: Check local Angular CLI version
-      run: ./node_modules/.bin/ng --version || true
-
-    - name: Print environment debug information
-      run: |
-        echo "PATH: $PATH"
-        pwd
-        ls -l
-    - name: List global npm packages
-      run: npm list -g --depth 0
-
-    - name: List project npm packages
-      run: npm list --depth 0
-
-
-
-
-    - name: Print npm node and Angular CLI versions
-      run: |
-        node --version
-        npm --version
-        ng version
-
     - name: Build the project
       run: ng build --configuration=production --project=critical-web
-
-        
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
