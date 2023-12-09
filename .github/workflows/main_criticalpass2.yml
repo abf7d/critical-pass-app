@@ -63,4 +63,4 @@ jobs:
           app-name: 'CriticalPass2'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_512F2922B3264A958A2F39400757FCA9 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB6ECD217478422C84000F5DEF4FDA57 }}
