@@ -22,10 +22,21 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: npm install, build
+    - name: Install npm dependencies
+      run: npm install
+
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli@17
+
+    - name: Print npm and Angular CLI versions
       run: |
-        npm install
-        ng build --configuration=production --project=critical-web
+        npm --version
+        ng --version
+
+    - name: Build the project
+      run: ng build --configuration=production --project=critical-web
+
+        
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
