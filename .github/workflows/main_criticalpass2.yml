@@ -11,7 +11,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: CriticalPath   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: './dist/critical-web/browser'
+  AZURE_WEBAPP_PACKAGE_PATH: './dist/critical-web'
   NODE_VERSION: '20.x'                # set this to the node version to use
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
         echo "PATH: $PATH"
         pwd
         ls -l
-        cd ./dist/critical-web/browser
+        cd ./dist/critical-web
         ls -l
 
     - name: 'Deploy to Azure WebApp'

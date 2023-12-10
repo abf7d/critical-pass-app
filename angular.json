@@ -24,11 +24,11 @@
           }
         },
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/critical-web",
             "index": "projects/apps/critical-web/src/index.html",
-            "browser": "projects/apps/critical-web/src/main.ts",
+            "main": "projects/apps/critical-web/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
