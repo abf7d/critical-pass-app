@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: CriticalPath   # set this to your application's name
+  AZURE_WEBAPP_NAME: CriticalPath2   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './dist/critical-web'
   NODE_VERSION: '20.x'                # set this to the node version to use
 
