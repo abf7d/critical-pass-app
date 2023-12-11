@@ -18,8 +18,7 @@ export class ArrowListComponent {
     ) {}
     public ngOnInit(): void {
         this.sub = this.dashboard.activeProject$.pipe(filter(x => !!x)).subscribe(project => {
-            this.project = project; //.activities[0].profile.n;
-            console.log('project', project);
+            this.project = project;
         });
     }
     public selectActivity(activity: Activity) {

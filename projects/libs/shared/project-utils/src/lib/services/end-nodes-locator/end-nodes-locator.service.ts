@@ -30,7 +30,7 @@ export class EndNodesLocatorService {
             return inEdges.length === 0;
         });
         proj.profile.start = connectedStarts[0].chartInfo.source?.id;
-        if (proj.profile.start) {
+        if (proj.profile.start !== undefined) {
             const longestPath = this.calcLongestPath(proj, proj.profile.start, null);
             if (longestPath != null && longestPath.length > 0) {
                 proj.profile.end = longestPath[longestPath.length - 1].id;
