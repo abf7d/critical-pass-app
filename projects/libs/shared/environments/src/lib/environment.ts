@@ -3,7 +3,7 @@ export const environment = {
     serverDebugLevel: 7, // 7 is off
     serverLoggerApi: 'https://localhost:44393/api/logger',
     production: false,
-    mappingApi: 'https://localhost:44342/api/', // 'http://localhost:60739/api/', //
+    mappingApi: 'https://localhost:44342/api/', //'https://criticalpathapi.azurewebsites.net/api/',  // 'http://localhost:60739/api/', //
     projectBuilderApi: 'https://localhost:44393/api/',
     authority: 'https://criticalplayground.b2clogin.com/criticalplayground.onmicrosoft.com/B2C_1_DefaultSignInSignUp',
     knownAuthorities: ['criticalplayground.b2clogin.com'],

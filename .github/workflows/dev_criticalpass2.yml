@@ -1,0 +1,48 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - CriticalPass2
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: CriticalPath   # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './dist/critical-web/browser'
+  NODE_VERSION: '20.x'                # set this to the node version to use
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: Install npm dependencies
+      run: npm install
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli@17.0.0
+    - name: Build the project
+      run: ng build --configuration=production --project=critical-web
+
+    - name: Print environment debug information
+      run: |
+        echo "PATH: $PATH"
+        pwd
+        ls -l
+        cd ./dist/critical-web/browser
+        ls -l
+
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: criticalpath
+        slot-name: Production
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_141A2AD38517421A95DBCFBEA38D309B }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

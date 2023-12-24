@@ -8,6 +8,7 @@ import { ArrowChartModule, ArrowSnapshotModule, ProjectTreeModule } from '@criti
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [HistoryActionButtonsComponent, HistoryLayoutComponent],
@@ -21,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
         ArrowChartModule,
         ArrowSnapshotModule,
         ProjectTreeModule,
+        FormsModule,
     ],
     exports: [HistoryActionButtonsComponent],
 })

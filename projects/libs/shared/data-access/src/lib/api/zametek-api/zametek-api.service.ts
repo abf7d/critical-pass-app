@@ -33,4 +33,15 @@ export class ZametekApiService {
             })
             .pipe(map(x => (x ? this.projectSerializer.fromJson(x) : null)));
     }
+
+    public autoAssignResourceCount(project: Project, count: number | null = null): Observable<Project | null> {
+        const model = { project, resourceCount: count };
+        const body = JSON.stringify(model);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http
+            .post(urlJoin(environment.mappingApi, CONST.AUTO_RESOURCE_COUNT_ENDPOINT), body, {
+                headers: headers,
+            })
+            .pipe(map(x => (x ? this.projectSerializer.fromJson(x) : null)));
+    }
 }

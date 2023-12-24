@@ -9,9 +9,10 @@ import {
     ProjectStorageApiService,
     ProjectApiService,
     API_CONST,
+    ZametekApiService,
 } from '@critical-pass/shared/data-access';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
-import { ProjectSanatizerService } from '@critical-pass/shared/project-utils';
+import { FileCompilerService, ProjectSanatizerService } from '@critical-pass/shared/project-utils';
 import { HistoryFileManagerService, JsonFileManagerService } from '@critical-pass/shared/file-management';
 import { TreeNode } from '@critical-pass/project/types';
 import { CHART_KEYS, ProjectTreeNodeSerializerService } from '@critical-pass/charts';
@@ -27,6 +28,7 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
     public fileType = FILE_CONST.EXT.XLSX;
     private history!: TreeNode[];
     public isSelFileType = false;
+    public resourceCount: number | null = null;
     constructor(
         router: Router,
         @Inject(DASHBOARD_TOKEN) dashboard: DashboardService,
@@ -36,6 +38,8 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         toastr: ToastrService,
         storageApi: ProjectStorageApiService,
         projectApi: ProjectApiService,
+        private zametekApi: ZametekApiService,
+        private fCompiler: FileCompilerService,
         private fileManager: HistoryFileManagerService,
         private jsonFileManager: JsonFileManagerService,
         private treeNodeSerializer: ProjectTreeNodeSerializerService,
@@ -91,5 +95,13 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
                 });
             }
         }
+    }
+    public autoAssignResourceCount() {
+        this.zametekApi.autoAssignResourceCount(this.dashboard.activeProject$.value, this.resourceCount).subscribe(project => {
+            if (project !== null) {
+                this.fCompiler.compileProjectFromFile(project);
+                this.dashboard.updateProject(project, true);
+            }
+        });
     }
 }

@@ -189,3 +189,19 @@ a.btn-primary {
 
 
 .file-input { display: none}
+.baseline {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+.auto-resources {
+    width: 42px;
+    height: 30px;
+    border: 1px solid #ccc;
+    text-align: right;
+   
+}
+
+.btn-row div.baseline > * {
+    margin: 0 2px;
+}
