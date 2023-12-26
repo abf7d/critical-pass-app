@@ -27,7 +27,11 @@ export class LassoToolService {
     private selectedActivities!: number[];
     private lassoStart: number | null = null;
     private lassoEnd: number | null = null;
+    private pivotNode: Integration | null = null;
     private id!: number;
+    private clickCount = 0;
+    private clickTimer: any = null;
+    private skipDrag = false;
 
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
@@ -64,13 +68,14 @@ export class LassoToolService {
         const dragEvent: d3.DragBehavior<SVGRectElement, unknown, unknown> = d3
             .drag<SVGRectElement, any>()
             .filter(event => !event.button)
-            .on('start', () => this.dragstart)
+            .on('start', event => this.dragstart(event))
             .on('drag', event => this.dragmove(event))
             .on('end', () => this.dragend());
         this.targetArea.call(dragEvent);
 
         this.st.nodes.classed('possible', (d: Integration) => this.selectedNodes.indexOf(d.id) > -1);
         this.st.links.classed('possible', (d: Activity) => this.selectedActivities.indexOf(d.profile.id) > -1);
+        this.st.nodes.classed('pivot', (d: Integration) => this.pivotNode?.id === d.id);
     }
 
     public keydown(event: any) {
@@ -126,12 +131,55 @@ export class LassoToolService {
         this.st.svg.selectAll('.lasso').remove();
     }
 
-    public dragstart() {
+    private isInsideNode(pt: [number, number]): Integration | undefined {
+        const [x, y] = pt;
+        const node = this.project.integrations.find(n => {
+            const point = this.transformPt([n.x!, n.y!]);
+            const distance = Math.sqrt(Math.pow(x - point[0], 2) + Math.pow(y - point[1], 2));
+            return distance < 20;
+        });
+        if (node && this.selectedNodes.indexOf(node.id) > -1) {
+            if (this.pivotNode && node && this.pivotNode.id === node.id) {
+                this.pivotNode = null;
+                return;
+            }
+            this.pivotNode = node ?? null;
+            return node;
+        }
+        this.pivotNode = null;
+        return;
+    }
+
+    public dragstart(event: any) {
+        // Reset the double click detection variables
+        // If this is the first click, start a timer
+        if (this.clickCount > 0) {
+            console.log('double click detected!');
+            const pt = d3.pointer(event, this.mainG.node());
+            const node = this.isInsideNode(pt);
+            this.clickCount = 0;
+            this.skipDrag = true;
+        }
+        if (!this.clickTimer) {
+            this.clickTimer = setTimeout(() => {
+                // If the timer completes, reset the click count
+                this.clickCount = 0;
+                clearTimeout(this.clickTimer);
+                this.clickTimer = null;
+            }, 300); // 300 ms delay
+        }
+        this.clickCount++;
+
         this.drawnCoords = [];
         this.dynPath.attr('d', null);
         this.closePath.attr('d', null);
     }
     public dragmove(event: any) {
+        if (this.skipDrag) {
+            this.skipDrag = false;
+            return;
+        }
+
         const { x, y } = event;
         const [tx, ty] = d3.pointer(event, this.mainG.node());
         if (this.tpath === '') {
@@ -172,6 +220,8 @@ export class LassoToolService {
             }
         });
         this.st.nodes.classed('possible', (d: Integration) => this.selectedNodes.indexOf(d.id) > -1);
+        this.st.nodes.classed('pivot', (d: Integration) => this.pivotNode?.id === d.id);
+
         // If within the closed path distance parameter, show the closed path. otherwise, hide it
         if (isPathClosed && closePathSelect) {
             this.closePath.attr('display', null);
