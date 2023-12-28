@@ -31,6 +31,8 @@ export class LassoToolService {
     private id!: number;
     private clickCount = 0;
     private clickTimer: any = null;
+    private originalDragPoint: [number, number] | null = null;
+    private previousPos: [number, number] | null = null;
     private skipDrag = false;
 
     constructor(
@@ -100,12 +102,17 @@ export class LassoToolService {
         }
     }
 
-    private previousPos: [number, number] | null = null;
     public nodeMoveDragStart() {}
     public nodeMoveDragMove(event: any) {
         const pt = d3.pointer(event, this.mainG.node());
         const [x, y] = this.unTransformPt(pt);
-        if (this.previousPos) {
+        if (this.pivotNode !== null && this.originalDragPoint !== null) {
+            const [px, py] = this.originalDragPoint;
+            const dx = x - px;
+            const dy = y - py;
+            this.transformPoints(/*[x, y],*/ [dx, dy]);
+            this.arrowController.updateGroupPosition(this.project, this.selectedNodes);
+        } else if (this.previousPos) {
             const [px, py] = this.previousPos;
             const dx = x - px;
             const dy = y - py;
@@ -120,10 +127,12 @@ export class LassoToolService {
             this.arrowController.updateGroupPosition(this.project, this.selectedNodes);
         }
         this.previousPos = [x, y];
+        this.originalDragPoint = [x, y];
     }
 
     public nodeMoveDragEnd() {
         this.previousPos = null;
+        this.originalDragPoint = null;
     }
 
     public remove(id: number) {
@@ -138,6 +147,7 @@ export class LassoToolService {
             const distance = Math.sqrt(Math.pow(x - point[0], 2) + Math.pow(y - point[1], 2));
             return distance < 20;
         });
+
         if (node && this.selectedNodes.indexOf(node.id) > -1) {
             if (this.pivotNode && node && this.pivotNode.id === node.id) {
                 this.pivotNode = null;
@@ -150,13 +160,59 @@ export class LassoToolService {
         return;
     }
 
+    private transformPoints(delta: [number, number]) {
+        if (!this.pivotNode || !this.originalDragPoint) return; // No anchor or drag point set
+
+        const [dx, dy] = delta;
+        const [originalx, originaly] = this.originalDragPoint;
+        // Calculate the new position based on the delta
+        const newx = originalx + dx;
+        const newy = originaly + dy;
+
+        // Calculate the scale factor and rotation based on the difference
+        const originalDistance = Math.sqrt(Math.pow(originalx - this.pivotNode.x!, 2) + Math.pow(originaly - this.pivotNode.y!, 2));
+        const newDistance = Math.sqrt(Math.pow(newx - this.pivotNode.x!, 2) + Math.pow(newy - this.pivotNode.y!, 2));
+        const scaleFactor = newDistance / originalDistance;
+
+        const originalAngle = Math.atan2(originaly - this.pivotNode.y!, originalx - this.pivotNode.x!);
+        const newAngle = Math.atan2(newy - this.pivotNode.y!, newx - this.pivotNode.x!);
+        const angleDifference = newAngle - originalAngle;
+
+        this.st.nodes.attr('transform', (d: Integration) => {
+            if (this.selectedNodes.indexOf(d.id) > -1) {
+                if (!this.pivotNode || this.pivotNode.x === undefined || this.pivotNode.y === undefined) return `translate(${d.x}, ${d.y})`;
+
+                const translatedX = d.x! - this.pivotNode.x!;
+                const translatedY = d.y! - this.pivotNode.y!;
+
+                // Apply rotation
+                let rotatedX = translatedX * Math.cos(angleDifference) - translatedY * Math.sin(angleDifference);
+                let rotatedY = translatedX * Math.sin(angleDifference) + translatedY * Math.cos(angleDifference);
+
+                // Apply scaling
+                rotatedX *= scaleFactor;
+                rotatedY *= scaleFactor;
+
+                // Translate back
+                const x = rotatedX + this.pivotNode.x!;
+                const y = rotatedY + this.pivotNode.y!;
+
+                d.x = x;
+                d.y = y;
+
+                return `translate(${x!}, ${y!})`;
+            }
+            return `translate(${d.x}, ${d.y})`;
+        });
+    }
+
     public dragstart(event: any) {
         // Reset the double click detection variables
         // If this is the first click, start a timer
         if (this.clickCount > 0) {
             console.log('double click detected!');
             const pt = d3.pointer(event, this.mainG.node());
-            const node = this.isInsideNode(pt);
+            this.isInsideNode(pt);
             this.clickCount = 0;
             this.skipDrag = true;
         }
