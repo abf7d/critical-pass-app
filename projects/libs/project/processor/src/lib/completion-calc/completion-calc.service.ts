@@ -61,6 +61,7 @@ export class CompletionCalcService {
     public calculateFadedTag(project: Project) {
         const fadeData = project.profile.view.fade;
         if (fadeData?.startsWith('tag')) {
+            project.integrations.forEach(node => (node.completed = true));
             const tagGroup = fadeData.split('.')[1];
             const tag = fadeData.split('.')[2];
             if (tagGroup && tag) {
@@ -77,9 +78,18 @@ export class CompletionCalcService {
                     if (link.chartInfo.target == null || link.chartInfo.source == null) {
                         continue;
                     }
-                    link.chartInfo.target.completed = completed;
-                    link.chartInfo.source.completed = completed;
+                    const isTargetActive = !completed || !link.chartInfo.target.completed;
+                    const isSourceActive = !completed || !link.chartInfo.source.completed;
+                    link.chartInfo.target.completed = !isTargetActive;
+                    link.chartInfo.source.completed = !isSourceActive;
                 }
+                project.activities.forEach(link => {
+                    if (link.chartInfo.isDummy === true) {
+                        if (link.chartInfo.target?.completed === false && link.chartInfo.source?.completed === false) {
+                            link.processInfo.completed = false;
+                        }
+                    }
+                });
             }
         }
     }

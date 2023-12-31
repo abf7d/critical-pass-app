@@ -28,7 +28,10 @@ export class ProjectStorageApiService {
         return project;
     }
     public set(storageType: string, project: Project): void {
-        const projectStr = JSON.stringify(project);
+        const copy = this.serializer.fromJson(project);
+        copy.profile.view.autoZoom = true;
+
+        const projectStr = JSON.stringify(copy);
         if (storageType === CONST.LOCAL_STORAGE) {
             localStorage.setItem(CONST.PROJECT_STORAGE_KEY, projectStr);
         }
