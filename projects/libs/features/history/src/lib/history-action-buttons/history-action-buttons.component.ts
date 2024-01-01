@@ -104,4 +104,10 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
             }
         });
     }
+    public navToSingleGraph() {
+        this.router.navigateByUrl(`history/(${this.id}//sidebar:arrow/${this.id})`);
+    }
+    public navToMetaGraph() {
+        this.router.navigateByUrl(`history/(${this.id}//sidebar:lasso/${this.id})`);
+    }
 }

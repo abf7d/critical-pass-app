@@ -2,6 +2,10 @@
     <div>
         <button class="btn btn-secondary library" [class.disabled]="disableButtons" (click)="saveAsNew()">Save to Library</button>
     </div>
+    <div>
+        <a class="btn btn-secondary" href="javascript:void(0)" (click)="navToSingleGraph()">Base Controls</a>
+        <a class="btn btn-secondary" href="javascript:void(0)" (click)="navToMetaGraph()">Meta Controls</a>
+    </div>
     <div class="baseline">
         <input class="auto-resources" type="number" [(ngModel)]="resourceCount" />
         <button class="btn btn-secondary" (click)="autoAssignResourceCount()" [class.disabled]="disableButtons">Set Resource Count</button>

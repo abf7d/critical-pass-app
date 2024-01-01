@@ -28,7 +28,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     public timestamp!: Date | null;
 
     constructor(
-        private router: Router,
+        protected router: Router,
         @Inject(DASHBOARD_TOKEN) protected dashboard: DashboardService,
         @Inject(EVENT_SERVICE_TOKEN) protected eventService: EventService,
         private serializer: ProjectSerializerService,
