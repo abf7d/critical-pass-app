@@ -16,9 +16,9 @@
             </div>
         </div>
         <button class="btn btn-secondary" [class.disabled]="disableButtons" (click)="!disableButtons && delete()">Delete Project</button>
-        <button class="btn btn-secondary" [class.disabled]="disableButtons" (click)="!disableButtons && saveAsNew()">Save Copy</button>
+        <button class="btn btn-secondary" [class.disabled]="isParentProject" (click)="!isParentProject && saveAsNew()">Save Copy</button>
         <div class="right">
-            <div #tooltip="matTooltip" matTooltip="Go to Parent to enable buttons. Your changes will be preserved." [matTooltipDisabled]="!disableButtons">
+            <div #tooltip="matTooltip" [matTooltip]="saveTooltip" [matTooltipDisabled]="!isParentProject && !disableButtons">
                 <button class="btn btn-primary" [class.disabled]="disableButtons" (click)="!disableButtons && save()">Save Project</button>
             </div>
             <div class="btns">

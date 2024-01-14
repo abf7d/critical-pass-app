@@ -1,5 +1,6 @@
 import { Inject, Input, OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { ClaimsService } from '@critical-pass/auth';
 import { Project } from '@critical-pass/project/types';
 import { DashboardService, DASHBOARD_TOKEN } from '@critical-pass/shared/data-access';
 import { Subscription } from 'rxjs';
@@ -13,10 +14,15 @@ import { filter } from 'rxjs/operators';
 export class ProjectMetadataComponent implements OnInit, OnDestroy {
     private subscription!: Subscription;
     public project!: Project;
+    public isAdmin: boolean = false;
 
-    constructor(@Inject(DASHBOARD_TOKEN) private dashboard: DashboardService) {}
+    constructor(
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
+        private claimsService: ClaimsService,
+    ) {}
 
     ngOnInit() {
+        this.isAdmin = this.claimsService.isAdmin();
         this.dashboard.activeProject$.pipe(filter(x => !!x)).subscribe(project => {
             this.project = project;
         });

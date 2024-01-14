@@ -80,3 +80,5 @@ export const NETWORK_ARRAY_KEY = 'project.newtwork.array';
 export const FILTERED_NETWORK_ARRAY_KEY = 'project.filtered.newtwork.array';
 export const JIRA_TOKEN_KEY = 'jira.token.key';
 export const JIRA_TOKEN_EXPIRY_KEY = 'jira.token.expiry.key';
+export const OWNER_TOOLTIP = 'You are not the owner of this project. To edit you must Save Copy.';
+export const PARENT_PROJ_TOOLTIP = 'Go to Parent to enable buttons. Your changes will be preserved.';

@@ -24,8 +24,10 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     public alertMessage: string;
     public actionText: string;
     public disableButtons!: boolean;
+    public isParentProject: boolean = false;
     public showHelp: boolean;
     public timestamp!: Date | null;
+    public saveTooltip: string = CORE_CONST.OWNER_TOOLTIP;
 
     constructor(
         protected router: Router,
@@ -47,6 +49,8 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
             this.project = project;
             this.timestamp = project.profile.timestamp ? new Date(project.profile.timestamp) : null;
             this.disableButtons = !project.profile.permissions.writable || !!project.profile.parentProject;
+            this.isParentProject = !!project.profile.parentProject;
+            this.saveTooltip = this.isParentProject ? CORE_CONST.PARENT_PROJ_TOOLTIP : CORE_CONST.OWNER_TOOLTIP;
         });
         this.showPeek = false;
     }
