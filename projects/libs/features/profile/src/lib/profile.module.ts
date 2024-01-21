@@ -28,8 +28,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '@critical-pass/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { CoreModule } from '@critical-pass/core';
         ArrowBarModule,
         SharedModule,
         FormsModule,
+        ReactiveFormsModule,
         CoreModule,
         ActionButtonsModule,
 
@@ -59,6 +61,7 @@ import { CoreModule } from '@critical-pass/core';
         MatInputModule,
         MatFormFieldModule,
         MatTooltipModule,
+        MatAutocompleteModule,
 
         // Charts
         ArrowChartModule,

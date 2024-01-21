@@ -13,7 +13,6 @@ export class ActivityBuilder {
     }
     public addActivity(
         project: Project,
-        // activity: Activity | null= null,
         name: string = '',
         duration: number = 0,
         mode: string = P_CONST.MULTI_ARROW_CREATION_MODE,
@@ -49,8 +48,8 @@ export class ActivityBuilder {
         const targetX = 120 + 120 * div;
         const targetY = 20 * (rem + 1) + firstOffset;
 
-        const source = this.nodeSerializer.new(sourceId, sourceId + '', Infinity, sourceX, sourceY);
-        const target = this.nodeSerializer.new(targetId, targetId + '', Infinity, targetX, targetY);
+        const source = this.nodeSerializer.new(sourceId, sourceId + '', 0, sourceX, sourceY);
+        const target = this.nodeSerializer.new(targetId, targetId + '', 0, targetX, targetY);
 
         project.integrations.push(source);
         project.integrations.push(target);
@@ -69,7 +68,6 @@ export class ActivityBuilder {
         newActivityId: number,
         newNodeId: number,
         project: Project,
-        // activity: Activity,
         name: string,
         duration: number,
         mode: string,
@@ -77,8 +75,7 @@ export class ActivityBuilder {
         const targetX = (selectedNode.x ?? 0) + 120;
         const targetY = selectedNode.y ?? 0;
         const newActivity = new ActivitySerializerService().new(newActivityId, name, selectedNode.id, newNodeId, 0, duration);
-        const target = this.nodeSerializer.new(newNodeId, newNodeId + '', Infinity, targetX, targetY);
-
+        const target = this.nodeSerializer.new(newNodeId, newNodeId + '', 0, targetX, targetY);
         project.integrations.push(target);
 
         newActivity.subProject.subGraphId = -1;

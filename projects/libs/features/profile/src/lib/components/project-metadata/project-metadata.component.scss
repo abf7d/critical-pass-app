@@ -155,3 +155,39 @@
     background-color: #fcfcfc;
     border: 1px solid #ddd;
 }
+.search-lists {
+    display: flex;
+    flex-direction: row;
+    mat-form-field {
+        flex: 4;
+        margin-right:10px
+    }
+    button {
+        flex: 1;
+        height: 35px;
+    }
+}
+.small-height {
+    height: 55px;
+}
+::ng-deep .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-input-element {
+    height: 55px;
+}
+::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    padding: 0px;
+}
+.strikethrough {
+    text-decoration: line-through;
+}
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.list-item  {
+    margin-bottom: 5px;
+    i {margin-left: 5px }
+    button {margin-right: 5px }
+}
+.space-left {
+    margin-left: 5px;
+}

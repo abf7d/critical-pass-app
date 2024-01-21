@@ -73,18 +73,53 @@
         </div>
     </div>
     <div class="right">
-        isAdmin: {{isAdmin}}
-        <pre> {{project.profile.permissions | json}} </pre>
+        <!-- isAdmin: {{isAdmin}} -->
+        <!-- <pre> {{project.profile.permissions | json}} </pre> -->
         <div class="inner-left">
-            <div class="text-form">
-                <div>Project Name</div>
-                <input class="form-control" type="text" [(ngModel)]="project.profile.name" />
+            <div *ngIf="isAdmin" class="text-form">
+                <div>Search Lists</div>
+                <div class="search-lists">
+                    <!-- <input class="form-control" type="text" [(ngModel)]="project.profile.name" /> [(ngModel)]="listValue" -->
+                    <mat-form-field class="small-height">
+                        <input
+                            type="text"
+                            placeholder="Pick one"
+                            (keydown.enter)="addToList()"
+                            [(ngModel)]="listValue"
+                            (ngModelChange)="onListValueChange($event)"
+                            aria-label="Number"
+                            matInput
+                            [formControl]="myControl"
+                            [matAutocomplete]="auto"
+                        />
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option"> {{option}} </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <!--  -->
+                    <button class="btn btn-secondary" [disabled]="!allowAdd" (click)="addToList()">Add List</button>
+                </div>
             </div>
             <div class="text-form">
-                <div>Description</div>
-                <textarea class="form-control" id="projDescription" rows="3" [(ngModel)]="project.profile.description"></textarea>
+                <div>Project Lists</div>
+                <div class="list-container">
+                    <div *ngFor="let list of groupList">
+                        <div class="list-item">
+                            <div>
+                                <button *ngIf="list.action === 'Add'" class="btn btn-secondary">
+                                    <span>{{list.name}}</span> <span *ngIf="list.isNew">&nbsp; (new)</span>
+                                    <i class="fa fa-times" *ngIf="isAdmin" (click)="setAction(ListAction.REMOVE, list)"></i>
+                                </button>
+                                <button *ngIf="list.action === 'Remove'" class="btn btn-secondary">
+                                    <span [ngClass]="{'strikethrough': !list.isNew}">{{list.name}}</span> <span *ngIf="list.isNew">&nbsp; (new)</span>
+                                    <i class="fa fa-plus" *ngIf="isAdmin" (click)="setAction(ListAction.ADD, list)"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="risk-range">
+            <!-- <div class="risk-range">
                 <div>
                     <div>
                         <div class="range-title">Risk Range (Float)</div>
@@ -120,7 +155,7 @@
                         </div>
                     </div>
                     <div>
-                        <div>Search:</div>
+                        <div>Red:</div>
                         <div><input (ngModelChange)="updateProject()" class="form-control" type="number" /></div>
                     </div>
                     <div>
@@ -144,7 +179,7 @@
                         <div><input [(ngModel)]="project.profile.numStDev" (ngModelChange)="updateProject()" class="form-control" type="number" /></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
