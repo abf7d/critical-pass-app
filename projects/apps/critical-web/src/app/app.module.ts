@@ -8,13 +8,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { LandingsModule } from '@critical-pass/features/landing';
 
 @NgModule({
-    // declarations: [AppComponent],
-    imports: [
-        /*BrowserAnimationsModule,*/
-        /*RouterModule,*/
-        /* HttpClientModule  ExplorerLibModule*/
-    ],
-    // bootstrap: [AppComponent],
-    // exports: [RouterModule],
+    imports: [],
 })
 export class AppModule {}
