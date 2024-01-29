@@ -1,3 +1,5 @@
+import { NgxLoggerLevel } from 'ngx-logger';
+
 export const environment = {
     production: true,
     clientDeugLevel: 7, // 1 is debug
@@ -16,4 +18,5 @@ export const environment = {
     criticalPathApi: 'https://criticalpathapifunctions.azurewebsites.net/api/',
     jiraClientId: '1SdMM8pTryWCljI1Awm9drfKvnU2BR2H',
     jiraClientSecret: '123',
+    logLevel: NgxLoggerLevel.ERROR,
 };

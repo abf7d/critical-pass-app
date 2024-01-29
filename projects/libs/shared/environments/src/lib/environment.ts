@@ -1,3 +1,5 @@
+import { NgxLoggerLevel } from 'ngx-logger';
+
 export const environment = {
     clientDeugLevel: 1, // 1 is debug
     serverDebugLevel: 7, // 7 is off
@@ -20,4 +22,5 @@ export const environment = {
 
     jiraClientId: '1SdMM8pTryWCljI1Awm9drfKvnU2BR2H',
     jiraClientSecret: '123',
+    logLevel: NgxLoggerLevel.INFO,
 };

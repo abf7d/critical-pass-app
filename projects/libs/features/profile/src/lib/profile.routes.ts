@@ -25,6 +25,7 @@ const routes: Routes = [
             { path: 'risk/:id', component: RiskBarComponent, outlet: 'sidebar' },
             { path: 'stacked/:id', component: StackedResourcesBarComponent, outlet: 'sidebar' },
             { path: 'grid/:id', component: ActivityListBarComponent, outlet: 'sidebar' },
+            { path: 'metadata/:id', component: ActivityListBarComponent, outlet: 'sidebar' },
         ],
     },
 ];

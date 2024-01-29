@@ -1,7 +1,5 @@
 import { ApplicationConfig, ErrorHandler, Injectable, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-// import { routes } from './app.routes';
 import { routes } from '@critical-pass/web-lib';
 import { provideClientHydration } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -10,14 +8,15 @@ import { DASHBOARD_TOKEN, DashboardService, EVENT_SERVICE_TOKEN, EventService } 
 import { CanDeactivateGuard, LoggerService } from '@critical-pass/core';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { LoggerModule } from 'ngx-logger';
+import { environment } from '@critical-pass/shared/environments';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations(),
-        importProvidersFrom(LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG })),
+        importProvidersFrom(LoggerModule.forRoot({ level: environment.logLevel })),
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthHttpInterceptor,

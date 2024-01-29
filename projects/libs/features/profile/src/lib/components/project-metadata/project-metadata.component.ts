@@ -27,6 +27,7 @@ export class ProjectMetadataComponent implements OnInit, OnDestroy {
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         private claimsService: ClaimsService,
     ) {}
+    // GetGroupListsNames GetProjectLists ProcessProjectList
 
     ngOnInit() {
         this.isAdmin = this.claimsService.isAdmin();
@@ -89,6 +90,14 @@ export class ProjectMetadataComponent implements OnInit, OnDestroy {
             return;
         }
         list.action = action;
+    }
+    public getProjectLists(): void {
+        // const list = this.groupList.filter(x => x.action === LIST_ACTION.ADD);
+        // console.log(list);
+    }
+    public processProjectLists(): void {
+        // const list = this.groupList.filter(x => x.action === LIST_ACTION.ADD);
+        // console.log(list);
     }
 }
 
