@@ -9,3 +9,6 @@ export const MS_PROJECT_COMPILE_ENDPOINT: string = 'MsProject/Import';
 export const BUILD_ARROW_GRAPH_ENDPOINT: string = 'MsProject/ArrowGraph';
 export const AUTO_RESOURCE_COUNT_ENDPOINT: string = 'msproject/auto-resource';
 export const UPDATE_PARENT_PROJECT_KEY = 'project.parent.update';
+export const GROUP_LISTS_ENDPOINT: string = 'group-lists';
+export const PROJECT_LIST_ENDPOINT: string = 'project-lists';
+export const PROCESS_PROJECT_LIST_ENDPOINT: string = 'process-project-lists';

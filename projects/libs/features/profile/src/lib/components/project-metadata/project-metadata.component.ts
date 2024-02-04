@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ClaimsService } from '@critical-pass/auth';
 import { Project } from '@critical-pass/project/types';
-import { DashboardService, DASHBOARD_TOKEN } from '@critical-pass/shared/data-access';
+import { DashboardService, DASHBOARD_TOKEN, ProjectList, LIST_ACTION, ProjectListApiService } from '@critical-pass/shared/data-access';
 import { Observable, Subscription } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
+import { filter, map, startWith, switchMap, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'cp-project-metadata',
@@ -16,70 +16,61 @@ export class ProjectMetadataComponent implements OnInit, OnDestroy {
     private subscription!: Subscription;
     public project!: Project;
     public isAdmin: boolean = false;
-    public groupList: ProjectList[] = [
-        { name: 'Group 1', id: 1, isNew: false, action: LIST_ACTION.ADD },
-        { name: 'Group 2', id: 2, isNew: false, action: LIST_ACTION.REMOVE },
-        { name: 'Group 3', id: 3, isNew: true, action: LIST_ACTION.ADD },
-    ];
+    public groupList: ProjectList[] = [];
     public ListAction = LIST_ACTION;
     public allowAdd: boolean = false;
+    public myControl = new FormControl();
+    public filteredOptions!: Observable<string[]>;
+    private initializedProjectLists: boolean = false;
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         private claimsService: ClaimsService,
+        private projectListApi: ProjectListApiService,
     ) {}
-    // GetGroupListsNames GetProjectLists ProcessProjectList
-
     ngOnInit() {
         this.isAdmin = this.claimsService.isAdmin();
         this.dashboard.activeProject$.pipe(filter(x => !!x)).subscribe(project => {
             this.project = project;
+            if (project?.profile?.id && !this.initializedProjectLists) {
+                this.getProjectLists();
+                this.initializedProjectLists = true;
+            }
         });
 
         this.filteredOptions = this.myControl.valueChanges.pipe(
             startWith(''),
-            map(value => this._filter(value)),
+            tap(value => this.onListValueChange(value)),
+            switchMap(filterTxt => this.getOptions(filterTxt)),
         );
     }
-
     ngOnDestroy() {
         if (this.subscription) this.subscription.unsubscribe();
     }
-
     updateProject() {
         this.dashboard.updateProject(this.project, true);
     }
-
-    myControl = new FormControl();
-    options: string[] = ['One', 'Two', 'Three'];
-    filteredOptions!: Observable<string[]>;
-    listValue: string = '';
-    private _filter(value: string): string[] {
-        const filterValue = value.toLowerCase();
-
-        return this.options.filter(option => option.toLowerCase().includes(filterValue));
-    }
     public onListValueChange(value: any): void {
-        this.listValue = value;
-        if (!this.listValue) {
+        if (!value) {
             this.allowAdd = false;
             return;
         }
-        if (this.groupList.find(x => x.name === this.listValue)) {
+        if (this.groupList.find(x => x.name === value)) {
             this.allowAdd = false;
             return;
         }
         this.allowAdd = true;
+        return value;
     }
-
     public addToList(): void {
-        if (this.listValue) {
-            if (this.groupList.find(x => x.name === this.listValue)) {
-                this.listValue = '';
+        const listValue = this.myControl.value;
+        if (listValue) {
+            if (this.groupList.find(x => x.name === listValue)) {
+                this.myControl.setValue('');
                 return;
             }
-            const newList: ProjectList = { name: this.listValue, id: 0, isNew: true, action: LIST_ACTION.ADD };
+            const newList: ProjectList = { name: listValue, id: 0, isNew: true, action: LIST_ACTION.ADD };
             this.groupList.push(newList);
-            this.listValue = '';
+            this.myControl.setValue('');
         }
     }
     public setAction(action: LIST_ACTION, list: ProjectList): void {
@@ -91,23 +82,28 @@ export class ProjectMetadataComponent implements OnInit, OnDestroy {
         }
         list.action = action;
     }
+    // For autocompleting list
+    public getOptions(filterTxt: string): Observable<string[]> {
+        return this.projectListApi.getGroupLists(filterTxt).pipe(map(x => x.filter(y => !this.groupList.find(z => z.name === y))));
+    }
+    // For getting this project's lists
     public getProjectLists(): void {
-        // const list = this.groupList.filter(x => x.action === LIST_ACTION.ADD);
-        // console.log(list);
+        this.projectListApi.getProjectLists(this.project.profile.id).subscribe(listNames => {
+            this.groupList = [];
+            listNames.forEach(x => {
+                const newList: ProjectList = { name: x, id: -1, isNew: false };
+                this.groupList.push(newList);
+            });
+        });
     }
+    // Need to check on the backend if we need to merge when we add so we don't create duplicates
     public processProjectLists(): void {
-        // const list = this.groupList.filter(x => x.action === LIST_ACTION.ADD);
-        // console.log(list);
+        this.projectListApi.processProjectList(this.project.profile.id, this.groupList).subscribe(listNames => {
+            this.groupList = [];
+            listNames.forEach(x => {
+                const newList: ProjectList = { name: x, id: -1, isNew: false };
+                this.groupList.push(newList);
+            });
+        });
     }
-}
-
-enum LIST_ACTION {
-    ADD = 'Add',
-    REMOVE = 'Remove',
-}
-export interface ProjectList {
-    name: string;
-    id: number;
-    isNew: boolean;
-    action: LIST_ACTION;
 }

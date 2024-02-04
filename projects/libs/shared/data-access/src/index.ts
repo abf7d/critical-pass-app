@@ -7,4 +7,6 @@ export * from './lib/api/project-storage-api/project-storage-api.service';
 export * from './lib/project-resolver/project-resolver';
 export * from './lib/event-service/event.service';
 export * from './lib/api/zametek-api/zametek-api.service';
+export * from './lib/models/project-list';
+export * from './lib/api/project-list-api/project-list-api.service';
 export * as API_CONST from './lib/constants/constants';
