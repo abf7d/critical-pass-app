@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@critical-pass/shared/environments';
 import { map, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import urlJoin from 'url-join';
 import { Project } from '@critical-pass/project/types';
 import * as CONST from '../../constants/constants';
@@ -22,10 +22,15 @@ export class ProjectApiService {
     public get(id: number): Observable<Project> {
         return this.httpClient.get(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT, id.toString())).pipe(map((data: any) => this.serializer.fromJson(data)));
     }
-    public list(page: number, pageSize: number): Observable<ProjectLibrary> {
+    public list(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
+        let params = new HttpParams();
+        if (listName) {
+            params = params.set('filter', listName);
+        }
         return this.httpClient
             .get(urlJoin(this.baseUrl, CONST.LIBRARY_ENDPOINT, page.toString(), pageSize.toString()), {
                 observe: 'response' as 'body',
+                params,
             })
             .pipe(map((data: any) => this.serialize(data)));
     }

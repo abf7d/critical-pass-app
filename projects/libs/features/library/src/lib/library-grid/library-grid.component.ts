@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '@critical-pass/project/types';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -18,8 +18,10 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
     public loadResult!: string;
     public subscription!: Subscription;
     public pageNumSub!: Subscription;
+    public listName: string | null = null;
     constructor(
         private router: Router,
+        private activatedRoute: ActivatedRoute,
         private libraryStore: LibraryStoreService,
         private projectApi: ProjectApiService,
         private nodeConnector: NodeConnectorService,
@@ -28,8 +30,11 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
     public ngOnInit(): void {
         this.pageSize = CONST.LIBRARY_PAGE_SIZE;
         this.projects = [];
-        this.pageNumSub = this.libraryStore.pageNumber$.pipe(filter(x => x !== null)).subscribe(currentPage => {
-            if (currentPage !== null) this.loadProjects(currentPage);
+        this.activatedRoute!.parent!.paramMap.subscribe(params => {
+            const listName = params.get('listName');
+            this.pageNumSub = this.libraryStore.pageNumber$.pipe(filter(x => x !== null)).subscribe(currentPage => {
+                if (currentPage !== null) this.loadProjects(currentPage, listName);
+            });
         });
     }
 
@@ -49,12 +54,12 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl(`network/(${id}//sidebar:meta/${id})`);
     }
 
-    private loadProjects(currentPage: number) {
+    private loadProjects(currentPage: number, listName: string | null = null) {
         this.loadResult = 'Loading';
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
-        this.subscription = this.projectApi.list(currentPage, this.pageSize).subscribe(projects => {
+        this.subscription = this.projectApi.list(currentPage, this.pageSize, listName).subscribe(projects => {
             if (projects !== null) {
                 this.libraryStore.maxProjectCount$.next(projects.totalCount);
                 this.initProjects(projects.items);

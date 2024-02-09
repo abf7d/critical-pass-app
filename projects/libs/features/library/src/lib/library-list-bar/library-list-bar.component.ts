@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '@critical-pass/project/types';
@@ -10,11 +11,11 @@ import { ProjectStorageApiService } from '@critical-pass/shared/data-access';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-    selector: 'cp-library-bar',
-    templateUrl: './library-bar.component.html',
-    styleUrls: ['./library-bar.component.scss'],
+    selector: 'da-library-list-bar',
+    templateUrl: './library-list-bar.component.html',
+    styleUrl: './library-list-bar.component.scss',
 })
-export class LibraryBarComponent implements OnInit, OnDestroy {
+export class LibraryListBarComponent implements OnInit, OnDestroy {
     public maxPage = 0;
     public currentPage = 0;
     public pageSize!: number;
@@ -23,6 +24,7 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
 
     public showPeek!: boolean;
     public peekProj!: Project | null;
+    public listName: string | null = null;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -35,6 +37,10 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
     public ngOnInit(): void {
         this.pageSize = CONST.LIBRARY_PAGE_SIZE;
         this.showPeek = false;
+
+        this.activatedRoute!.parent!.paramMap.subscribe(params => {
+            this.listName = params.get('listName');
+        });
 
         this.activatedRoute.params.subscribe(params => {
             this.currentPage = +params['page'];
@@ -51,10 +57,10 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
         this.maxPage = max - 1;
     }
     public pageRight(): void {
-        this.router.navigateByUrl(`/library/(grid/${this.currentPage + 1}//sidebar:libar/${this.currentPage + 1})`);
+        this.router.navigateByUrl(`/library/lists/${this.listName}/(grid/${this.currentPage + 1}//sidebar:libar/${this.currentPage + 1})`);
     }
     public pageLeft(): void {
-        this.router.navigateByUrl(`/library/(grid/${this.currentPage - 1}//sidebar:libar/${this.currentPage - 1})`);
+        this.router.navigateByUrl(`/library/lists/${this.listName}/(grid/${this.currentPage - 1}//sidebar:libar/${this.currentPage - 1})`);
     }
     public hasSavedWork(): boolean {
         const proj = this.storageApi.get(API_CONST.LOCAL_STORAGE);
