@@ -6,9 +6,8 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LibraryStoreService } from '../library-store/library-store.service';
 import * as CONST from '../constants';
-import { API_CONST } from '@critical-pass/shared/data-access';
+import { API_CONST, ProjectListApiService } from '@critical-pass/shared/data-access';
 import { ProjectStorageApiService } from '@critical-pass/shared/data-access';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'da-library-list-bar',
@@ -25,13 +24,14 @@ export class LibraryListBarComponent implements OnInit, OnDestroy {
     public showPeek!: boolean;
     public peekProj!: Project | null;
     public listName: string | null = null;
+    public projectLists: string[] = [];
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private libraryStore: LibraryStoreService,
         private router: Router,
         private storageApi: ProjectStorageApiService,
-        private httpClient: HttpClient,
+        private projListApi: ProjectListApiService,
     ) {}
 
     public ngOnInit(): void {
@@ -48,6 +48,9 @@ export class LibraryListBarComponent implements OnInit, OnDestroy {
                 if (count !== null) this.setMaxPage(count);
             });
             this.libraryStore.pageNumber$.next(this.currentPage);
+            this.projListApi.getGroupLists('').subscribe(lists => {
+                this.projectLists = lists;
+            });
         });
 
         this.hasWork = this.hasSavedWork();
@@ -76,5 +79,8 @@ export class LibraryListBarComponent implements OnInit, OnDestroy {
     }
     public navigate(url: string): void {
         this.router.navigateByUrl(url);
+    }
+    public getListLink(list: string): string {
+        return 'library/lists/' + list.toLowerCase().replace(/\s/g, '-') + '/(grid/0//sidebar:libar/0)';
     }
 }
