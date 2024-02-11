@@ -11,5 +11,5 @@ export interface Chart {
     isDummy: boolean;
     milestoneNodeId?: number;
     isSelected: boolean;
-    dPath?: [number, number][];
+    dPath?: string;
 }

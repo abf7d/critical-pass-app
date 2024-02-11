@@ -6,11 +6,7 @@ import * as d3 from 'd3';
     providedIn: 'root',
 })
 export class ElPositionerService {
-    private line: any;
-    constructor(private st: ArrowStateService) {
-        // can also use d3.curveMonotoneX
-        this.line = d3.line().curve(d3.curveBumpX);
-    }
+    constructor(private st: ArrowStateService) {}
     public nudgeGroup(dx: number, dy: number, dpt: Integration, proj: Project): void {
         this.moveNode(dx, dy);
         this.repositionConnectedArrows();
@@ -113,9 +109,7 @@ export class ElPositionerService {
     }
     public getPath(d: Activity): string {
         if (d.chartInfo.dPath) {
-            const path = this.line(d.chartInfo.dPath);
-            // d.chartInfo.dPath = undefined;
-            return path;
+            return d.chartInfo.dPath;
         }
         const deltaX = d.chartInfo.target!.x! - d.chartInfo.source!.x!;
         const deltaY = d.chartInfo.target!.y! - d.chartInfo.source!.y!;

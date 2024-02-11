@@ -60,6 +60,7 @@ export class NodeArrangerService {
         const graph = builder(dagNodes);
         const nodeRadius = 18;
         const nodeSize = [nodeRadius * 2, nodeRadius * 2] as const;
+        const line = d3.line().curve(d3.curveBumpX);
         const shape = d3dag.tweakShape(nodeSize, d3dag.shapeEllipse);
 
         // extra formatting: .coord(d3dag.coordGreedy()).coord(d3dag.coordQuad()) after decross
@@ -105,8 +106,8 @@ export class NodeArrangerService {
         });
         links.forEach(l => {
             const act = actMap.get(+l.target.data.id)?.get(+l.source.data.id);
-            if (act) {
-                act.chartInfo.dPath = l.points?.map(p => [p[1], p[0]]);
+            if (act && l.points) {
+                act.chartInfo.dPath = line(l.points.map(p => [p[1], p[0]])) ?? undefined;
             }
         });
         project.profile.view.autoZoom = true;
