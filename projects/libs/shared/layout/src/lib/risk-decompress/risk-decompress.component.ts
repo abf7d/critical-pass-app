@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Project } from '@critical-pass/project/types';
 import { DashboardService, DASHBOARD_TOKEN } from '@critical-pass/shared/data-access';
-import { EndNodesLocatorService } from '@critical-pass/shared/project-utils';
+import { EndNodesLocatorService, LayoutProps } from '@critical-pass/shared/project-utils';
 import { NodeArrangerService } from '@critical-pass/shared/project-utils';
+import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -16,10 +17,19 @@ export class RiskDecompressComponent implements OnInit {
     public end!: number;
     public enableArranging!: boolean;
 
+    public showArrangeSettings: boolean = false;
+    public xGap: number = 15;
+    public yGap: number = 15;
+    public decross: boolean = true;
+    public greedy: boolean = false;
+    public quad: boolean = false;
+    public layering: string = 'longestPath';
+
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         private endNodesLocator: EndNodesLocatorService,
         private nodeArranger: NodeArrangerService,
+        private toastr: ToastrService,
     ) {}
 
     ngOnInit(): void {
@@ -46,7 +56,18 @@ export class RiskDecompressComponent implements OnInit {
     }
 
     public arrangeNodes(): void {
-        this.nodeArranger.arrangeNodes(this.project);
+        const layoutOptions: LayoutProps = {
+            xGap: this.xGap,
+            yGap: this.yGap,
+            decross: this.decross,
+            greedy: this.greedy,
+            quad: this.quad,
+            layering: this.layering,
+        };
+        const decrossFailed = this.nodeArranger.arrangeNodes(this.project, layoutOptions);
         this.dashboard.updateProject(this.project, false);
+        if (decrossFailed) {
+            this.toastr.error('Decrossing arrows took too long', 'Ignored Decross.');
+        }
     }
 }

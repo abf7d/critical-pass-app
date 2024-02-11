@@ -12,7 +12,7 @@
         padding-bottom: 5px;
     }
 }
-input { width: 50px}
+input[type="number"]{ width: 50px}
 .subtitle { padding-bottom: 10px;}
 label.btn {
     text-align: left;
@@ -21,3 +21,12 @@ label.btn {
     margin-left: -28px;
     padding-left: 27px;
 }
+.layout-opt {
+    display: flex;
+    align-items: baseline;
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+}
+.rel { position: relative;}
+.rel { i { position: absolute; right: 0; top: 0px; padding: 12px}}

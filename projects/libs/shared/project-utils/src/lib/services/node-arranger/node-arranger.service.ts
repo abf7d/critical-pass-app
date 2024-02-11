@@ -3,8 +3,6 @@ import { LoggerService } from '@critical-pass/core';
 import { Activity, Integration, Project } from '@critical-pass/project/types';
 import * as d3 from 'd3';
 import * as d3dag from 'd3-dag';
-import { tr } from 'date-fns/locale';
-import { link } from 'fs';
 
 @Injectable({
     providedIn: 'root',
@@ -14,6 +12,15 @@ export class NodeArrangerService {
     scaleFactor = 7;
     multiChartOffset = 0;
     multiChartscaleFactor = 3;
+
+    defaultLayoutProps: LayoutProps = {
+        xGap: 15,
+        yGap: 15,
+        decross: true,
+        greedy: false,
+        quad: false,
+        layering: 'longestPath',
+    };
 
     constructor(private logger: LoggerService) {}
 
@@ -46,8 +53,8 @@ export class NodeArrangerService {
         }
         return { scale: this.scaleFactor, offset: this.offset };
     }
-    //import * as d3 from "https://cdn.skypack.dev/d3@7.8.4";
-    public arrangeNodes(project: Project): void {
+    // d3Dag: https://codepen.io/brinkbot/pen/oNQwNRv
+    public arrangeNodes(project: Project, layoutProps: LayoutProps | undefined = this.defaultLayoutProps): boolean {
         const dagNodes: any[] = [];
 
         project.integrations.forEach(i => {
@@ -59,27 +66,50 @@ export class NodeArrangerService {
         const builder = d3dag.graphStratify().id((d: any) => d.id + '');
         const graph = builder(dagNodes);
         const nodeRadius = 18;
-        const nodeSize = [nodeRadius * 2, nodeRadius * 2] as const;
+        const nodeSize = [nodeRadius * 2, nodeRadius * 2] as const; // gap between arrow and node? //[nodeRadius * 2, nodeRadius * 2] as const;
         const line = d3.line().curve(d3.curveBumpX);
         const shape = d3dag.tweakShape(nodeSize, d3dag.shapeEllipse);
 
-        // extra formatting: .coord(d3dag.coordGreedy()).coord(d3dag.coordQuad()) after decross
-        // https://codepen.io/brinkbot/pen/oNQwNRv
-        const decrossedLayout = d3dag
-            .sugiyama()
-            .layering(d3dag.layeringLongestPath())
-            .decross(d3dag.decrossOpt())
+        const sugiyama = d3dag.sugiyama();
+        let algorithm;
+        switch (layoutProps.layering) {
+            case 'longestPath':
+                algorithm = sugiyama.layering(d3dag.layeringLongestPath());
+                break;
+            case 'topological':
+                algorithm = sugiyama.layering(d3dag.layeringTopological());
+                break;
+            default:
+                algorithm = sugiyama.layering(d3dag.layeringLongestPath());
+                break;
+        }
+        if (layoutProps.greedy) {
+            algorithm = algorithm.coord(d3dag.coordGreedy());
+        }
+        if (layoutProps.quad) {
+            algorithm = algorithm.coord(d3dag.coordQuad());
+        }
+        const crossedLayout = algorithm
             .nodeSize(nodeSize)
-            .gap([nodeRadius, nodeRadius])
+            .gap([nodeRadius + layoutProps.yGap, nodeRadius + layoutProps.xGap]) // length of arrow bodies and distance between nodes // .gap([nodeRadius, nodeRadius])
             .tweaks([shape]);
 
-        // decross is computationaly expensive and errors out so this is a backup
-        const crossedLayout = d3dag.sugiyama().layering(d3dag.layeringLongestPath()).nodeSize(nodeSize).gap([nodeRadius, nodeRadius]).tweaks([shape]);
-
-        try {
-            decrossedLayout(graph);
-            this.logger.info('decrossing layout');
-        } catch (e) {
+        let decrossFailed = false;
+        if (layoutProps.decross) {
+            const decrossedLayout = algorithm
+                .decross(d3dag.decrossOpt())
+                .nodeSize(nodeSize)
+                .gap([nodeRadius + layoutProps.yGap, nodeRadius + layoutProps.xGap]) // length of arrow bodies and distance between nodes // .gap([nodeRadius, nodeRadius])
+                .tweaks([shape]);
+            try {
+                decrossedLayout(graph);
+                this.logger.info('decrossing layout');
+            } catch (e) {
+                crossedLayout(graph);
+                this.logger.info('crossed layout');
+                decrossFailed = true;
+            }
+        } else {
             crossedLayout(graph);
             this.logger.info('crossed layout');
         }
@@ -111,6 +141,7 @@ export class NodeArrangerService {
             }
         });
         project.profile.view.autoZoom = true;
+        return decrossFailed;
 
         // // Arrow heads --- This could replace current arrow head to change arrow head color and animation
         // // Arrows
@@ -143,4 +174,13 @@ export class NodeArrangerService {
         const innerMap = actMap.get(outerKey);
         innerMap!.set(innerKey, activity);
     }
+}
+
+export interface LayoutProps {
+    xGap: number;
+    yGap: number;
+    decross: boolean;
+    greedy: boolean;
+    quad: boolean;
+    layering: string;
 }

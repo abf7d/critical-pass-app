@@ -15,5 +15,35 @@
     </div>
 </div>
 <div>
-    <div><label class="btn btn-secondary" [class.disabled]="!enableArranging" (click)="enableArranging && arrangeNodes()">Arrange Nodes</label></div>
+    <div class="rel">
+        <label class="btn btn-secondary keep-selected-item" [class.disabled]="!enableArranging" (click)="enableArranging && arrangeNodes()"
+            >Arrange Nodes</label
+        >
+        <i *ngIf="!showArrangeSettings && enableArranging" (click)="showArrangeSettings = !showArrangeSettings" class="fas fa-chevron-down settings toggle"></i>
+        <i *ngIf="showArrangeSettings && enableArranging" (click)="showArrangeSettings = !showArrangeSettings" class="fas fa-chevron-up settings toggle"></i>
+    </div>
+</div>
+<div [hidden]="!showArrangeSettings">
+    <div class="end-pts">
+        <div>
+            <div class="subtitle">X Gap</div>
+            <div><input type="number" min="0" max="100" [(ngModel)]="xGap" /></div>
+        </div>
+        <div>
+            <div class="subtitle">Y Gap</div>
+            <div><input type="number" min="0" max="100" [(ngModel)]="yGap" /></div>
+        </div>
+    </div>
+    <div class="layout-opt">
+        <input type="checkbox" [(ngModel)]="decross" />
+        <div class="subtitle mr-2">Decross</div>
+    </div>
+    <div class="layout-opt">
+        <input type="checkbox" [(ngModel)]="greedy" />
+        <div class="subtitle mr-2">Greedy</div>
+    </div>
+    <div class="layout-opt">
+        <input type="checkbox" [(ngModel)]="quad" />
+        <div class="subtitle mr-2">Quad</div>
+    </div>
 </div>
