@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Activity, Integration, Project } from '@critical-pass/project/types';
 import { ArrowStateService } from '../../arrow-state/arrow-state';
-
+import * as d3 from 'd3';
 @Injectable({
     providedIn: 'root',
 })
 export class ElPositionerService {
-    constructor(private st: ArrowStateService) {}
+    private line: any;
+    constructor(private st: ArrowStateService) {
+        // can also use d3.curveMonotoneX
+        this.line = d3.line().curve(d3.curveBumpX);
+    }
     public nudgeGroup(dx: number, dy: number, dpt: Integration, proj: Project): void {
         this.moveNode(dx, dy);
         this.repositionConnectedArrows();
@@ -42,7 +46,10 @@ export class ElPositionerService {
                 return selectedNodes.includes(d.chartInfo.source_id);
             })
             .select('path')
-            .attr('d', (d: Activity) => this.getPath(d));
+            .attr('d', (d: Activity) => {
+                d.chartInfo.dPath = undefined;
+                return this.getPath(d);
+            });
 
         this.st.links
             .filter((d: Activity) => {
@@ -53,7 +60,10 @@ export class ElPositionerService {
                 return selectedNodes.includes(d.chartInfo.target_id);
             })
             .select('path')
-            .attr('d', (d: Activity) => this.getPath(d));
+            .attr('d', (d: Activity) => {
+                d.chartInfo.dPath = undefined;
+                return this.getPath(d);
+            });
     }
     private repositionArrowText(selector: string, proj: Project, selectedNodes: number[] | null = null, xOffset: number = 0, yOffset: number = 0): void {
         this.st.links
@@ -102,6 +112,11 @@ export class ElPositionerService {
             });
     }
     public getPath(d: Activity): string {
+        if (d.chartInfo.dPath) {
+            const path = this.line(d.chartInfo.dPath);
+            // d.chartInfo.dPath = undefined;
+            return path;
+        }
         const deltaX = d.chartInfo.target!.x! - d.chartInfo.source!.x!;
         const deltaY = d.chartInfo.target!.y! - d.chartInfo.source!.y!;
         const distr = Math.sqrt(deltaX * deltaX + deltaY * deltaY);

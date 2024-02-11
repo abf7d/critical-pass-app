@@ -19,6 +19,7 @@ export class ChartSerializerService implements Serializer<Chart> {
             isDummy: json.isDummy ?? false,
             isSelected: json.isSelected ?? false,
             milestoneNodeId: json.milestoneNodeId ?? null,
+            dPath: json.dPath,
         };
         return obj;
     }

@@ -15,11 +15,13 @@ export class ArrowSnapshotUiService {
     private sub!: Subscription;
     private slot!: string | undefined;
     private parentId!: string;
-
+    private line: any;
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         private ngZone: NgZone,
-    ) {}
+    ) {
+        this.line = d3.line().curve(d3.curveBumpX);
+    }
 
     public init(width: number, height: number, id: number, parentId: string, el: any, slot: string | undefined) {
         this.id = id;
@@ -159,6 +161,10 @@ export class ArrowSnapshotUiService {
         ) {
             console.error('getPath point undefined');
             return 'M';
+        }
+        if (d.chartInfo.dPath) {
+            const path = this.line(d.chartInfo.dPath);
+            return path;
         }
         if (d.chartInfo?.target?.x == d.chartInfo?.source?.x && d.chartInfo?.target?.y == d.chartInfo?.source?.y) {
             d.chartInfo.target.x += 10;

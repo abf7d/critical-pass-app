@@ -2,7 +2,7 @@ cp-arrow-snapshot {
     svg {
         background-color: white;
     }
-     g.risk-0 circle.node {
+    g.risk-0 circle.node {
         fill: #1c1;
     }
 
@@ -20,8 +20,8 @@ cp-arrow-snapshot {
     g.risk-undefined circle.node {
         fill: #bbb;
     }
-    g.completed circle.node{
-        fill: #ffddFF;
+    g.completed circle.node {
+        fill: #ffddff;
     }
     g.unprocessed circle.node {
         fill: #bbb;
@@ -34,8 +34,8 @@ cp-arrow-snapshot {
         font-size: 15px;
         font-weight: bold;
     }
-     // Arrow Heads
-     marker.risk-0 {
+    // Arrow Heads
+    marker.risk-0 {
         fill: #1c1;
         opacity: 1;
     }
@@ -59,9 +59,9 @@ cp-arrow-snapshot {
         opacity: 1;
     }
     marker.completed {
-        fill: #ffddFF;
+        fill: #ffddff;
     }
-    
+
     marker.unprocessed {
         fill: #bbb;
         opacity: 1;
@@ -89,25 +89,25 @@ cp-arrow-snapshot {
     }
 
     .completed path.link {
-        stroke: #ffddFF;
-        stroke-opacity: .8;
+        stroke: #ffddff;
+        stroke-opacity: 0.8;
     }
     .unprocessed path.link {
         stroke: #bbb;
-        stroke-opacity: .9;
+        stroke-opacity: 0.9;
     }
     .risk-undefined path.link {
         stroke: #bbb;
-        stroke-opacity: .9;
+        stroke-opacity: 0.9;
     }
-    
-    
-    path {stroke-width: 4px; opacity: 1}
-    .missing-data {font-weight: bold;}
-
-
-
-
-
-
+    path {
+        stroke-width: 4px;
+        opacity: 1;
+    }
+    .missing-data {
+        font-weight: bold;
+    }
+    path.link {
+        fill: none;
+    }
 }

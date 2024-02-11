@@ -58,6 +58,7 @@ export class NetworkOperationsService {
             proj.integrations.push(splitNode);
             targets.set(maxId, splitNode);
             index++;
+            a.chartInfo.dPath = undefined;
         });
 
         const outEdgeNum = outEdges.length;
@@ -70,6 +71,7 @@ export class NetworkOperationsService {
             a.chartInfo.source = splitNode;
             proj.integrations.push(splitNode);
             sources.set(maxId, splitNode);
+            a.chartInfo.dPath = undefined;
         });
         proj.integrations.splice(proj.integrations.indexOf(node), 1);
         return { sources, targets };
