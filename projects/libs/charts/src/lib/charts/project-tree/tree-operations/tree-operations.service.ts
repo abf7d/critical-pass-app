@@ -184,7 +184,7 @@ export class TreeOperationsService {
                 parent.children.push(current);
                 current.parent = parent;
             }
-            const children = nodes.filter(x => x.parentNodeId === current.id);
+            const children = nodes.filter(x => x.parentNodeId === current.id && x.parentNodeId !== null);
             for (const child of children) {
                 this.buildBranch(child, nodes, current);
             }

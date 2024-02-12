@@ -24,6 +24,7 @@ export class RiskDecompressComponent implements OnInit {
     public greedy: boolean = false;
     public quad: boolean = false;
     public layering: string = 'longestPath';
+    public hasCurves: boolean = true;
 
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
@@ -63,6 +64,7 @@ export class RiskDecompressComponent implements OnInit {
             greedy: this.greedy,
             quad: this.quad,
             layering: this.layering,
+            hasCurves: this.hasCurves,
         };
         const decrossFailed = this.nodeArranger.arrangeNodes(this.project, layoutOptions);
         this.dashboard.updateProject(this.project, false);

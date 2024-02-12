@@ -20,6 +20,22 @@ export class JsonFileManagerService implements FileManagerBaseService<TreeNode[]
     ) {}
 
     public import(file: File): Promise<TreeNode[]> {
+        return this.importFromProjectList(file);
+    }
+
+    public importFromTreeNodeList(file: File): Promise<TreeNode[]> {
+        return new Promise<TreeNode[]>((resolve, reject) => {
+            const reader: FileReader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = (e: any) => {
+                const contentTxt: string = e.target.result;
+                const contentJson: TreeNode[] = JSON.parse(contentTxt);
+                const treeNodes = contentJson.map(x => this.mapper.mapTreeNode(x));
+                resolve(treeNodes);
+            };
+        });
+    }
+    private importFromProjectList(file: File): Promise<TreeNode[]> {
         return new Promise<TreeNode[]>((resolve, reject) => {
             const reader: FileReader = new FileReader();
             reader.readAsText(file);

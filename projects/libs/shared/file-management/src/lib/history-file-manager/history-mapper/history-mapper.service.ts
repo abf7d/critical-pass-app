@@ -73,6 +73,10 @@ export class HistoryMapperService {
         treeNode.data = project;
         return treeNode;
     }
+    public mapTreeNode(treeNode: TreeNode): TreeNode {
+        treeNode.data = this.projectSerializer.fromJson(treeNode.data);
+        return treeNode;
+    }
 
     public createTreeHeadNode(): TreeNode {
         const treeNode = this.treeNodeSerializer.fromJson();

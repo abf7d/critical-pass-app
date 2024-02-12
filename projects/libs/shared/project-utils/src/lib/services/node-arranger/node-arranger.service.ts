@@ -20,6 +20,7 @@ export class NodeArrangerService {
         greedy: false,
         quad: false,
         layering: 'longestPath',
+        hasCurves: true,
     };
 
     constructor(private logger: LoggerService) {}
@@ -66,7 +67,7 @@ export class NodeArrangerService {
         const builder = d3dag.graphStratify().id((d: any) => d.id + '');
         const graph = builder(dagNodes);
         const nodeRadius = 18;
-        const nodeSize = [nodeRadius * 2, nodeRadius * 2] as const; // gap between arrow and node? //[nodeRadius * 2, nodeRadius * 2] as const;
+        const nodeSize = [nodeRadius * 2, nodeRadius * 2] as const; // size of node for layout positions, integrations drawn elsewhere
         const line = d3.line().curve(d3.curveBumpX);
         const shape = d3dag.tweakShape(nodeSize, d3dag.shapeEllipse);
 
@@ -134,12 +135,14 @@ export class NodeArrangerService {
             int!.y = n.ux;
             int!.x = n.uy;
         });
-        links.forEach(l => {
-            const act = actMap.get(+l.target.data.id)?.get(+l.source.data.id);
-            if (act && l.points) {
-                act.chartInfo.dPath = line(l.points.map(p => [p[1], p[0]])) ?? undefined;
-            }
-        });
+        if (layoutProps.hasCurves) {
+            links.forEach(l => {
+                const act = actMap.get(+l.target.data.id)?.get(+l.source.data.id);
+                if (act && l.points) {
+                    act.chartInfo.dPath = line(l.points.map(p => [p[1], p[0]])) ?? undefined;
+                }
+            });
+        }
         project.profile.view.autoZoom = true;
         return decrossFailed;
 
@@ -183,4 +186,5 @@ export interface LayoutProps {
     greedy: boolean;
     quad: boolean;
     layering: string;
+    hasCurves: boolean;
 }
