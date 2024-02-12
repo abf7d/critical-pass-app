@@ -21,6 +21,7 @@ export class NodeArrangerService {
         quad: false,
         layering: 'longestPath',
         hasCurves: true,
+        bump: true,
     };
 
     constructor(private logger: LoggerService) {}
@@ -68,7 +69,7 @@ export class NodeArrangerService {
         const graph = builder(dagNodes);
         const nodeRadius = 18;
         const nodeSize = [nodeRadius * 2, nodeRadius * 2] as const; // size of node for layout positions, integrations drawn elsewhere
-        const line = d3.line().curve(d3.curveBumpX);
+        const line = layoutProps.bump ? d3.line().curve(d3.curveBumpX) : d3.line().curve(d3.curveMonotoneX);
         const shape = d3dag.tweakShape(nodeSize, d3dag.shapeEllipse);
 
         const sugiyama = d3dag.sugiyama();
@@ -104,15 +105,15 @@ export class NodeArrangerService {
                 .tweaks([shape]);
             try {
                 decrossedLayout(graph);
-                this.logger.info('decrossing layout');
+                this.logger.debug('decrossing layout');
             } catch (e) {
                 crossedLayout(graph);
-                this.logger.info('crossed layout');
+                this.logger.debug('crossed layout');
                 decrossFailed = true;
             }
         } else {
             crossedLayout(graph);
-            this.logger.info('crossed layout');
+            this.logger.debug('crossed layout');
         }
 
         const nodes = Array.from(graph.nodes());
@@ -135,14 +136,16 @@ export class NodeArrangerService {
             int!.y = n.ux;
             int!.x = n.uy;
         });
-        if (layoutProps.hasCurves) {
-            links.forEach(l => {
-                const act = actMap.get(+l.target.data.id)?.get(+l.source.data.id);
-                if (act && l.points) {
-                    act.chartInfo.dPath = line(l.points.map(p => [p[1], p[0]])) ?? undefined;
+        links.forEach(l => {
+            const act = actMap.get(+l.target.data.id)?.get(+l.source.data.id);
+            if (act && l.points) {
+                if (!layoutProps.hasCurves) {
+                    act.chartInfo.dPath = undefined;
+                    return;
                 }
-            });
-        }
+                act.chartInfo.dPath = line(l.points.map(p => [p[1], p[0]])) ?? undefined;
+            }
+        });
         project.profile.view.autoZoom = true;
         return decrossFailed;
 
@@ -187,4 +190,5 @@ export interface LayoutProps {
     quad: boolean;
     layering: string;
     hasCurves: boolean;
+    bump: boolean;
 }
