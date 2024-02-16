@@ -101,7 +101,8 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "types": ["jasmine", "cypress", "node", "cypress-real-events", "@simonsmith/cypress-image-snapshot/types"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
