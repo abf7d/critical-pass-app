@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "docker-build": "docker build -t critical-pass-app:latest .",
+    "visual-test": "docker run -it --rm --name test-run -v \"//$(pwd)/cypress/snapshots:/app/cypress/snapshots\" critical-pass-app:latest",
+    "remove-test": "docker rm -f test-run",
+    "app-live-docker": "docker run -it --rm -v \"//$(pwd):/app\" -v \"/app/node_modules\" --name test-run critical-pass-app:latest",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

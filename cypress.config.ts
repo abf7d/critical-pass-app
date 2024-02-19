@@ -3,6 +3,7 @@ import { addMatchImageSnapshotPlugin } from '@simonsmith/cypress-image-snapshot/
 
 export default defineConfig({
     component: {
+        supportFile: 'cypress/support/component.ts',
         devServer: {
             framework: 'angular',
             bundler: 'webpack',
