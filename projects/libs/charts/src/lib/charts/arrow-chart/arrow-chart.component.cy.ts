@@ -206,7 +206,6 @@ describe(ArrowChartComponent.name, () => {
 
         cy.wait(2000);
         cy.get('svg').matchImageSnapshot('deleteArrow');
-        // cy.pause();
     });
 
     // join two nodes
