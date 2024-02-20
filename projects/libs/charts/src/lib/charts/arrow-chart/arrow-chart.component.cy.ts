@@ -7,6 +7,8 @@ import { ArrowChartModule } from './arrow-chart.module';
 import { ArrowStateService } from './arrow-state/arrow-state';
 import { configureDashboard } from '../../../../../../../cypress/support/utils';
 import { NodeArrangerService } from '../../../../../shared/project-utils/src/lib/services/node-arranger/node-arranger.service';
+import { LoggerModule, NGXLogger, NgxLoggerLevel, TOKEN_LOGGER_CONFIG } from 'ngx-logger';
+import { ErrorHandler } from '@angular/core';
 
 let data: Project | undefined;
 const serializer = new ProjectSerializerService();
@@ -20,20 +22,28 @@ describe(ArrowChartComponent.name, () => {
         dashboard.activeProject$.next(data!);
     });
     beforeEach(() => {
+        const ngxLoggerStub = {
+            debug: cy.stub().as('debug'),
+            info: cy.stub().as('info'),
+            log: cy.stub().as('log'),
+            error: cy.stub().as('error'),
+        };
+        TestBed.configureTestingModule({
+            imports: [
+                ArrowChartModule,
+                LoggerModule.forRoot({ level: NgxLoggerLevel.ERROR }), // Configured here
+            ],
+            declarations: [ArrowChartComponent],
+            providers: [
+                { provide: DASHBOARD_TOKEN, useValue: dashboard },
+                { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
+                { provide: ArrowStateService, useValue: state },
+                { provide: NGXLogger, useValue: ngxLoggerStub },
+            ],
+        }).compileComponents();
         cy.fixture('project.json').then(function (json) {
             data = serializer.fromJson(json);
             dashboard.updateProject(data, true);
-        });
-        TestBed.overrideComponent(ArrowChartComponent, {
-            add: {
-                imports: [ArrowChartModule],
-                providers: [
-                    { provide: DASHBOARD_TOKEN, useValue: dashboard },
-                    { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
-                    { provide: ArrowStateService, useValue: state },
-                    { provide: NodeArrangerService, useValue: {} },
-                ],
-            },
         });
     });
 
