@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN, ZametekApiService } from '@critical-pass/shared/data-access';
 import { TimeCostComponent } from './time-cost.component';
 import { TimeCostModule } from './time-cost.module';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Observable, of } from 'rxjs';
 import { Project } from '@critical-pass/project/types';
+import { FileCompilerService } from '../../../../../shared/project-utils/src/lib/services';
 
 describe(TimeCostComponent.name, () => {
     beforeEach(() => {
@@ -18,11 +18,12 @@ describe(TimeCostComponent.name, () => {
         };
         TestBed.overrideComponent(TimeCostComponent, {
             add: {
-                imports: [TimeCostModule, HttpClientTestingModule],
+                imports: [TimeCostModule],
                 providers: [
                     { provide: ZametekApiService, useValue: zametek },
                     { provide: DASHBOARD_TOKEN, useClass: DashboardService },
                     { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
+                    { provide: FileCompilerService, useValue: {} },
                 ],
             },
         });
