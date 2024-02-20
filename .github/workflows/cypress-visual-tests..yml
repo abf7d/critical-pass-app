@@ -2,7 +2,7 @@ name: Cypress Visual Tests
 
 on:
   pull_request:
-    branches: [ cypress ]
+    branches: [ main ]
 
 jobs:
   visual-test:
