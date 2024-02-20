@@ -4,7 +4,7 @@ import { TimeCostComponent } from './time-cost.component';
 import { TimeCostModule } from './time-cost.module';
 import { Observable, of } from 'rxjs';
 import { Project } from '@critical-pass/project/types';
-import { FileCompilerService } from '../../../../../shared/project-utils/src/lib/services';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 describe(TimeCostComponent.name, () => {
     beforeEach(() => {
@@ -16,17 +16,26 @@ describe(TimeCostComponent.name, () => {
                 return of(null);
             },
         };
-        TestBed.overrideComponent(TimeCostComponent, {
-            add: {
-                imports: [TimeCostModule],
-                providers: [
-                    { provide: ZametekApiService, useValue: zametek },
-                    { provide: DASHBOARD_TOKEN, useClass: DashboardService },
-                    { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
-                    { provide: FileCompilerService, useValue: {} },
-                ],
-            },
-        });
+
+        const ngxLoggerStub = {
+            debug: cy.stub().as('debug'),
+            info: cy.stub().as('info'),
+            log: cy.stub().as('log'),
+            error: cy.stub().as('error'),
+        };
+        TestBed.configureTestingModule({
+            imports: [
+                TimeCostModule,
+                LoggerModule.forRoot({ level: NgxLoggerLevel.ERROR }), // Configured here
+            ],
+            declarations: [TimeCostComponent],
+            providers: [
+                { provide: ZametekApiService, useValue: zametek },
+                { provide: DASHBOARD_TOKEN, useClass: DashboardService },
+                { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
+                { provide: NGXLogger, useValue: ngxLoggerStub },
+            ],
+        }).compileComponents();
     });
 
     it('renders', () => {
