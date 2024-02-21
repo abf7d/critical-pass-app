@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN, ZametekApiService } from '@critical-pass/shared/data-access';
 import { TimeCostComponent } from './time-cost.component';
 import { TimeCostModule } from './time-cost.module';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Observable, of } from 'rxjs';
 import { Project } from '@critical-pass/project/types';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 describe(TimeCostComponent.name, () => {
     beforeEach(() => {
@@ -16,16 +16,26 @@ describe(TimeCostComponent.name, () => {
                 return of(null);
             },
         };
-        TestBed.overrideComponent(TimeCostComponent, {
-            add: {
-                imports: [TimeCostModule, HttpClientTestingModule],
-                providers: [
-                    { provide: ZametekApiService, useValue: zametek },
-                    { provide: DASHBOARD_TOKEN, useClass: DashboardService },
-                    { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
-                ],
-            },
-        });
+
+        const ngxLoggerStub = {
+            debug: cy.stub().as('debug'),
+            info: cy.stub().as('info'),
+            log: cy.stub().as('log'),
+            error: cy.stub().as('error'),
+        };
+        TestBed.configureTestingModule({
+            imports: [
+                TimeCostModule,
+                LoggerModule.forRoot({ level: NgxLoggerLevel.ERROR }), // Configured here
+            ],
+            declarations: [TimeCostComponent],
+            providers: [
+                { provide: ZametekApiService, useValue: zametek },
+                { provide: DASHBOARD_TOKEN, useClass: DashboardService },
+                { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
+                { provide: NGXLogger, useValue: ngxLoggerStub },
+            ],
+        }).compileComponents();
     });
 
     it('renders', () => {

@@ -2,16 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import { Project } from '@critical-pass/project/types';
 import { DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN } from '@critical-pass/shared/data-access';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
-import { configureDashboard } from 'libs/charts/cypress/support/utils';
 import { ArrowChartComponent } from './arrow-chart.component';
 import { ArrowChartModule } from './arrow-chart.module';
 import { ArrowStateService } from './arrow-state/arrow-state';
+import { configureDashboard } from '../../../../../../../cypress/support/utils';
+import { NodeArrangerService } from '../../../../../shared/project-utils/src/lib/services/node-arranger/node-arranger.service';
+import { LoggerModule, NGXLogger, NgxLoggerLevel, TOKEN_LOGGER_CONFIG } from 'ngx-logger';
+import { ErrorHandler } from '@angular/core';
 
 let data: Project | undefined;
 const serializer = new ProjectSerializerService();
 const dashboard = configureDashboard();
 const state = new ArrowStateService();
-before(function () {});
+
 describe(ArrowChartComponent.name, () => {
     afterEach(() => {
         data!.integrations = [];
@@ -19,19 +22,28 @@ describe(ArrowChartComponent.name, () => {
         dashboard.activeProject$.next(data!);
     });
     beforeEach(() => {
+        const ngxLoggerStub = {
+            debug: cy.stub().as('debug'),
+            info: cy.stub().as('info'),
+            log: cy.stub().as('log'),
+            error: cy.stub().as('error'),
+        };
+        TestBed.configureTestingModule({
+            imports: [
+                ArrowChartModule,
+                LoggerModule.forRoot({ level: NgxLoggerLevel.ERROR }), // Configured here
+            ],
+            declarations: [ArrowChartComponent],
+            providers: [
+                { provide: DASHBOARD_TOKEN, useValue: dashboard },
+                { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
+                { provide: ArrowStateService, useValue: state },
+                { provide: NGXLogger, useValue: ngxLoggerStub },
+            ],
+        }).compileComponents();
         cy.fixture('project.json').then(function (json) {
             data = serializer.fromJson(json);
             dashboard.updateProject(data, true);
-        });
-        TestBed.overrideComponent(ArrowChartComponent, {
-            add: {
-                imports: [ArrowChartModule],
-                providers: [
-                    { provide: DASHBOARD_TOKEN, useValue: dashboard },
-                    { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
-                    { provide: ArrowStateService, useValue: state },
-                ],
-            },
         });
     });
 
@@ -85,7 +97,7 @@ describe(ArrowChartComponent.name, () => {
 
         cy.wait(2000);
         cy.get('svg').matchImageSnapshot('moveNode');
-        cy.pause();
+        // cy.pause();
     });
 
     it('cut / separate all of a nodes connected arrows into individual nodes', () => {
@@ -114,7 +126,7 @@ describe(ArrowChartComponent.name, () => {
 
         cy.wait(2000);
         cy.get('svg').matchImageSnapshot('splitNode');
-        cy.pause();
+        // cy.pause();
     });
 
     it('create 2 nodes, draw arrow between them', () => {
@@ -151,7 +163,7 @@ describe(ArrowChartComponent.name, () => {
             });
         cy.wait(2000);
         cy.get('svg').matchImageSnapshot('create2NodesAnd1Arrow');
-        cy.pause();
+        // cy.pause();
     });
 
     // delete a node
@@ -177,7 +189,7 @@ describe(ArrowChartComponent.name, () => {
         // Check for exact match with regex using ^ and $
         cy.get('.node > g > text').contains(/^4$/).should('not.exist');
         cy.get('svg').matchImageSnapshot('deleteNode');
-        cy.pause();
+        // cy.pause();
     });
 
     // delete an arrow
@@ -204,7 +216,6 @@ describe(ArrowChartComponent.name, () => {
 
         cy.wait(2000);
         cy.get('svg').matchImageSnapshot('deleteArrow');
-        cy.pause();
     });
 
     // join two nodes
@@ -271,6 +282,6 @@ describe(ArrowChartComponent.name, () => {
         cy.get('.node > g > text').contains(/^21$/).should('not.exist');
         cy.get('.node > g > text').contains(/^20$/).should('exist');
         cy.get('svg').matchImageSnapshot('join2Nodes');
-        cy.pause();
+        // cy.pause();
     });
 });
