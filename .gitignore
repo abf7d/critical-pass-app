@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 cypress/screenshots
+cypress/snapshots/**/__diff_output__
