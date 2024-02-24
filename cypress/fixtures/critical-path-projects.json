@@ -1,0 +1,4459 @@
+[
+    {
+        "profile": {
+            "name": "Test infinity to zero",
+            "id": 3793,
+            "description": "",
+            "start": 0,
+            "end": 11,
+            "redLimit": 9,
+            "yellowLimit": 25,
+            "startDate": "",
+            "endDate": "",
+            "libraryView": null,
+            "numStDev": 1,
+            "staffing": {
+                "costInMM": 0,
+                "effortInMM": 0.0,
+                "durationInMonths": 0,
+                "effeciencyFactor9to1": 0.0,
+                "averageStaffing": 0.0,
+                "directCost": 0,
+                "indirectCost": 0,
+                "earliestFinishDate": "",
+                "lft": ""
+            },
+            "risk": {
+                "criticalityRisk": 0.7,
+                "fibonacciRisk": 0.65,
+                "activityRisk": 0.65,
+                "criticalWeight": 4,
+                "redWeight": 3,
+                "yellowWeight": 2,
+                "greenWeight": 1,
+                "criticalCount": 6,
+                "redCount": 4,
+                "yellowCount": 3,
+                "greenCount": 3,
+                "maxFloat": 0,
+                "sumFloat": 0,
+                "decompressAmount": 0
+            },
+            "subProject": {
+                "activityParentName": "",
+                "activityParentId": null,
+                "parentProject": null
+            },
+            "permissions": {
+                "permissions": null,
+                "isOwner": true,
+                "writable": true,
+                "user": "default"
+            },
+            "parentProject": null,
+            "lft": null,
+            "timestamp": 1708805421305.9856
+        },
+        "activities": [
+            {
+                "chartInfo": {
+                    "source_id": 0,
+                    "target_id": 1,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 1,
+                    "sortOrder": 0,
+                    "name": "one",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 2,
+                    "tf": 30,
+                    "ff": 0,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 2,
+                    "sortOrder": 1,
+                    "name": "two",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 2,
+                    "target_id": 3,
+                    "tf": 30,
+                    "ff": 0,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 3,
+                    "sortOrder": 2,
+                    "name": "three",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 3,
+                    "target_id": 4,
+                    "tf": 30,
+                    "ff": 25,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 4,
+                    "sortOrder": 3,
+                    "name": "four",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 4,
+                    "target_id": 5,
+                    "tf": 5,
+                    "ff": 5,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 5,
+                    "sortOrder": 4,
+                    "name": "five",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 6,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 6,
+                    "sortOrder": 5,
+                    "name": "six",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 6,
+                    "target_id": 7,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 7,
+                    "sortOrder": 6,
+                    "name": "seven",
+                    "duration": 40,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 7,
+                    "target_id": 8,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 8,
+                    "sortOrder": 7,
+                    "name": "eight",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 9,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 9,
+                    "sortOrder": 8,
+                    "name": "nine",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 9,
+                    "target_id": 10,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 10,
+                    "sortOrder": 9,
+                    "name": "ten",
+                    "duration": 30,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 10,
+                    "target_id": 4,
+                    "tf": 10,
+                    "ff": 5,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 11,
+                    "sortOrder": 10,
+                    "name": "11",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 8,
+                    "target_id": 5,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 12,
+                    "sortOrder": 11,
+                    "name": "12",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 5,
+                    "target_id": 11,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 13,
+                    "sortOrder": 12,
+                    "name": "13",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 12,
+                    "tf": 5,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 14,
+                    "sortOrder": 13,
+                    "name": "14",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 12,
+                    "target_id": 13,
+                    "tf": 5,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 15,
+                    "sortOrder": 14,
+                    "name": "15",
+                    "duration": 55,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 13,
+                    "target_id": 4,
+                    "tf": 5,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 3793
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 16,
+                    "sortOrder": 15,
+                    "name": "16",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            }
+        ],
+        "integrations": [
+            {
+                "id": 1,
+                "x": 120,
+                "y": 120,
+                "name": "1",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 10,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 6,
+                "x": 232,
+                "y": 196,
+                "name": "6",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 20,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 12,
+                "x": 243,
+                "y": -17,
+                "name": "12",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 15,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 5,
+                "x": 600,
+                "y": 120,
+                "name": "5",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 80,
+                "lft": 80,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 10,
+                "x": 362,
+                "y": 37,
+                "name": "10",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 50,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 0,
+                "x": 50,
+                "y": 120,
+                "name": "0",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 0,
+                "lft": 0,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 2,
+                "x": 240,
+                "y": 120,
+                "name": "2",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 0,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 50,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 4,
+                "x": 480,
+                "y": 120,
+                "name": "4",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 65,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 9,
+                "x": 243,
+                "y": 37,
+                "name": "9",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 30,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 7,
+                "x": 364,
+                "y": 194,
+                "name": "7",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 60,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 11,
+                "x": 697,
+                "y": 122,
+                "name": "11",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 90,
+                "lft": 90,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 3,
+                "x": 360,
+                "y": 120,
+                "name": "3",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 0,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 30,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 13,
+                "x": 370,
+                "y": -11,
+                "name": "13",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 65,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 8,
+                "x": 480,
+                "y": 150,
+                "name": "8",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            }
+        ],
+        "resources": [],
+        "phases": [],
+        "roles": [],
+        "tags": []
+    },
+    {
+        "profile": {
+            "name": "Test infinity to zero",
+            "id": 4257,
+            "description": "",
+            "start": 0,
+            "end": 11,
+            "redLimit": 9,
+            "yellowLimit": 25,
+            "startDate": "",
+            "endDate": "",
+            "libraryView": null,
+            "numStDev": 1,
+            "staffing": {
+                "costInMM": 0,
+                "effortInMM": 0.0,
+                "durationInMonths": 0,
+                "effeciencyFactor9to1": 0.0,
+                "averageStaffing": 0.0,
+                "directCost": 0,
+                "indirectCost": 0,
+                "earliestFinishDate": "",
+                "lft": ""
+            },
+            "risk": {
+                "criticalityRisk": 0.77,
+                "fibonacciRisk": 0.74,
+                "activityRisk": 0.71,
+                "criticalWeight": 4,
+                "redWeight": 3,
+                "yellowWeight": 2,
+                "greenWeight": 1,
+                "criticalCount": 10,
+                "redCount": 0,
+                "yellowCount": 3,
+                "greenCount": 3,
+                "maxFloat": 0,
+                "sumFloat": 0,
+                "decompressAmount": 0
+            },
+            "subProject": {
+                "activityParentName": "",
+                "activityParentId": null,
+                "parentProject": null
+            },
+            "permissions": {
+                "permissions": null,
+                "isOwner": true,
+                "writable": true,
+                "user": "default"
+            },
+            "parentProject": null,
+            "lft": null,
+            "timestamp": 1708805810760.8447
+        },
+        "activities": [
+            {
+                "chartInfo": {
+                    "source_id": 0,
+                    "target_id": 1,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 1,
+                    "sortOrder": 0,
+                    "name": "one",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 2,
+                    "tf": 30,
+                    "ff": 0,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 2,
+                    "sortOrder": 1,
+                    "name": "two",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 2,
+                    "target_id": 3,
+                    "tf": 30,
+                    "ff": 0,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 3,
+                    "sortOrder": 2,
+                    "name": "three",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 3,
+                    "target_id": 4,
+                    "tf": 30,
+                    "ff": 30,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 4,
+                    "sortOrder": 3,
+                    "name": "four",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 4,
+                    "target_id": 5,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 5,
+                    "sortOrder": 4,
+                    "name": "five",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 6,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 6,
+                    "sortOrder": 5,
+                    "name": "six",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 6,
+                    "target_id": 7,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 7,
+                    "sortOrder": 6,
+                    "name": "seven",
+                    "duration": 40,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 7,
+                    "target_id": 8,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 8,
+                    "sortOrder": 7,
+                    "name": "eight",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 9,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 9,
+                    "sortOrder": 8,
+                    "name": "nine",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 9,
+                    "target_id": 10,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 10,
+                    "sortOrder": 9,
+                    "name": "ten",
+                    "duration": 30,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 10,
+                    "target_id": 4,
+                    "tf": 10,
+                    "ff": 10,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 11,
+                    "sortOrder": 10,
+                    "name": "11",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 8,
+                    "target_id": 5,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 12,
+                    "sortOrder": 11,
+                    "name": "12",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 5,
+                    "target_id": 11,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 13,
+                    "sortOrder": 12,
+                    "name": "13",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 12,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 14,
+                    "sortOrder": 13,
+                    "name": "14",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 12,
+                    "target_id": 13,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 15,
+                    "sortOrder": 14,
+                    "name": "15",
+                    "duration": 60,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 13,
+                    "target_id": 4,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4257
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 16,
+                    "sortOrder": 15,
+                    "name": "16",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            }
+        ],
+        "integrations": [
+            {
+                "id": 8,
+                "x": 480,
+                "y": 150,
+                "name": "8",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 7,
+                "x": 364,
+                "y": 194,
+                "name": "7",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 60,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 6,
+                "x": 232,
+                "y": 196,
+                "name": "6",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 20,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 2,
+                "x": 240,
+                "y": 120,
+                "name": "2",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 0,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 50,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 0,
+                "x": 50,
+                "y": 120,
+                "name": "0",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 0,
+                "lft": 0,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 5,
+                "x": 600,
+                "y": 120,
+                "name": "5",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 80,
+                "lft": 80,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 4,
+                "x": 480,
+                "y": 120,
+                "name": "4",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 3,
+                "x": 360,
+                "y": 120,
+                "name": "3",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 0,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 30,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 9,
+                "x": 243,
+                "y": 37,
+                "name": "9",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 30,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 13,
+                "x": 370,
+                "y": -11,
+                "name": "13",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 1,
+                "x": 120,
+                "y": 120,
+                "name": "1",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 10,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 12,
+                "x": 243,
+                "y": -17,
+                "name": "12",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 10,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 10,
+                "x": 362,
+                "y": 37,
+                "name": "10",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 50,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 11,
+                "x": 697,
+                "y": 122,
+                "name": "11",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 90,
+                "lft": 90,
+                "maxPCD": "",
+                "label": ""
+            }
+        ],
+        "resources": [],
+        "phases": [],
+        "roles": [],
+        "tags": []
+    },
+    {
+        "profile": {
+            "name": "Test infinity to zero",
+            "id": 4479,
+            "description": "",
+            "start": 0,
+            "end": 11,
+            "redLimit": 9,
+            "yellowLimit": 25,
+            "startDate": "",
+            "endDate": "",
+            "libraryView": null,
+            "numStDev": 1,
+            "staffing": {
+                "costInMM": 0,
+                "effortInMM": 0.0,
+                "durationInMonths": 0,
+                "effeciencyFactor9to1": 0.0,
+                "averageStaffing": 0.0,
+                "directCost": 0,
+                "indirectCost": 0,
+                "earliestFinishDate": "",
+                "lft": ""
+            },
+            "risk": {
+                "criticalityRisk": 0.77,
+                "fibonacciRisk": 0.74,
+                "activityRisk": 0.7,
+                "criticalWeight": 4,
+                "redWeight": 3,
+                "yellowWeight": 2,
+                "greenWeight": 1,
+                "criticalCount": 10,
+                "redCount": 0,
+                "yellowCount": 3,
+                "greenCount": 3,
+                "maxFloat": 0,
+                "sumFloat": 0,
+                "decompressAmount": 0
+            },
+            "subProject": {
+                "activityParentName": "",
+                "activityParentId": null,
+                "parentProject": null
+            },
+            "permissions": {
+                "permissions": null,
+                "isOwner": true,
+                "writable": true,
+                "user": "default"
+            },
+            "parentProject": null,
+            "lft": null,
+            "timestamp": 1708808220806.579
+        },
+        "activities": [
+            {
+                "chartInfo": {
+                    "source_id": 0,
+                    "target_id": 1,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 1,
+                    "sortOrder": 0,
+                    "name": "one",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 2,
+                    "tf": 26,
+                    "ff": 0,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 2,
+                    "sortOrder": 1,
+                    "name": "two",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 2,
+                    "target_id": 3,
+                    "tf": 26,
+                    "ff": 0,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 3,
+                    "sortOrder": 2,
+                    "name": "three",
+                    "duration": 14,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 3,
+                    "target_id": 4,
+                    "tf": 26,
+                    "ff": 26,
+                    "risk": 0,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 4,
+                    "sortOrder": 3,
+                    "name": "four",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 4,
+                    "target_id": 5,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 5,
+                    "sortOrder": 4,
+                    "name": "five",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 6,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 6,
+                    "sortOrder": 5,
+                    "name": "six",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 6,
+                    "target_id": 7,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 7,
+                    "sortOrder": 6,
+                    "name": "seven",
+                    "duration": 40,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 7,
+                    "target_id": 8,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 8,
+                    "sortOrder": 7,
+                    "name": "eight",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 9,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 9,
+                    "sortOrder": 8,
+                    "name": "nine",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 9,
+                    "target_id": 10,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 10,
+                    "sortOrder": 9,
+                    "name": "ten",
+                    "duration": 30,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 10,
+                    "target_id": 4,
+                    "tf": 10,
+                    "ff": 10,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 11,
+                    "sortOrder": 10,
+                    "name": "11",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 8,
+                    "target_id": 5,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 12,
+                    "sortOrder": 11,
+                    "name": "12",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 5,
+                    "target_id": 11,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 13,
+                    "sortOrder": 12,
+                    "name": "13",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 12,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 14,
+                    "sortOrder": 13,
+                    "name": "14",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 12,
+                    "target_id": 13,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 15,
+                    "sortOrder": 14,
+                    "name": "15",
+                    "duration": 60,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 13,
+                    "target_id": 4,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4479
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 16,
+                    "sortOrder": 15,
+                    "name": "16",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            }
+        ],
+        "integrations": [
+            {
+                "id": 4,
+                "x": 480,
+                "y": 120,
+                "name": "4",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 5,
+                "x": 600,
+                "y": 120,
+                "name": "5",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 80,
+                "lft": 80,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 6,
+                "x": 232,
+                "y": 196,
+                "name": "6",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 20,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 7,
+                "x": 364,
+                "y": 194,
+                "name": "7",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 60,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 9,
+                "x": 243,
+                "y": 37,
+                "name": "9",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 30,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 8,
+                "x": 480,
+                "y": 150,
+                "name": "8",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 3,
+                "x": 360,
+                "y": 120,
+                "name": "3",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 0,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 34,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 11,
+                "x": 697,
+                "y": 122,
+                "name": "11",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 90,
+                "lft": 90,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 12,
+                "x": 243,
+                "y": -17,
+                "name": "12",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 10,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 2,
+                "x": 240,
+                "y": 120,
+                "name": "2",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 0,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 46,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 13,
+                "x": 370,
+                "y": -11,
+                "name": "13",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 0,
+                "x": 50,
+                "y": 120,
+                "name": "0",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 0,
+                "lft": 0,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 1,
+                "x": 120,
+                "y": 120,
+                "name": "1",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 10,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 10,
+                "x": 362,
+                "y": 37,
+                "name": "10",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 50,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            }
+        ],
+        "resources": [],
+        "phases": [],
+        "roles": [],
+        "tags": []
+    },
+    {
+        "profile": {
+            "name": "Test infinity to zero",
+            "id": 4447,
+            "description": "",
+            "start": 0,
+            "end": 11,
+            "redLimit": 20,
+            "yellowLimit": 40,
+            "startDate": "",
+            "endDate": "",
+            "libraryView": null,
+            "numStDev": 1,
+            "staffing": {
+                "costInMM": 0,
+                "effortInMM": 0.0,
+                "durationInMonths": 0,
+                "effeciencyFactor9to1": 0.0,
+                "averageStaffing": 0.0,
+                "directCost": 0,
+                "indirectCost": 0,
+                "earliestFinishDate": "",
+                "lft": ""
+            },
+            "risk": {
+                "criticalityRisk": 0.8,
+                "fibonacciRisk": 0.72,
+                "activityRisk": 0.65,
+                "criticalWeight": 4,
+                "redWeight": 3,
+                "yellowWeight": 2,
+                "greenWeight": 1,
+                "criticalCount": 6,
+                "redCount": 7,
+                "yellowCount": 3,
+                "greenCount": 0,
+                "maxFloat": 0,
+                "sumFloat": 0,
+                "decompressAmount": 0
+            },
+            "subProject": {
+                "activityParentName": "",
+                "activityParentId": null,
+                "parentProject": null
+            },
+            "permissions": {
+                "permissions": null,
+                "isOwner": true,
+                "writable": true,
+                "user": "default"
+            },
+            "parentProject": null,
+            "lft": null,
+            "timestamp": 1708805953751.0176
+        },
+        "activities": [
+            {
+                "chartInfo": {
+                    "source_id": 0,
+                    "target_id": 1,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 1,
+                    "sortOrder": 0,
+                    "name": "one",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 2,
+                    "tf": 30,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 2,
+                    "sortOrder": 1,
+                    "name": "two",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 2,
+                    "target_id": 3,
+                    "tf": 30,
+                    "ff": 0,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 3,
+                    "sortOrder": 2,
+                    "name": "three",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 3,
+                    "target_id": 4,
+                    "tf": 30,
+                    "ff": 25,
+                    "risk": 1,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 4,
+                    "sortOrder": 3,
+                    "name": "four",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 4,
+                    "target_id": 5,
+                    "tf": 5,
+                    "ff": 5,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 5,
+                    "sortOrder": 4,
+                    "name": "five",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 6,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 6,
+                    "sortOrder": 5,
+                    "name": "six",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 6,
+                    "target_id": 7,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 7,
+                    "sortOrder": 6,
+                    "name": "seven",
+                    "duration": 40,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 7,
+                    "target_id": 8,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 8,
+                    "sortOrder": 7,
+                    "name": "eight",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 9,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 9,
+                    "sortOrder": 8,
+                    "name": "nine",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 9,
+                    "target_id": 10,
+                    "tf": 10,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 10,
+                    "sortOrder": 9,
+                    "name": "ten",
+                    "duration": 30,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 10,
+                    "target_id": 4,
+                    "tf": 10,
+                    "ff": 5,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 11,
+                    "sortOrder": 10,
+                    "name": "11",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 8,
+                    "target_id": 5,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 12,
+                    "sortOrder": 11,
+                    "name": "12",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 5,
+                    "target_id": 11,
+                    "tf": 0,
+                    "ff": 0,
+                    "risk": 3,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 13,
+                    "sortOrder": 12,
+                    "name": "13",
+                    "duration": 10,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": "12/18/1969",
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 1,
+                    "target_id": 12,
+                    "tf": 5,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 14,
+                    "sortOrder": 13,
+                    "name": "14",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 12,
+                    "target_id": 13,
+                    "tf": 5,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 15,
+                    "sortOrder": 14,
+                    "name": "15",
+                    "duration": 55,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            },
+            {
+                "chartInfo": {
+                    "source_id": 13,
+                    "target_id": 4,
+                    "tf": 5,
+                    "ff": 0,
+                    "risk": 2,
+                    "isDummy": false,
+                    "milestoneNodeId": null,
+                    "dPath": null
+                },
+                "subProject": {
+                    "subGraphId": -1,
+                    "isParent": false,
+                    "subGraphLoaded": null,
+                    "graphId": 4447
+                },
+                "risk": {
+                    "criticalWeight": 4,
+                    "redWeight": 3,
+                    "yellowWeight": 2,
+                    "greenWeight": 1,
+                    "criticalCount": 0,
+                    "redCount": 0,
+                    "yellowCount": 0,
+                    "greenCount": 0,
+                    "maxFloat": 0,
+                    "sumFloat": 0
+                },
+                "errors": null,
+                "profile": {
+                    "id": 16,
+                    "sortOrder": 15,
+                    "name": "16",
+                    "duration": 0,
+                    "depends_on": "",
+                    "finish": null,
+                    "planned_completion_date": null,
+                    "planned_earned_value": null,
+                    "start_date": null,
+                    "minEST": null,
+                    "minESDate": null
+                },
+                "assign": {
+                    "resources": [],
+                    "phases": []
+                },
+                "tags": null
+            }
+        ],
+        "integrations": [
+            {
+                "id": 2,
+                "x": 240,
+                "y": 120,
+                "name": "2",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 50,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 10,
+                "x": 362,
+                "y": 37,
+                "name": "10",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 50,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 13,
+                "x": 370,
+                "y": -11,
+                "name": "13",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 65,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 12,
+                "x": 243,
+                "y": -17,
+                "name": "12",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 15,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 3,
+                "x": 360,
+                "y": 120,
+                "name": "3",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 1,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 30,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 9,
+                "x": 243,
+                "y": 37,
+                "name": "9",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 30,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 8,
+                "x": 480,
+                "y": 150,
+                "name": "8",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 70,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 5,
+                "x": 600,
+                "y": 120,
+                "name": "5",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 80,
+                "lft": 80,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 1,
+                "x": 120,
+                "y": 120,
+                "name": "1",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 10,
+                "lft": 10,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 0,
+                "x": 50,
+                "y": 120,
+                "name": "0",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 0,
+                "lft": 0,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 11,
+                "x": 697,
+                "y": 122,
+                "name": "11",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 90,
+                "lft": 90,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 4,
+                "x": 480,
+                "y": 120,
+                "name": "4",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 2,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 65,
+                "lft": 70,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 6,
+                "x": 232,
+                "y": 196,
+                "name": "6",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 20,
+                "lft": 20,
+                "maxPCD": "",
+                "label": ""
+            },
+            {
+                "id": 7,
+                "x": 364,
+                "y": 194,
+                "name": "7",
+                "isDummy": false,
+                "isMilestone": false,
+                "milestoneActivityId": null,
+                "milestoneNumber": 0,
+                "milestoneName": "",
+                "type": "",
+                "risk": 3,
+                "isBeginning": false,
+                "isEnd": false,
+                "eft": 60,
+                "lft": 60,
+                "maxPCD": "",
+                "label": ""
+            }
+        ],
+        "resources": [],
+        "phases": [],
+        "roles": [],
+        "tags": []
+    }
+
+]

@@ -4,8 +4,9 @@
   "scripts": {
     "ng": "ng",
     "docker-build": "docker build -t critical-pass-app:latest .",
-    "visual-test": "docker run -it --rm --name test-run -v \"//$(pwd)/cypress/snapshots:/app/cypress/snapshots\" critical-pass-app:latest",
+    "visual-test": "sh run_visual_test.sh",
     "remove-test": "docker rm -f test-run",
+    "echo": "echo \"Hello World//$(pwd)\"",
     "app-live-docker": "docker run -it --rm -v \"//$(pwd):/app\" -v \"/app/node_modules\" --name test-run critical-pass-app:latest",
     "start": "ng serve",
     "build": "ng build",
