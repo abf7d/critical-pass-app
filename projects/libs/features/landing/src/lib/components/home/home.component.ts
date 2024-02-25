@@ -25,10 +25,6 @@ export class HomeComponent implements OnInit {
         this.isLoggedIn$ = this.authStore.isLoggedIn$;
         this.thirdPartyCookiesBlocked = false;
         this.online$ = this.checkInternetConnection();
-        // this.online$ =
-        //     typeof window !== 'undefined' && typeof navigator !== 'undefined'
-        //         ? merge(of(navigator.onLine), fromEvent(window, 'online').pipe(mapTo(true)), fromEvent(window, 'offline').pipe(mapTo(false)))
-        //         : of(false);
     }
 
     public ngOnInit() {

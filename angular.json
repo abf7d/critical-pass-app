@@ -805,6 +805,106 @@
           }
         }
       }
+    },
+    "critical-desktop": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/apps/critical-desktop",
+      "sourceRoot": "projects/apps/critical-desktop/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "baseHref": "./",
+            "outputPath": "dist/critical-desktop",
+            "index": "projects/apps/critical-desktop/src/index.html",
+            "browser": "projects/apps/critical-desktop/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/apps/critical-desktop/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/apps/critical-desktop/src/favicon.ico",
+              "projects/apps/critical-desktop/src/assets"
+            ],
+            "styles": [
+              "projects/apps/critical-desktop/src/styles.scss"
+            ],
+            "scripts": [],
+            "server": "projects/apps/critical-desktop/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/apps/critical-desktop/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "6kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "critical-desktop:build:production"
+            },
+            "development": {
+              "buildTarget": "critical-desktop:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "critical-desktop:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/apps/critical-desktop/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/apps/critical-desktop/src/favicon.ico",
+              "projects/apps/critical-desktop/src/assets"
+            ],
+            "styles": [
+              "projects/apps/critical-desktop/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   }
 }

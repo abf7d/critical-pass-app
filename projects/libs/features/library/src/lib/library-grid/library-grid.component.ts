@@ -5,8 +5,9 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LibraryStoreService } from '../library-store/library-store.service';
 import * as CONST from '../constants';
-import { ProjectApiService } from '@critical-pass/shared/data-access';
+import { PROJECT_API_TOKEN, ProjectApiService } from '@critical-pass/shared/data-access';
 import { NodeConnectorService } from '@critical-pass/project/processor';
+import { ProjectApi } from '../../../../../shared/data-access/src/lib/types/project-api';
 @Component({
     selector: 'cp-library-grid',
     templateUrl: './library-grid.component.html',
@@ -20,10 +21,10 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
     public pageNumSub!: Subscription;
     public listName: string | null = null;
     constructor(
+        @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private libraryStore: LibraryStoreService,
-        private projectApi: ProjectApiService,
         private nodeConnector: NodeConnectorService,
     ) {}
 

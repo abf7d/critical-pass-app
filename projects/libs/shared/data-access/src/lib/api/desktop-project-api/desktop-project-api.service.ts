@@ -12,7 +12,7 @@ import { ProjectLibrary } from '../../types/project-library';
 @Injectable({
     providedIn: 'root',
 })
-export class ProjectApiService implements ProjectApi {
+export class DesktopProjectApiService implements ProjectApi {
     private baseUrl!: string;
     constructor(
         private httpClient: HttpClient,
@@ -24,8 +24,10 @@ export class ProjectApiService implements ProjectApi {
     public get(id: number): Observable<Project> {
         return this.httpClient.get(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT, id.toString())).pipe(map((data: any) => this.serializer.fromJson(data)));
     }
+
     public list(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
-        console.log('web-project-api.service.ts: list()');
+        console.log('desktop-project-api.service.ts: list()');
+
         let params = new HttpParams();
         if (listName) {
             params = params.set('filter', listName);

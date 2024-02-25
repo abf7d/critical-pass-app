@@ -4,7 +4,7 @@ import { environment } from '@critical-pass/shared/environments';
 import { Observable } from 'rxjs';
 import * as CONST from '../../constants/constants';
 import urlJoin from 'url-join';
-import { ProjectList } from '../../models/project-list';
+import { ProjectList } from '../../types/project-list';
 
 @Injectable({
     providedIn: 'root',
