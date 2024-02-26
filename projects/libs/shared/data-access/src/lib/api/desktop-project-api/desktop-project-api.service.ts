@@ -9,6 +9,20 @@ import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 import { ProjectApi } from '../../types/project-api';
 import { ProjectLibrary } from '../../types/project-library';
 
+declare global {
+    interface Window {
+        require: any;
+    }
+}
+const electron = window.require('electron');
+const ipcRenderer = electron.ipcRenderer;
+
+// ipcRenderer.send('save-json', yourJsonData);
+// ipcRenderer.send('load-json');
+// ipcRenderer.on('json-loaded', (event, data) => {
+//   console.log(data); // Do something with the loaded data
+// });
+
 @Injectable({
     providedIn: 'root',
 })

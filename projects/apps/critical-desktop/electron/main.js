@@ -3,6 +3,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const electron_1 = require('electron');
 const path = require('path');
 const fs = require('fs');
+const ipcHandlers_1 = require('./ipcHandlers');
 let win = null;
 const args = process.argv.slice(1),
     serve = args.some(val => val === '--serve');
@@ -21,8 +22,10 @@ function createWindow() {
         },
     });
     if (serve) {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const debug = require('electron-debug');
         debug();
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         require('electron-reloader')(module);
         win.loadURL('https://localhost:4200');
     } else {
@@ -30,7 +33,6 @@ function createWindow() {
         let pathIndex = './index.html';
         if (fs.existsSync(path.join(__dirname, '../../../../dist/critical-desktop/browser/index.html'))) {
             // Path when running electron in local folder
-            console.log('Running electron in local folder');
             pathIndex = '../../../../dist/critical-desktop/browser/index.html';
         }
         const url = new URL(path.join('file:', __dirname, pathIndex));
@@ -50,7 +52,10 @@ try {
     // initialization and is ready to create browser windows.
     // Some APIs can only be used after this event occurs.
     // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-    electron_1.app.on('ready', () => setTimeout(createWindow, 400));
+    electron_1.app.on('ready', () => {
+        (0, ipcHandlers_1.setupFileOperationsListeners)(electron_1.app);
+        setTimeout(createWindow, 400);
+    });
     // Quit when all windows are closed.
     electron_1.app.on('window-all-closed', () => {
         // On OS X it is common for applications and their menu bar
