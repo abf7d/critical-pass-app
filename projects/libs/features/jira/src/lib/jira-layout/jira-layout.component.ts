@@ -51,6 +51,9 @@ export class JiraLayoutComponent implements OnInit, OnDestroy {
     public ngOnInit(): void {
         const code = this.route.snapshot.queryParams['code'];
 
+        // These use localStroage to store the token and cloudId
+        // Need to strip out local storage and use a service to store the token and cloudId
+        // because electron will not have access to local storage
         if (code) {
             this.getJiraToken(code);
         } else {

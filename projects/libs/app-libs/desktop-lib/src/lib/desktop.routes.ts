@@ -5,7 +5,7 @@ import { WelcomeComponent } from '@critical-pass/features/landing';
 import { AuthorizedUserGuard } from '@critical-pass/auth';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: 'library' /*'/home'*/, pathMatch: 'full' },
     {
         path: 'home',
         component: HomeComponent,

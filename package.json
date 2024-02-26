@@ -24,6 +24,7 @@
         "electron:serve-tsc": "tsc -p tsconfig.electron.json",
         "electron:serve": "wait-on tcp:4200 && npm run electron:serve-tsc && electron . --serve",
         "electron:local": "npm run build:desktop && electron .",
+        "electron:debug": "ng build --project critical-desktop && electron .",
         "electron:build": "npm run build:desktop && electron-builder build --publish=never"
     },
     "private": true,

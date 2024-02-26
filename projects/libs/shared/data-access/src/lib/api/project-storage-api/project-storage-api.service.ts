@@ -3,11 +3,12 @@ import { Project } from '@critical-pass/project/types';
 import { NodeConnectorService } from '@critical-pass/project/processor';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 import * as CONST from '../../constants/constants';
+import { ProjectStorage } from '../../types/project-storage';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ProjectStorageApiService {
+export class ProjectStorageApiService implements ProjectStorage {
     constructor(
         private serializer: ProjectSerializerService,
         private nodeConnector: NodeConnectorService,

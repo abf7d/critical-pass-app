@@ -836,12 +836,8 @@
             "styles": [
               "projects/apps/critical-desktop/src/styles.scss"
             ],
-            "scripts": [],
-            "server": "projects/apps/critical-desktop/src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "projects/apps/critical-desktop/server.ts"
-            }
+            "scripts": []
+            
           },
           "configurations": {
             "production": {

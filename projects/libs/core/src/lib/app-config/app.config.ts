@@ -15,12 +15,12 @@ export const appBaseConfig: ApplicationConfig = {
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations(),
         importProvidersFrom(LoggerModule.forRoot({ level: environment.logLevel })),
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthHttpInterceptor,
-            multi: true,
-        },
-        { provide: DASHBOARD_TOKEN, useClass: DashboardService },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: AuthHttpInterceptor,
+        //     multi: true,
+        // },
+        // { provide: DASHBOARD_TOKEN, useClass: DashboardService },
         { provide: EVENT_SERVICE_TOKEN, useClass: EventService },
         { provide: ErrorHandler, useClass: LoggerService },
 
