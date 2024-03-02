@@ -11,6 +11,7 @@
         "app-live-docker": "docker run -it --rm -v \"//$(pwd):/app\" -v \"/app/node_modules\" --name test-run critical-pass-app:latest",
         "build:desktop": "ng build --project critical-desktop --configuration production",
         "start": "ng serve --ssl --project=critical-web",
+        "start:desktop": "ng serve --project=critical-desktop",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
@@ -20,12 +21,10 @@
         "prettier:check": "npm run prettier -- -l",
         "prettier:cli": "npm run prettier -- -c",
         "prettier:fix": "npm run prettier:cli -- --write",
-        "build:tsc": "npm run electron:serve-tsc && npm run build:desktop",
-        "electron:serve-tsc": "tsc -p tsconfig.electron.json",
-        "electron:serve": "wait-on tcp:4200 && npm run electron:serve-tsc && electron . --serve",
-        "electron:local": "npm run build:desktop && electron .",
-        "electron:debug": "ng build --project critical-desktop && electron .",
-        "electron:build": "npm run build:desktop && electron-builder build --publish=never"
+        "compile-tsc": "tsc -p tsconfig.electron.json --watch",
+        "electron:serve": "electron . --serve",
+        "start:electron": "concurrently \"npm run start:desktop\" \"wait-on http://localhost:4200 && npm run compile-tsc\" \"wait-on http://localhost:4200 && npm run electron:serve\"",
+        "electron:local": "npm run build:desktop && electron ."
     },
     "private": true,
     "dependencies": {
@@ -84,10 +83,13 @@
         "@types/pako": "^2.0.0",
         "@typescript-eslint/eslint-plugin": "6.11.0",
         "@typescript-eslint/parser": "6.11.0",
+        "concurrently": "^8.2.2",
         "cypress": "^13.6.4",
         "cypress-real-events": "^1.12.0",
         "electron": "^29.0.1",
         "electron-builder": "^24.12.0",
+        "electron-debug": "^3.2.0",
+        "electron-reloader": "^1.2.3",
         "eslint": "^8.53.0",
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-prettier": "^5.0.1",
@@ -103,7 +105,8 @@
         "prettier": "^3.1.0",
         "prettier-eslint": "^16.1.2",
         "ts-node": "^10.9.2",
-        "typescript": "~5.2.2"
+        "typescript": "~5.2.2",
+        "wait-on": "^7.2.0"
     },
     "husky": {
         "hooks": {

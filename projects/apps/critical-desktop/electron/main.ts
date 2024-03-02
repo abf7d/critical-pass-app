@@ -30,7 +30,7 @@ function createWindow(): BrowserWindow {
 
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require('electron-reloader')(module);
-        win.loadURL('https://localhost:4200');
+        win.loadURL('http://localhost:4200');
     } else {
         // Path when running electron executable
         let pathIndex = './index.html';
@@ -62,6 +62,7 @@ try {
     // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
     app.on('ready', () => {
         setupFileOperationsListeners(app);
+        console.log('app ready');
         setTimeout(createWindow, 400);
     });
 

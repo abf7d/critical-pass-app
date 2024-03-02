@@ -17,7 +17,6 @@ declare global {
 const electron = window.require('electron');
 const ipcRenderer = electron.ipcRenderer;
 
-// ipcRenderer.send('save-json', yourJsonData);
 // ipcRenderer.send('load-json');
 // ipcRenderer.on('json-loaded', (event, data) => {
 //   console.log(data); // Do something with the loaded data
@@ -41,6 +40,7 @@ export class DesktopProjectApiService implements ProjectApi {
 
     public list(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
         console.log('desktop-project-api.service.ts: list()');
+        ipcRenderer.send('save-json', { message: 'yourJsonData' }); //
 
         let params = new HttpParams();
         if (listName) {

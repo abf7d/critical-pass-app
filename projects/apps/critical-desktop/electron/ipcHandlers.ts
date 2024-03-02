@@ -8,7 +8,7 @@ interface SaveJsonData {
     key: string;
     value: any;
 }
-
+console.log('ipcHandlers.ts');
 export function setupFileOperationsListeners(app: App): void {
     ipcMain.on('save-json', (event, data: SaveJsonData) => {
         const filePath = path.join(app.getPath('userData'), 'yourfile.json');
@@ -32,7 +32,7 @@ export function setupFileOperationsListeners(app: App): void {
             console.error('Failed to load JSON', error);
             // Handle file read errors
             event.reply('load-json-failure', error);
-        }
+        } //test
     });
 
     // Add more listeners as needed

@@ -4,6 +4,7 @@ exports.setupFileOperationsListeners = void 0;
 const electron_1 = require('electron');
 const fs = require('fs');
 const path = require('path');
+console.log('ipcHandlers.ts');
 function setupFileOperationsListeners(app) {
     electron_1.ipcMain.on('save-json', (event, data) => {
         const filePath = path.join(app.getPath('userData'), 'yourfile.json');
@@ -26,7 +27,7 @@ function setupFileOperationsListeners(app) {
             console.error('Failed to load JSON', error);
             // Handle file read errors
             event.reply('load-json-failure', error);
-        }
+        } //test
     });
     // Add more listeners as needed
 }
