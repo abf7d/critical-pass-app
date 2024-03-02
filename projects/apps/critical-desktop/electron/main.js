@@ -9,16 +9,21 @@ const args = process.argv.slice(1),
     serve = args.some(val => val === '--serve');
 function createWindow() {
     const size = electron_1.screen.getPrimaryDisplay().workAreaSize;
+    console.log('__dirname:', __dirname);
+    console.log('Preload Path:', path.join(__dirname, 'preload.js'));
     // Create the browser window.
+    const pathF = path.join(__dirname, 'preload.js').replace(/\\/g, '/');
+    console.log(pathF);
     win = new electron_1.BrowserWindow({
         x: 0,
         y: 0,
         width: size.width,
         height: size.height,
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
             allowRunningInsecureContent: serve,
-            contextIsolation: false,
+            contextIsolation: true,
+            preload: pathF, // path.join(__dirname, 'preload.js').replaceAll('\','/'), // Update the path as necessary
         },
     });
     if (serve) {

@@ -6,7 +6,10 @@ const fs = require('fs');
 const path = require('path');
 console.log('ipcHandlers.ts');
 function setupFileOperationsListeners(app) {
+    console.log('setupFileOperationsListeners');
+    console.log('file path tried', app.getPath('userData'));
     electron_1.ipcMain.on('save-json', (event, data) => {
+        console.error('try this final save-json hit', data);
         const filePath = path.join(app.getPath('userData'), 'yourfile.json');
         try {
             fs.writeFileSync(filePath, JSON.stringify(data));

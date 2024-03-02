@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@critical-pass/shared/environments';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import urlJoin from 'url-join';
 import { Project } from '@critical-pass/project/types';
@@ -9,13 +9,28 @@ import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 import { ProjectApi } from '../../types/project-api';
 import { ProjectLibrary } from '../../types/project-library';
 
+// declare global {
+//     interface Window {
+//         require: any;
+//     }
+// }
+// const electron = window.require('electron');
+// const ipcRenderer = electron.ipcRenderer;
+
 declare global {
     interface Window {
-        require: any;
+        // electronAPI: {
+        //     send: (channel: string, data: any) => void;
+        //     receive: (channel: string, func: (...args: any[]) => void) => void;
+        // };
+        electron: {
+            send: (channel: string, data: any) => void;
+            receive: (channel: string, func: (...args: any[]) => void) => void;
+        };
     }
 }
-const electron = window.require('electron');
-const ipcRenderer = electron.ipcRenderer;
+
+// Use it like this
 
 // ipcRenderer.send('load-json');
 // ipcRenderer.on('json-loaded', (event, data) => {
@@ -40,18 +55,26 @@ export class DesktopProjectApiService implements ProjectApi {
 
     public list(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
         console.log('desktop-project-api.service.ts: list()');
-        ipcRenderer.send('save-json', { message: 'yourJsonData' }); //
+        // ipcRenderer.send('save-json', { message: 'yourJsonData' }); //
+        // window.electronAPI.send('save-json', { message: 'yourJsonData' });
+        window.electron.send('save-json', { message: 'yourJsonData' });
 
-        let params = new HttpParams();
-        if (listName) {
-            params = params.set('filter', listName);
-        }
-        return this.httpClient
-            .get(urlJoin(this.baseUrl, CONST.LIBRARY_ENDPOINT, page.toString(), pageSize.toString()), {
-                observe: 'response' as 'body',
-                params,
-            })
-            .pipe(map((data: any) => this.serialize(data)));
+        const obsv: ProjectLibrary = {
+            items: [],
+            totalCount: 0,
+        };
+        return of(obsv);
+
+        // let params = new HttpParams();
+        // if (listName) {
+        //     params = params.set('filter', listName);
+        // }
+        // return this.httpClient
+        //     .get(urlJoin(this.baseUrl, CONST.LIBRARY_ENDPOINT, page.toString(), pageSize.toString()), {
+        //         observe: 'response' as 'body',
+        //         params,
+        //     })
+        //     .pipe(map((data: any) => this.serialize(data)));
     }
 
     public post(project: Project) {

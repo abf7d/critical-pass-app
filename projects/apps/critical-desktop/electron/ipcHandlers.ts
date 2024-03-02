@@ -10,7 +10,10 @@ interface SaveJsonData {
 }
 console.log('ipcHandlers.ts');
 export function setupFileOperationsListeners(app: App): void {
+    console.log('setupFileOperationsListeners');
+    console.log('file path tried', app.getPath('userData'));
     ipcMain.on('save-json', (event, data: SaveJsonData) => {
+        console.error('try this final save-json hit', data);
         const filePath = path.join(app.getPath('userData'), 'yourfile.json');
         try {
             fs.writeFileSync(filePath, JSON.stringify(data));
