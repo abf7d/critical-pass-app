@@ -20,6 +20,7 @@ function createWindow() {
         width: size.width,
         height: size.height,
         webPreferences: {
+            // webSecurity: false,
             nodeIntegration: false,
             allowRunningInsecureContent: serve,
             contextIsolation: true,
@@ -32,7 +33,7 @@ function createWindow() {
         debug();
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require('electron-reloader')(module);
-        win.loadURL('http://localhost:4200');
+        win.loadURL('http://localhost:4201');
     } else {
         // Path when running electron executable
         let pathIndex = './index.html';

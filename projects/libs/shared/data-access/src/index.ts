@@ -11,4 +11,5 @@ export * from './lib/types/project-list';
 export * from './lib/api/project-list-api/project-list-api.service';
 export * from './lib/api/desktop-project-api/desktop-project-api.service';
 export * from './lib/api/desktop-project-storage-api/desktop-project-storage-api.service';
+export * from './lib/types/project-api';
 export * as API_CONST from './lib/constants/constants';
