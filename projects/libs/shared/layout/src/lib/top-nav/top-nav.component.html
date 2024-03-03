@@ -1,8 +1,9 @@
 <div class="nav">
     <div>
         <div (click)="navigate('library/(grid/0//sidebar:libar/0)')">Project Library</div>
-        <div (click)="navigate('import/(0//sidebar:filebar/8)')">Import Data</div>
+        <div (click)="navigate('import/(0//sidebar:filebar/8)')">Spreadsheets</div>
         <div (click)="navigate('library/lists/default/(grid/0//sidebar:libar/0)')">Examples</div>
+        <div *ngIf="isElectron" (click)="navigate('library/lists/default/(grid/0//sidebar:libar/0)')">App Data</div>
     </div>
     <div class="nav-buttons">
         <div [routerLink]="['/tutorials']">Tutorials</div>

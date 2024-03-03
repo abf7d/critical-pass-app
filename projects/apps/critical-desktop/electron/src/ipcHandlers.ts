@@ -1,6 +1,7 @@
 import { ipcMain, App } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
+import projectManager from './managers/project-manager';
 
 // Define interfaces for your data as needed
 interface SaveJsonData {
@@ -23,6 +24,17 @@ export function setupFileOperationsListeners(app: App): void {
             console.error('Failed to save JSON', error);
             // Handle errors, e.g., by sending an error message back
             event.reply('save-json-failure', error);
+        }
+    });
+
+    ipcMain.on('save-project', async (event, project) => {
+        console.error('save-project', project);
+        try {
+            const result = await projectManager.addProject(project);
+            event.reply('add-project-response', result);
+        } catch (error) {
+            console.error('Failed to save JSON', error);
+            event.reply('save-project-failure', error);
         }
     });
 

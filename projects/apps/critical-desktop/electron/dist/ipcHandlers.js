@@ -1,9 +1,41 @@
 'use strict';
+var __awaiter =
+    (this && this.__awaiter) ||
+    function (thisArg, _arguments, P, generator) {
+        function adopt(value) {
+            return value instanceof P
+                ? value
+                : new P(function (resolve) {
+                      resolve(value);
+                  });
+        }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) {
+                try {
+                    step(generator.next(value));
+                } catch (e) {
+                    reject(e);
+                }
+            }
+            function rejected(value) {
+                try {
+                    step(generator['throw'](value));
+                } catch (e) {
+                    reject(e);
+                }
+            }
+            function step(result) {
+                result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+            }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.setupFileOperationsListeners = void 0;
 const electron_1 = require('electron');
 const fs = require('fs');
 const path = require('path');
+const project_manager_1 = require('./managers/project-manager');
 console.log('ipcHandlers.ts');
 function setupFileOperationsListeners(app) {
     console.log('setupFileOperationsListeners');
@@ -21,6 +53,18 @@ function setupFileOperationsListeners(app) {
             event.reply('save-json-failure', error);
         }
     });
+    electron_1.ipcMain.on('save-project', (event, project) =>
+        __awaiter(this, void 0, void 0, function* () {
+            console.error('save-project', project);
+            try {
+                const result = yield project_manager_1.default.addProject(project);
+                event.reply('add-project-response', result);
+            } catch (error) {
+                console.error('Failed to save JSON', error);
+                event.reply('save-project-failure', error);
+            }
+        }),
+    );
     electron_1.ipcMain.on('load-json', event => {
         const filePath = path.join(app.getPath('userData'), 'yourfile.json');
         try {
