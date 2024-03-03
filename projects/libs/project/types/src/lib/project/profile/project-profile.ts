@@ -28,4 +28,7 @@ export interface ProjectProfile {
     loopDetected: boolean;
     lft: number;
     timestamp?: number;
+
+    historyId?: string;
+    networkId?: string;
 }

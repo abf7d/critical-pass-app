@@ -35,7 +35,8 @@ export class DesktopProjectApiService implements ProjectApi {
     }
 
     public get(id: number): Observable<Project> {
-        return this.httpClient.get(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT, id.toString())).pipe(map((data: any) => this.serializer.fromJson(data)));
+        // return this.httpClient.get(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT, id.toString())).pipe(map((data: any) => this.serializer.fromJson(data)));
+        return of(this.serializer.fromJson(null));
     }
 
     public list(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
