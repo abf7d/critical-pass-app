@@ -80,6 +80,10 @@
       ],
       "@critical-pass/web-lib": [
         "./projects/libs/app-libs/web-lib/src"
+      ],
+      "@critical-pass/features/app-data": [
+        "./dist/app-data",
+        "./projects/libs/features/app-data/src"
       ]
     },
     "outDir": "./dist/out-tsc",

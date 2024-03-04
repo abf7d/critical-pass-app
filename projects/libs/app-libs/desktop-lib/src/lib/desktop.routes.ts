@@ -15,6 +15,11 @@ export const routes: Routes = [
         component: WelcomeComponent,
     },
     {
+        path: 'app-data',
+        loadChildren: () => import('@critical-pass/features/app-data').then(m => m.AppDataModule),
+        // canLoad: [AuthorizedUserGuard],
+    },
+    {
         path: 'library',
         loadChildren: () => import('@critical-pass/features/library').then(m => m.LibraryModule),
         // canLoad: [AuthorizedUserGuard],
