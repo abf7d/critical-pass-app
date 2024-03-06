@@ -1,1 +1,72 @@
-<p>app-data-layout works!</p>
+<div class="sheets">
+    <div>
+        <div>
+            <div>Library Upload (Project Array)</div>
+            <div><input type="radio" />Replace <input type="radio" />Append</div>
+            <div class="upload-button date-format-txt">
+                <button class="btn btn-primary" (click)="upload1.value = ''; upload1.click()">Select File</button>
+                <button class="btn btn-secondary" (click)="insertData()">Insert Data</button>
+                <input type="file" #upload1 (change)="fileSelected($event.target)" />
+            </div>
+        </div>
+        <!-- <div class="w-title">Worksheets</div> -->
+        <div>
+            <div>Type "delete" in text box and click Delete button to clear the database.</div>
+            <div>
+                <input type="text" [(ngModel)]="deleteText" /> {{deleteText}}
+                <button *ngIf="deleteText === 'delete'" class="btn btn-danger" (click)="deleteData()">Delete</button>
+                <button *ngIf="deleteText !== 'delete'" class="btn btn-danger" disabled>Delete</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div>Project Network Upload</div>
+            <div><span>Project Id to link</span><input type="number" /></div>
+            <div class="upload-button date-format-txt">
+                <button class="btn btn-primary" (click)="upload2.value = ''; upload2.click()">Select File</button>
+                <button class="btn btn-secondary" (click)="insertData()">Insert Data</button>
+                <input type="file" #upload2 (change)="handleFileInput($event.target)" />
+                <pre>{{jsonPreview}}</pre>
+            </div>
+        </div>
+        <div>
+            <div>Type "delete" in text box and click Delete button to clear the database.</div>
+            <div>
+                <input type="text" [(ngModel)]="deleteText" /> {{deleteText}}
+                <button *ngIf="deleteText === 'delete'" class="btn btn-danger" (click)="deleteData()">Delete</button>
+                <button *ngIf="deleteText !== 'delete'" class="btn btn-danger" disabled>Delete</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div>Project History Upload</div>
+            <div><span>Project Id to link</span><input type="number" /></div>
+            <div class="upload-button date-format-txt">
+                <button class="btn btn-primary" (click)="upload3.value = ''; upload3.click()">Select File</button>
+                <button class="btn btn-secondary" (click)="insertData()">Insert Data</button>
+                <input type="file" #upload3 (change)="fileSelected($event.target)" />
+            </div>
+        </div>
+        <div>
+            <div>Type "delete" in text box and click Delete button to clear the database.</div>
+            <div>
+                <input type="text" [(ngModel)]="deleteText" /> {{deleteText}}
+                <button *ngIf="deleteText === 'delete'" class="btn btn-danger" (click)="deleteData()">Delete</button>
+                <button *ngIf="deleteText !== 'delete'" class="btn btn-danger" disabled>Delete</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="create-proj">
+    <label class="proj-title">Project Map</label>
+    <div>
+        <label>US: M/D/YYYY</label>
+
+        <label>European: D-M-YYYY</label>
+    </div>
+    <a class="btn btn-outline-secondary" (click)="saveFormat()"> Save Format </a>
+    <a class="btn btn-outline-secondary" (click)="saveFormat()">Download data </a>
+    <a class="btn btn-secondary" (click)="createProject()"> Create Project </a>
+</div> -->
+</div>

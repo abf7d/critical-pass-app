@@ -1,0 +1,11 @@
+.sheets > div {
+    padding-top: 25px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+input[type='file'] {
+    display: none;
+}

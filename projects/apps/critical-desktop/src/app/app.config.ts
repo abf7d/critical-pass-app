@@ -1,3 +1,4 @@
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appBaseConfig } from '@critical-pass/core';
@@ -20,5 +21,6 @@ export const appConfig: ApplicationConfig = {
         { provide: PROJECT_STORAGE_TOKEN, useClass: DesktopProjectStorageApiService },
         { provide: ProjectStorageApiService, useValue: {} },
         { provide: DASHBOARD_TOKEN, useClass: DashboardService },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
     ],
 };

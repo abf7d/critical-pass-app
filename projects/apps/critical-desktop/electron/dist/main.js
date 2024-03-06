@@ -32,7 +32,25 @@ function createWindow() {
         const debug = require('electron-debug');
         debug();
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        require('electron-reloader')(module);
+        // require('electron-reloader')(module);
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            require('electron-reloader')(module, {
+                // Options here
+                watchRenderer: true,
+            });
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            // require('electron-reload')(__dirname, {
+            //     electron: require(`${__dirname}/node_modules/electron`),
+            //     ignored: /node_modules|[\/\\]\./, // Regular expression to ignore node_modules and dotfiles
+            //     argv: [], // Arguments to pass to the Electron process
+            //     hardResetMethod: 'exit', // How to perform a hard reset (choices: 'exit', 'quit')
+            //     forceHardReset: false, // Force a hard reset for all changes
+            //     usePolling: false, // Whether to use fs.watch (false) or fs.watchFile (true) for file watching
+            // });
+        } catch (error) {
+            console.error('Failed to load electron-reloader:', error);
+        }
         win.loadURL('http://localhost:4201');
     } else {
         // Path when running electron executable
