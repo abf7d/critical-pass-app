@@ -1,0 +1,28 @@
+.file-loader {
+    padding-top: 25px;
+    padding-left: 20px;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+input[type='file'] {
+    display: none;
+}
+.file-stat {
+    display: flex;
+    padding: 5px;
+}
+.delete-txt {
+    width: 325px;
+}
+ .inserts {
+    display: flex;
+    // give a gap between each item
+    gap: 10px;
+
+}
+.upload-button {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}

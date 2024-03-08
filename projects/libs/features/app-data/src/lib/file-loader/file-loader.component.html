@@ -1,0 +1,49 @@
+<div class="file-loader">
+    <div>
+        <div>
+            <div>Library Upload (Project Array)</div>
+            <div>
+                <input type="radio" [(ngModel)]="appendData" [value]="false" />Replace <input type="radio" [(ngModel)]="appendData" [value]="true" />Append
+            </div>
+            <div class="upload-button date-format-txt">
+                <div class="inserts" *ngIf="includeId"><span>Project Id to link</span><input type="number" /></div>
+                <div class="delete-txt">1. Select File 2. Type "insert" in text box and click Insert button to insert in the database.</div>
+                <div class="inserts">
+                    <input type="text" [(ngModel)]="insertText" />
+                    <button class="btn btn-primary pl-2" (click)="libraryUpload.value = ''; libraryUpload.click()">Select File</button>
+                    <button *ngIf="!!jsonPreview && insertText === 'insert'" class="btn btn-secondary" (click)="insertData()">Insert Data</button>
+                    <button class="btn btn-secondary" *ngIf="!jsonPreview || insertText !== 'insert'" disabled>Insert Data</button>
+                    <input type="file" #libraryUpload (change)="fileSelected($event.target)" />
+                </div>
+            </div>
+        </div>
+        <div>
+            Delete <i class="fas fa-chevron-up" *ngIf="hideDelete" (click)="hideDelete = false"></i
+            ><i class="fas fa-chevron-down" *ngIf="!hideDelete" (click)="hideDelete = true"></i>
+        </div>
+        <div *ngIf="!hideDelete">
+            <div class="delete-txt">Type "delete" in text box and click Delete button to clear the database.</div>
+            <div>
+                <input type="text" [(ngModel)]="deleteText" /> {{deleteText}}
+                <button *ngIf="deleteText === 'delete'" class="btn btn-danger" (click)="deleteData()">Delete</button>
+                <button *ngIf="deleteText !== 'delete'" class="btn btn-danger" disabled>Delete</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="jsonPreview" class="pl-4">
+        <div class="file-stat">
+            <div>Object Count</div>
+            <div class="pl-2">{{objectCount}}</div>
+        </div>
+        <div class="file-stat">
+            <div>
+                <div>First Obj Props</div>
+                <div *ngFor="let prop of firstObjProps">{{prop}}</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="jsonPreview" class="p-2 pl-4">
+        <div>File Content Begining</div>
+        <pre>{{jsonPreview}}</pre>
+    </div>
+</div>

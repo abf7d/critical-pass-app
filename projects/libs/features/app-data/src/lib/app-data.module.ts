@@ -9,9 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { AppDataLayoutComponent } from './app-data-layout/app-data-layout.component';
 import { AppDataBarComponent } from './app-data-bar/app-data-bar.component';
 import { AppDataRoutingModule } from './app-data.routes';
+import { FileLoaderComponent } from './file-loader/file-loader.component';
 
 @NgModule({
-    declarations: [AppDataLayoutComponent, AppDataBarComponent],
+    declarations: [AppDataLayoutComponent, AppDataBarComponent, FileLoaderComponent],
     imports: [
         CommonModule,
         AppDataRoutingModule,
