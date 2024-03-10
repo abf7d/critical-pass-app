@@ -2,12 +2,12 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appBaseConfig } from '@critical-pass/core';
-import { routes } from '@critical-pass/desktop-lib';
+import { DesktopProjectApiService, DesktopProjectStorageApiService, routes } from '@critical-pass/desktop-lib';
 import {
     DASHBOARD_TOKEN,
     DashboardService,
-    DesktopProjectApiService,
-    DesktopProjectStorageApiService,
+    // DesktopProjectApiService,
+    // DesktopProjectStorageApiService,
     PROJECT_API_TOKEN,
     PROJECT_STORAGE_TOKEN,
     ProjectStorageApiService,

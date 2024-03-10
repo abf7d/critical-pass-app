@@ -3,3 +3,5 @@
  */
 
 export * from './lib/desktop.routes';
+export * from './lib/desktop-project-api.service';
+export * from './lib/desktop-project-storage-api.service';

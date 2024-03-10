@@ -1,6 +1,6 @@
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-class ProjectService {
+class ProjectRepo {
     constructor(databaseManager) {
         this.dbManager = databaseManager;
     }
@@ -9,5 +9,5 @@ class ProjectService {
         return this.dbManager.runQuery(sql, [project.name, project.description]);
     }
 }
-exports.default = ProjectService;
+exports.default = ProjectRepo;
 //# sourceMappingURL=project-repo.js.map

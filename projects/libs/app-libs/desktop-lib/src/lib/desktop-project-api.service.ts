@@ -4,10 +4,11 @@ import { map, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import urlJoin from 'url-join';
 import { Project } from '@critical-pass/project/types';
-import * as CONST from '../../constants/constants';
+// import * as CONST from '../../constants/constants';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
-import { ProjectApi } from '../../types/project-api';
-import { ProjectLibrary } from '../../types/project-library';
+import { ProjectApi, ProjectLibrary } from '@critical-pass/shared/data-access';
+// import { ProjectApi } from '../../types/project-api';
+// import { ProjectLibrary } from '../../types/project-library';
 
 // declare global {
 //     interface Window {
@@ -43,8 +44,8 @@ export class DesktopProjectApiService implements ProjectApi {
         console.log('desktop-project-api.service.ts: list()');
         // ipcRenderer.send('save-json', { message: 'yourJsonData' }); //
         // window.electronAPI.send('save-json', { message: 'yourJsonData' });
-        window.electron.send('save-json', { message: 'yourJsonData' });
-
+        // window.electron.send('save-json', { message: 'yourJsonData' });
+        window.electron.onboardingApi.saveLibrary({ data: 'savelibrary test data' });
         const obsv: ProjectLibrary = {
             items: [],
             totalCount: 0,
@@ -67,12 +68,12 @@ export class DesktopProjectApiService implements ProjectApi {
         const body = JSON.stringify(project);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this.httpClient
-            .post<Project>(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT), body, { headers })
+            .post<Project>(urlJoin(this.baseUrl, 'CONST.PROJECT_ENDPOINT'), body, { headers })
             .pipe(map(data => this.serializer.fromJson(data)));
     }
 
     public delete(id: number) {
-        return this.httpClient.delete(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT, id.toString()));
+        return this.httpClient.delete(urlJoin(this.baseUrl, 'CONST.PROJECT_ENDPOINT', id.toString()));
     }
 
     private serialize(data: any): ProjectLibrary {

@@ -6,7 +6,7 @@ interface Project {
     description: string;
 }
 
-class ProjectService {
+class ProjectRepo {
     private dbManager: DatabaseManager;
 
     constructor(databaseManager: DatabaseManager) {
@@ -21,4 +21,4 @@ class ProjectService {
     // More methods for handling project data (update, delete, get, etc.)
 }
 
-export default ProjectService;
+export default ProjectRepo;

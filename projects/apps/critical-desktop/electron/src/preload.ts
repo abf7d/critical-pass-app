@@ -8,18 +8,30 @@ import { contextBridge, ipcRenderer } from 'electron';
 type Channel = 'save-json' | 'save-json-success' | 'save-json-failure';
 
 contextBridge.exposeInMainWorld('electron', {
-    send: (channel: Channel, data: any): void => {
-        console.log('send channel hit:', channel, 'data:', data);
-        const validChannels: Channel[] = ['save-json'];
-        if (validChannels.includes(channel)) {
-            ipcRenderer.send(channel, data);
-        }
+    onboardingApi: {
+        saveLibrary: (data: any): void => {
+            console.log('saveLibrary hit:', data);
+            ipcRenderer.send('save-library', data);
+        },
+        saveNetwork: (data: any): void => {
+            ipcRenderer.send('save-network', data);
+        },
+        saveHistory: (data: any): void => {
+            ipcRenderer.send('save-history', data);
+        },
     },
-    receive: (channel: Channel, func: (...args: any[]) => void): void => {
-        const validChannels: Channel[] = ['save-json-success', 'save-json-failure'];
-        if (validChannels.includes(channel)) {
-            // Note: TypeScript may require specifying the event parameter type
-            ipcRenderer.on(channel, (event: Electron.IpcRendererEvent, ...args: any[]) => func(...args));
-        }
-    },
+    // send: (channel: Channel, data: any): void => {
+    //     console.log('send channel hit:', channel, 'data:', data);
+    //     const validChannels: Channel[] = ['save-json'];
+    //     if (validChannels.includes(channel)) {
+    //         ipcRenderer.send(channel, data);
+    //     }
+    // },
+    // receive: (channel: Channel, func: (...args: any[]) => void): void => {
+    //     const validChannels: Channel[] = ['save-json-success', 'save-json-failure'];
+    //     if (validChannels.includes(channel)) {
+    //         // Note: TypeScript may require specifying the event parameter type
+    //         ipcRenderer.on(channel, (event: Electron.IpcRendererEvent, ...args: any[]) => func(...args));
+    //     }
+    // },
 });
