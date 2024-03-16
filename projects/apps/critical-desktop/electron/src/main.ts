@@ -1,7 +1,8 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
-import { setupFileOperationsListeners } from './ipcHandlers';
+import { setupFileOperationsListeners } from './startup/ipc-handlers';
+import { initDatabase } from './startup/db-init';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
@@ -86,6 +87,7 @@ try {
     // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
     app.on('ready', () => {
         setupFileOperationsListeners(app);
+        initDatabase();
         console.log('app ready');
         setTimeout(createWindow, 400);
     });

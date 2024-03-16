@@ -1,5 +1,4 @@
 import DatabaseManager from '../util/database-manager'; // Adjust the import path as necessary
-
 // Assuming a basic structure for the Project type
 interface Project {
     name: string;
@@ -9,8 +8,8 @@ interface Project {
 class ProjectRepo {
     private dbManager: DatabaseManager;
 
-    constructor(databaseManager: DatabaseManager) {
-        this.dbManager = databaseManager;
+    constructor() {
+        this.dbManager = DatabaseManager.getInstance();
     }
 
     addProject(project: Project): Promise<{ id: number }> {

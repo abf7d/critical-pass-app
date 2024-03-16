@@ -2,6 +2,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { App } from 'electron';
+import LibraryRepo from '../data-access/library-repo';
 export const libraryHandlers = {
     //app needs to be imported from ipcHandlers.ts
     saveData: (app: App) => (event: any, data: any) => {
@@ -28,3 +29,22 @@ export const libraryHandlers = {
     },
     // Other library-related handlers can go here
 };
+
+export class LibraryHandler {
+    private networkRepo = new LibraryRepo();
+    constructor(private app: App) {
+        console.log('LibraryHandler');
+    }
+    saveData(event: any, project: any) {
+        try {
+            console.log('LibraryRepo handler class');
+            // networkRepo.addProject(project);
+
+            // Implementation of saving library data
+            event.reply('save-library-success');
+        } catch (error) {
+            console.error('Error saving library data:', error);
+            event.reply('save-library-failure', error);
+        }
+    }
+}

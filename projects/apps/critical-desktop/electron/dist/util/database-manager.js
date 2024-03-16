@@ -33,7 +33,7 @@ class DatabaseManager {
     }
 }
 // Hardcoded or statically defined database path
-DatabaseManager.dbPath = './mydatabase.db';
+DatabaseManager.dbPath = './critical-pass-database.db';
 exports.default = DatabaseManager;
 // import * as sqlite3 from 'sqlite3';
 // const verbose = sqlite3.verbose();

@@ -5,7 +5,7 @@ class DatabaseManager {
     private static instance: DatabaseManager;
     private db: sqlite3.Database;
     // Hardcoded or statically defined database path
-    private static dbPath: string = './mydatabase.db';
+    private static dbPath: string = './critical-pass-database.db';
 
     // Private constructor to prevent direct instantiation
     private constructor() {

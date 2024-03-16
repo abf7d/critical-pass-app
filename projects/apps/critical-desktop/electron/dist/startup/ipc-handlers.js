@@ -1,35 +1,27 @@
-import { ipcMain, App } from 'electron';
-import * as fs from 'fs';
-import * as path from 'path';
-// import projectManager from './managers/project-manager';
-
-// Define interfaces for your data as needed
-interface SaveJsonData {
-    // Example structure, adjust according to your actual data needs
-    key: string;
-    value: any;
-}
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.setupFileOperationsListeners = void 0;
+const electron_1 = require('electron');
 console.log('ipcHandlers.ts');
-
-import { libraryHandlers } from './handlers/library-handler';
-import { networkHandlers } from './handlers/network-handler';
-import { historyHandlers } from './handlers/history-handler';
-
-export function setupFileOperationsListeners(app: App): void {
+const library_handler_1 = require('../handlers/library-handler');
+const network_handler_1 = require('../handlers/network-handler');
+const history_handler_1 = require('../handlers/history-handler');
+const project_handler_1 = require('../handlers/project-handler');
+function setupFileOperationsListeners(app) {
     console.log('file path tried', app.getPath('userData'));
     const ipcHandlers = {
-        'save-library': libraryHandlers.saveData(app),
-        'save-network': networkHandlers.saveData(app),
-        'save-history': historyHandlers.saveData(app),
+        'save-project': new project_handler_1.ProjectHandler(app).saveData,
+        'save-library': new library_handler_1.LibraryHandler(app).saveData,
+        'save-network': new network_handler_1.NetworkHandler(app).saveData,
+        'save-history': new history_handler_1.HistoryHandler(app).saveData, // historyHandlers.saveData(app),
         // Add more handlers as needed
     };
-
     // Setup IPC listeners for each handler
     Object.entries(ipcHandlers).forEach(([channel, handler]) => {
-        ipcMain.on(channel, handler);
+        electron_1.ipcMain.on(channel, handler);
     });
 }
-
+exports.setupFileOperationsListeners = setupFileOperationsListeners;
 // export function setupFileOperationsListeners(app: App): void {
 //     console.log('setupFileOperationsListeners');
 //     console.log('file path tried', app.getPath('userData'));
@@ -46,7 +38,6 @@ export function setupFileOperationsListeners(app: App): void {
 //             event.reply('save-json-failure', error);
 //         }
 //     });
-
 //     ipcMain.on('save-project', async (event, project) => {
 //         console.error('save-project', project);
 //         try {
@@ -57,7 +48,6 @@ export function setupFileOperationsListeners(app: App): void {
 //             event.reply('save-project-failure', error);
 //         }
 //     });
-
 //     ipcMain.on('load-json', event => {
 //         const filePath = path.join(app.getPath('userData'), 'yourfile.json');
 //         try {
@@ -69,6 +59,6 @@ export function setupFileOperationsListeners(app: App): void {
 //             event.reply('load-json-failure', error);
 //         } //test
 //     });
-
 //     // Add more listeners as needed
 // }
+//# sourceMappingURL=ipc-handlers.js.map

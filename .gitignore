@@ -41,5 +41,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+critical-pass-database.db
+
 cypress/screenshots
 cypress/snapshots/**/__diff_output__
