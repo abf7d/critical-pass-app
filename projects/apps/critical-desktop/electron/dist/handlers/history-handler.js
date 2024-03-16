@@ -1,19 +1,7 @@
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.HistoryHandler = exports.historyHandlers = void 0;
+exports.HistoryHandler = void 0;
 const history_repo_1 = require('../data-access/history-repo');
-exports.historyHandlers = {
-    saveData: app => (event, data) => {
-        try {
-            // Implementation of saving library data
-            event.reply('save-history-success');
-        } catch (error) {
-            console.error('Error saving history data:', error);
-            event.reply('save-history-failure', error);
-        }
-    },
-    // Other library-related handlers can go here
-};
 class HistoryHandler {
     constructor(app) {
         this.app = app;

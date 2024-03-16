@@ -5,10 +5,13 @@ class DatabaseManager {
     private static instance: DatabaseManager;
     private db: sqlite3.Database;
     // Hardcoded or statically defined database path
-    private static dbPath: string = './critical-pass-database.db';
-
+    private static dbPath: string | null = null; //'./critical-pass-database.db';
+    // set dbPath(path: string) {
+    //     DatabaseManager.dbPath = path;
+    // }
     // Private constructor to prevent direct instantiation
-    private constructor() {
+    private constructor(path: string) {
+        DatabaseManager.dbPath = path;
         this.db = new sqlite3.Database(DatabaseManager.dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err: Error | null) => {
             if (err) {
                 console.error('Error opening database', err);
@@ -19,15 +22,22 @@ class DatabaseManager {
     }
 
     // Static method to get the instance of the class
-    public static getInstance(): DatabaseManager {
+    public static getInstance(path: string | null = null): DatabaseManager {
         if (!DatabaseManager.instance) {
-            DatabaseManager.instance = new DatabaseManager();
+            if (path === null) {
+                throw new Error('Database path not provided');
+            }
+            DatabaseManager.instance = new DatabaseManager(path);
         }
         return DatabaseManager.instance;
     }
 
     public runQuery(sql: string, params: any[] = []): Promise<{ id: number }> {
         return new Promise((resolve, reject) => {
+            if (!this.db) {
+                reject(new Error('Database not initialized'));
+                return;
+            }
             this.db.run(sql, params, function (this: sqlite3.RunResult, err: Error | null) {
                 if (err) {
                     reject(err);

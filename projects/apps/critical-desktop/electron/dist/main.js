@@ -78,8 +78,8 @@ try {
     // Some APIs can only be used after this event occurs.
     // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
     electron_1.app.on('ready', () => {
+        (0, db_init_1.initDatabase)(electron_1.app);
         (0, ipc_handlers_1.setupFileOperationsListeners)(electron_1.app);
-        (0, db_init_1.initDatabase)();
         console.log('app ready');
         setTimeout(createWindow, 400);
     });

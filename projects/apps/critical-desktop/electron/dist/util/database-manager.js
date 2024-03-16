@@ -3,8 +3,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const sqlite3 = require('sqlite3');
 const verbose = sqlite3.verbose();
 class DatabaseManager {
+    // set dbPath(path: string) {
+    //     DatabaseManager.dbPath = path;
+    // }
     // Private constructor to prevent direct instantiation
-    constructor() {
+    constructor(path) {
+        DatabaseManager.dbPath = path;
         this.db = new sqlite3.Database(DatabaseManager.dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, err => {
             if (err) {
                 console.error('Error opening database', err);
@@ -14,14 +18,21 @@ class DatabaseManager {
         });
     }
     // Static method to get the instance of the class
-    static getInstance() {
+    static getInstance(path = null) {
         if (!DatabaseManager.instance) {
-            DatabaseManager.instance = new DatabaseManager();
+            if (path === null) {
+                throw new Error('Database path not provided');
+            }
+            DatabaseManager.instance = new DatabaseManager(path);
         }
         return DatabaseManager.instance;
     }
     runQuery(sql, params = []) {
         return new Promise((resolve, reject) => {
+            if (!this.db) {
+                reject(new Error('Database not initialized'));
+                return;
+            }
             this.db.run(sql, params, function (err) {
                 if (err) {
                     reject(err);
@@ -33,7 +44,7 @@ class DatabaseManager {
     }
 }
 // Hardcoded or statically defined database path
-DatabaseManager.dbPath = './critical-pass-database.db';
+DatabaseManager.dbPath = null; //'./critical-pass-database.db';
 exports.default = DatabaseManager;
 // import * as sqlite3 from 'sqlite3';
 // const verbose = sqlite3.verbose();
