@@ -6,7 +6,7 @@
                 <input type="radio" [(ngModel)]="appendData" [value]="false" />Replace <input type="radio" [(ngModel)]="appendData" [value]="true" />Append
             </div>
             <div class="upload-button date-format-txt">
-                <div class="inserts" *ngIf="includeId"><span>Project Id to link</span><input type="number" /></div>
+                <div class="inserts" *ngIf="includeId"><span>Project Id to link</span><input type="number" [(ngModel)]="associatedId" /></div>
                 <div class="delete-txt">1. Select File 2. Type "insert" in text box and click Insert button to insert in the database.</div>
                 <div class="inserts">
                     <input type="text" [(ngModel)]="insertText" />

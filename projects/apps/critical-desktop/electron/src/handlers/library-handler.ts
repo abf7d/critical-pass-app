@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { App } from 'electron';
 import LibraryRepo from '../data-access/library-repo';
+import { LibraryPagePayload, LibraryPayload } from '../types/payloads';
 // export const libraryHandlers = {
 //     //app needs to be imported from ipcHandlers.ts
 //     saveData: (app: App) => (event: any, data: any) => {
@@ -31,20 +32,37 @@ import LibraryRepo from '../data-access/library-repo';
 // };
 
 export class LibraryHandler {
-    private networkRepo = new LibraryRepo();
+    private libraryRepo: LibraryRepo;
     constructor(private app: App) {
         console.log('LibraryHandler');
+        this.libraryRepo = new LibraryRepo();
     }
-    saveData(event: any, project: any) {
+    async saveLibrary(event: any, payload: LibraryPayload) {
         try {
+            this.libraryRepo = new LibraryRepo();
             console.log('LibraryRepo handler class');
             // networkRepo.addProject(project);
+            console.log('LibraryRepo 2', this.libraryRepo);
+            await this.libraryRepo.saveLibrary(payload);
 
             // Implementation of saving library data
             event.reply('save-library-success');
         } catch (error) {
             console.error('Error saving library data:', error);
             event.reply('save-library-failure', error);
+        }
+    }
+    async getLibrary(event: any, payload: LibraryPagePayload) {
+        try {
+            console.log('LibraryRepo handler class');
+            // networkRepo.addProject(project);
+            const library = await this.libraryRepo.getProjects(payload);
+
+            // Implementation of saving library data
+            event.reply('get-library-response', library);
+        } catch (error) {
+            console.error('Error getting library data:', error);
+            event.reply('get-library-failure', error);
         }
     }
 }

@@ -1,4 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
+import { LibraryPagePayload, LibraryPayload } from './types/payloads';
+import { Project, ProjectLibrary } from '@critical-pass/project/types';
 
 // Define a type for the data parameter if necessary
 // For example, if the data is always an object, you might use:
@@ -9,9 +11,15 @@ type Channel = 'save-json' | 'save-json-success' | 'save-json-failure';
 
 contextBridge.exposeInMainWorld('electron', {
     onboardingApi: {
-        saveLibrary: (data: any): void => {
+        saveLibrary: (data: LibraryPayload): void => {
             console.log('saveLibrary hit:', data);
             ipcRenderer.send('save-library', data);
+        },
+        getLibrary: (data: LibraryPagePayload, callback: (data: ProjectLibrary) => any): void => {
+            ipcRenderer.send('get-library', data);
+            ipcRenderer.once('get-library-response', (event, response) => {
+                callback(response); // Invoke callback with the response data
+            });
         },
         saveNetwork: (data: any): void => {
             ipcRenderer.send('save-network', data);

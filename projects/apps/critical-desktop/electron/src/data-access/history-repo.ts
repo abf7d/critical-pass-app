@@ -14,10 +14,8 @@ class HistoryRepo {
 
     addHistory(project: Project): Promise<{ id: number }> {
         const sql = `INSERT INTO projects (name, description) VALUES (?, ?)`;
-        return this.dbManager.runQuery(sql, [project.name, project.description]);
+        return this.dbManager.runQuerySingle(sql, [project.name, project.description]);
     }
-
-    // More methods for handling project data (update, delete, get, etc.)
 }
 
 export default HistoryRepo;

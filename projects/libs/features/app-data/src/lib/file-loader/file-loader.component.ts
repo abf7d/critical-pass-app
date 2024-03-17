@@ -14,14 +14,20 @@ export class FileLoaderComponent {
     @Output() public delete: EventEmitter<void> = new EventEmitter();
     @Output() public insert: EventEmitter<FileUpload> = new EventEmitter();
     public appendData: boolean = false;
+    public associatedId: number | null = null;
     public objectCount: number = 0;
     public firstObjProps: string[] = [];
     public deleteText = '';
     public insertText = '';
     public hideDelete = true;
     public jsonPreview = '';
+    public fileJsonContents: any = null;
     public deleteData() {}
-    public insertData() {}
+    public insertData() {
+        if (this.fileJsonContents) {
+            this.insert.emit({ id: this.associatedId, appendData: this.appendData, result: this.fileJsonContents });
+        }
+    }
     public fileSelected(event: any) {
         const files = event.files as FileList;
         const firstFile = files.item(0);
@@ -40,18 +46,19 @@ export class FileLoaderComponent {
                 this.jsonPreview = text.substring(0, 300) + '...';
 
                 try {
-                    const result = JSON.parse(text || '');
+                    const fileJsonContents = JSON.parse(text || '');
                     // if result is an array then count objects
-                    if (Array.isArray(result)) {
-                        this.objectCount = result.length;
-                        this.firstObjProps = Object.keys(result[0]);
-                    } else if (result !== null) {
+                    if (Array.isArray(this.fileJsonContents)) {
+                        this.objectCount = this.fileJsonContents.length;
+                        this.firstObjProps = Object.keys(fileJsonContents[0]);
+                    } else if (fileJsonContents !== null) {
                         this.objectCount = 1;
-                        this.firstObjProps = Object.keys(result);
-                    } else if (result === null) {
+                        this.firstObjProps = Object.keys(fileJsonContents);
+                    } else if (fileJsonContents === null) {
                         this.objectCount = 0;
                         this.firstObjProps = [];
                     }
+                    this.fileJsonContents = fileJsonContents;
                 } catch (e) {
                     console.error(e);
                 }
@@ -64,7 +71,7 @@ export class FileLoaderComponent {
 }
 
 export interface FileUpload {
-    id: number;
+    id: number | null;
     appendData: boolean;
     result: string | ArrayBuffer | null;
 }

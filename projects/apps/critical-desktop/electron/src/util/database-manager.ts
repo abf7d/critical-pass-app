@@ -32,17 +32,33 @@ class DatabaseManager {
         return DatabaseManager.instance;
     }
 
-    public runQuery(sql: string, params: any[] = []): Promise<{ id: number }> {
+    public runQuerySingle<T>(sql: string, params: any[] = []): Promise<T> {
         return new Promise((resolve, reject) => {
             if (!this.db) {
                 reject(new Error('Database not initialized'));
                 return;
             }
-            this.db.run(sql, params, function (this: sqlite3.RunResult, err: Error | null) {
+            this.db.get(sql, params, (err, row) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve({ id: this.lastID });
+                    resolve(row as T);
+                }
+            });
+        });
+    }
+
+    public runQueryMulti<T>(sql: string, params: any[] = []): Promise<T[]> {
+        return new Promise((resolve, reject) => {
+            if (!this.db) {
+                reject(new Error('Database not initialized'));
+                return;
+            }
+            this.db.all(sql, params, (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows as T[]);
                 }
             });
         });

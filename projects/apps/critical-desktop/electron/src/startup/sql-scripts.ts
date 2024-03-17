@@ -10,7 +10,7 @@ const createProjectsTable = `
     )
 `;
 const createNetworkTable = `
-    CREATE TABLE IF NOT EXISTS Projects (
+    CREATE TABLE IF NOT EXISTS Network (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         projectId INTEGER,
         networkJson TEXT,
@@ -19,7 +19,7 @@ const createNetworkTable = `
     )
 `;
 const createHistoryTable = `
-    CREATE TABLE IF NOT EXISTS Projects (
+    CREATE TABLE IF NOT EXISTS History (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         projectId INTEGER,
         historyJson TEXT,

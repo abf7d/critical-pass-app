@@ -1,7 +1,4 @@
-// import { Tag } from '@critical-pass/critical-charts';
-
-import { TagButton } from '@critical-pass/project/types';
-
+import { TagButton } from '../../planning/tag';
 export interface TagGroupOption {
     color: string;
     backgroundcolor: string;

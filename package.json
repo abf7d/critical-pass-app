@@ -1,7 +1,7 @@
 {
     "name": "critical-pass-app",
     "version": "0.0.0",
-    "main": "projects/apps/critical-desktop/electron/dist/main.js",
+    "main": "dist/critical-desktop/electron/apps/critical-desktop/electron/src/main.js",
     "scripts": {
         "ng": "ng",
         "docker-build": "docker build -t critical-pass-app:latest .",

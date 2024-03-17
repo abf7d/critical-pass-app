@@ -3,25 +3,9 @@ import { environment } from '@critical-pass/shared/environments';
 import { map, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import urlJoin from 'url-join';
-import { Project } from '@critical-pass/project/types';
-// import * as CONST from '../../constants/constants';
+import { Project, ProjectLibrary } from '@critical-pass/project/types';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
-import { ProjectApi, ProjectLibrary } from '@critical-pass/shared/data-access';
-// import { ProjectApi } from '../../types/project-api';
-// import { ProjectLibrary } from '../../types/project-library';
-
-// declare global {
-//     interface Window {
-//         // electronAPI: {
-//         //     send: (channel: string, data: any) => void;
-//         //     receive: (channel: string, func: (...args: any[]) => void) => void;
-//         // };
-//         electron: {
-//             send: (channel: string, data: any) => void;
-//             receive: (channel: string, func: (...args: any[]) => void) => void;
-//         };
-//     }
-// }
+import { ProjectApi } from '@critical-pass/shared/data-access';
 
 @Injectable({
     providedIn: 'root',
@@ -42,10 +26,7 @@ export class DesktopProjectApiService implements ProjectApi {
 
     public list(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
         console.log('desktop-project-api.service.ts: list()');
-        // ipcRenderer.send('save-json', { message: 'yourJsonData' }); //
-        // window.electronAPI.send('save-json', { message: 'yourJsonData' });
-        // window.electron.send('save-json', { message: 'yourJsonData' });
-        window.electron.onboardingApi.saveLibrary({ data: 'savelibrary test data' });
+        // window.electron.onboardingApi.saveLibrary({ data: 'savelibrary test data' });
         const obsv: ProjectLibrary = {
             items: [],
             totalCount: 0,

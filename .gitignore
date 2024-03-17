@@ -42,6 +42,7 @@ testem.log
 Thumbs.db
 
 critical-pass-database.db
+projects/apps/critical-desktop/electron/dist
 
 cypress/screenshots
 cypress/snapshots/**/__diff_output__

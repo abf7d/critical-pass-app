@@ -3,11 +3,10 @@ import { environment } from '@critical-pass/shared/environments';
 import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import urlJoin from 'url-join';
-import { Project } from '@critical-pass/project/types';
+import { Project, ProjectLibrary } from '@critical-pass/project/types';
 import * as CONST from '../../constants/constants';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 import { ProjectApi } from '../../types/project-api';
-import { ProjectLibrary } from '../../types/project-library';
 
 @Injectable({
     providedIn: 'root',

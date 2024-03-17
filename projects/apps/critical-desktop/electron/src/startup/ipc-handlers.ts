@@ -20,7 +20,8 @@ export function setupFileOperationsListeners(app: App): void {
     console.log('file path tried', app.getPath('userData'));
     const ipcHandlers = {
         'save-project': new ProjectHandler(app).saveData,
-        'save-library': new LibraryHandler(app).saveData, //libraryHandlers.saveData(app),
+        'save-library': new LibraryHandler(app).saveLibrary, //libraryHandlers.saveData(app),
+        'get-library': new LibraryHandler(app).getLibrary, // libraryHandlers.getLibrary(app),
         'save-network': new NetworkHandler(app).saveData, // networkHandlers.saveData(app),
         'save-history': new HistoryHandler(app).saveData, // historyHandlers.saveData(app),
         // Add more handlers as needed

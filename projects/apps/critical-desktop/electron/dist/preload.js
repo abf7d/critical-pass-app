@@ -1,16 +1,16 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-const electron_1 = require('electron');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const electron_1 = require("electron");
 electron_1.contextBridge.exposeInMainWorld('electron', {
     onboardingApi: {
-        saveLibrary: data => {
+        saveLibrary: (data) => {
             console.log('saveLibrary hit:', data);
             electron_1.ipcRenderer.send('save-library', data);
         },
-        saveNetwork: data => {
+        saveNetwork: (data) => {
             electron_1.ipcRenderer.send('save-network', data);
         },
-        saveHistory: data => {
+        saveHistory: (data) => {
             electron_1.ipcRenderer.send('save-history', data);
         },
     },

@@ -9,7 +9,7 @@ export function initDatabase(app: App): boolean {
     const dbManager = DatabaseManager.getInstance(databasePath);
     try {
         for (const script of scripts) {
-            dbManager.runQuery(script);
+            dbManager.runQueryMulti(script);
         }
         return true;
     } catch (error) {
