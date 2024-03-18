@@ -2,4 +2,9 @@
     <ad-file-loader title="Library Upload (Project Array)" (delete)="deleteLibrary()" (insert)="insertLibrary($event)"></ad-file-loader>
     <ad-file-loader title="Project Network Upload" (delete)="deleteNetwork()" (insert)="insertNetwork($event)" [includeId]="true"></ad-file-loader>
     <ad-file-loader title="Project History Upload" (delete)="deleteHistory()" (insert)="insertHistory($event)" [includeId]="true"></ad-file-loader>
+    <div class="p-4">
+        <button class="btn btn-secondary" (click)="getLibrary()">Get Library</button>
+        <div>{{totalCount | json}}</div>
+        <pre>{{firstProject | json}}</pre>
+    </div>
 </div>

@@ -85,7 +85,7 @@ class LibraryRepo {
      * @param projectId The id of the project to fetch.
      * @returns A promise that resolves to an array of projects.
      */
-    async getProject(projectId: number): Promise<Project[]> {
+    async getProject(projectId: number): Promise<Project> {
         const sql = `
             SELECT projectJson FROM Projects WHERE projectId = ?
         `;
@@ -108,7 +108,10 @@ class LibraryRepo {
      */
     async getProjects(payload: LibraryPagePayload): Promise<ProjectLibrary> {
         let sql = `SELECT projectJson FROM Projects`;
-
+        let sortOrder = 'DESC';
+        if (payload.order) {
+            sortOrder = payload.order;
+        }
         // Incorporate search functionality if a search term and property path are provided
         if (payload.searchValue && payload.searchProperty) {
             const searchPath = payload.searchProperty.split('.').join(', '); // Convert dot notation to comma-separated for json_extract
@@ -118,10 +121,10 @@ class LibraryRepo {
         // Add dynamic ordering based on a nested JSON property
         if (payload.sortProperty) {
             const sortPath = payload.sortProperty.split('.').join(', '); // Convert dot notation for sorting
-            sql += ` ORDER BY json_extract(projectJson, '$.${sortPath}') ${payload.order}`;
+            sql += ` ORDER BY json_extract(projectJson, '$.${sortPath}') ${sortOrder}`;
         } else {
             // Default ordering
-            sql += ` ORDER BY lastUpdated ${payload.order}`;
+            sql += ` ORDER BY lastUpdated ${sortOrder}`;
         }
 
         // Pagination
@@ -140,7 +143,9 @@ class LibraryRepo {
 
             const projectsRows = await this.dbManager.runQueryMulti<{ projectJson: string }>(sql, params);
             const projects = projectsRows.map(row => JSON.parse(row.projectJson));
-            const totalCount = await this.dbManager.runQuerySingle<number>(`SELECT COUNT(*) as count FROM Projects`).then(result => result ?? 0);
+            const totalCount = await this.dbManager
+                .runQuerySingle<{ count: number }>(`SELECT COUNT(*) as count FROM Projects`)
+                .then(result => result?.count ?? 0);
             return {
                 items: projects,
                 totalCount,

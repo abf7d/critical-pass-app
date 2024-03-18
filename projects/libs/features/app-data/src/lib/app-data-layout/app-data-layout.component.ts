@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FileUpload } from '../file-loader/file-loader.component';
 import { OnBoardingApiService } from '@critical-pass/desktop-lib';
 import { Project, ProjectLibrary } from '@critical-pass/project/types';
@@ -10,8 +10,14 @@ import { Project, ProjectLibrary } from '@critical-pass/project/types';
     styleUrl: './app-data-layout.component.scss',
 })
 export class AppDataLayoutComponent {
-    constructor(private onboardingApi: OnBoardingApiService) {}
+    constructor(
+        private onboardingApi: OnBoardingApiService,
+        private cdr: ChangeDetectorRef,
+    ) {}
     public deleteText = '';
+    public library: ProjectLibrary | null = null;
+    public firstProject: Project | null = null;
+    public totalCount = 0;
     public deleteLibrary() {}
     public insertLibrary(event: FileUpload) {
         console.log('insertLibrary append data', event.appendData, 'contents', !!event.result);
@@ -29,6 +35,9 @@ export class AppDataLayoutComponent {
     public getLibrary() {
         this.onboardingApi.getLibrary(0, 12, null).subscribe((data: ProjectLibrary) => {
             console.log('ProjectLibrary totalCount:', data.totalCount, 'items length', data.items.length);
+            this.totalCount = data.totalCount;
+            this.firstProject = data?.items[0];
+            this.cdr.detectChanges();
         });
     }
     public deleteNetwork() {}

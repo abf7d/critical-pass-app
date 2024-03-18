@@ -32,18 +32,16 @@ import { LibraryPagePayload, LibraryPayload } from '../types/payloads';
 // };
 
 export class LibraryHandler {
-    private libraryRepo: LibraryRepo;
     constructor(private app: App) {
         console.log('LibraryHandler');
-        this.libraryRepo = new LibraryRepo();
     }
     async saveLibrary(event: any, payload: LibraryPayload) {
         try {
-            this.libraryRepo = new LibraryRepo();
+            const libraryRepo = new LibraryRepo();
             console.log('LibraryRepo handler class');
             // networkRepo.addProject(project);
-            console.log('LibraryRepo 2', this.libraryRepo);
-            await this.libraryRepo.saveLibrary(payload);
+            console.log('LibraryRepo 2', libraryRepo);
+            await libraryRepo.saveLibrary(payload);
 
             // Implementation of saving library data
             event.reply('save-library-success');
@@ -56,7 +54,8 @@ export class LibraryHandler {
         try {
             console.log('LibraryRepo handler class');
             // networkRepo.addProject(project);
-            const library = await this.libraryRepo.getProjects(payload);
+            const libraryRepo = new LibraryRepo();
+            const library = await libraryRepo.getProjects(payload);
 
             // Implementation of saving library data
             event.reply('get-library-response', library);
