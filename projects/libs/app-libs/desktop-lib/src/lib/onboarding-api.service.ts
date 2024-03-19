@@ -38,4 +38,18 @@ export class OnBoardingApiService {
             });
         });
     }
+    public getProject(id: number): Observable<Project> {
+        console.log('desktop-project-api.service.ts: getProject()');
+        return new Observable<Project>(subscriber => {
+            // Assuming window.electronAPI.getProject exists and is properly initialized
+            window.electron.onboardingApi.getProject(id, (response: Project) => {
+                // if (response.error) {
+                //     subscriber.error(response.error); // Emit an error if there's an error in the response
+                // } else {
+                subscriber.next(response); // Emit the next value with the response
+                subscriber.complete(); // Complete the observable stream
+                // }
+            });
+        });
+    }
 }

@@ -4,6 +4,7 @@
     <ad-file-loader title="Project History Upload" (delete)="deleteHistory()" (insert)="insertHistory($event)" [includeId]="true"></ad-file-loader>
     <div class="p-4">
         <button class="btn btn-secondary" (click)="getLibrary()">Get Library</button>
+        <button class="btn btn-secondary" (click)="getProject()">Get Project</button>
         <div>{{totalCount | json}}</div>
         <pre>{{firstProject | json}}</pre>
     </div>

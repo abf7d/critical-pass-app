@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '@critical-pass/project/types';
 import { Subscription } from 'rxjs';
@@ -26,6 +26,7 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private libraryStore: LibraryStoreService,
         private nodeConnector: NodeConnectorService,
+        private ngZone: NgZone, // added for electron change detection
     ) {}
 
     public ngOnInit(): void {
@@ -70,12 +71,16 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
     }
 
     private initProjects(library: Project[]) {
-        const projects: Project[] = [];
-        for (const project of library) {
-            this.nodeConnector.connectArrowsToNodes(project);
-            projects.push(project);
-        }
-        this.projects = projects;
+        // ngZone added for electron change detection
+        this.ngZone.run(() => {
+            const projects: Project[] = [];
+            for (const project of library) {
+                this.nodeConnector.connectArrowsToNodes(project);
+                projects.push(project);
+            }
+            this.projects = projects;
+            this.loadResult = '';
+        });
     }
 
     public ngOnDestroy() {

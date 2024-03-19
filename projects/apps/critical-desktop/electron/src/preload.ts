@@ -27,6 +27,12 @@ contextBridge.exposeInMainWorld('electron', {
         saveHistory: (data: any): void => {
             ipcRenderer.send('save-history', data);
         },
+        getProject: (id: number, callback: (data: Project) => any): void => {
+            ipcRenderer.send('get-project', id);
+            ipcRenderer.once('get-project-response', (event, response) => {
+                callback(response); // Invoke callback with the response data
+            });
+        },
     },
     // send: (channel: Channel, data: any): void => {
     //     console.log('send channel hit:', channel, 'data:', data);

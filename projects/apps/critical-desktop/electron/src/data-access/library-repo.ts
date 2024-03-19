@@ -90,8 +90,8 @@ class LibraryRepo {
             SELECT projectJson FROM Projects WHERE projectId = ?
         `;
         try {
-            const projectJson = await this.dbManager.runQuerySingle<string>(sql, [projectId]);
-            const projectData = JSON.parse(projectJson);
+            const result = await this.dbManager.runQuerySingle<{ projectJson: string }>(sql, [projectId]);
+            const projectData = JSON.parse(result.projectJson);
             return projectData;
         } catch (error) {
             console.error('Error fetching project:', error);

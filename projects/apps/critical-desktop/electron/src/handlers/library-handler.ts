@@ -64,4 +64,19 @@ export class LibraryHandler {
             event.reply('get-library-failure', error);
         }
     }
+
+    async getProject(event: any, id: number) {
+        try {
+            console.log('LibraryRepo handler class');
+            // networkRepo.addProject(project);
+            const libraryRepo = new LibraryRepo();
+            const project = await libraryRepo.getProject(id);
+
+            // Implementation of saving library data
+            event.reply('get-project-response', project);
+        } catch (error) {
+            console.error('Error getting library data:', error);
+            event.reply('get-project-failure', error);
+        }
+    }
 }

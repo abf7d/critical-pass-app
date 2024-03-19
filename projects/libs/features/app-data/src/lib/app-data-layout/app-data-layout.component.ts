@@ -40,6 +40,13 @@ export class AppDataLayoutComponent {
             this.cdr.detectChanges();
         });
     }
+    public getProject() {
+        this.onboardingApi.getProject(2856).subscribe((data: Project) => {
+            console.log('Project', data);
+            this.firstProject = data;
+            this.cdr.detectChanges();
+        });
+    }
     public deleteNetwork() {}
     public insertNetwork(event: FileUpload) {}
     public deleteHistory() {}
