@@ -2,6 +2,7 @@ import { Inject, Input, OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ClaimsService } from '@critical-pass/auth';
+import { EnvironmentService } from '@critical-pass/core';
 import { Project } from '@critical-pass/project/types';
 import { DashboardService, DASHBOARD_TOKEN, ProjectList, LIST_ACTION, ProjectListApiService } from '@critical-pass/shared/data-access';
 import { Observable, Subscription } from 'rxjs';
@@ -26,9 +27,10 @@ export class ProjectMetadataComponent implements OnInit, OnDestroy {
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         private claimsService: ClaimsService,
         private projectListApi: ProjectListApiService,
+        private envService: EnvironmentService,
     ) {}
     ngOnInit() {
-        this.isAdmin = this.claimsService.isAdmin();
+        this.isAdmin = this.claimsService.isAdmin() || this.envService.isElectron;
         this.dashboard.activeProject$.pipe(filter(x => !!x)).subscribe(project => {
             this.project = project;
             if (project?.profile?.id && !this.initializedProjectLists) {
