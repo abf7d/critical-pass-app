@@ -2,22 +2,24 @@ import { Inject, Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { first, tap } from 'rxjs/operators';
-import { DASHBOARD_TOKEN, PROJECT_API_TOKEN, PROJECT_STORAGE_TOKEN, ProjectApi, ProjectApiService } from '../..';
-import * as CONST from '../constants/constants';
-import { ProjectStorageApiService } from '../api/project-storage-api/project-storage-api.service';
-import { DashboardService } from '../dashboard/dashboard.service';
+import { DASHBOARD_TOKEN, HISTORY_API_TOKEN, HistoryApi, PROJECT_API_TOKEN, PROJECT_STORAGE_TOKEN, ProjectApi, ProjectApiService } from '../../..';
+import * as CONST from '../../constants/constants';
+import { ProjectStorageApiService } from '../../api/project-storage-api/project-storage-api.service';
+import { DashboardService } from '../../dashboard/dashboard.service';
 import { NodeConnectorService } from '@critical-pass/project/processor';
-import { ProjectStorage } from '../types/project-storage';
+import { ProjectStorage } from '../../types/project-storage';
+import { fork } from 'child_process';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
-// RESOVLER has beeen deprecated, see below
-export class ProjectResolver implements Resolve<any> {
+export class HistoryResolver implements Resolve<any> {
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
         @Inject(PROJECT_STORAGE_TOKEN) private storageApi: ProjectStorage,
+        @Inject(HISTORY_API_TOKEN) private historyApi: HistoryApi,
         private nodeConnector: NodeConnectorService,
     ) {}
 
@@ -32,8 +34,10 @@ export class ProjectResolver implements Resolve<any> {
             const bs = this.dashboard.activeProject$;
             return bs.pipe(first());
         } else {
-            return this.projectApi.get(route.params['id']).pipe(
-                tap(project => {
+            const projectBs = this.projectApi.get(route.params['id']);
+            const historyBs = this.historyApi.get(route.params['id']);
+            return forkJoin([projectBs, historyBs]).pipe(
+                tap(([project, history]) => {
                     this.nodeConnector.connectArrowsToNodes(project);
                     this.dashboard.activeProject$.next(project);
                 }),
@@ -42,16 +46,3 @@ export class ProjectResolver implements Resolve<any> {
         }
     }
 }
-
-// //https://stackoverflow.com/questions/76168417/i-get-resolve-as-strikethrough-in-my-angular-15-generated-project-how-can-i-sol
-// const addEditClietResolver: ResolveFn<any> =
-//     (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-//       return inject(AddEditClientService).getClientById();
-//     };
-// And use it in the router path
-
-// {
-//     path: 'clients/add-edit',
-//     component: AddEditClientComponent,
-//     resolve: {data: addEditClientResolver},
-// }

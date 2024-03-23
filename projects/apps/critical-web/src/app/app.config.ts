@@ -5,6 +5,8 @@ import { appBaseConfig } from '@critical-pass/core';
 import {
     DASHBOARD_TOKEN,
     DashboardService,
+    HISTORY_API_TOKEN,
+    HistoryApiService,
     PROJECT_API_TOKEN,
     PROJECT_STORAGE_TOKEN,
     ProjectApiService,
@@ -18,6 +20,7 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes),
         ...appBaseConfig.providers,
         { provide: PROJECT_API_TOKEN, useClass: ProjectApiService },
+        { provide: HISTORY_API_TOKEN, useClass: HistoryApiService },
         { provide: PROJECT_STORAGE_TOKEN, useClass: ProjectStorageApiService },
         {
             provide: HTTP_INTERCEPTORS,

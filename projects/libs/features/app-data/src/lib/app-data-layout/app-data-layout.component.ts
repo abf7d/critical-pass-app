@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FileUpload } from '../file-loader/file-loader.component';
 import { OnBoardingApiService } from '@critical-pass/desktop-lib';
-import { Project, ProjectLibrary } from '@critical-pass/project/types';
+import { Project, ProjectLibrary, RecordEntry } from '@critical-pass/project/types';
+import { PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/shared/data-access';
 
 @Component({
     selector: 'ad-app-data-layout',
@@ -13,11 +14,28 @@ export class AppDataLayoutComponent {
     constructor(
         private onboardingApi: OnBoardingApiService,
         private cdr: ChangeDetectorRef,
+        @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
     ) {}
+    public projects: Project[] = [];
+    public ngOnInit() {
+        this.loadPage(0);
+    }
+    public loadPage(page: number, pageSize: number = 12, listName: string | null = null) {
+        this.projectApi.list(page, pageSize, listName).subscribe((data: ProjectLibrary) => {
+            console.log('ProjectLibrary totalCount:', data.totalCount, 'items length', data.items.length);
+            this.totalCount = data.totalCount;
+            const max = Math.ceil(data.totalCount / pageSize);
+            this.maxPage = max - 1;
+            this.projects = data.items;
+            this.cdr.detectChanges();
+        });
+    }
     public deleteText = '';
     public library: ProjectLibrary | null = null;
     public firstProject: Project | null = null;
     public totalCount = 0;
+    public currentPage: number = 0;
+    public maxPage: number = 0;
     public deleteLibrary() {}
     public insertLibrary(event: FileUpload) {
         console.log('insertLibrary append data', event.appendData, 'contents', !!event.result);
@@ -33,12 +51,7 @@ export class AppDataLayoutComponent {
         }
     }
     public getLibrary() {
-        this.onboardingApi.getLibrary(0, 12, null).subscribe((data: ProjectLibrary) => {
-            console.log('ProjectLibrary totalCount:', data.totalCount, 'items length', data.items.length);
-            this.totalCount = data.totalCount;
-            this.firstProject = data?.items[0];
-            this.cdr.detectChanges();
-        });
+        this.loadPage(0);
     }
     public getProject() {
         this.onboardingApi.getProject(2856).subscribe((data: Project) => {
@@ -51,4 +64,16 @@ export class AppDataLayoutComponent {
     public insertNetwork(event: FileUpload) {}
     public deleteHistory() {}
     public insertHistory(event: FileUpload) {}
+    public pageLeft() {
+        if (this.currentPage > 0) {
+            this.currentPage--;
+            this.loadPage(this.currentPage);
+        }
+    }
+    public pageRight() {
+        if (this.currentPage < this.maxPage) {
+            this.currentPage++;
+            this.loadPage(this.currentPage);
+        }
+    }
 }

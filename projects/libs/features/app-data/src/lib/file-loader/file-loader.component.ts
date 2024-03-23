@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Project } from '../../../../../project/types/src/lib/project';
 
 @Component({
     selector: 'ad-file-loader',
@@ -11,6 +12,7 @@ export class FileLoaderComponent {
     @Input() public title: string = '';
     @Input() public objType: string = '';
     @Input() public includeId: boolean = false;
+    @Input() public projects: Project[] = [];
     @Output() public delete: EventEmitter<void> = new EventEmitter();
     @Output() public insert: EventEmitter<FileUpload> = new EventEmitter();
     public appendData: boolean = false;
