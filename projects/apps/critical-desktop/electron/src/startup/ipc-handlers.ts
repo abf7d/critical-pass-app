@@ -24,7 +24,9 @@ export function setupFileOperationsListeners(app: App): void {
         'save-library': new LibraryHandler(app).saveLibrary, //libraryHandlers.saveData(app),
         'get-library': new LibraryHandler(app).getLibrary, // libraryHandlers.getLibrary(app),
         'save-network': new NetworkHandler(app).saveData, // networkHandlers.saveData(app),
-        'save-history': new HistoryHandler(app).saveData, // historyHandlers.saveData(app),
+        'save-history': new HistoryHandler(app).saveHistory, // historyHandlers.saveData(app),
+        'get-history': new HistoryHandler(app).getHistory,
+        'delete-history': new HistoryHandler(app).deleteHistory,
         // Add more handlers as needed
     };
 

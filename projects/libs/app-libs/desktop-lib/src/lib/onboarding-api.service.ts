@@ -3,7 +3,7 @@ import { environment } from '@critical-pass/shared/environments';
 import { map, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import urlJoin from 'url-join';
-import { Project, ProjectLibrary } from '@critical-pass/project/types';
+import { Project, ProjectLibrary, TreeNode } from '@critical-pass/project/types';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 
 @Injectable({
@@ -22,33 +22,34 @@ export class OnBoardingApiService {
         console.log('desktop-project-api.service.ts: list()');
         window.electron.onboardingApi.saveLibrary({ projects, append });
     }
-    public getLibrary(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
+    public saveHistory(projectId: number, history: TreeNode[]): void {
         console.log('desktop-project-api.service.ts: list()');
-        // window.electron.onboardingApi.getLibrary({ limit: pageSize, offset: page * pageSize /*, filter: listName*/ }, (data: Project[]) => {});
-
-        return new Observable<ProjectLibrary>(subscriber => {
-            // Assuming window.electronAPI.getLibrary exists and is properly initialized
-            window.electron.onboardingApi.getLibrary({ limit: pageSize, offset: page * pageSize /*, filter: listName*/ }, (response: ProjectLibrary) => {
-                // if (response.error) {
-                //     subscriber.error(response.error); // Emit an error if there's an error in the response
-                // } else {
+        window.electron.onboardingApi.saveHistory(projectId, history);
+    }
+    public getHistory(projectId: number): Observable<TreeNode[]> {
+        console.log('desktop-project-api.service.ts: list()');
+        return new Observable<TreeNode[]>(subscriber => {
+            window.electron.onboardingApi.getHistory(projectId, (response: TreeNode[]) => {
                 subscriber.next(response); // Emit the next value with the response
                 subscriber.complete(); // Complete the observable stream
-                // }
+            });
+        });
+    }
+    public getLibrary(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
+        console.log('desktop-project-api.service.ts: list()');
+        return new Observable<ProjectLibrary>(subscriber => {
+            window.electron.onboardingApi.getLibrary({ limit: pageSize, offset: page * pageSize /*, filter: listName*/ }, (response: ProjectLibrary) => {
+                subscriber.next(response); // Emit the next value with the response
+                subscriber.complete(); // Complete the observable stream
             });
         });
     }
     public getProject(id: number): Observable<Project> {
         console.log('desktop-project-api.service.ts: getProject()');
         return new Observable<Project>(subscriber => {
-            // Assuming window.electronAPI.getProject exists and is properly initialized
             window.electron.onboardingApi.getProject(id, (response: Project) => {
-                // if (response.error) {
-                //     subscriber.error(response.error); // Emit an error if there's an error in the response
-                // } else {
                 subscriber.next(response); // Emit the next value with the response
                 subscriber.complete(); // Complete the observable stream
-                // }
             });
         });
     }

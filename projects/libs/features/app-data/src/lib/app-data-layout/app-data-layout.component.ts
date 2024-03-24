@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FileUpload } from '../file-loader/file-loader.component';
 import { OnBoardingApiService } from '@critical-pass/desktop-lib';
-import { Project, ProjectLibrary, RecordEntry } from '@critical-pass/project/types';
+import { Project, ProjectLibrary, RecordEntry, TreeNode } from '@critical-pass/project/types';
 import { PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/shared/data-access';
 
 @Component({
@@ -22,7 +22,6 @@ export class AppDataLayoutComponent {
     }
     public loadPage(page: number, pageSize: number = 12, listName: string | null = null) {
         this.projectApi.list(page, pageSize, listName).subscribe((data: ProjectLibrary) => {
-            console.log('ProjectLibrary totalCount:', data.totalCount, 'items length', data.items.length);
             this.totalCount = data.totalCount;
             const max = Math.ceil(data.totalCount / pageSize);
             this.maxPage = max - 1;
@@ -36,9 +35,9 @@ export class AppDataLayoutComponent {
     public totalCount = 0;
     public currentPage: number = 0;
     public maxPage: number = 0;
+    public lastSelectedHistoryId: number | null = null;
     public deleteLibrary() {}
     public insertLibrary(event: FileUpload) {
-        console.log('insertLibrary append data', event.appendData, 'contents', !!event.result);
         if (Array.isArray(event.result)) {
             const projects: Project[] = [];
             for (const project of event.result) {
@@ -55,7 +54,6 @@ export class AppDataLayoutComponent {
     }
     public getProject() {
         this.onboardingApi.getProject(2856).subscribe((data: Project) => {
-            console.log('Project', data);
             this.firstProject = data;
             this.cdr.detectChanges();
         });
@@ -63,7 +61,29 @@ export class AppDataLayoutComponent {
     public deleteNetwork() {}
     public insertNetwork(event: FileUpload) {}
     public deleteHistory() {}
-    public insertHistory(event: FileUpload) {}
+    public insertHistory(event: FileUpload) {
+        if (Array.isArray(event.result)) {
+            const nodes: TreeNode[] = [];
+            for (const project of event.result) {
+                const x: TreeNode = project as TreeNode;
+                if (x.name && x.data && x.metadata) {
+                    nodes.push(x);
+                }
+            }
+            if (event.id) {
+                this.lastSelectedHistoryId = event.id;
+                this.onboardingApi.saveHistory(event.id, nodes);
+            }
+        }
+    }
+    public getHistory() {
+        if (!this.lastSelectedHistoryId) {
+            return;
+        }
+        this.onboardingApi.getHistory(this.lastSelectedHistoryId).subscribe((data: TreeNode[]) => {
+            console.log('getHistory:', data[0]);
+        });
+    }
     public pageLeft() {
         if (this.currentPage > 0) {
             this.currentPage--;

@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import { LibraryPagePayload, LibraryPayload } from './types/payloads';
-import { Project, ProjectLibrary } from '@critical-pass/project/types';
+import { Project, ProjectLibrary, TreeNode } from '@critical-pass/project/types';
 
 // Define a type for the data parameter if necessary
 // For example, if the data is always an object, you might use:
@@ -24,8 +24,17 @@ contextBridge.exposeInMainWorld('electron', {
         saveNetwork: (data: any): void => {
             ipcRenderer.send('save-network', data);
         },
-        saveHistory: (data: any): void => {
-            ipcRenderer.send('save-history', data);
+        saveHistory: (projectId: number, history: TreeNode[]): void => {
+            ipcRenderer.send('save-history', projectId, history);
+        },
+        deleteHistory: (projectId: number): void => {
+            ipcRenderer.send('delete-history', projectId);
+        },
+        getHistory: (projectId: number, callback: (data: TreeNode[]) => any): void => {
+            ipcRenderer.send('get-history', projectId);
+            ipcRenderer.once('get-history-response', (event, response) => {
+                callback(response); // Invoke callback with the response data
+            });
         },
         getProject: (id: number, callback: (data: Project) => any): void => {
             ipcRenderer.send('get-project', id);

@@ -1,4 +1,4 @@
-import { Project, ProjectLibrary } from '@critical-pass/project/types';
+import { Project, ProjectLibrary, TreeNode } from '@critical-pass/project/types';
 import { LibraryPagePayload, LibraryPayload } from '../../electron/src/types/payloads';
 
 declare global {
@@ -7,7 +7,8 @@ declare global {
             onboardingApi: {
                 saveLibrary: (data: LibraryPayload) => void;
                 saveNetwork: (data: any) => void;
-                saveHistory: (data: any) => void;
+                saveHistory: (projectId: number, history: TreeNode[]) => void;
+                getHistory: (projectId: number, callback: (data: TreeNode[]) => any) => void;
                 getLibrary: (data: LibraryPagePayload, callback: (data: ProjectLibrary) => any) => void;
                 getProject: (id: number, callback: (data: Project) => any) => void;
             };
