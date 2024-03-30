@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MsalService } from '@critical-pass/auth';
 import { EnvironmentService } from '@critical-pass/core';
@@ -14,6 +14,7 @@ export class TopNavComponent implements OnInit {
         private router: Router,
         private msalService: MsalService,
         private envService: EnvironmentService,
+        private ngZone: NgZone,
     ) {}
 
     ngOnInit(): void {
@@ -21,7 +22,9 @@ export class TopNavComponent implements OnInit {
     }
 
     navigate(url: string) {
-        this.router.navigateByUrl(url);
+        this.ngZone.run(() => {
+            this.router.navigateByUrl(url);
+        });
     }
 
     logout() {

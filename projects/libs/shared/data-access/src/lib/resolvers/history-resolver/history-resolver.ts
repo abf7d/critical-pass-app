@@ -2,7 +2,17 @@ import { Inject, Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { first, tap } from 'rxjs/operators';
-import { DASHBOARD_TOKEN, HISTORY_API_TOKEN, HistoryApi, PROJECT_API_TOKEN, PROJECT_STORAGE_TOKEN, ProjectApi, ProjectApiService } from '../../..';
+import {
+    DASHBOARD_TOKEN,
+    EVENT_SERVICE_TOKEN,
+    EventService,
+    HISTORY_API_TOKEN,
+    HistoryApi,
+    PROJECT_API_TOKEN,
+    PROJECT_STORAGE_TOKEN,
+    ProjectApi,
+    ProjectApiService,
+} from '../../..';
 import * as CONST from '../../constants/constants';
 import { ProjectStorageApiService } from '../../api/project-storage-api/project-storage-api.service';
 import { DashboardService } from '../../dashboard/dashboard.service';
@@ -10,6 +20,9 @@ import { NodeConnectorService } from '@critical-pass/project/processor';
 import { ProjectStorage } from '../../types/project-storage';
 import { fork } from 'child_process';
 import { forkJoin } from 'rxjs';
+import { Project, TreeNode } from '@critical-pass/project/types';
+import { CHART_KEYS } from '@critical-pass/charts';
+import { HistoryMapperService } from '@critical-pass/shared/file-management';
 
 @Injectable({
     providedIn: 'root',
@@ -20,6 +33,8 @@ export class HistoryResolver implements Resolve<any> {
         @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
         @Inject(PROJECT_STORAGE_TOKEN) private storageApi: ProjectStorage,
         @Inject(HISTORY_API_TOKEN) private historyApi: HistoryApi,
+        @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
+        // private mapper: HistoryMapperService,
         private nodeConnector: NodeConnectorService,
     ) {}
 
@@ -38,11 +53,24 @@ export class HistoryResolver implements Resolve<any> {
             const historyBs = this.historyApi.get(route.params['id']);
             return forkJoin([projectBs, historyBs]).pipe(
                 tap(([project, history]) => {
-                    this.nodeConnector.connectArrowsToNodes(project);
-                    this.dashboard.activeProject$.next(project);
+                    if (history) {
+                        this.importHistory(history);
+                        this.eventService.get('project.tree.history.file').next(history);
+                    } else {
+                        this.nodeConnector.connectArrowsToNodes(project);
+                        this.dashboard.activeProject$.next(project);
+                    }
                 }),
                 first(),
             );
         }
+    }
+    private importHistory(history: TreeNode[]): void {
+        history.forEach(treeNode => {
+            this.nodeConnector.connectArrowsToNodes(treeNode.data as Project);
+        });
+        //     const head = this.mapper.createTreeHeadNode();
+        //     const innerNodes = projects.map(x => this.mapper.mapProjectToNode(x));
+        //     const treeNodes = [head, ...innerNodes];
     }
 }

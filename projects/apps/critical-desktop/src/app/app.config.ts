@@ -6,6 +6,8 @@ import { DesktopHistoryApiService, DesktopProjectApiService, DesktopProjectStora
 import {
     DASHBOARD_TOKEN,
     DashboardService,
+    EVENT_SERVICE_TOKEN,
+    EventService,
     HISTORY_API_TOKEN,
     PROJECT_API_TOKEN,
     PROJECT_STORAGE_TOKEN,

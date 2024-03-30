@@ -66,9 +66,7 @@ export class AppDataLayoutComponent {
             const nodes: TreeNode[] = [];
             for (const project of event.result) {
                 const x: TreeNode = project as TreeNode;
-                if (x.name && x.data && x.metadata) {
-                    nodes.push(x);
-                }
+                nodes.push(x);
             }
             if (event.id) {
                 this.lastSelectedHistoryId = event.id;

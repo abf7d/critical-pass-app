@@ -28,9 +28,7 @@ export class HistoryApiService implements HistoryApi {
         return of(null);
     }
 
-    public post(project: TreeNode[]): Observable<TreeNode[] | null> {
-        return of(null);
-    }
+    public post(projectId: number, history: TreeNode[]): void {}
 
     public delete(id: number) {
         return of();

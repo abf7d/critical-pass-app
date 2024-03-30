@@ -37,8 +37,12 @@ export class RiskDecompressComponent implements OnInit {
     ngOnInit(): void {
         this.dashboard.activeProject$.pipe(filter(x => !!x)).subscribe(project => {
             this.project = project;
-            if (project.profile.start !== undefined) this.start = project.profile.start;
-            if (project.profile.end !== undefined) this.end = project.profile.end;
+            if (project.profile.start !== undefined || project.profile.end !== undefined) {
+                setTimeout(() => {
+                    if (project.profile.start !== undefined) this.start = project.profile.start;
+                    if (project.profile.end !== undefined) this.end = project.profile.end;
+                });
+            }
             this.enableArranging = true;
         });
     }

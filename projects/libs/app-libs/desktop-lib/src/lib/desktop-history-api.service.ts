@@ -11,24 +11,24 @@ import { HistoryApi } from '@critical-pass/shared/data-access';
     providedIn: 'root',
 })
 export class DesktopHistoryApiService implements HistoryApi {
-    private baseUrl!: string;
-    constructor(
-        private httpClient: HttpClient,
-        private serializer: ProjectSerializerService,
-    ) {
-        this.baseUrl = environment.criticalPathApi;
-    }
+    constructor() {}
 
-    public get(id: number): Observable<TreeNode[] | null> {
-        console.log('desktop get history entry');
-        return of([] as TreeNode[]);
+    public get(projectId: number): Observable<TreeNode[] | null> {
+        console.log('desktop-project-api.service.ts: list()');
+        return new Observable<TreeNode[]>(subscriber => {
+            window.electron.onboardingApi.getHistory(projectId, (response: TreeNode[]) => {
+                subscriber.next(response); // Emit the next value with the response
+                subscriber.complete(); // Complete the observable stream
+            });
+        });
     }
     public list(page: number, pageSize: number, listName: string | null): Observable<RecordEntry[] | null> {
         return of([] as RecordEntry[]);
     }
 
-    public post(project: TreeNode[]): Observable<TreeNode[] | null> {
-        return of([] as TreeNode[]);
+    public post(projectId: number, history: TreeNode[]): void {
+        console.log('desktop-project-api.service.ts: list()');
+        window.electron.onboardingApi.saveHistory(projectId, history);
     }
 
     public delete(id: number) {

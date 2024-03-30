@@ -13,15 +13,16 @@ import { ProjectSerializerService } from '@critical-pass/shared/serializers';
     providedIn: 'root',
 })
 export class ProjectTreeUiService {
-    private commitSub: Subscription;
-    private branchSub: Subscription;
-    private resetSub: Subscription;
-    private loadTreeSub: Subscription;
+    private commitSub!: Subscription;
+    private branchSub!: Subscription;
+    private resetSub!: Subscription;
+    private loadTreeSub!: Subscription;
     private st!: ProjectTreeState;
     private id!: number;
     private project!: Project;
     private isInitialized = false;
-    private selectedNode$: Subject<number>;
+    private selectedNode$!: Subject<number>;
+    private subsInited = false;
 
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
@@ -29,7 +30,12 @@ export class ProjectTreeUiService {
         private projectSerializer: ProjectSerializerService,
         private ops: TreeOperationsService,
         private ngZone: NgZone,
-    ) {
+    ) {}
+
+    private initSubscriptions() {
+        if (this.subsInited) {
+            return;
+        }
         this.selectedNode$ = this.eventService.get(CONST.SELECTED_TREE_NODE_KEY);
 
         this.commitSub = this.eventService
@@ -53,6 +59,7 @@ export class ProjectTreeUiService {
             .subscribe(nodes => this.loadTree(nodes));
 
         this.selectedNode$.pipe(filter(x => !!x)).subscribe(id => this.selectNode(id));
+        this.subsInited = true;
     }
 
     private commit() {
@@ -85,6 +92,7 @@ export class ProjectTreeUiService {
     }
 
     private loadTree(nodes: TreeNode[]) {
+        this.st = this.st ?? new ProjectTreeFactory().create();
         const workingProj = this.ops.loadState(this.st, nodes);
         this.dashboard.updateProject(workingProj, true);
         this.eventService.get(CONST.HISTORY_ARRAY_KEY).next(nodes);
@@ -101,7 +109,7 @@ export class ProjectTreeUiService {
 
     public init(width: number, height: number, id: number, el: any): void {
         this.id = id;
-        this.st = new ProjectTreeFactory().create();
+        this.st = this.st ?? new ProjectTreeFactory().create();
         this.st.latestId = CONST.INITIAL_NODE_COUNT;
         this.st.innerHeight = height - this.st.margin.top - this.st.margin.bottom;
         this.st.innerWidth = width - this.st.margin.left - this.st.margin.right;
@@ -118,6 +126,7 @@ export class ProjectTreeUiService {
                 this.isInitialized = true;
             });
         });
+        this.initSubscriptions();
     }
 
     public initZoom() {
@@ -161,6 +170,10 @@ export class ProjectTreeUiService {
     }
 
     private drawChart(): void {
+        // This isn't drawing the tree with resolved history because mainG doesn't exist
+        if (!this.st.mainG) {
+            return;
+        }
         this.st.mainG.selectAll('*').remove();
         let tree = d3.tree<TreeNode | null>().size([this.st.innerHeight!, this.st.innerWidth!]);
         const layout = d3.hierarchy<TreeNode | null>(this.st.head);

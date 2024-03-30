@@ -16,9 +16,9 @@ class HistoryRepo {
     async saveHistory(projectId: number, history: TreeNode[]): Promise<void> {
         // Check if the project with this projectId already exists
         const checkExistSql = `SELECT COUNT(1) as count FROM History WHERE projectId = ?`;
-        const count = await this.dbManager.runQuerySingle<number>(checkExistSql, [projectId]);
+        const countRow = await this.dbManager.runQuerySingle<{ count: number }>(checkExistSql, [projectId]);
         // if there is a project either update it or insert a new one
-        if (count > 0) {
+        if (countRow.count > 0) {
             // Update existing project
             const updateSql = `UPDATE History SET historyJson = ?, lastUpdated = CURRENT_TIMESTAMP WHERE projectId = ?`;
             await this.dbManager.runQuerySingle(updateSql, [JSON.stringify(history), projectId]);
