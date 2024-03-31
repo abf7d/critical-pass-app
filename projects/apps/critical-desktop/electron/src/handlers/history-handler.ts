@@ -9,19 +9,18 @@ export class HistoryHandler {
         console.log('NetworkHandler');
     }
     async saveHistory(event: any, id: number, history: TreeNode[]) {
+        let success = true;
         try {
             const historyRepo = new HistoryRepo();
             console.log('HistoryRepo handler class');
-            // networkRepo.addProject(project);
             console.log('HistoryRepo 2', historyRepo);
             await historyRepo.saveHistory(id, history);
-
-            // Implementation of saving library data
-            event.reply('save-history-success');
         } catch (error) {
+            success = false;
             console.error('Error saving history data:', error);
             event.reply('save-history-failure', error);
         }
+        event.reply('save-history-response', success);
     }
     async getHistory(event: any, id: number) {
         try {

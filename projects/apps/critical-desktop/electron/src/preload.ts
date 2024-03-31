@@ -24,8 +24,11 @@ contextBridge.exposeInMainWorld('electron', {
         saveNetwork: (data: any): void => {
             ipcRenderer.send('save-network', data);
         },
-        saveHistory: (projectId: number, history: TreeNode[]): void => {
+        saveHistory: (projectId: number, history: TreeNode[], callback: (data: TreeNode[]) => any): void => {
             ipcRenderer.send('save-history', projectId, history);
+            ipcRenderer.once('save-history-response', (event, response) => {
+                callback(response); // Invoke callback with the response data
+            });
         },
         deleteHistory: (projectId: number): void => {
             ipcRenderer.send('delete-history', projectId);

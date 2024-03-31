@@ -12,6 +12,8 @@ import {
     ZametekApiService,
     ProjectApi,
     PROJECT_API_TOKEN,
+    HISTORY_API_TOKEN,
+    HistoryApi,
 } from '@critical-pass/shared/data-access';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 import { FileCompilerService, ProjectSanatizerService } from '@critical-pass/shared/project-utils';
@@ -20,6 +22,7 @@ import { TreeNode } from '@critical-pass/project/types';
 import { CHART_KEYS, ProjectTreeNodeSerializerService } from '@critical-pass/charts';
 import { ActionButtonsComponent } from '@critical-pass/shared/layout';
 import { FILE_CONST } from '@critical-pass/shared/file-management';
+import { EnvironmentService } from '@critical-pass/core';
 
 @Component({
     selector: 'cp-history-action-buttons',
@@ -31,6 +34,8 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
     private history!: TreeNode[];
     public isSelFileType = false;
     public resourceCount: number | null = null;
+    public allowSave = false;
+    public saveMenuHeight = '50px';
     constructor(
         router: Router,
         @Inject(DASHBOARD_TOKEN) dashboard: DashboardService,
@@ -45,11 +50,15 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         private fileManager: HistoryFileManagerService,
         private jsonFileManager: JsonFileManagerService,
         private treeNodeSerializer: ProjectTreeNodeSerializerService,
+        private envService: EnvironmentService,
+        @Inject(HISTORY_API_TOKEN) private historyApi: HistoryApi,
     ) {
         super(router, dashboard, eventService, serializer, sanitizer, toastr, storageApi, projectApi);
         eventService.get<TreeNode[]>(CHART_KEYS.HISTORY_ARRAY_KEY).subscribe(history => {
             this.history = history;
         });
+        this.allowSave = this.envService.isElectron;
+        this.saveMenuHeight = this.allowSave ? '70px' : '50px';
     }
 
     public unstashTree() {
@@ -78,6 +87,14 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         } else if (this.fileType === FILE_CONST.EXT.JSON) {
             // This maps all json including the nodes
             this.jsonFileManager.export(this.history);
+        } else if (this.fileType === FILE_CONST.EXT.ELECTRON_SAVE) {
+            this.historyApi.post(this.project.profile.id, this.history).subscribe(success => {
+                if (success) {
+                    this.toastr.success('History saved successfully');
+                } else {
+                    this.toastr.error('History not saved');
+                }
+            });
         }
     }
     public loadFile(event: any) {

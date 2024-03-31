@@ -32,6 +32,7 @@ export const RESOURCE_TAG_GROUP = 'Jira Assignee';
 export class EXT {
     public static readonly XLSX = 'xlsx';
     public static readonly JSON = 'json';
+    public static readonly ELECTRON_SAVE = 'electron-save';
 }
 
 export type ImportData = Array<Array<any>>;

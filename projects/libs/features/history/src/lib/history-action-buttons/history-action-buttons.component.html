@@ -27,11 +27,23 @@
 
         <div class="right">
             <div #tooltip="matTooltip" matTooltip="Go to Parent to enable buttons. Your changes will be preserved." [matTooltipDisabled]="!disableButtons">
-                <button class="btn btn-primary" (click)="downloadHistory()" [class.disabled]="disableButtons">Download As File</button>
+                <button class="btn btn-primary" (click)="downloadHistory()" [class.disabled]="disableButtons" title="Download as file or save to database">
+                    Save to
+                </button>
                 <a class="btn pos-rel" href="javascript:void(0)"
                     ><i class="fas fa-chevron-up" *ngIf="isSelFileType" (click)="isSelFileType = false"></i>
                     <i class="fas fa-chevron-down" *ngIf="!isSelFileType" (click)="isSelFileType = true"></i>
-                    <div class="peek file-types" *ngIf="isSelFileType">
+                    <div class="peek file-types" [ngStyle]="{height: saveMenuHeight}" *ngIf="isSelFileType">
+                        <div *ngIf="allowSave" class="custom-control custom-radio">
+                            <input
+                                type="radio"
+                                class="custom-control-input"
+                                id="arrange"
+                                [checked]="fileType === 'electron-save'"
+                                (change)="fileType = 'electron-save'"
+                            />
+                            <label class="custom-control-label" for="arrange">sql</label>
+                        </div>
                         <div class="custom-control custom-radio">
                             <input
                                 type="radio"

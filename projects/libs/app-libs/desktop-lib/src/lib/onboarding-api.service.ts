@@ -22,9 +22,14 @@ export class OnBoardingApiService {
         console.log('desktop-project-api.service.ts: list()');
         window.electron.onboardingApi.saveLibrary({ projects, append });
     }
-    public saveHistory(projectId: number, history: TreeNode[]): void {
+    public saveHistory(projectId: number, history: TreeNode[]): Observable<boolean> {
         console.log('desktop-project-api.service.ts: list()');
-        window.electron.onboardingApi.saveHistory(projectId, history);
+        return new Observable<boolean>(subscriber => {
+            window.electron.onboardingApi.saveHistory(projectId, history, (response: boolean) => {
+                subscriber.next(response); // Emit the next value with the response
+                subscriber.complete(); // Complete the observable stream);
+            });
+        });
     }
     public getHistory(projectId: number): Observable<TreeNode[]> {
         console.log('desktop-project-api.service.ts: list()');

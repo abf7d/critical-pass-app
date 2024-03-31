@@ -7,7 +7,7 @@ declare global {
             onboardingApi: {
                 saveLibrary: (data: LibraryPayload) => void;
                 saveNetwork: (data: any) => void;
-                saveHistory: (projectId: number, history: TreeNode[]) => void;
+                saveHistory: (projectId: number, history: TreeNode[], callback: (success: boolean) => any) => void;
                 getHistory: (projectId: number, callback: (data: TreeNode[]) => any) => void;
                 getLibrary: (data: LibraryPagePayload, callback: (data: ProjectLibrary) => any) => void;
                 getProject: (id: number, callback: (data: Project) => any) => void;
