@@ -52,7 +52,8 @@ class HistoryRepo {
     `;
         try {
             const result = await this.dbManager.runQuerySingle<{ historyJson: string }>(sql, [projectId]);
-            const projectData = JSON.parse(result.historyJson);
+
+            const projectData = result?.historyJson ? JSON.parse(result.historyJson) : [];
             return projectData;
         } catch (error) {
             console.error('Error fetching history:', error);

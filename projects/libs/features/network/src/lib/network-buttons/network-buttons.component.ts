@@ -4,7 +4,7 @@ import { Project } from '@critical-pass/project/types';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { CORE_CONST } from '@critical-pass/core';
 import { EventService, EVENT_SERVICE_TOKEN } from '@critical-pass/shared/data-access';
-import { NetworkFileManagerService, ProjectFileManagerService } from '@critical-pass/shared/file-management';
+import { NetworkFileManagerService, NetworkJsonFileManagerService, ProjectFileManagerService } from '@critical-pass/shared/file-management';
 import { NodeConnectorService } from '@critical-pass/project/processor';
 import { UTIL_CONST } from '@critical-pass/shared/project-utils';
 @Component({
@@ -21,6 +21,7 @@ export class NetworkButtonsComponent implements OnInit {
         @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
         private router: Router,
         private fileManager: NetworkFileManagerService,
+        private jsonFileManager: NetworkJsonFileManagerService,
         private nodeConnector: NodeConnectorService,
         private projFileManager: ProjectFileManagerService,
     ) {
@@ -41,7 +42,7 @@ export class NetworkButtonsComponent implements OnInit {
     public saveByDownload() {
         const nodes = this.networkArray$.getValue();
         if (nodes) {
-            this.fileManager.export(nodes);
+            this.jsonFileManager.export(nodes);
         }
     }
     public loadFileByUpload(event: any) {
@@ -49,7 +50,7 @@ export class NetworkButtonsComponent implements OnInit {
         const firstFile = files.item(0);
 
         if (firstFile !== null && files.length > 0) {
-            this.fileManager.import(firstFile).then(projects => {
+            this.jsonFileManager.import(firstFile).then(projects => {
                 projects.forEach(project => {
                     this.nodeConnector.connectArrowsToNodes(project);
                 });

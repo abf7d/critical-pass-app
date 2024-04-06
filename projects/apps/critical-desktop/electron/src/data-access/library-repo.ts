@@ -91,7 +91,7 @@ class LibraryRepo {
         `;
         try {
             const result = await this.dbManager.runQuerySingle<{ projectJson: string }>(sql, [projectId]);
-            const projectData = JSON.parse(result.projectJson);
+            const projectData = result?.projectJson ? JSON.parse(result?.projectJson) : null;
             return projectData;
         } catch (error) {
             console.error('Error fetching project:', error);

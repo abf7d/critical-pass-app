@@ -7,4 +7,5 @@ export * from './lib/mapping-file-manager/import-mapper/import-mapper.service';
 export * from './lib/types/jira';
 export * from './lib/jira-file-manager/jira-import-mapper/jira-import-mapper.service';
 export * from './lib/history-file-manager/history-mapper/history-mapper.service';
+export * from './lib/network-json-file-manager/network-json-file-manager.service';
 export * as FILE_CONST from './lib/constants';
