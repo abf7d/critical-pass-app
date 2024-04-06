@@ -21,8 +21,21 @@ contextBridge.exposeInMainWorld('electron', {
                 callback(response); // Invoke callback with the response data
             });
         },
-        saveNetwork: (data: any): void => {
-            ipcRenderer.send('save-network', data);
+        saveNetwork: (projectId: number, network: Project[], callback: (data: Project[]) => any): void => {
+            console.log('saveNetwork hit:', projectId);
+            ipcRenderer.send('save-network', projectId, network);
+            ipcRenderer.once('save-network-response', (event, response) => {
+                callback(response); // Invoke callback with the response data
+            });
+        },
+        deleteNetwork: (projectId: number): void => {
+            ipcRenderer.send('delete-network', projectId);
+        },
+        getNetwork: (projectId: number, callback: (data: Project[]) => any): void => {
+            ipcRenderer.send('get-network', projectId);
+            ipcRenderer.once('get-network-response', (event, response) => {
+                callback(response); // Invoke callback with the response data
+            });
         },
         saveHistory: (projectId: number, history: TreeNode[], callback: (data: TreeNode[]) => any): void => {
             ipcRenderer.send('save-history', projectId, history);
@@ -46,18 +59,4 @@ contextBridge.exposeInMainWorld('electron', {
             });
         },
     },
-    // send: (channel: Channel, data: any): void => {
-    //     console.log('send channel hit:', channel, 'data:', data);
-    //     const validChannels: Channel[] = ['save-json'];
-    //     if (validChannels.includes(channel)) {
-    //         ipcRenderer.send(channel, data);
-    //     }
-    // },
-    // receive: (channel: Channel, func: (...args: any[]) => void): void => {
-    //     const validChannels: Channel[] = ['save-json-success', 'save-json-failure'];
-    //     if (validChannels.includes(channel)) {
-    //         // Note: TypeScript may require specifying the event parameter type
-    //         ipcRenderer.on(channel, (event: Electron.IpcRendererEvent, ...args: any[]) => func(...args));
-    //     }
-    // },
 });

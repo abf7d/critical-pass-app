@@ -37,7 +37,8 @@ export class NetworkLayoutComponent {
 
         this.project$ = this.dashboard.activeProject$;
         this.networkArray$ = this.eventService.get(CORE_CONST.NETWORK_ARRAY_KEY);
-        this.networkArray$.next([]);
+        const currentNetwork = this.networkArray$.getValue();
+        this.networkArray$.next(currentNetwork ?? []);
         this.subscription = this.project$.pipe(filter(x => !!x)).subscribe(project => {
             this.refreshCount++;
             let crumb: Crumb[] = [];
@@ -70,7 +71,8 @@ export class NetworkLayoutComponent {
         });
 
         this.filteredNetworkArray$ = this.eventService.get(CORE_CONST.FILTERED_NETWORK_ARRAY_KEY);
-        this.filteredNetworkArray$.next([]);
+        const currentFilteredNetwork = this.filteredNetworkArray$.getValue();
+        this.filteredNetworkArray$.next(currentFilteredNetwork ?? []);
         this.newProjSub = this.eventService
             .get<Project>(CORE_CONST.CREATED_PROJECT)
             .pipe(filter(x => !!x))

@@ -69,8 +69,5 @@ export class HistoryResolver implements Resolve<any> {
         history.forEach(treeNode => {
             this.nodeConnector.connectArrowsToNodes(treeNode.data as Project);
         });
-        //     const head = this.mapper.createTreeHeadNode();
-        //     const innerNodes = projects.map(x => this.mapper.mapProjectToNode(x));
-        //     const treeNodes = [head, ...innerNodes];
     }
 }

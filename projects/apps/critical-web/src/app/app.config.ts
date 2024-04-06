@@ -7,6 +7,8 @@ import {
     DashboardService,
     HISTORY_API_TOKEN,
     HistoryApiService,
+    NETWORK_API_TOKEN,
+    NetworkApiService,
     PROJECT_API_TOKEN,
     PROJECT_STORAGE_TOKEN,
     ProjectApiService,
@@ -21,6 +23,7 @@ export const appConfig: ApplicationConfig = {
         ...appBaseConfig.providers,
         { provide: PROJECT_API_TOKEN, useClass: ProjectApiService },
         { provide: HISTORY_API_TOKEN, useClass: HistoryApiService },
+        { provide: NETWORK_API_TOKEN, useClass: NetworkApiService },
         { provide: PROJECT_STORAGE_TOKEN, useClass: ProjectStorageApiService },
         {
             provide: HTTP_INTERCEPTORS,

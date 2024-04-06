@@ -6,7 +6,7 @@ import { TreeNode } from '@critical-pass/project/types';
 export class HistoryHandler {
     private historyRepo = new HistoryRepo();
     constructor(private app: App) {
-        console.log('NetworkHandler');
+        console.log('HistoryHandler');
     }
     async saveHistory(event: any, id: number, history: TreeNode[]) {
         let success = true;

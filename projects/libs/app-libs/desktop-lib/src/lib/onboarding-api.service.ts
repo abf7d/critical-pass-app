@@ -18,6 +18,7 @@ export class OnBoardingApiService {
         this.baseUrl = environment.criticalPathApi;
     }
 
+    // TODO: Refactor into a generic
     public saveLibrary(projects: Project[], append: boolean): void {
         console.log('desktop-project-api.service.ts: list()');
         window.electron.onboardingApi.saveLibrary({ projects, append });
@@ -26,8 +27,8 @@ export class OnBoardingApiService {
         console.log('desktop-project-api.service.ts: list()');
         return new Observable<boolean>(subscriber => {
             window.electron.onboardingApi.saveHistory(projectId, history, (response: boolean) => {
-                subscriber.next(response); // Emit the next value with the response
-                subscriber.complete(); // Complete the observable stream);
+                subscriber.next(response);
+                subscriber.complete();
             });
         });
     }
@@ -35,8 +36,8 @@ export class OnBoardingApiService {
         console.log('desktop-project-api.service.ts: list()');
         return new Observable<TreeNode[]>(subscriber => {
             window.electron.onboardingApi.getHistory(projectId, (response: TreeNode[]) => {
-                subscriber.next(response); // Emit the next value with the response
-                subscriber.complete(); // Complete the observable stream
+                subscriber.next(response);
+                subscriber.complete();
             });
         });
     }
@@ -44,8 +45,8 @@ export class OnBoardingApiService {
         console.log('desktop-project-api.service.ts: list()');
         return new Observable<ProjectLibrary>(subscriber => {
             window.electron.onboardingApi.getLibrary({ limit: pageSize, offset: page * pageSize /*, filter: listName*/ }, (response: ProjectLibrary) => {
-                subscriber.next(response); // Emit the next value with the response
-                subscriber.complete(); // Complete the observable stream
+                subscriber.next(response);
+                subscriber.complete();
             });
         });
     }
@@ -53,8 +54,26 @@ export class OnBoardingApiService {
         console.log('desktop-project-api.service.ts: getProject()');
         return new Observable<Project>(subscriber => {
             window.electron.onboardingApi.getProject(id, (response: Project) => {
-                subscriber.next(response); // Emit the next value with the response
-                subscriber.complete(); // Complete the observable stream
+                subscriber.next(response);
+                subscriber.complete();
+            });
+        });
+    }
+    public saveNetwork(projectId: number, network: Project[]): Observable<boolean> {
+        console.log('desktop-project-api.service.ts: list()');
+        return new Observable<boolean>(subscriber => {
+            window.electron.onboardingApi.saveNetwork(projectId, network, (response: boolean) => {
+                subscriber.next(response);
+                subscriber.complete();
+            });
+        });
+    }
+    public getNetwork(projectId: number): Observable<Project[]> {
+        console.log('desktop-project-api.service.ts: list()');
+        return new Observable<Project[]>(subscriber => {
+            window.electron.onboardingApi.getNetwork(projectId, (response: Project[]) => {
+                subscriber.next(response);
+                subscriber.complete();
             });
         });
     }

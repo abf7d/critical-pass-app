@@ -2,13 +2,20 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appBaseConfig } from '@critical-pass/core';
-import { DesktopHistoryApiService, DesktopProjectApiService, DesktopProjectStorageApiService, routes } from '@critical-pass/desktop-lib';
+import {
+    DesktopHistoryApiService,
+    DesktopNetworkApiService,
+    DesktopProjectApiService,
+    DesktopProjectStorageApiService,
+    routes,
+} from '@critical-pass/desktop-lib';
 import {
     DASHBOARD_TOKEN,
     DashboardService,
     EVENT_SERVICE_TOKEN,
     EventService,
     HISTORY_API_TOKEN,
+    NETWORK_API_TOKEN,
     PROJECT_API_TOKEN,
     PROJECT_STORAGE_TOKEN,
     ProjectStorageApiService,
@@ -18,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
         ...appBaseConfig.providers,
+        { provide: NETWORK_API_TOKEN, useClass: DesktopNetworkApiService },
         { provide: HISTORY_API_TOKEN, useClass: DesktopHistoryApiService },
         { provide: PROJECT_API_TOKEN, useClass: DesktopProjectApiService },
         { provide: PROJECT_STORAGE_TOKEN, useClass: DesktopProjectStorageApiService },

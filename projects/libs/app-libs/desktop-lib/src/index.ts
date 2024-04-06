@@ -7,3 +7,4 @@ export * from './lib/desktop-project-api.service';
 export * from './lib/desktop-project-storage-api.service';
 export * from './lib/onboarding-api.service';
 export * from './lib/desktop-history-api.service';
+export * from './lib/desktop-network-api.service';

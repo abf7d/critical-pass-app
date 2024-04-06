@@ -1,16 +1,6 @@
 import { ipcMain, App } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
-// import projectManager from './managers/project-manager';
-
-// Define interfaces for your data as needed
-interface SaveJsonData {
-    // Example structure, adjust according to your actual data needs
-    key: string;
-    value: any;
-}
-console.log('ipcHandlers.ts');
-
 import { LibraryHandler } from '../handlers/library-handler';
 import { NetworkHandler } from '../handlers/network-handler';
 import { HistoryHandler } from '../handlers/history-handler';
@@ -23,11 +13,12 @@ export function setupFileOperationsListeners(app: App): void {
         'get-project': new LibraryHandler(app).getProject,
         'save-library': new LibraryHandler(app).saveLibrary, //libraryHandlers.saveData(app),
         'get-library': new LibraryHandler(app).getLibrary, // libraryHandlers.getLibrary(app),
-        'save-network': new NetworkHandler(app).saveData, // networkHandlers.saveData(app),
+        'save-network': new NetworkHandler(app).saveNetwork, // networkHandlers.saveData(app),
+        'get-network': new NetworkHandler(app).getNetwork,
+        'delete-network': new NetworkHandler(app).deleteNetwork,
         'save-history': new HistoryHandler(app).saveHistory, // historyHandlers.saveData(app),
         'get-history': new HistoryHandler(app).getHistory,
         'delete-history': new HistoryHandler(app).deleteHistory,
-        // Add more handlers as needed
     };
 
     // Setup IPC listeners for each handler

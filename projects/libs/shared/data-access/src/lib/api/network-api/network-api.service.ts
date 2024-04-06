@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@critical-pass/shared/environments';
-import { map, Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import urlJoin from 'url-join';
-import { RecordEntry, Project, ProjectLibrary, TreeNode } from '@critical-pass/project/types';
-import * as CONST from '../../constants/constants';
+import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { RecordEntry, Project } from '@critical-pass/project/types';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
-import { HistoryApi } from '../../types/history-api';
+import { NetworkApi } from '../../types/network-api';
 
 @Injectable({
     providedIn: 'root',
 })
-export class HistoryApiService implements HistoryApi {
+export class NetworkApiService implements NetworkApi {
     private baseUrl!: string;
     constructor(
         private httpClient: HttpClient,
@@ -20,7 +18,7 @@ export class HistoryApiService implements HistoryApi {
         this.baseUrl = environment.criticalPathApi;
     }
 
-    public get(id: number): Observable<TreeNode[] | null> {
+    public get(id: number): Observable<Project[] | null> {
         console.log('web get history entry');
         return of(null);
     }
@@ -28,7 +26,7 @@ export class HistoryApiService implements HistoryApi {
         return of(null);
     }
 
-    public post(projectId: number, history: TreeNode[]): Observable<boolean> {
+    public post(projectId: number, history: Project[]): Observable<boolean> {
         return of(true);
     }
 

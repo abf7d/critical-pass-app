@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, NgZone } from '@angular/core';
 import { FileUpload } from '../file-loader/file-loader.component';
 import { OnBoardingApiService } from '@critical-pass/desktop-lib';
 import { Project, ProjectLibrary, RecordEntry, TreeNode } from '@critical-pass/project/types';
 import { PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/shared/data-access';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'ad-app-data-layout',
@@ -15,6 +16,8 @@ export class AppDataLayoutComponent {
         private onboardingApi: OnBoardingApiService,
         private cdr: ChangeDetectorRef,
         @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
+        private toastr: ToastrService,
+        private ngZone: NgZone,
     ) {}
     public projects: Project[] = [];
     public ngOnInit() {
@@ -53,13 +56,43 @@ export class AppDataLayoutComponent {
         this.loadPage(0);
     }
     public getProject() {
+        this.toastr.success('Unstash Chart', 'Success!');
         this.onboardingApi.getProject(2856).subscribe((data: Project) => {
             this.firstProject = data;
             this.cdr.detectChanges();
         });
     }
     public deleteNetwork() {}
-    public insertNetwork(event: FileUpload) {}
+    public insertNetwork(event: FileUpload) {
+        if (Array.isArray(event.result)) {
+            const projects: Project[] = [];
+            for (const project of event.result) {
+                const x: Project = project as Project;
+                projects.push(x);
+            }
+            if (event.id) {
+                this.lastSelectedHistoryId = event.id;
+                this.onboardingApi.saveNetwork(event.id, projects).subscribe((success: boolean) => {
+                    this.ngZone.run(() => {
+                        if (success) {
+                            this.toastr.success('Network saved', 'Success');
+                        } else {
+                            this.toastr.error('Network not saved', 'Error');
+                        }
+                    });
+                });
+            }
+        }
+    }
+    public getNetwork() {
+        if (!this.lastSelectedHistoryId) {
+            return;
+        }
+        this.onboardingApi.getNetwork(this.lastSelectedHistoryId).subscribe((data: Project[]) => {
+            console.log('getHistory:', data[0]);
+        });
+    }
+
     public deleteHistory() {}
     public insertHistory(event: FileUpload) {
         if (Array.isArray(event.result)) {
@@ -70,7 +103,15 @@ export class AppDataLayoutComponent {
             }
             if (event.id) {
                 this.lastSelectedHistoryId = event.id;
-                this.onboardingApi.saveHistory(event.id, nodes);
+                this.onboardingApi.saveHistory(event.id, nodes).subscribe((success: boolean) => {
+                    this.ngZone.run(() => {
+                        if (success) {
+                            this.toastr.success('History saved', 'Success');
+                        } else {
+                            this.toastr.error('History not saved', 'Error');
+                        }
+                    });
+                });
             }
         }
     }
