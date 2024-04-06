@@ -52,9 +52,13 @@ export class NetworkResolver implements Resolve<any> {
                     if (network) {
                         this.importNetwork(network);
                         this.initNetwork(network);
+                        if (network.length > 0) {
+                            this.dashboard.activeProject$.next(network[0]);
+                        }
+                    } else {
+                        this.nodeConnector.connectArrowsToNodes(project);
+                        this.dashboard.activeProject$.next(project);
                     }
-                    this.nodeConnector.connectArrowsToNodes(project);
-                    this.dashboard.activeProject$.next(project);
                 }),
                 first(),
             );
