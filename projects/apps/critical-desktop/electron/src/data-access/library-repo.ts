@@ -55,9 +55,7 @@ class LibraryRepo {
             const checkExistSql = `SELECT COUNT(1) as count FROM Projects WHERE projectId = ?`;
             let count = 0;
             if (project.profile.id !== null) {
-                const countResult = await this.dbManager
-                    .runQuerySingle<number>(checkExistSql, [project.profile.id])
-                    .then(result => (result ? { count: result } : { count: 0 }));
+                const countResult = await this.dbManager.runQuerySingle<{ count: number }>(checkExistSql, [project.profile.id]);
                 count = countResult.count;
             }
             // if there is a project either update it or insert a new one
@@ -92,6 +90,7 @@ class LibraryRepo {
         try {
             const result = await this.dbManager.runQuerySingle<{ projectJson: string }>(sql, [projectId]);
             const projectData = result?.projectJson ? JSON.parse(result?.projectJson) : null;
+            console.log('project tags', projectData.tags);
             return projectData;
         } catch (error) {
             console.error('Error fetching project:', error);

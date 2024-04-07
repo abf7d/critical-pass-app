@@ -7,11 +7,11 @@ import { MetaTagsComponent } from './meta-tags/meta-tags.component';
 import { TagGroupComponent } from './tag-group/tag-group.component';
 import { NetworkRoutingModule } from './network.routes';
 import { ArrowChartModule, ArrowSnapshotModule } from '@critical-pass/charts';
-import { ArrowBarModule } from '@critical-pass/shared/layout';
+import { ArrowBarModule, FileActionButtonsModule, SharedModule } from '@critical-pass/shared/layout';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [NetworkBarComponent, NetworkButtonsComponent, NetworkLayoutComponent, MetaTagsComponent, TagGroupComponent],
-    imports: [CommonModule, NetworkRoutingModule, ArrowChartModule, ArrowSnapshotModule, ArrowBarModule, FormsModule],
+    imports: [CommonModule, NetworkRoutingModule, ArrowChartModule, ArrowSnapshotModule, ArrowBarModule, FormsModule, FileActionButtonsModule],
 })
 export class NetworkModule {}

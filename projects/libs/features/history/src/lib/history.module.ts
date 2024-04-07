@@ -9,6 +9,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { FileActionButtonsModule, SharedModule } from '@critical-pass/shared/layout';
 
 @NgModule({
     declarations: [HistoryActionButtonsComponent, HistoryLayoutComponent],
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
         ArrowSnapshotModule,
         ProjectTreeModule,
         FormsModule,
+        FileActionButtonsModule,
     ],
     exports: [HistoryActionButtonsComponent],
 })

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
@@ -50,15 +50,13 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         private fileManager: HistoryFileManagerService,
         private jsonFileManager: JsonFileManagerService,
         private treeNodeSerializer: ProjectTreeNodeSerializerService,
-        private envService: EnvironmentService,
         @Inject(HISTORY_API_TOKEN) private historyApi: HistoryApi,
+        private ngZone: NgZone,
     ) {
         super(router, dashboard, eventService, serializer, sanitizer, toastr, storageApi, projectApi);
         eventService.get<TreeNode[]>(CHART_KEYS.HISTORY_ARRAY_KEY).subscribe(history => {
             this.history = history;
         });
-        this.allowSave = this.envService.isElectron;
-        this.saveMenuHeight = this.allowSave ? '70px' : '50px';
     }
 
     public unstashTree() {
@@ -81,38 +79,34 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         this.toastr.success('Unstash Chart', 'Success!');
     }
 
-    public downloadHistory() {
-        if (this.fileType === FILE_CONST.EXT.XLSX) {
+    public downloadHistory(fileType: string) {
+        if (fileType === FILE_CONST.EXT.XLSX) {
             this.fileManager.export(this.history);
-        } else if (this.fileType === FILE_CONST.EXT.JSON) {
+        } else if (fileType === FILE_CONST.EXT.JSON) {
             // This maps all json including the nodes
             this.jsonFileManager.export(this.history);
-        } else if (this.fileType === FILE_CONST.EXT.ELECTRON_SAVE) {
+        } else if (fileType === FILE_CONST.EXT.ELECTRON_SAVE) {
             this.historyApi.post(this.project.profile.id, this.history).subscribe(success => {
-                if (success) {
-                    this.toastr.success('History saved successfully');
-                } else {
-                    this.toastr.error('History not saved');
-                }
+                this.ngZone.run(() => {
+                    if (success) {
+                        this.toastr.success('History saved', 'Success');
+                    } else {
+                        this.toastr.error('History not saved', 'Error');
+                    }
+                });
             });
         }
     }
-    public loadFile(event: any) {
-        const files = event.files as FileList;
-        const firstFile = files.item(0);
-
-        if (firstFile !== null && files.length > 0) {
-            const extension = firstFile.name.split('.').pop();
-            if (extension === FILE_CONST.EXT.XLSX) {
-                this.fileManager.import(firstFile).then(nodes => {
-                    this.eventService.get(CHART_KEYS.LOAD_TREE_KEY).next(nodes);
-                });
-            } else if (extension === FILE_CONST.EXT.JSON) {
-                // TODO: Pull nodes from files (not just projs) when loading json
-                this.jsonFileManager.import(firstFile).then(nodes => {
-                    this.eventService.get(CHART_KEYS.LOAD_TREE_KEY).next(nodes);
-                });
-            }
+    public loadFile(firstFile: File) {
+        const extension = firstFile.name.split('.').pop();
+        if (extension === FILE_CONST.EXT.XLSX) {
+            this.fileManager.import(firstFile).then(nodes => {
+                this.eventService.get(CHART_KEYS.LOAD_TREE_KEY).next(nodes);
+            });
+        } else if (extension === FILE_CONST.EXT.JSON) {
+            this.jsonFileManager.import(firstFile).then(nodes => {
+                this.eventService.get(CHART_KEYS.LOAD_TREE_KEY).next(nodes);
+            });
         }
     }
     public autoAssignResourceCount() {

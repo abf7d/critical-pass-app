@@ -34,7 +34,6 @@ export class HistoryResolver implements Resolve<any> {
         @Inject(PROJECT_STORAGE_TOKEN) private storageApi: ProjectStorage,
         @Inject(HISTORY_API_TOKEN) private historyApi: HistoryApi,
         @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
-        // private mapper: HistoryMapperService,
         private nodeConnector: NodeConnectorService,
     ) {}
 
@@ -53,7 +52,7 @@ export class HistoryResolver implements Resolve<any> {
             const historyBs = this.historyApi.get(route.params['id']);
             return forkJoin([projectBs, historyBs]).pipe(
                 tap(([project, history]) => {
-                    if (history) {
+                    if (!!history && history.length > 0) {
                         this.importHistory(history);
                         this.eventService.get('project.tree.history.file').next(history);
                     } else {

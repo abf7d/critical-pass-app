@@ -49,7 +49,7 @@ export class NetworkResolver implements Resolve<any> {
 
             return forkJoin([projectBs, networkBs]).pipe(
                 tap(([project, network]) => {
-                    if (network) {
+                    if (!!network && network.length > 0) {
                         this.importNetwork(network);
                         this.initNetwork(network);
                         if (network.length > 0) {
