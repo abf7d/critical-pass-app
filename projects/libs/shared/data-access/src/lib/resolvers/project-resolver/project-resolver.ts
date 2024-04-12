@@ -20,24 +20,27 @@ export class ProjectResolver implements Resolve<any> {
         private nodeConnector: NodeConnectorService,
     ) {}
 
-    resolve(route: ActivatedRouteSnapshot) {
+    async resolve(route: ActivatedRouteSnapshot) {
         this.dashboard.secondaryProject$.next(null);
         if (+route.params['id'] === CONST.IMPORT_ROUTE_PARAM_ID) {
-            const imported = this.storageApi.get(CONST.SESSION_STORAGE);
+            const imported = await this.storageApi.get(CONST.SESSION_STORAGE);
             if (imported !== null) {
                 imported.profile.view.autoZoom = true;
                 this.dashboard.cleanSlateForNewPage(imported);
             }
             const bs = this.dashboard.activeProject$;
-            return bs.pipe(first());
+            return bs.pipe(first()).toPromise();
         } else {
-            return this.projectApi.get(route.params['id']).pipe(
-                tap(project => {
-                    this.nodeConnector.connectArrowsToNodes(project);
-                    this.dashboard.activeProject$.next(project);
-                }),
-                first(),
-            );
+            return this.projectApi
+                .get(route.params['id'])
+                .pipe(
+                    tap(project => {
+                        this.nodeConnector.connectArrowsToNodes(project);
+                        this.dashboard.activeProject$.next(project);
+                    }),
+                    first(),
+                )
+                .toPromise();
         }
     }
 }

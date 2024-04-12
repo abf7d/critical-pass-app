@@ -20,11 +20,9 @@ export class OnBoardingApiService {
 
     // TODO: Refactor into a generic
     public saveLibrary(projects: Project[], append: boolean): void {
-        console.log('desktop-project-api.service.ts: list()');
         window.electron.onboardingApi.saveLibrary({ projects, append });
     }
     public saveHistory(projectId: number, history: TreeNode[]): Observable<boolean> {
-        console.log('desktop-project-api.service.ts: list()');
         return new Observable<boolean>(subscriber => {
             window.electron.onboardingApi.saveHistory(projectId, history, (response: boolean) => {
                 subscriber.next(response);
@@ -33,7 +31,6 @@ export class OnBoardingApiService {
         });
     }
     public getHistory(projectId: number): Observable<TreeNode[]> {
-        console.log('desktop-project-api.service.ts: list()');
         return new Observable<TreeNode[]>(subscriber => {
             window.electron.onboardingApi.getHistory(projectId, (response: TreeNode[]) => {
                 subscriber.next(response);
@@ -42,7 +39,6 @@ export class OnBoardingApiService {
         });
     }
     public getLibrary(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
-        console.log('desktop-project-api.service.ts: list()');
         return new Observable<ProjectLibrary>(subscriber => {
             window.electron.onboardingApi.getLibrary({ limit: pageSize, offset: page * pageSize /*, filter: listName*/ }, (response: ProjectLibrary) => {
                 subscriber.next(response);
@@ -51,7 +47,6 @@ export class OnBoardingApiService {
         });
     }
     public getProject(id: number): Observable<Project> {
-        console.log('desktop-project-api.service.ts: getProject()');
         return new Observable<Project>(subscriber => {
             window.electron.onboardingApi.getProject(id, (response: Project) => {
                 subscriber.next(response);
@@ -60,7 +55,6 @@ export class OnBoardingApiService {
         });
     }
     public saveNetwork(projectId: number, network: Project[]): Observable<boolean> {
-        console.log('desktop-project-api.service.ts: list()');
         return new Observable<boolean>(subscriber => {
             window.electron.onboardingApi.saveNetwork(projectId, network, (response: boolean) => {
                 subscriber.next(response);
@@ -69,7 +63,6 @@ export class OnBoardingApiService {
         });
     }
     public getNetwork(projectId: number): Observable<Project[]> {
-        console.log('desktop-project-api.service.ts: list()');
         return new Observable<Project[]>(subscriber => {
             window.electron.onboardingApi.getNetwork(projectId, (response: Project[]) => {
                 subscriber.next(response);

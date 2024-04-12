@@ -49,9 +49,9 @@ export class AssignBarComponent implements OnInit, OnDestroy {
         this.toastr.success('Stash Chart', 'Success!');
     }
 
-    public unstash() {
+    public async unstash() {
         try {
-            const project = this.storageApi.get(API_CONST.LOCAL_STORAGE);
+            const project = await this.storageApi.get(API_CONST.LOCAL_STORAGE);
             if (project) {
                 this.dashboard.updateProject(project, false);
             }

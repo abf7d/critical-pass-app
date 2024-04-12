@@ -37,31 +37,34 @@ export class HistoryResolver implements Resolve<any> {
         private nodeConnector: NodeConnectorService,
     ) {}
 
-    resolve(route: ActivatedRouteSnapshot) {
+    async resolve(route: ActivatedRouteSnapshot) {
         this.dashboard.secondaryProject$.next(null);
         if (+route.params['id'] === CONST.IMPORT_ROUTE_PARAM_ID) {
-            const imported = this.storageApi.get(CONST.SESSION_STORAGE);
+            const imported = await this.storageApi.get(CONST.SESSION_STORAGE);
             if (imported !== null) {
                 imported.profile.view.autoZoom = true;
                 this.dashboard.cleanSlateForNewPage(imported);
             }
             const bs = this.dashboard.activeProject$;
-            return bs.pipe(first());
+            return bs.pipe(first()).toPromise();
         } else {
             const projectBs = this.projectApi.get(route.params['id']);
             const historyBs = this.historyApi.get(route.params['id']);
-            return forkJoin([projectBs, historyBs]).pipe(
-                tap(([project, history]) => {
-                    if (!!history && history.length > 0) {
-                        this.importHistory(history);
-                        this.eventService.get('project.tree.history.file').next(history);
-                    } else {
-                        this.nodeConnector.connectArrowsToNodes(project);
-                        this.dashboard.activeProject$.next(project);
-                    }
-                }),
-                first(),
-            );
+            return forkJoin([projectBs, historyBs])
+                .pipe(
+                    tap(([project, history]) => {
+                        if (!!history && history.length > 0) {
+                            this.importHistory(history);
+                            this.eventService.get('project.tree.history.file').next(history);
+                        } else {
+                            this.nodeConnector.connectArrowsToNodes(project);
+                            this.dashboard.activeProject$.next(project);
+                            this.eventService.get('project.tree.history.file').next(null);
+                        }
+                    }),
+                    first(),
+                )
+                .toPromise();
         }
     }
     private importHistory(history: TreeNode[]): void {

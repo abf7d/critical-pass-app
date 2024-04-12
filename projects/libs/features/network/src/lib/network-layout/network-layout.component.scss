@@ -102,3 +102,6 @@
     grid-row: 1/2;
     grid-column: 1/ 4;
 }
+:host {
+    z-index: 0;
+}

@@ -4,12 +4,12 @@ import * as path from 'path';
 import { LibraryHandler } from '../handlers/library-handler';
 import { NetworkHandler } from '../handlers/network-handler';
 import { HistoryHandler } from '../handlers/history-handler';
-import { ProjectHandler } from '../handlers/project-handler';
+// import { ProjectHandler } from '../handlers/project-handler';
 
 export function setupFileOperationsListeners(app: App): void {
     console.log('file path tried', app.getPath('userData'));
     const ipcHandlers = {
-        'save-project': new ProjectHandler(app).saveData,
+        'save-project': new LibraryHandler(app).saveProject,
         'get-project': new LibraryHandler(app).getProject,
         'save-library': new LibraryHandler(app).saveLibrary, //libraryHandlers.saveData(app),
         'get-library': new LibraryHandler(app).getLibrary, // libraryHandlers.getLibrary(app),

@@ -19,7 +19,6 @@ export class DesktopHistoryApiService implements HistoryApi {
     ) {}
 
     public get(projectId: number): Observable<TreeNode[] | null> {
-        console.log('desktop-project-api.service.ts: list()');
         return new Observable<TreeNode[]>(subscriber => {
             window.electron.onboardingApi.getHistory(projectId, (response: TreeNode[]) => {
                 subscriber.next(response); // Emit the next value with the response
@@ -32,7 +31,6 @@ export class DesktopHistoryApiService implements HistoryApi {
     }
 
     public post(projectId: number, history: TreeNode[]): Observable<boolean> {
-        console.log('desktop-project-api.service.ts: list()');
         const sanitizedHistory = history.map(x => {
             const node = this.treeSerializer.fromJson(x);
             node.children = [];

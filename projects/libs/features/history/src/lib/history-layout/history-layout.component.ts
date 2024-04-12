@@ -44,5 +44,6 @@ export class HistoryLayoutComponent implements OnInit {
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
+        this.eventService.onDestroy();
     }
 }

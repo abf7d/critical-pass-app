@@ -69,18 +69,18 @@ export class JiraBarComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl(CORE_CONST.IMPORT_NETWORK_ROUTE);
     }
 
-    public getProjectFromStorage(): void {
-        const project = this.storageApi.get(API_CONST.SESSION_STORAGE);
+    public async getProjectFromStorage() {
+        const project = await this.storageApi.get(API_CONST.SESSION_STORAGE);
         if (project) {
             this.project = project;
             this.dashboard.updateProject(project, false);
         }
     }
 
-    public unstash() {
+    public async unstash() {
         // this.showPeek = false;
         try {
-            const project = this.storageApi.get(API_CONST.LOCAL_STORAGE);
+            const project = await this.storageApi.get(API_CONST.LOCAL_STORAGE);
             if (project) {
                 this.dashboard.activeProject$.next(project);
             }

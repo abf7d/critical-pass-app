@@ -21,9 +21,9 @@ export class DesktopProjectApiService implements ProjectApi {
 
     public get(id: number): Observable<Project> {
         return new Observable<Project>(subscriber => {
-            window.electron.onboardingApi.getProject(id, (response: Project) => {
-                console.log('tags', response.tags);
+            window.electron.onboardingApi.getProject(id, (response: Project | null) => {
                 const project = this.serializer.fromJson(response);
+                project.profile.view.autoZoom = true;
                 subscriber.next(project);
                 subscriber.complete();
             });
@@ -44,12 +44,13 @@ export class DesktopProjectApiService implements ProjectApi {
         });
     }
 
-    public post(project: Project) {
-        const body = JSON.stringify(project);
-        const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.httpClient
-            .post<Project>(urlJoin(this.baseUrl, 'CONST.PROJECT_ENDPOINT'), body, { headers })
-            .pipe(map(data => this.serializer.fromJson(data)));
+    public post(project: Project): Observable<Project> {
+        return new Observable<Project>(subscriber => {
+            window.electron.onboardingApi.saveProject(project.profile.id, project, (response: boolean) => {
+                subscriber.next(project);
+                subscriber.complete();
+            });
+        });
     }
 
     public delete(id: number) {

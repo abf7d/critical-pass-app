@@ -157,6 +157,9 @@ export class ProjectTreeUiService {
         if (this.loadTreeSub) {
             this.loadTreeSub.unsubscribe();
         }
+        this.eventService.get(CONST.COMMIT_KEY).next(null);
+        this.eventService.get(CONST.BRANCH_KEY).next(null);
+        this.eventService.get(CONST.RESET_KEY).next(null);
     }
 
     public initSvg(width: number, height: number, el: any): void {

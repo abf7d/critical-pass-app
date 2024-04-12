@@ -28,6 +28,13 @@ contextBridge.exposeInMainWorld('electron', {
                 callback(response); // Invoke callback with the response data
             });
         },
+        saveProject: (projectId: number, project: Project, callback: (success: boolean) => any): void => {
+            console.log('saveNetwork hit:', projectId);
+            ipcRenderer.send('save-project', projectId, project);
+            ipcRenderer.once('save-project-response', (event, response) => {
+                callback(response); // Invoke callback with the response data
+            });
+        },
         deleteNetwork: (projectId: number): void => {
             ipcRenderer.send('delete-network', projectId);
         },
@@ -52,7 +59,7 @@ contextBridge.exposeInMainWorld('electron', {
                 callback(response); // Invoke callback with the response data
             });
         },
-        getProject: (id: number, callback: (data: Project) => any): void => {
+        getProject: (id: number, callback: (data: Project | null) => any): void => {
             ipcRenderer.send('get-project', id);
             ipcRenderer.once('get-project-response', (event, response) => {
                 callback(response); // Invoke callback with the response data

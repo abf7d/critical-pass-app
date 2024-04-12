@@ -4,6 +4,7 @@ import * as path from 'path';
 import { App } from 'electron';
 import LibraryRepo from '../data-access/library-repo';
 import { LibraryPagePayload, LibraryPayload } from '../types/payloads';
+import { Project } from '@critical-pass/project/types';
 // export const libraryHandlers = {
 //     //app needs to be imported from ipcHandlers.ts
 //     saveData: (app: App) => (event: any, data: any) => {
@@ -71,12 +72,25 @@ export class LibraryHandler {
             // networkRepo.addProject(project);
             const libraryRepo = new LibraryRepo();
             const project = await libraryRepo.getProject(id);
-
+            console.log('project', project);
             // Implementation of saving library data
             event.reply('get-project-response', project);
         } catch (error) {
             console.error('Error getting library data:', error);
             event.reply('get-project-failure', error);
         }
+    }
+    async saveProject(event: any, id: number, project: Project) {
+        let success = true;
+        try {
+            project.profile.id = id;
+            const libraryRepo = new LibraryRepo();
+            await libraryRepo.saveProject(project);
+        } catch (error) {
+            success = false;
+            console.error('Error saving network data:', error);
+            event.reply('save-project-failure', error);
+        }
+        event.reply('save-project-response', success);
     }
 }

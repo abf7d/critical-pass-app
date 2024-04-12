@@ -59,12 +59,12 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         });
     }
 
-    public unstashTree() {
+    public async unstashTree() {
         this.showPeek = false;
 
         this.showPeek = false;
         try {
-            const project = this.storageApi.get(API_CONST.LOCAL_STORAGE);
+            const project = await this.storageApi.get(API_CONST.LOCAL_STORAGE);
             if (project !== null) {
                 this.dashboard.updateProject(project, false);
                 const head = this.treeNodeSerializer.head();

@@ -13,7 +13,6 @@ export class HistoryHandler {
         try {
             const historyRepo = new HistoryRepo();
             console.log('HistoryRepo handler class');
-            console.log('HistoryRepo 2', historyRepo);
             await historyRepo.saveHistory(id, history);
         } catch (error) {
             success = false;

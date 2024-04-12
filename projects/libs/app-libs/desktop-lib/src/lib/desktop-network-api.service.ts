@@ -18,7 +18,6 @@ export class DesktopNetworkApiService implements NetworkApi {
     ) {}
 
     public get(projectId: number): Observable<Project[] | null> {
-        console.log('desktop-project-api.service.ts: list()');
         return new Observable<Project[]>(subscriber => {
             window.electron.onboardingApi.getNetwork(projectId, (response: Project[]) => {
                 subscriber.next(response);
@@ -31,7 +30,6 @@ export class DesktopNetworkApiService implements NetworkApi {
     }
 
     public post(projectId: number, network: Project[]): Observable<boolean> {
-        console.log('desktop-project-api.service.ts: list()');
         const sanitizedNetwork = network.map(x => {
             const proj = this.projSerializer.fromJson(x);
             this.sanitizer.sanatizeForSave(proj);

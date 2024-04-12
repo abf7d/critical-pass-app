@@ -9,6 +9,7 @@ import { ProjectSanatizerService } from '@critical-pass/shared/project-utils';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectStorageApiService } from '@critical-pass/shared/data-access';
 import { CORE_CONST } from '@critical-pass/core';
+import { PROJECT_STORAGE_KEY } from '../../../../data-access/src/lib/constants/constants';
 
 @Component({
     selector: 'cp-action-buttons',
@@ -36,7 +37,10 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
         private serializer: ProjectSerializerService,
         private sanitizer: ProjectSanatizerService,
         public toastr: ToastrService,
-        protected storageApi: ProjectStorageApiService,
+
+        // thisshould have storage_api class
+
+        @Inject(PROJECT_STORAGE_KEY) protected storageApi: ProjectStorageApiService,
         @Inject(PROJECT_API_TOKEN) protected projectApi: ProjectApi,
     ) {
         this.showHelp = false;
@@ -55,8 +59,8 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
         this.showPeek = false;
     }
 
-    public peekStorage(): void {
-        this.peekProj = this.peekProj ?? this.storageApi.get(API_CONST.LOCAL_STORAGE);
+    public async peekStorage() {
+        this.peekProj = this.peekProj ?? (await this.storageApi.get(API_CONST.LOCAL_STORAGE));
     }
 
     public stash() {
@@ -71,10 +75,10 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
         this.toastr.success('Stash Chart', 'Success!');
     }
 
-    public unstash() {
+    public async unstash() {
         this.showPeek = false;
         try {
-            const project = this.storageApi.get(API_CONST.LOCAL_STORAGE);
+            const project = await this.storageApi.get(API_CONST.LOCAL_STORAGE);
             if (project) {
                 this.dashboard.activeProject$.next(project);
             }

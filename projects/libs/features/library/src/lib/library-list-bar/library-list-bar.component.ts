@@ -74,8 +74,8 @@ export class LibraryListBarComponent implements OnInit, OnDestroy {
             this.sub.unsubscribe();
         }
     }
-    public peekStorage(): void {
-        this.peekProj = this.peekProj ?? this.storageApi.get(API_CONST.LOCAL_STORAGE);
+    public async peekStorage() {
+        this.peekProj = this.peekProj ?? (await this.storageApi.get(API_CONST.LOCAL_STORAGE));
     }
     public navigate(url: string): void {
         this.router.navigateByUrl(url);

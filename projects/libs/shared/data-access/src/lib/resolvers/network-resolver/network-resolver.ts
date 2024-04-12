@@ -33,47 +33,54 @@ export class NetworkResolver implements Resolve<any> {
         private nodeConnector: NodeConnectorService,
     ) {}
 
-    resolve(route: ActivatedRouteSnapshot) {
+    async resolve(route: ActivatedRouteSnapshot) {
         this.dashboard.secondaryProject$.next(null);
         if (+route.params['id'] === CONST.IMPORT_ROUTE_PARAM_ID) {
-            const imported = this.storageApi.get(CONST.SESSION_STORAGE);
+            const imported = await this.storageApi.get(CONST.SESSION_STORAGE);
             if (imported !== null) {
                 imported.profile.view.autoZoom = true;
                 this.dashboard.cleanSlateForNewPage(imported);
             }
             const bs = this.dashboard.activeProject$;
-            return bs.pipe(first());
+            return bs.pipe(first()).toPromise();
         } else {
             const projectBs = this.projectApi.get(route.params['id']);
             const networkBs = this.networkApi.get(route.params['id']);
 
-            return forkJoin([projectBs, networkBs]).pipe(
-                tap(([project, network]) => {
-                    if (!!network && network.length > 0) {
-                        this.importNetwork(network);
-                        this.initNetwork(network);
-                        if (network.length > 0) {
-                            this.dashboard.activeProject$.next(network[0]);
+            return forkJoin([projectBs, networkBs])
+                .pipe(
+                    tap(([project, network]) => {
+                        if (!!network && network.length > 0) {
+                            this.importNetwork(network);
+                            this.initNetwork(network);
+                            if (network.length > 0) {
+                                this.dashboard.activeProject$.next(network[0]);
+                            }
+                        } else {
+                            this.nodeConnector.connectArrowsToNodes(project);
+                            this.dashboard.activeProject$.next(project);
+                            this.initNetwork(null);
                         }
-                    } else {
-                        this.nodeConnector.connectArrowsToNodes(project);
-                        this.dashboard.activeProject$.next(project);
-                    }
-                }),
-                first(),
-            );
+                    }),
+                    first(),
+                )
+                .toPromise();
         }
     }
-    private initNetwork(projects: Project[]): void {
-        let mostRecentId = Math.min(...projects.map(p => p.profile.id));
-        if (mostRecentId >= 0) {
-            mostRecentId = -1;
+    private initNetwork(projects: Project[] | null): void {
+        if (projects && projects.length > 0) {
+            let mostRecentId = Math.min(...projects.map(p => p.profile.id));
+            if (mostRecentId >= 0) {
+                mostRecentId = -1;
+            }
+            mostRecentId -= 1;
+            this.eventService.get(CONST.NETWORK_SUB_PROJECT_TRACKER).next(mostRecentId);
+            this.eventService.get(CONST.NETWORK_ARRAY_KEY).next([...projects]);
+            this.eventService.get(CONST.FILTERED_NETWORK_ARRAY_KEY).next([...projects]);
+        } else {
+            this.eventService.get(CONST.NETWORK_ARRAY_KEY).next([]);
+            this.eventService.get(CONST.FILTERED_NETWORK_ARRAY_KEY).next([]);
         }
-        mostRecentId -= 1;
-        console.log(CONST.NETWORK_SUB_PROJECT_TRACKER, 'etste');
-        this.eventService.get(CONST.NETWORK_SUB_PROJECT_TRACKER).next(mostRecentId);
-        this.eventService.get(CONST.NETWORK_ARRAY_KEY).next([...projects]);
-        this.eventService.get(CONST.FILTERED_NETWORK_ARRAY_KEY).next([...projects]);
     }
     private importNetwork(network: Project[]): void {
         network.forEach(project => {

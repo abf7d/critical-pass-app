@@ -8,6 +8,7 @@ declare global {
                 saveLibrary: (data: LibraryPayload) => void;
                 saveNetwork: (projectId: number, network: Project[], callback: (success: boolean) => any) => void;
                 saveHistory: (projectId: number, history: TreeNode[], callback: (success: boolean) => any) => void;
+                saveProject: (projectId: number, network: Project, callback: (success: boolean) => any) => void;
                 getHistory: (projectId: number, callback: (data: TreeNode[]) => any) => void;
                 getNetwork: (projectId: number, callback: (data: Project[]) => any) => void;
                 getLibrary: (data: LibraryPagePayload, callback: (data: ProjectLibrary) => any) => void;

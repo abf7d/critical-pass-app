@@ -14,7 +14,7 @@ export class ProjectStorageApiService implements ProjectStorage {
         private nodeConnector: NodeConnectorService,
     ) {}
 
-    public get(storageType: string): Project | null {
+    public get(storageType: string): Promise<Project | null> {
         let stored: any;
         if (storageType === CONST.LOCAL_STORAGE) {
             stored = localStorage.getItem(CONST.PROJECT_STORAGE_KEY);
@@ -22,11 +22,11 @@ export class ProjectStorageApiService implements ProjectStorage {
             stored = sessionStorage.getItem(CONST.PROJECT_STORAGE_KEY);
         }
         if (stored === undefined) {
-            return null;
+            return Promise.resolve(null);
         }
         const project = this.serializer.fromJson(JSON.parse(stored));
         this.nodeConnector.connectArrowsToNodes(project);
-        return project;
+        return Promise.resolve(project);
     }
     public set(storageType: string, project: Project): void {
         const copy = this.serializer.fromJson(project);
