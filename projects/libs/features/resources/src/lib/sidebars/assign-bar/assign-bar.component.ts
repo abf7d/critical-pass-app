@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { DashboardService, DASHBOARD_TOKEN, ProjectStorageApiService, API_CONST } from '@critical-pass/shared/data-access';
+import { DashboardService, DASHBOARD_TOKEN, API_CONST, PROJECT_STORAGE_TOKEN, ProjectStorage } from '@critical-pass/shared/data-access';
 import { Project } from '@critical-pass/project/types';
 
 @Component({
@@ -20,7 +20,7 @@ export class AssignBarComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private toastr: ToastrService,
-        private storageApi: ProjectStorageApiService,
+        @Inject(PROJECT_STORAGE_TOKEN) private storageApi: ProjectStorage,
     ) {
         this.id = +this.route.snapshot.params['id'];
 

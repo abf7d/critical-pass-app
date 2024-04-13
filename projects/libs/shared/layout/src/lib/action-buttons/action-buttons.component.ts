@@ -1,7 +1,7 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { API_CONST, PROJECT_API_TOKEN, ProjectApi, ProjectApiService } from '@critical-pass/shared/data-access';
+import { API_CONST, PROJECT_API_TOKEN, PROJECT_STORAGE_TOKEN, ProjectApi, ProjectApiService, ProjectStorage } from '@critical-pass/shared/data-access';
 import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN } from '@critical-pass/shared/data-access';
 import { Project } from '@critical-pass/project/types';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
@@ -37,11 +37,9 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
         private serializer: ProjectSerializerService,
         private sanitizer: ProjectSanatizerService,
         public toastr: ToastrService,
-
-        // thisshould have storage_api class
-
-        @Inject(PROJECT_STORAGE_KEY) protected storageApi: ProjectStorageApiService,
+        @Inject(PROJECT_STORAGE_TOKEN) protected storageApi: ProjectStorage,
         @Inject(PROJECT_API_TOKEN) protected projectApi: ProjectApi,
+        protected ngZone: NgZone,
     ) {
         this.showHelp = false;
         this.actionText = '';
@@ -60,7 +58,17 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     }
 
     public async peekStorage() {
-        this.peekProj = this.peekProj ?? (await this.storageApi.get(API_CONST.LOCAL_STORAGE));
+        if (!this.peekProj) {
+            const project = await this.storageApi.get(API_CONST.LOCAL_STORAGE);
+
+            this.ngZone.run(() => {
+                if (project) {
+                    this.peekProj = project;
+                    this.showPeek = true;
+                }
+            });
+            this.showPeek = true;
+        }
     }
 
     public stash() {

@@ -14,6 +14,8 @@ import {
     PROJECT_API_TOKEN,
     HISTORY_API_TOKEN,
     HistoryApi,
+    PROJECT_STORAGE_TOKEN,
+    ProjectStorage,
 } from '@critical-pass/shared/data-access';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 import { FileCompilerService, ProjectSanatizerService } from '@critical-pass/shared/project-utils';
@@ -43,7 +45,7 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         serializer: ProjectSerializerService,
         sanitizer: ProjectSanatizerService,
         toastr: ToastrService,
-        storageApi: ProjectStorageApiService,
+        @Inject(PROJECT_STORAGE_TOKEN) storageApi: ProjectStorage,
         @Inject(PROJECT_API_TOKEN) projectApi: ProjectApi,
         private zametekApi: ZametekApiService,
         private fCompiler: FileCompilerService,
@@ -51,9 +53,9 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         private jsonFileManager: JsonFileManagerService,
         private treeNodeSerializer: ProjectTreeNodeSerializerService,
         @Inject(HISTORY_API_TOKEN) private historyApi: HistoryApi,
-        private ngZone: NgZone,
+        ngZone: NgZone,
     ) {
-        super(router, dashboard, eventService, serializer, sanitizer, toastr, storageApi, projectApi);
+        super(router, dashboard, eventService, serializer, sanitizer, toastr, storageApi, projectApi, ngZone);
         eventService.get<TreeNode[]>(CHART_KEYS.HISTORY_ARRAY_KEY).subscribe(history => {
             this.history = history;
         });

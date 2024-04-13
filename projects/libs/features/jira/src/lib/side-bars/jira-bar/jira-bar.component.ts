@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from '@critical-pass/project/types';
-import { DashboardService, DASHBOARD_TOKEN, ProjectStorageApiService, ZametekApiService } from '@critical-pass/shared/data-access';
+import { DashboardService, DASHBOARD_TOKEN, ZametekApiService, PROJECT_STORAGE_TOKEN, ProjectStorage } from '@critical-pass/shared/data-access';
 import { FileCompilerService, ProjectSanatizerService } from '@critical-pass/shared/project-utils';
 import { ToastrService } from 'ngx-toastr';
 import { filter, Observable, Subscription, tap } from 'rxjs';
@@ -23,7 +23,7 @@ export class JiraBarComponent implements OnInit, OnDestroy {
         private fCompiler: FileCompilerService,
         private projectSanitizer: ProjectSanatizerService,
         private zametekApi: ZametekApiService,
-        private storageApi: ProjectStorageApiService,
+        @Inject(PROJECT_STORAGE_TOKEN) private storageApi: ProjectStorage,
         private router: Router,
     ) {}
     public ngOnInit(): void {
@@ -78,7 +78,6 @@ export class JiraBarComponent implements OnInit, OnDestroy {
     }
 
     public async unstash() {
-        // this.showPeek = false;
         try {
             const project = await this.storageApi.get(API_CONST.LOCAL_STORAGE);
             if (project) {

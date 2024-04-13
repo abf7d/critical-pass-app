@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LibraryStoreService } from '../library-store/library-store.service';
 import * as CONST from '../constants';
-import { API_CONST, ProjectListApiService } from '@critical-pass/shared/data-access';
+import { API_CONST, PROJECT_STORAGE_TOKEN, ProjectListApiService, ProjectStorage } from '@critical-pass/shared/data-access';
 import { ProjectStorageApiService } from '@critical-pass/shared/data-access';
 
 @Component({
@@ -30,7 +30,7 @@ export class LibraryListBarComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private libraryStore: LibraryStoreService,
         private router: Router,
-        private storageApi: ProjectStorageApiService,
+        @Inject(PROJECT_STORAGE_TOKEN) private storageApi: ProjectStorage,
         private projListApi: ProjectListApiService,
     ) {}
 

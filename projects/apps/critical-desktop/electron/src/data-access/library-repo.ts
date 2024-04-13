@@ -106,15 +106,17 @@ class LibraryRepo {
      * @returns A promise that resolves to an array of projects.
      */
     async getProjects(payload: LibraryPagePayload): Promise<ProjectLibrary> {
-        let sql = `SELECT projectJson FROM Projects`;
+        let sql = `SELECT projectJson FROM Projects WHERE projectId > 0`; // Added condition here
+
         let sortOrder = 'DESC';
         if (payload.order) {
             sortOrder = payload.order;
         }
-        // Incorporate search functionality if a search term and property path are provided
+
+        // Add search condition if a search term and property path are provided
         if (payload.searchValue && payload.searchProperty) {
             const searchPath = payload.searchProperty.split('.').join(', '); // Convert dot notation to comma-separated for json_extract
-            sql += ` WHERE json_extract(projectJson, '$.${searchPath}') LIKE '%' || ? || '%'`;
+            sql += ` AND json_extract(projectJson, '$.${searchPath}') LIKE '%' || ? || '%'`; // Changed WHERE to AND
         }
 
         // Add dynamic ordering based on a nested JSON property
@@ -143,7 +145,7 @@ class LibraryRepo {
             const projectsRows = await this.dbManager.runQueryMulti<{ projectJson: string }>(sql, params);
             const projects = projectsRows.map(row => JSON.parse(row.projectJson));
             const totalCount = await this.dbManager
-                .runQuerySingle<{ count: number }>(`SELECT COUNT(*) as count FROM Projects`)
+                .runQuerySingle<{ count: number }>(`SELECT COUNT(*) as count FROM Projects WHERE projectId > 0`)
                 .then(result => result?.count ?? 0);
             return {
                 items: projects,
