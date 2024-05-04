@@ -1,22 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
-// import { Project } from '../../../models/project/project';
 import { TimeCostState, TimeCostStateFactory } from '../time-cost-state/time-cost-state';
 import * as d3 from 'd3';
-// import * as Keys from '../../../constants/keys';
 import { forkJoin, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Project, TimeCostPoint, TreeNode } from '@critical-pass/project/types';
 import { DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN, ZametekApiService } from '@critical-pass/shared/data-access';
 import { CompletionNodeCalcService } from '../../../services/completion-node-calc/completion-node-calc.service';
 import { ProjectCompilerService } from '@critical-pass/project/processor';
-// import { TreeNode } from '../../../models/assign/tree-node';
-// import { ITimeCostPoint } from '../../../models/assign/itime-cost-point';
-// import { ProjectCompilerApiBase } from '../../../models/base/project-compiler-base';
-// import { ProjectCompilerService } from '../../../services/utils/project-compiler/project-compiler.service';
-// import { CompletionNodeCalcService } from '../../../services/utils/completion-node-calc/completion-node-calc.service';
-// import { ProjectManagerBase } from '../../../models';
 import * as CONST from '../../../constants/constants';
 import { FileCompilerService, IndirectCostCalculatorService, PcdAutogenService } from '@critical-pass/shared/project-utils';
+import { ProjectTreeNodeSerializerService } from '../../../services/project-tree-node-serializer/project-tree-node-serializer.service';
 @Injectable({
     providedIn: 'root',
 })
@@ -30,11 +23,10 @@ export class TimeCostUiService {
     constructor(
         @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
         private completion: CompletionNodeCalcService,
-        // private compilerApi: ProjectCompilerApiBase,
         private fileCompiler: FileCompilerService,
         private pcdAutoGen: PcdAutogenService,
         private indirects: IndirectCostCalculatorService,
-        // private compiler: ProjectCompilerService,
+        private treeSerializer: ProjectTreeNodeSerializerService,
         private zametekApi: ZametekApiService,
     ) {}
 
@@ -55,7 +47,6 @@ export class TimeCostUiService {
         this.st.innerHeight = height - this.st.margin.top - this.st.margin.bottom;
         this.st.innerWidth = width - this.st.margin.left - this.st.margin.right;
         this.initSvg(width, height, el);
-        // const data = this.pManager.getProject(id);
         this.sub = this.eventService
             .get<TreeNode[]>(CONST.HISTORY_ARRAY_KEY)
             .pipe(filter(x => !!x))
@@ -90,15 +81,17 @@ export class TimeCostUiService {
             const nodes = this.completion.getCompletedNodes(historyArray);
             const apiCalls = nodes.map(node => this.zametekApi.compileArrowGraph(node.data!));
             forkJoin(apiCalls).subscribe(results => {
-                const calculatedProjects: Project[] = [];
+                const calculatedProjects: TreeNode[] = [];
                 const timeCostPoints: TimeCostPoint[] = [];
                 results.forEach((project, i) => {
                     if (project) {
                         this.fileCompiler.compileProjectFromFile(project);
                         this.pcdAutoGen.autogeneratePcds(project);
                         const point = this.getTimeCostPoint(project, nodes[i].id);
-                        calculatedProjects.push(project);
                         timeCostPoints.push(point);
+                        const completedNode = this.treeSerializer.fromJson(nodes[i]);
+                        completedNode.data = project;
+                        calculatedProjects.push(completedNode);
                     }
                 });
                 this.eventService.get(CONST.ASSIGN_COMPLETED_PROJECTS).next(calculatedProjects);

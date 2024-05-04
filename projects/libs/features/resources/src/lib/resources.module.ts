@@ -18,7 +18,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { ResourcesRoutingModule } from './resources.routes';
-import { ArrowChartModule, ProjectTreeModule, ShallowSSnapshotModule, StackedResourcesModule, TimeCostModule } from '@critical-pass/charts';
+import {
+    ArrowChartModule,
+    ArrowSnapshotModule,
+    ProjectTreeModule,
+    ShallowSSnapshotModule,
+    StackedResourcesModule,
+    TimeCostModule,
+} from '@critical-pass/charts';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ResourceArrowComponent } from './components/resource-arrow/resource-arrow.component';
@@ -53,6 +60,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         StackedResourcesModule,
         ShallowSSnapshotModule,
         ArrowChartModule,
+        ArrowSnapshotModule,
         MatSelectModule,
         MatAutocompleteModule,
         MatIconModule,
