@@ -118,6 +118,22 @@ export class TimeCostUiService {
         }
     }
 
+    private createAxisTitles(): void {
+        const titlegroup = this.st.mainG.append('g').attr('class', 'titles');
+        const { top, right, bottom, left } = this.st.margin;
+        titlegroup
+            .append('text')
+            .text('Time (days)')
+            .attr('text-anchor', 'middle')
+            .attr('transform', 'translate(' + this.st.innerWidth! / 2 + ', ' + (this.st.innerHeight! + top) + ') scale(1)');
+
+        titlegroup
+            .append('text')
+            .text('Cost (Man-days)')
+            .attr('text-anchor', 'middle')
+            .attr('transform', 'translate(-40,' + this.st.innerHeight! / 2 + ') rotate(270)');
+    }
+
     private drawChart(timeCostPoints: TimeCostPoint[]) {
         this.st.mainG.selectAll('*').remove();
         const xScale = d3
@@ -137,6 +153,8 @@ export class TimeCostUiService {
             .call(d3.axisBottom(xScale));
 
         this.st.mainG.append('g').attr('class', 'y axis').call(d3.axisLeft(yScale));
+
+        this.createAxisTitles();
 
         this.st.mainG
             .selectAll('.dot')
