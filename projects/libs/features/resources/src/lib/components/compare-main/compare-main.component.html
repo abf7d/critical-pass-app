@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="chart-container">
-            <div *ngFor="let node of completedNodes" [ngClass]="{'selected-node': node.id === selectedNodeId}">
+            <div *ngFor="let node of completedNodes" [ngClass]="{'selected-node': node.id === selectedNodeId}" (click)="selectTimeCostNode(node.id)">
                 <div class="charts">
                     <cp-shallow-s-snapshot [project]="node.data!" [width]="390" [height]="250"></cp-shallow-s-snapshot>
                     <cp-stacked-resources

@@ -50,9 +50,10 @@ export class TimeCostComponent implements OnInit {
     public ngOnInit(): void {
         this.ui.init(this.width, this.height, this.id, this.chart.nativeElement);
         this.sub = this.eventService
-            .get<TimeCostPoint[]>(CONST.ASSIGN_TIMECOST_POINTs)
+            .get<TimeCostPoint[]>(CONST.ASSIGN_TIMECOST_POINTS)
             .pipe(filter(x => !!x))
             .subscribe(timeCostPoints => {
+                this.ui.initSubscriptions();
                 this.ui.clearChart(timeCostPoints);
                 this.ui.drawChart(timeCostPoints);
             });

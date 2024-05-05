@@ -18,9 +18,10 @@ export class TimeCostUiService {
     private id!: number;
     public st!: TimeCostState;
     private sub!: Subscription;
+    private selectedSub!: Subscription;
     private historyArray!: TreeNode[];
-    private selectedNodeId!: number;
-
+    private prevTimeCostPoints: TimeCostPoint[] | null = null;
+    private selectedNodeId: number | null = null;
     constructor(
         @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
         private completion: CompletionNodeCalcService,
@@ -62,6 +63,7 @@ export class TimeCostUiService {
         return new Promise((resolve, reject) => {
             this.getTimeCostForCompletedPoints(historyArray)
                 .then(timeCostPoints => {
+                    this.initSubscriptions();
                     this.clearChart(timeCostPoints);
                     this.drawChart(timeCostPoints);
                     resolve(timeCostPoints);
@@ -90,12 +92,27 @@ export class TimeCostUiService {
                         }
                     });
                     this.eventService.get(CONST.ASSIGN_COMPLETED_PROJECTS).next(calculatedProjects);
-                    this.eventService.get(CONST.ASSIGN_TIMECOST_POINTs).next(timeCostPoints);
+                    this.eventService.get(CONST.ASSIGN_TIMECOST_POINTS).next(timeCostPoints);
+                    this.prevTimeCostPoints = timeCostPoints;
                     resolve(timeCostPoints);
                 },
                 (error: any) => reject(error),
             );
         });
+    }
+
+    public initSubscriptions() {
+        if (!this.selectedSub) {
+            this.selectedSub = this.eventService
+                .get<number | null>(CONST.SELECTED_TIMECOST_POINT)
+                .pipe(filter(x => x !== undefined))
+                .subscribe(selectedPoint => {
+                    this.selectedNodeId = selectedPoint;
+                    if (this.prevTimeCostPoints) {
+                        this.drawChart(this.prevTimeCostPoints);
+                    }
+                });
+        }
     }
 
     private getTimeCostPoint(project: Project, nodeId: number): TimeCostPoint {
@@ -113,6 +130,9 @@ export class TimeCostUiService {
     public destroy() {
         if (this.sub) {
             this.sub.unsubscribe();
+        }
+        if (this.selectedSub) {
+            this.selectedSub.unsubscribe();
         }
     }
 
@@ -178,7 +198,7 @@ export class TimeCostUiService {
             .enter()
             .append('circle')
             .attr('class', 'dot')
-            .classed('selected-options', (d: any) => d.nodeId === this.selectedNodeId)
+            .classed('selected-options', (d: any) => this.selectedNodeId !== null && d.nodeId === this.selectedNodeId)
             .attr('cx', (d: any, i: any) => xScale(d.time))
             .attr('cy', (d: any) => yScale(d.cost))
             .attr('r', 4)

@@ -48,4 +48,8 @@ export class CompareMainComponent implements OnInit, OnDestroy {
             this.nodeClickSub.unsubscribe();
         }
     }
+    public selectTimeCostNode(id: number): void {
+        this.eventService.get<number | null>(CHART_KEYS.SELECTED_TIMECOST_POINT).next(id);
+        this.selectedNodeId = id;
+    }
 }
