@@ -10,7 +10,11 @@ import { TimeCostPoint } from '../../../../../project/types/src/lib/planning';
         <div class="btn-container">
             <a class="calc-button" href="javascript:void(0)" (click)="calculateTimeCost()">Calculate Time Cost Curve</a>
         </div>
-        <div #chart class="time-cost-container"></div>
+        <div class="chart-container" [ngStyle]="{ 'min-height.px': height, 'min-width.px': width }">
+            <div [hidden]="loading || loadingError" #chart class="time-cost-container"></div>
+            <div class="loader" *ngIf="loading"></div>
+            <div class="error-msg" *ngIf="loadingError">An Error Occurred Loading</div>
+        </div>
     `,
     styleUrls: ['./time-cost.component.scss'],
     providers: [TimeCostUiService],
@@ -20,6 +24,8 @@ export class TimeCostComponent implements OnInit {
     @Input() id!: number;
     @Input() width!: number;
     @Input() height!: number;
+    public loading = false;
+    public loadingError = false;
     @ViewChild('chart', { static: true }) chart!: ElementRef;
     private sub!: Subscription;
     private ui: TimeCostUiService;
@@ -29,7 +35,16 @@ export class TimeCostComponent implements OnInit {
     }
 
     public calculateTimeCost(): void {
-        this.ui.calculateTimeCostPoints();
+        this.loading = true;
+        this.loadingError = false;
+        this.ui
+            .calculateTimeCostPoints()
+            .then(timeCostPoints => (this.loading = false))
+            .catch(error => {
+                this.loadingError = true;
+                this.loading = false;
+                console.error(error);
+            });
     }
 
     public ngOnInit(): void {

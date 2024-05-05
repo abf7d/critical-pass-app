@@ -1,5 +1,10 @@
 <div class="layout">
     <div class="grid-container">
+        <div class="empty-container" *ngIf="completedNodes.length === 0">
+            <div class="empty-msg">
+                <div class="empty-state-text">No projects to compare. Complete assignments and click Calculate Time Cost Curve.</div>
+            </div>
+        </div>
         <div class="chart-container">
             <div *ngFor="let node of completedNodes" [ngClass]="{'selected-node': node.id === selectedNodeId}">
                 <div class="charts">

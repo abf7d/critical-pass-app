@@ -10,6 +10,7 @@ import { ProjectCompilerService } from '@critical-pass/project/processor';
 import * as CONST from '../../../constants/constants';
 import { FileCompilerService, IndirectCostCalculatorService, PcdAutogenService } from '@critical-pass/shared/project-utils';
 import { ProjectTreeNodeSerializerService } from '../../../services/project-tree-node-serializer/project-tree-node-serializer.service';
+import { error } from 'console';
 @Injectable({
     providedIn: 'root',
 })
@@ -37,8 +38,12 @@ export class TimeCostUiService {
         this.st.mainG = this.st.svg.append('g').attr('transform', `translate(${this.st.margin.left},${this.st.margin.top})`);
     }
 
-    public calculateTimeCostPoints() {
-        this.createChart(this.historyArray);
+    public calculateTimeCostPoints(): Promise<TimeCostPoint[]> {
+        return new Promise((resolve, reject) => {
+            this.createChart(this.historyArray)
+                .then(timeCostPoints => resolve(timeCostPoints))
+                .catch(error => reject(error));
+        });
     }
 
     public init(width: number, height: number, id: number, el: any) {
@@ -53,10 +58,15 @@ export class TimeCostUiService {
             .subscribe(historyArray => (this.historyArray = historyArray));
     }
 
-    private createChart(historyArray: TreeNode[]): void {
-        this.getTimeCostForCompletedPoints(historyArray).then(timeCostPoints => {
-            this.clearChart(timeCostPoints);
-            this.drawChart(timeCostPoints);
+    private createChart(historyArray: TreeNode[]): Promise<TimeCostPoint[]> {
+        return new Promise((resolve, reject) => {
+            this.getTimeCostForCompletedPoints(historyArray)
+                .then(timeCostPoints => {
+                    this.clearChart(timeCostPoints);
+                    this.drawChart(timeCostPoints);
+                    resolve(timeCostPoints);
+                })
+                .catch(error => reject(error));
         });
     }
 
@@ -64,24 +74,27 @@ export class TimeCostUiService {
         return new Promise((resolve, reject) => {
             const nodes = this.completion.getCompletedNodes(historyArray);
             const apiCalls = nodes.map(node => this.zametekApi.compileArrowGraph(node.data!));
-            forkJoin(apiCalls).subscribe(results => {
-                const calculatedProjects: TreeNode[] = [];
-                const timeCostPoints: TimeCostPoint[] = [];
-                results.forEach((project, i) => {
-                    if (project) {
-                        this.fileCompiler.compileProjectFromFile(project);
-                        this.pcdAutoGen.autogeneratePcds(project);
-                        const point = this.getTimeCostPoint(project, nodes[i].id);
-                        timeCostPoints.push(point);
-                        const completedNode = this.treeSerializer.fromJson(nodes[i]);
-                        completedNode.data = project;
-                        calculatedProjects.push(completedNode);
-                    }
-                });
-                this.eventService.get(CONST.ASSIGN_COMPLETED_PROJECTS).next(calculatedProjects);
-                this.eventService.get(CONST.ASSIGN_TIMECOST_POINTs).next(timeCostPoints);
-                resolve(timeCostPoints);
-            });
+            forkJoin(apiCalls).subscribe(
+                results => {
+                    const calculatedProjects: TreeNode[] = [];
+                    const timeCostPoints: TimeCostPoint[] = [];
+                    results.forEach((project, i) => {
+                        if (project) {
+                            this.fileCompiler.compileProjectFromFile(project);
+                            this.pcdAutoGen.autogeneratePcds(project);
+                            const point = this.getTimeCostPoint(project, nodes[i].id);
+                            timeCostPoints.push(point);
+                            const completedNode = this.treeSerializer.fromJson(nodes[i]);
+                            completedNode.data = project;
+                            calculatedProjects.push(completedNode);
+                        }
+                    });
+                    this.eventService.get(CONST.ASSIGN_COMPLETED_PROJECTS).next(calculatedProjects);
+                    this.eventService.get(CONST.ASSIGN_TIMECOST_POINTs).next(timeCostPoints);
+                    resolve(timeCostPoints);
+                },
+                (error: any) => reject(error),
+            );
         });
     }
 
