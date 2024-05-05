@@ -148,6 +148,7 @@ export const COMMIT_KEY = 'project.tree.commit';
 export const RESET_KEY = 'project.tree.reset';
 export const INITIAL_NODE_COUNT = 0;
 export const ASSIGN_COMPLETED_PROJECTS = 'assign.completed.projects';
+export const ASSIGN_TIMECOST_POINTs = 'assign.timecost.points';
 // export const ARROW_STATE_TOKEN = new InjectionToken<ArrowStateService>('ArrowState');
 
 // export const NETWORK_ARRAY_KEY = 'project.newtwork.array';

@@ -9,6 +9,15 @@
     flex-direction: row;
     & > * {
         margin: 20px;
+        margin-bottom: 5px;
+    }
+}
+.project-stats {
+    display: flex;
+    flex-direction: row;
+    & > * {
+        margin: 20px;
+        margin-top: 0px;
     }
 }
 .layout {

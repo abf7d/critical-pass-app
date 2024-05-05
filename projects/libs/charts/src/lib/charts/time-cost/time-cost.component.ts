@@ -1,7 +1,9 @@
-import { Component, ElementRef, inject, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-// import { TimeCostFactoryService } from './time-cost-factory/time-cost-factory.service';
+import { Component, ElementRef, Inject, inject, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TimeCostUiService } from './time-cost-ui/time-cost-ui.service';
-
+import { EVENT_SERVICE_TOKEN, EventService } from '@critical-pass/shared/data-access';
+import * as CONST from '../../constants/constants';
+import { filter, Subscription } from 'rxjs';
+import { TimeCostPoint } from '../../../../../project/types/src/lib/planning';
 @Component({
     selector: 'cp-time-cost',
     template: `
@@ -19,9 +21,10 @@ export class TimeCostComponent implements OnInit {
     @Input() width!: number;
     @Input() height!: number;
     @ViewChild('chart', { static: true }) chart!: ElementRef;
+    private sub!: Subscription;
     private ui: TimeCostUiService;
 
-    constructor() {
+    constructor(@Inject(EVENT_SERVICE_TOKEN) private eventService: EventService) {
         this.ui = inject(TimeCostUiService);
     }
 
@@ -31,9 +34,17 @@ export class TimeCostComponent implements OnInit {
 
     public ngOnInit(): void {
         this.ui.init(this.width, this.height, this.id, this.chart.nativeElement);
+        this.sub = this.eventService
+            .get<TimeCostPoint[]>(CONST.ASSIGN_TIMECOST_POINTs)
+            .pipe(filter(x => !!x))
+            .subscribe(timeCostPoints => {
+                this.ui.clearChart(timeCostPoints);
+                this.ui.drawChart(timeCostPoints);
+            });
     }
 
     public ngOnDestroy() {
         this.ui.destroy();
+        this.sub?.unsubscribe();
     }
 }

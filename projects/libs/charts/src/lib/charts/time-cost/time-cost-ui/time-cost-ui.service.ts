@@ -55,23 +55,7 @@ export class TimeCostUiService {
 
     private createChart(historyArray: TreeNode[]): void {
         this.getTimeCostForCompletedPoints(historyArray).then(timeCostPoints => {
-            const isEmpty = timeCostPoints.length === 0;
-            this.st.mainG.selectAll('*').remove();
-            this.st.svg.select('g.empty-msg').remove();
-            if (isEmpty) {
-                const message = 'No data exists for Time Cost curve';
-                this.st.svg.attr('transform', null);
-                this.st.svg
-                    .append('g')
-                    .attr('class', 'empty-msg')
-                    .append('text')
-                    .attr('class', 'missing-data')
-                    .attr('y', this.st.innerHeight! / 3)
-                    .attr('x', this.st.innerWidth! / 2 + 100)
-                    .style('text-anchor', 'end')
-                    .text(message);
-                return;
-            }
+            this.clearChart(timeCostPoints);
             this.drawChart(timeCostPoints);
         });
     }
@@ -95,6 +79,7 @@ export class TimeCostUiService {
                     }
                 });
                 this.eventService.get(CONST.ASSIGN_COMPLETED_PROJECTS).next(calculatedProjects);
+                this.eventService.get(CONST.ASSIGN_TIMECOST_POINTs).next(timeCostPoints);
                 resolve(timeCostPoints);
             });
         });
@@ -133,8 +118,26 @@ export class TimeCostUiService {
             .attr('text-anchor', 'middle')
             .attr('transform', 'translate(-40,' + this.st.innerHeight! / 2 + ') rotate(270)');
     }
-
-    private drawChart(timeCostPoints: TimeCostPoint[]) {
+    public clearChart(timeCostPoints: TimeCostPoint[]) {
+        const isEmpty = timeCostPoints.length === 0;
+        this.st.mainG.selectAll('*').remove();
+        this.st.svg.select('g.empty-msg').remove();
+        if (isEmpty) {
+            const message = 'No data exists for Time Cost curve';
+            this.st.svg.attr('transform', null);
+            this.st.svg
+                .append('g')
+                .attr('class', 'empty-msg')
+                .append('text')
+                .attr('class', 'missing-data')
+                .attr('y', this.st.innerHeight! / 3)
+                .attr('x', this.st.innerWidth! / 2 + 100)
+                .style('text-anchor', 'end')
+                .text(message);
+            return;
+        }
+    }
+    public drawChart(timeCostPoints: TimeCostPoint[]) {
         this.st.mainG.selectAll('*').remove();
         const xScale = d3
             .scaleLinear()
