@@ -44,6 +44,15 @@ export class DashboardService {
         this._cache.set(project.profile.id, project);
         this._activeProject.next(project);
     }
+    public onDestroy() {
+        const cacneKeys = Array.from(this._cache.keys());
+        cacneKeys.forEach(key => {
+            this._cache.delete(key);
+        });
+        this._secondaryProject.next(null);
+        this._history = [];
+        this._library.next([]);
+    }
 }
 /*
  private history = {

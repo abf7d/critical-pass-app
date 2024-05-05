@@ -16,12 +16,8 @@ export class EventService {
         return item as BehaviorSubject<T>;
     }
     onDestroy() {
-        const eventServiceKeys = Object.keys(this.cache);
+        const eventServiceKeys = Array.from(this.cache.keys());
         eventServiceKeys.forEach(key => {
-            const bs = this.cache.get(key);
-            if (bs) {
-                bs.unsubscribe();
-            }
             this.cache.delete(key);
         });
     }
