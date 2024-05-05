@@ -7,6 +7,12 @@ import { TreeNode } from '@critical-pass/project/types';
 export class ProjectTreeNodeSerializerService {
     fromJson(json?: any): TreeNode {
         json = json ?? {};
+        let metadata = json?.metadata ?? {};
+        if (!metadata) {
+            metadata = { assignmentCompleted: false, time: null, cost: null };
+        } else {
+            metadata = { assignmentCompleted: metadata.assignmentCompleted ?? false, time: metadata.time ?? null, cost: metadata.cost ?? null };
+        }
         const obj: TreeNode = {
             name: json?.name ?? null,
             group: json?.group ?? null,

@@ -20,10 +20,30 @@
                     <cp-arrow-snapshot [project]="node.data!" [width]="300" [height]="200"></cp-arrow-snapshot>
                 </div>
                 <div class="project-stats">
-                    <div>Time:</div>
-                    <div>Cost:</div>
-                    <div>Resources:</div>
-                    <div>Risk:</div>
+                    <div>
+                        Time:
+                        <div>Duraton in Days {{node.metadata!.time}}</div>
+                        <div>Ealriest Finish Date {{node.data!.profile.staffing.earliestFinishDate}}</div>
+                        <div>LFT {{node.data!.profile.staffing.lft}}</div>
+                    </div>
+                    <div>
+                        Cost:
+                        <div>Calculated MD {{node.metadata!.cost}}</div>
+                        <div>Effort MM {{node.data!.profile.staffing.effortInMM}}</div>
+                        <div>Direct Cost</div>
+                        <div>Indirect Cost</div>
+                    </div>
+                    <div>
+                        Resources:
+                        <div>Average Staffing --</div>
+                        <div>Resource Pool {{node.data!.resources.length}}</div>
+                    </div>
+                    <div>
+                        Risk:
+                        <div>Criticality {{node.data!.profile.risk.criticalityRisk}}</div>
+                        <div>Activity {{node.data!.profile.risk.activityRisk}}</div>
+                        <div>Fibonacci {{node.data!.profile.risk.fibonacciRisk}}</div>
+                    </div>
                 </div>
             </div>
         </div>

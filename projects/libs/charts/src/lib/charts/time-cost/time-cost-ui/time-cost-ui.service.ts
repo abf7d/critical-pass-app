@@ -84,9 +84,11 @@ export class TimeCostUiService {
                         if (project) {
                             this.fileCompiler.compileProjectFromFile(project);
                             this.pcdAutoGen.autogeneratePcds(project);
-                            const point = this.getTimeCostPoint(project, nodes[i].id);
+                            const treeNode = nodes[i];
+                            const point = this.getTimeCostPoint(project, treeNode.id);
                             timeCostPoints.push(point);
-                            const completedNode = this.treeSerializer.fromJson(nodes[i]);
+                            treeNode.metadata = { assignmentCompleted: true, time: point.time, cost: point.cost };
+                            const completedNode = this.treeSerializer.fromJson(treeNode);
                             completedNode.data = project;
                             calculatedProjects.push(completedNode);
                         }

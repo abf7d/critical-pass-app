@@ -6,6 +6,6 @@
     <div [hidden]="!fileActions">
         <a href="javascript:void(0)" (click)="downloadHistory()">Download</a> &nbsp; | &nbsp;
         <a href="javascript:void(0)" (click)="uploadFile.value = ''; uploadFile.click()">Load File</a>
-        <input class="file-input" type="file" #uploadFile (change)="loadFile($event.target)" accept=".xlsx" />
+        <input class="file-input" type="file" #uploadFile (change)="loadFile($event.target)" accept=".json" />
     </div>
 </div>
