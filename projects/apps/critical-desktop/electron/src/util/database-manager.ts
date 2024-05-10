@@ -4,12 +4,8 @@ const verbose = sqlite3.verbose();
 class DatabaseManager {
     private static instance: DatabaseManager;
     private db: sqlite3.Database;
-    // Hardcoded or statically defined database path
-    private static dbPath: string | null = null; //'./critical-pass-database.db';
-    // set dbPath(path: string) {
-    //     DatabaseManager.dbPath = path;
-    // }
-    // Private constructor to prevent direct instantiation
+    private static dbPath: string | null = null;
+
     private constructor(path: string) {
         DatabaseManager.dbPath = path;
         this.db = new sqlite3.Database(DatabaseManager.dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err: Error | null) => {

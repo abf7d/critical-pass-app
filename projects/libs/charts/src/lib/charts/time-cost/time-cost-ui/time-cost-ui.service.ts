@@ -3,7 +3,7 @@ import { TimeCostState, TimeCostStateFactory } from '../time-cost-state/time-cos
 import * as d3 from 'd3';
 import { forkJoin, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Project, TimeCostPoint, TreeNode } from '@critical-pass/project/types';
+import { Integration, Project, TimeCostPoint, TreeNode } from '@critical-pass/project/types';
 import { DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN, ZametekApiService } from '@critical-pass/shared/data-access';
 import { CompletionNodeCalcService } from '../../../services/completion-node-calc/completion-node-calc.service';
 import { ProjectCompilerService } from '@critical-pass/project/processor';
@@ -64,8 +64,8 @@ export class TimeCostUiService {
             this.getTimeCostForCompletedPoints(historyArray)
                 .then(timeCostPoints => {
                     this.initSubscriptions();
-                    this.clearChart(timeCostPoints);
-                    this.drawChart(timeCostPoints);
+                    const empty = this.clearChart(timeCostPoints);
+                    if (!empty) this.drawChart(timeCostPoints);
                     resolve(timeCostPoints);
                 })
                 .catch(error => reject(error));
@@ -76,30 +76,34 @@ export class TimeCostUiService {
         return new Promise((resolve, reject) => {
             const nodes = this.completion.getCompletedNodes(historyArray);
             const apiCalls = nodes.map(node => this.zametekApi.compileArrowGraph(node.data!));
-            forkJoin(apiCalls).subscribe(
-                results => {
-                    const calculatedProjects: TreeNode[] = [];
-                    const timeCostPoints: TimeCostPoint[] = [];
-                    results.forEach((project, i) => {
-                        if (project) {
-                            this.fileCompiler.compileProjectFromFile(project);
-                            this.pcdAutoGen.autogeneratePcds(project);
-                            const treeNode = nodes[i];
-                            const point = this.getTimeCostPoint(project, treeNode.id);
-                            timeCostPoints.push(point);
-                            treeNode.metadata = { assignmentCompleted: true, time: point.time, cost: point.cost };
-                            const completedNode = this.treeSerializer.fromJson(treeNode);
-                            completedNode.data = project;
-                            calculatedProjects.push(completedNode);
-                        }
-                    });
-                    this.eventService.get(CONST.ASSIGN_COMPLETED_PROJECTS).next(calculatedProjects);
-                    this.eventService.get(CONST.ASSIGN_TIMECOST_POINTS).next(timeCostPoints);
-                    this.prevTimeCostPoints = timeCostPoints;
-                    resolve(timeCostPoints);
-                },
-                (error: any) => reject(error),
-            );
+            if (apiCalls.length > 0) {
+                forkJoin(apiCalls).subscribe(
+                    results => {
+                        const calculatedProjects: TreeNode[] = [];
+                        const timeCostPoints: TimeCostPoint[] = [];
+                        results.forEach((project, i) => {
+                            if (project) {
+                                this.fileCompiler.compileProjectFromFile(project);
+                                this.pcdAutoGen.autogeneratePcds(project);
+                                const treeNode = nodes[i];
+                                const point = this.getTimeCostPoint(project, treeNode.id);
+                                timeCostPoints.push(point);
+                                treeNode.metadata = { assignmentCompleted: true, time: point.time, cost: point.cost };
+                                const completedNode = this.treeSerializer.fromJson(treeNode);
+                                completedNode.data = project;
+                                calculatedProjects.push(completedNode);
+                            }
+                        });
+                        this.eventService.get(CONST.ASSIGN_COMPLETED_PROJECTS).next(calculatedProjects);
+                        this.eventService.get(CONST.ASSIGN_TIMECOST_POINTS).next(timeCostPoints);
+                        this.prevTimeCostPoints = timeCostPoints;
+                        resolve(timeCostPoints);
+                    },
+                    (error: any) => reject(error),
+                );
+            } else {
+                resolve([]);
+            }
         });
     }
 
@@ -118,7 +122,7 @@ export class TimeCostUiService {
     }
 
     private getTimeCostPoint(project: Project, nodeId: number): TimeCostPoint {
-        const sortedIntegrations = project.integrations.sort((a, b) => a.eft - b.eft);
+        const sortedIntegrations = project.integrations.sort((a: Integration, b: Integration) => a.eft - b.eft);
         const last = project.integrations[sortedIntegrations.length - 1];
         let time = null;
         if (last.eft > 0) {
@@ -153,7 +157,7 @@ export class TimeCostUiService {
             .attr('text-anchor', 'middle')
             .attr('transform', 'translate(-40,' + this.st.innerHeight! / 2 + ') rotate(270)');
     }
-    public clearChart(timeCostPoints: TimeCostPoint[]) {
+    public clearChart(timeCostPoints: TimeCostPoint[]): boolean {
         const isEmpty = timeCostPoints.length === 0;
         this.st.mainG.selectAll('*').remove();
         this.st.svg.select('g.empty-msg').remove();
@@ -169,8 +173,9 @@ export class TimeCostUiService {
                 .attr('x', this.st.innerWidth! / 2 + 100)
                 .style('text-anchor', 'end')
                 .text(message);
-            return;
+            return true;
         }
+        return false;
     }
     public drawChart(timeCostPoints: TimeCostPoint[]) {
         this.st.mainG.selectAll('*').remove();
