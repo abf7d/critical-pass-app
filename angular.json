@@ -70,6 +70,27 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/libs/shared/environments/src/lib/environment.ts",
+                  "with": "projects/libs/shared/environments/src/lib/environment.staging.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kb",
+                  "maximumError": "8kb"
+                }
+              ],
+              "outputHashing": "all"
             }
           },
           "defaultConfiguration": "production"
@@ -82,6 +103,9 @@
             },
             "development": {
               "buildTarget": "critical-web:build:development"
+            },
+            "staging": {
+              "buildTarget": "critical-web:build:staging"
             }
           },
           "defaultConfiguration": "development"
@@ -110,6 +134,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     },
