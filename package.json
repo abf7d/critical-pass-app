@@ -8,6 +8,7 @@
         "visual-test": "sh run_visual_test.sh",
         "remove-test": "docker rm -f test-run",
         "deploy": "ng deploy critical-web --base-href=\"https://abf7d.github.io/critical-pass-app/\" --no-nojekyll --dir=dist/critical-web --no-build",
+        "deploy2": "ng deploy critical-web --no-nojekyll --dir=dist/critical-web --no-build --cname=criticalpass.org",
         "deploy:build": "ng build critical-web --configuration=staging --base-href=\"https://abf7d.github.io/critical-pass-app/\"",
         "app-live-docker": "docker run -it --rm -v \"//$(pwd):/app\" -v \"/app/node_modules\" --name test-run critical-pass-app:latest",
         "build:desktop": "ng build --project critical-desktop --configuration production",
