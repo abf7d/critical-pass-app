@@ -69,7 +69,12 @@ export class MsalService {
                             this.authState.isAuthorized$.next(isAuthorized);
                         },
                         reason => {
-                            console.error(reason);
+                            if (reason.status === 401) {
+                                this.authState.isAuthorized$.next(false);
+                                this.authState.isLoggedIn$.next(false);
+                                return;
+                            }
+                            console.error('claims error:', reason);
                             this.authState.loginError$.next(true);
                         },
                     );

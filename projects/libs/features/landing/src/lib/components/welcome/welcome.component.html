@@ -24,6 +24,7 @@
             </div>
             <div class="not-authorized" [hidden]="isAuthorized || loginError">
                 <h4 class="alert-text">Not Authorized</h4>
+                <div>You have created an account but still need to request authorization.</div>
                 <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
                 <button class="logout-btn" (click)="logout()">Logout</button>
             </div>

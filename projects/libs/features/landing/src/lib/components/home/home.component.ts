@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     public ngOnInit() {
         this.isLoggedIn$.subscribe((loggedIn: boolean | null) => {
             this.name = this.authService.getUserName() ?? '';
-            this.isLoggedIn = !this.authService.accessExpired();
+            this.isLoggedIn = !!loggedIn && !this.authService.accessExpired();
         });
     }
 
