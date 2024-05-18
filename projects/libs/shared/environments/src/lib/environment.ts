@@ -7,7 +7,7 @@ export const environment = {
     production: false,
     mappingApi: 'https://localhost:44342/api/', //'https://criticalpathapi.azurewebsites.net/api/',  // 'http://localhost:60739/api/', //
     projectBuilderApi: 'https://localhost:44393/api/',
-    authority: 'https://criticalplayground.b2clogin.com/criticalplayground.onmicrosoft.com/B2C_1_DefaultSignInSignUp',
+    authority: 'https://criticalplayground.b2clogin.com/criticalplayground.onmicrosoft.com/B2C_1_DefaultSignInSignUp2',
     knownAuthorities: ['criticalplayground.b2clogin.com'],
     redirectUri: 'https://localhost:4200/welcome',
     cacheLocation: 'sessionStorage',

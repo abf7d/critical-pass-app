@@ -7,7 +7,7 @@
         "docker-build": "docker build -t critical-pass-app:latest .",
         "visual-test": "sh run_visual_test.sh",
         "remove-test": "docker rm -f test-run",
-        "deploy": "ng deploy critical-web --no-nojekyll --dir=dist/critical-web --no-build --cname=criticalpass.org",
+        "deploy": "ng deploy critical-web --no-nojekyll --dir=dist/critical-web --no-build --cname=criticalpass.io",
         "deploy:build": "ng build critical-web --configuration=staging",
         "app-live-docker": "docker run -it --rm -v \"//$(pwd):/app\" -v \"/app/node_modules\" --name test-run critical-pass-app:latest",
         "build:desktop": "ng build --project critical-desktop --configuration production",

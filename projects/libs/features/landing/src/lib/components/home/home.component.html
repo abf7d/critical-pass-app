@@ -9,17 +9,17 @@
             <h1 class="app-name">Critical Pass</h1>
             <p>design • calculate • manage</p>
         </div>
-        <div class="signin-up" [hidden]="isLoggedIn || thirdPartyCookiesBlocked">
+        <div class="signin-up" [hidden]="isLoggedIn">
             <button class="login-btn" (click)="login()">Sign in / Sign up</button>
-        </div>
-        <div class="cookie-problems" [hidden]="!thirdPartyCookiesBlocked">
-            Your browser is blocking third party cookies. Please see your browser settings to allow and enable login.
         </div>
         <div class="cookie-problems" [hidden]="online$ | async">You are offline. Check your connection.</div>
         <div class="logged-in" [hidden]="!isLoggedIn">
             <h4 class="alert-text">{{ name }}</h4>
             <button class="lib-btn" [routerLink]="['/welcome']">Get Started</button>
             <button class="logout-btn" (click)="logout()">Logout</button>
+            <div class="cookie-problems cookie-msg" [hidden]="!thirdPartyCookiesBlocked">
+                Your browser is blocking third party cookies. Please see your browser settings to allow and enable login.
+            </div>
         </div>
         <div class="donate">
             <a class="donate-btn" [routerLink]="['/donate']">Donate</a>

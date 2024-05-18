@@ -14,9 +14,6 @@
                 <div class="loader-txt">Loading...</div>
                 <div class="loader"></div>
             </div>
-            <div class="cookie-problems" [hidden]="!thirdPartyCookiesBlocked">
-                Your browser is blocking third party cookies. Please see your browser settings to allow and enable login.
-            </div>
             <div class="cookie-problems" [hidden]="!loginError">
                 We encountered difficulties logging on.
                 <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> for assistance</div>
@@ -32,6 +29,10 @@
                 <h4 class="alert-text">{{ name }}</h4>
                 <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">View Library</button>
                 <button class="logout-btn" (click)="logout()">Logout</button>
+                <div class="cookie-problems cookie-msg" [hidden]="!thirdPartyCookiesBlocked">
+                    Your browser is blocking third party cookies. If you experience problems logging in please see your browser settings to allow and enable
+                    login.
+                </div>
             </div>
             <div class="donate">
                 <a class="donate-btn" [routerLink]="['/donate']">Donate</a>
