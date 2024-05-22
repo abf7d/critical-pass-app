@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '@critical-pass/features/landing';
-import { WelcomeComponent, AboutComponent, TutorialsComponent, DonateComponent } from '@critical-pass/features/landing';
+import { StartComponent, WelcomeComponent, AboutComponent, TutorialsComponent, DonateComponent } from '@critical-pass/features/landing';
 import { AuthorizedUserGuard } from '@critical-pass/auth';
 
 export const routes: Routes = [
@@ -9,6 +9,10 @@ export const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent,
+    },
+    {
+        path: 'start',
+        component: StartComponent,
     },
     {
         path: 'welcome',
