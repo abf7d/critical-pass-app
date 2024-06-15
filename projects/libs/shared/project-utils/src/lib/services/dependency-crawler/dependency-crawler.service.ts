@@ -14,7 +14,7 @@ export class DependencyCrawlerService {
         }
     }
     public getActivityDependencies(project: Project, activity: Activity): number[] {
-        if (activity.chartInfo.milestoneNodeId !== undefined) {
+        if (activity.chartInfo.milestoneNodeId !== undefined && activity.chartInfo.milestoneNodeId !== null) {
             const milestoneDeps = this.setMilestoneDependencies(project, activity.chartInfo.milestoneNodeId);
             return milestoneDeps;
         }
