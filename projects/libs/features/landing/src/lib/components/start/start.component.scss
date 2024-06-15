@@ -1,66 +1,259 @@
 * {
     color: white;
-    div, h1,h4,span,p {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
+    div,
+    h1,
+    h4,
+    span,
+    p {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol';
     }
-  }
-  .background-container{
+    font-size: 1.2rem;
+}
+.background-container {
     background-image: url('/assets/img/demo.jpg');
     background-position: center center; /* Centers the image horizontally and vertically */
     background-size: cover;
     // transform: rotate(180deg); /* Rotates the entire element by 180 degrees */
-    transform-origin: center; 
-  }
-  .feature-title{
+    transform-origin: center;
+}
+.feature-title {
     color: #222;
     // font-size: 2.5rem;
     // font-weight: 600;
     // padding-top: 20px;
     margin-bottom: 30px;
     font-size: 2.4rem;
-    padding-left: 16px
-  }
-  .feature {
-    display:flex;
+    padding-left: 16px;
+}
+.feature {
+    display: flex;
     align-items: baseline;
     justify-content: center;
-  }
-  i {
-    font-size: 4rem;
-    color: black;
-  }
-  .mid-content-features {
+    i {
+        font-size: 4rem;
+        color: black;
+    }
+}
+
+
+.mid-content-features {
     display: flex;
     & > div {
-      flex: 1;
-      padding: 20px;
-      text-align: center;
+        // flex: 1;
+        padding: 20px;
+        // text-align: center;
     }
     color: #222;
+    margin: 40px;
+    padding-top: 110px;
+    padding-bottom: 110px;
+    justify-content: space-around;
+    // padding-left: 130px;
+}
+.mid-description {
+  color: #222;
+  text-align: left;
+  width: 394px;
+}
+.sign-up {
+    display: flex;
+    justify-content: flex-start;
+}
 
-  }
-  .stats {
+g circle.dummy {
+    stroke-dasharray: 7, 3;
+    stroke-width: 2.5px;
+}
+path.link {
+    fill: none;
+    stroke-width: 4px;
+    cursor: default;
+}
+text {
+    // text-anchor: middle;
+    // font-weight: bold;
+    font-size: 0.9rem;
+}
+.path {
+    display: flex;
+}
+.clients {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 20px;
     font-size: 1.5rem;
     font-weight: 600;
-  }
-  .stats *, .ideas * {
-    color:#222;
-  }
-  .mid-area{
+    & > * {
+        color: #222;
+    }
+}
+.my-vis {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 45px;
+    padding-top: 10px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+    & * {
+        font-size: 1.9rem;
+    }
+}
+.link text {
+    stroke-width: 0.5px;
+}
+.top-menu {
+    justify-content: space-between;
+    height: 85px;
+    top: 0px;
+    left: 0px;
+    background-color: #ebebeb;
+    padding-left: 45px;
+    padding-right: 45px;
+    display: flex;
+    align-items: center;
+    // font-size: 0.812rem;
+    color: black;
+    i {
+        padding-right: 10px;
+        color: black;
+    }
+    div {
+        color: #222;
+        // font-size: 2rem;
+        // font-weight: bold;
+    }
+    circle.node {
+        stroke-width: 1.5px;
+    }
+
+    .top-links {
+        display: flex;
+        justify-content: space-around;
+        gap: 15px;
+        & > div {
+            padding: 15px;
+        }
+    }
+    .logo {
+        display: flex;
+    }
+}
+.charts {
+    display: flex;
+    & > div {
+        flex: 1;
+        padding: 95px
+        // text-align: center;
+    }
+    // color: #222;
+    background-color: #aaa;
+    .left {
+        width: 200px;
+        background-color: #555;
+    }
+    height: 900px;
+    .vis-description {
+      width: 323px;
+    }
+    .monitor {
+      margin-top: 46px;
+    }
+    .donut {
+      margin-top: -120px;
+    }
+    .nest {
+      font-size: 1.9rem;
+      text-align: right;
+    }
+    .explore * {
+      font-size: 1.9rem;
+     
+    }
+    .explore {
+      margin-top: -46px;
+    }
+    .stacked {
+      margin-top: -55px;
+      padding-left: 51;
+    }
+}
+
+.stats,
+.phases {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.stats *,
+.ideas *,
+.phases * {
+    color: #222;
+}
+.phases {
+    // gap: 40px;
+    // width: 1304px;
+    gap: 20px;
+    justify-content: space-around;
+    padding-left: 134px;
+}
+.mid-area {
     // background-image: url('/assets/img/cp3-1.svg');
     // background-color: rgb(214 214 214);
-    padding: 41px;
+    // padding: 41px;
     height: 500px;
-    margin: 40px;
     background-repeat: no-repeat;
     background-position-x: right;
     background-color: white;
-  }
+}
+.stacked {
+    // width: 600px;
+}
+.external-links * {
+    color: black;
+}
+
+.calcs {
+    & * {
+        color: #222;
+    }
+    // display: flex;
+    & > div {
+        display: flex;
+        align-items: flex-end;
+        & > div {
+            align-items: flex-end;
+           
+        }
+    }
+    .focus {
+        font-size: 2.5rem;
+    }
+    .description {
+        // font-size: 1.5rem;
+        text-align: right;
+        padding-right: 5px;
+        margin-bottom: 5px;
+        div {
+          font-size: 1rem;
+        }
+    }
+}
+.lifecycle {
+  width: 946px;
+  padding: 11px;
+}
+.mid-content-features > div {
+  display: flex;
+  align-items: center;
+}
+
 //   .title{transform: rotate(180deg); /* Rotates the entire element by 180 degrees */
 //     transform-origin: center; }
 .title {
@@ -73,29 +266,29 @@
         background: #444;
     }
 }
-  .cookie-banner {
-    height: 85px;
-    top: 0px;
-    left: 0px;
-    background-color: #ebebeb;
-    padding-left: 30px;
-    display: flex;
-    align-items: center;
-    font-size: 0.812rem;
-    color: black;
-    i {
-      padding-right: 10px;
-      color: black;
-    }
-    div {
-        color:#222;
-        font-size: 2rem;
-        font-weight: bold;
-    }
-    
-  }
-  
-  .background-container {
+// .cookie-banner {
+//   height: 85px;
+//   top: 0px;
+//   left: 0px;
+//   background-color: #ebebeb;
+//   padding-left: 30px;
+//   display: flex;
+//   align-items: center;
+//   // font-size: 0.812rem;
+//   color: black;
+//   i {
+//     padding-right: 10px;
+//     color: black;
+//   }
+//   div {
+//       color:#222;
+//       // font-size: 2rem;
+//       font-weight: bold;
+//   }
+
+// }
+
+.background-container {
     width: 100vw;
     height: calc(100vh - 50px);
     min-height: 800px;
@@ -104,38 +297,73 @@
     flex-direction: column;
     align-items: center;
     text-shadow: 0 0.05rem 0.04rem rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 0 110rem rgba(0, 0, 0, 0.3),
-      0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
-  }
-  .background-container > * {
+    box-shadow:
+        inset 0 0 110rem rgba(0, 0, 0, 0.3),
+        0 4px 8px 0 rgba(0, 0, 0, 0.05),
+        0 6px 20px 0 rgba(0, 0, 0, 0.39);
+
+    .external-links {
+        display: flex;
+        justify-content: center;
+        padding-top: 92px;
+        & * {
+            color: white;
+        }
+        i {
+            font-size: 2rem;
+            padding-right: 5px;
+        }
+        & > div {
+            padding: 13px;
+            font-size: 2rem;
+        }
+    }
+}
+.background-container > * {
     text-align: center;
-  }
-  .title {
+}
+.mid-content {
+    circle {
+        fill: white;
+    }
+    text {
+        stroke: black;
+    }
+}
+.title {
     background-color: #555;
     width: 400px;
     padding-top: 53%;
     .app-name {
-      font-weight: 600 !important;
-      text-shadow: 1px 1px #7b7b7b;
-      font-family: europa, sans-serif;
-      font-size: 3.75rem;
-      color: white;
-      padding-top: 40px;
+        font-weight: 600 !important;
+        text-shadow: 1px 1px #7b7b7b;
+        font-family: europa, sans-serif;
+        font-size: 3.75rem;
+        color: white;
+        padding-top: 40px;
     }
     p {
-      padding-top: 10px;
-      font-size: 1.375rem;
-      font-weight: 600;
-      color: #fff;
-      text-shadow: 1px 1px #797979;
-      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-        Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
-        Segoe UI Symbol;
+        padding-top: 10px;
+        font-size: 1.375rem;
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 1px 1px #797979;
+        font-family:
+            -apple-system,
+            BlinkMacSystemFont,
+            Segoe UI,
+            Roboto,
+            Helvetica Neue,
+            Arial,
+            sans-serif,
+            Apple Color Emoji,
+            Segoe UI Emoji,
+            Segoe UI Symbol;
     }
-  }
-  button {
+}
+button {
     font-weight: 500;
-  
+
     color: #fff;
     background-size: 50px;
     padding-left: 16px;
@@ -147,90 +375,93 @@
     font-size: 1rem;
     height: 45px;
     width: 165px;
-  
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  .login-btn {
+
+    transition:
+        color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+}
+.login-btn {
     background-color: purple;
     &:hover {
-      background-color: #bf08bf;
+        background-color: #bf08bf;
     }
-  }
-  .lib-btn {
+}
+.lib-btn {
     background-color: #a61a19;
     &:hover {
-      background-color: #df312f;
+        background-color: #df312f;
     }
-  }
-  .logout-btn {
+}
+.logout-btn {
     background-color: #666;
     &:hover {
-      background-color: #f9f9f9;
-      color: #333;
+        background-color: #f9f9f9;
+        color: #333;
     }
-  }
-  .donate {
+}
+.donate {
     padding-top: 30px;
-  }
-  .donate-btn {
+}
+.donate-btn {
     border: 1px solid #fff;
     border-radius: 5px;
     padding: 6px 10px 10px;
     text-decoration: none;
     color: white;
     font-size: 0.875rem;
-  }
-  .logged-in,
-  .not-authorized {
+}
+.logged-in,
+.not-authorized {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .contact {
+}
+.contact {
     padding-bottom: 28px;
     padding-top: 13px;
-  }
-  .signin-up {
+}
+.signin-up {
     padding-top: 37px;
-  }
-  .cookie-problems,
-  .loading-problems,
-  .not-authorized,
-  .logged-in {
+}
+.cookie-problems,
+.loading-problems,
+.not-authorized,
+.logged-in {
     padding-top: 20px;
-  }
-  .alert-text {
+}
+.alert-text {
     font-size: 1.5rem;
     color: #cbcbcb;
     font-weight: 500;
-  }
-  .loading-problems {
+}
+.loading-problems {
     display: flex;
     flex-direction: column;
     align-items: center;
     & > div {
-      padding-bottom: 20px;
+        padding-bottom: 20px;
     }
-  }
-  .cookie-msg {
+}
+.cookie-msg {
     position: absolute;
     width: 325px;
     top: 222px;
-  }
-  .logged-in {
+}
+.logged-in {
     position: relative;
-  }
-  
-  .loader-txt {
+}
+
+.loader-txt {
     font-size: 1.125rem;
     text-align: center;
     padding-top: 35px;
-  }
-  
-  .loader,
-  .loader:before,
-  .loader:after {
+}
+
+.loader,
+.loader:before,
+.loader:after {
     border-radius: 50%;
     width: 2.5em;
     height: 2.5em;
@@ -238,8 +469,8 @@
     animation-fill-mode: both;
     -webkit-animation: load7 1.8s infinite ease-in-out;
     animation: load7 1.8s infinite ease-in-out;
-  }
-  .loader {
+}
+.loader {
     color: #222;
     font-size: 0.625rem;
     margin: 80px auto;
@@ -251,48 +482,47 @@
     -webkit-animation-delay: -0.16s;
     animation-delay: -0.16s;
     margin-top: 0px;
-  }
-  .loader:before,
-  .loader:after {
-    content: "";
+}
+.loader:before,
+.loader:after {
+    content: '';
     position: absolute;
     top: 0;
-  }
-  .loader:before {
+}
+.loader:before {
     left: -3.5em;
     -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
-  }
-  .loader:after {
+}
+.loader:after {
     left: 3.5em;
-  }
-  @-webkit-keyframes load7 {
+}
+@-webkit-keyframes load7 {
     0%,
     80%,
     100% {
-      box-shadow: 0 2.5em 0 -1.3em;
+        box-shadow: 0 2.5em 0 -1.3em;
     }
     40% {
-      box-shadow: 0 2.5em 0 0;
+        box-shadow: 0 2.5em 0 0;
     }
-  }
-  @keyframes load7 {
+}
+@keyframes load7 {
     0%,
     80%,
     100% {
-      box-shadow: 0 2.5em 0 -1.3em;
+        box-shadow: 0 2.5em 0 -1.3em;
     }
     40% {
-      box-shadow: 0 2.5em 0 0;
+        box-shadow: 0 2.5em 0 0;
     }
-  }
-  .loader-txt {
+}
+.loader-txt {
     font-size: 18px;
     text-align: center;
-  }
-  
-  // [hidden] attribute doesn't work with flexbox
-  [hidden] {
+}
+
+// [hidden] attribute doesn't work with flexbox
+[hidden] {
     display: none;
-  }
-  
+}
