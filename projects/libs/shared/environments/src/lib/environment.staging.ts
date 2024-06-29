@@ -8,7 +8,7 @@ export const environment = {
     mappingApi: 'https://criticalpathapi.azurewebsites.net/api/', // for msproj files and building arrow diagram
     authority: 'https://criticalplayground.b2clogin.com/criticalplayground.onmicrosoft.com/B2C_1_DefaultSignInSignUp2',
     knownAuthorities: ['criticalplayground.b2clogin.com'],
-    redirectUri: 'https://criticalpass.io/welcome',
+    redirectUri: 'https://app.criticalpass.io/welcome',
     cacheLocation: 'sessionStorage',
     loginScopes: ['openid', 'offline_access'],
     exposedApiScope: 'https://criticalplayground.onmicrosoft.com/api/read',
