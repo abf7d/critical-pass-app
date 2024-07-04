@@ -23,6 +23,7 @@ export class WelcomeComponent implements OnInit {
     public showLoading: boolean;
     public isAuthorized$: BehaviorSubject<boolean | null>;
     public loginError$: BehaviorSubject<boolean | null>;
+    public activeVideo: string = 'arrow1';
 
     constructor(
         private authService: MsalService,

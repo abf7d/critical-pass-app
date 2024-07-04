@@ -16,10 +16,12 @@ import {
 } from '@critical-pass/shared/data-access';
 import { routes } from '@critical-pass/web-lib';
 import { AuthHttpInterceptor } from '../../../../libs/auth/src/lib/interceptor/auth-http-interceptor';
+import { provideClientHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
+        provideClientHydration(),
         ...appBaseConfig.providers,
         { provide: PROJECT_API_TOKEN, useClass: ProjectApiService },
         { provide: HISTORY_API_TOKEN, useClass: HistoryApiService },
