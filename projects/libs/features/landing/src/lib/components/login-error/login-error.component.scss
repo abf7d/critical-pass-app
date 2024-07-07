@@ -280,28 +280,13 @@ input {
     flex-direction: column;
     align-items: flex-end;
 }
-.video-list {
+.actions {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     margin-bottom: 20px;
     justify-content: flex-end;
     margin-bottom: 20px;
-    border-left: solid 1px #aaa;
-    & > div {
-      padding: 7px;
-    }
-    .selected {
-      // background-color: #fbf583;
-      border-radius: 4px;
-      border-top: 1px solid #565656;
-      border-bottom: 1px solid #565656;
-      border-right: 1px solid #565656;
-      border-left: 3px solid white;
-      color: #333;
-      margin-left: -3px;
-    }
-  }
+}
 .page {
     height: 100vh;
 }
@@ -342,8 +327,3 @@ main {
 }
 
 .video-title { padding-bottom: 15px;}
-.video-ui {position: relative;}
-.menu {
-  position: absolute;
-  right: -85px;
-}

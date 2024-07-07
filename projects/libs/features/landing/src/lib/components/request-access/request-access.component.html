@@ -1,0 +1,81 @@
+<div class="page">
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <img class="logo-img logo-dark" src="assets/img/logo-dark.png" alt="brand-logo" />
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <div>
+                        <div>Welcome</div>
+                        <h4 class="alert-text">You are not yet authorized</h4>
+                        <div>You have created an account but still need to request authorization.</div>
+                        <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
+                        <button class="logout-btn" (click)="logout()">Logout</button>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="card rounded-2">
+                        <div class="card-body">
+                            <div class="video-title">Request Access</div>
+                            <form data-action="contact-us" method="post" class="form-submit-init" novalidate="true">
+                                <div class="row g-gs">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Full Name</label>
+                                            <div class="form-control-wrap">
+                                                <input type="text" name="name" class="form-control" placeholder="Enter your name" required="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Email</label>
+                                            <div class="form-control-wrap">
+                                                <input type="email" name="email" class="form-control" placeholder="Enter your email" required="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Phone</label>
+                                            <div class="form-control-wrap">
+                                                <input type="text" name="phone" class="form-control" placeholder="(555) 222-1234" required="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="form-label-group">
+                                                <label class="form-label">Tell us a bit about your query</label>
+                                                <span> <span id="char-count">0</span>/ <span id="char-max" data-char-max="255">255</span> </span>
+                                            </div>
+                                            <div class="form-control-wrap">
+                                                <textarea
+                                                    id="textarea-box"
+                                                    name="message"
+                                                    class="form-control"
+                                                    placeholder="Enter your message"
+                                                    required=""
+                                                ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group msg">
+                                            <button class="btn btn-primary" type="submit" id="submit-btn">Send Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

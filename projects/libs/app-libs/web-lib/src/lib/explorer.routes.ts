@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent, LoginComponent } from '@critical-pass/features/landing';
+import { Routes } from '@angular/router';
+import { HomeComponent, LoginComponent, LoginErrorComponent, LoginRedirectComponent, RequestAccessComponent } from '@critical-pass/features/landing';
 import { WelcomeComponent, AboutComponent, TutorialsComponent, DonateComponent } from '@critical-pass/features/landing';
-import { AuthorizedUserGuard } from '@critical-pass/auth';
+import { AuthorizedUserGuard, RedirectGuard } from '@critical-pass/auth';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +16,20 @@ export const routes: Routes = [
     {
         path: 'welcome',
         component: WelcomeComponent,
+        canActivate: [AuthorizedUserGuard],
+    },
+    {
+        path: 'login-redirect',
+        component: LoginRedirectComponent,
+        canActivate: [RedirectGuard],
+    },
+    {
+        path: 'request-access',
+        component: RequestAccessComponent,
+    },
+    {
+        path: 'login-error',
+        component: LoginErrorComponent,
     },
     {
         path: 'about',
@@ -66,10 +79,3 @@ export const routes: Routes = [
         canLoad: [AuthorizedUserGuard],
     },
 ];
-/*
-@NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
-})
-export class ExplorerRoutingModule {}
-*/

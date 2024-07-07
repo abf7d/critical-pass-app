@@ -1,9 +1,10 @@
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 import { AuthStateService, MsalService } from '@critical-pass/auth';
 import * as CONST from '../../constants';
+import { ClaimsApiService } from '@critical-pass/shared/data-access';
 @Component({
     selector: 'cp-welcome',
     templateUrl: './welcome.component.html',
@@ -29,6 +30,7 @@ export class WelcomeComponent implements OnInit {
         private authService: MsalService,
         private router: Router,
         private authStore: AuthStateService,
+        private claimsApi: ClaimsApiService,
     ) {
         this.isLoggedIn$ = this.authStore.isLoggedIn$;
         this.errorLoadingProject = false;
@@ -38,9 +40,32 @@ export class WelcomeComponent implements OnInit {
         this.isAuthorized = this.authService.isAuthorized();
         this.isAuthorized$ = this.authStore.isAuthorized$;
         this.loginError$ = this.authStore.loginError$;
+
+        console.log('hasClaims', this.authService.hasClaims(), 'hasError', this.authService.hasError(), 'isAuth', this.authService.isAuthorized());
     }
 
+    // check url for token on nginit or in constructor
+    // if there is a token, call getClaims if there isn't redirect to login
+    // When this page loads,show loading message
+    // The token should be extracted and the apge refreshed or togled visible I should make a call to get the claims
+    //
     public ngOnInit() {
+        // this.claimsApi.getClaims().subscribe(
+        //     claims => {
+        //         console.log(claims);
+        //     },
+        //     error => console.error(error),
+        // );
+        // if (!this.isAuthorized) {
+        //     this.router.navigate([CONST.HOME_ROUTE]);
+        // }
+        //check if url has token
+        // this.isAuthorized$.pipe(take(2)).subscribe((isAuthorized: boolean | null) => {
+        //     console.error('isAuthorized', isAuthorized);
+        //     if (!isAuthorized) {
+        //         this.router.navigate([CONST.HOME_ROUTE]);
+        //     }
+        // });
         this.loading = false;
         this.isLoggedIn$.subscribe((loggedIn: boolean | null) => {
             this.name = this.authService.getUserName() ?? '';

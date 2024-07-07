@@ -5,3 +5,6 @@ export * from './lib/components/tutorials/tutorials.component';
 export * from './lib/components/donate/donate.component';
 export * from './lib/components/about/about.component';
 export * from './lib/components/login/login.component';
+export * from './lib/components/login-redirect/login-redirect.component';
+export * from './lib/components/request-access/request-access.component';
+export * from './lib/components/login-error/login-error.component';

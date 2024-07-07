@@ -9,7 +9,7 @@ export const environment = {
     projectBuilderApi: 'https://localhost:44393/api/',
     authority: 'https://criticalplayground.b2clogin.com/criticalplayground.onmicrosoft.com/B2C_1_DefaultSignInSignUp2',
     knownAuthorities: ['criticalplayground.b2clogin.com'],
-    redirectUri: 'https://localhost:4200/welcome',
+    redirectUri: 'https://localhost:4200/login-redirect',
     cacheLocation: 'sessionStorage',
     loginScopes: ['openid', 'offline_access'],
     exposedApiScope: 'https://criticalplayground.onmicrosoft.com/api/read',

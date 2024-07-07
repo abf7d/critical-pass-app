@@ -135,4 +135,21 @@ export class MsalService {
     public hasError(): boolean {
         return this.claimsService.hasError();
     }
+
+    public ensureRedirectCompleted(): Promise<boolean> {
+        return this.msalInstance
+            .handleRedirectPromise()
+            .then(response => {
+                // True if the user is authenticated, false otherwise
+                return !!response && !!response.account;
+            })
+            .catch(error => {
+                console.error('Error during redirect handling:', error);
+                return false;
+            });
+    }
+    public isAuthenticated(): boolean {
+        const accounts = this.msalInstance.getAllAccounts();
+        return accounts && accounts.length > 0;
+    }
 }

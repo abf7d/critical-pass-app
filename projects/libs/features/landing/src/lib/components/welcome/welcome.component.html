@@ -1,209 +1,215 @@
-<div class="page">
-    <header>
-        <div class="top-header">
-            <div class="container">
-                <img class="logo-img logo-dark" src="assets/img/logo-dark.png" alt="brand-logo" />
+<ng-container *ngIf="!showLoading; else loadingMsg">
+    <div class="page">
+        <header>
+            <div class="top-header">
+                <div class="container">
+                    <img class="logo-img logo-dark" src="assets/img/logo-dark.png" alt="brand-logo" />
+                </div>
             </div>
-        </div>
-    </header>
-    <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-3" [hidden]="isAuthorized || loginError">
-                    <div>
-                        <div>Welcome</div>
-                        <h4 class="alert-text">You are not yet authorized</h4>
-                        <div>You have created an account but still need to request authorization.</div>
-                        <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
-                        <button class="logout-btn" (click)="logout()">Logout</button>
+        </header>
+        <main>
+            <div class="container">
+                <div class="row video-ui">
+                    <div class="col-3" [hidden]="isAuthorized || loginError">
+                        <div>
+                            <div>Welcome</div>
+                            <h4 class="alert-text">You are not yet authorized</h4>
+                            <div>You have created an account but still need to request authorization.</div>
+                            <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
+                            <button class="logout-btn" (click)="logout()">Logout</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3" [hidden]="!isAuthorized && !loginError">
-                    <div>
-                        <div>Welcome {{ name }}</div>
-                        <div>To get started a watch the video or select an action from the top menu on the right.</div>
-                        <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
-                        <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">View Library</button>
-                        <button class="logout-btn" (click)="logout()">Logout</button>
+                    <div class="col-3" [hidden]="!isAuthorized && !loginError">
+                        <div>
+                            <div>Welcome {{ name }}</div>
+                            <div>To get started a watch the video or select an action from the top menu on the right.</div>
+                            <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
+                            <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">Open App</button>
+                            <button class="logout-btn" (click)="logout()">Logout</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <!-- <div>Request Access</div> -->
+                    <div class="col-6">
+                        <!-- <div>Request Access</div> -->
 
-                    <!-- <div>Email address</div>
+                        <!-- <div>Email address</div>
                         <div><input type="text" /></div>
                         <div class="msg">
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <button class="logout-btn" (click)="logout()">Request Access</button>
                         </div> -->
-                    <div *ngIf="isAuthorized && !loginError">
-                        <div class="actions">
-                            <div (click)="activeVideo = 'uploadExcelFile'">Import Data</div>
-                            <div (click)="activeVideo = 'arrow1'">Draw a Project</div>
-                            <div (click)="activeVideo = 'arrow2'">Arrow Controls</div>
-                            <div>Application Layout</div>
+                        <div *ngIf="isAuthorized && !loginError">
+                            <div class="video">
+                                <div>
+                                    @switch (activeVideo) { @case ("arrow1") {
+                                    <!-- <div class="video-title">Drawing an Arrow Diagram</div> -->
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/NR0d03raJD4"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case ("arrowControls") {
+                                    <!-- <div class="video-title">2) Drawing an Arrow Diagram (continued)</div> -->
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/T8w-A7Xke4U"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("plannedCompletionDate") {
+                                    <div class="video-title">3) Planned Completion Date (remove this)</div>
+                                    <iframe
+                                        width="760"
+                                        height="455"
+                                        src="https://www.youtube.com/embed/9tYdMbOTQh0"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("applicationLayout") {
+                                    <!-- <div class="video-title">4) Interface Controls (remove this)</div> -->
+                                    <iframe
+                                        width="760"
+                                        height="455"
+                                        src="https://www.youtube.com/embed/OQCrEB8gFzw"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+
+                                    } @case("addSubprojects") {
+                                    <div class="video-title">5) Creating / Viewing Subprojects</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        height="455"
+                                        src="https://www.youtube.com/embed/EyuTQOcZ8Qs"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+
+                                    } @case("projectNameDescription") {
+                                    <div class="video-title">6) Project Name / Description and Shallow S</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/xgHVsDu_omU"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("historyTracking") {
+                                    <div class="video-title">7) History Tracking</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/_gQTjtjEt30"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("uploadMSProjectFile") {
+                                    <div class="video-title">8) Upload MS Project File</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/Wx08PECJM4I"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("uploadExcelFile") {
+                                    <!-- <div class="video-title">9) Upload Excel File</div> -->
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/SoOfNeLwvbk"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="video">
-                            <div>
-                                @switch (activeVideo) { @case ("arrow1") {
-                                <div class="video-title">Drawing an Arrow Diagram</div>
-                                <iframe
-                                    width="860"
-                                    height="505"
-                                    src="https://www.youtube.com/embed/NR0d03raJD4"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                                } @case ("arrow2") {
-                                <div class="video-title">2) Drawing an Arrow Diagram (continued)</div>
-                                <iframe
-                                    width="860"
-                                    height="505"
-                                    src="https://www.youtube.com/embed/T8w-A7Xke4U"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                                } @case("plannedCompletionDate") {
-                                <div class="video-title">3) Planned Completion Date (remove this)</div>
-                                <iframe
-                                    width="760"
-                                    height="455"
-                                    src="https://www.youtube.com/embed/9tYdMbOTQh0"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                                } @case("interfaceControls") {
-                                <div class="video-title">4) Interface Controls (remove this)</div>
-                                <iframe
-                                    width="760"
-                                    height="455"
-                                    src="https://www.youtube.com/embed/OQCrEB8gFzw"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
 
-                                } @case("addSubprojects") {
-                                <div class="video-title">5) Creating / Viewing Subprojects</div>
-                                <iframe
-                                    width="860"
-                                    height="505"
-                                    height="455"
-                                    src="https://www.youtube.com/embed/EyuTQOcZ8Qs"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-
-                                } @case("projectNameDescription") {
-                                <div class="video-title">6) Project Name / Description and Shallow S</div>
-                                <iframe
-                                    width="860"
-                                    height="505"
-                                    src="https://www.youtube.com/embed/xgHVsDu_omU"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                                } @case("historyTracking") {
-                                <div class="video-title">7) History Tracking</div>
-                                <iframe
-                                    width="860"
-                                    height="505"
-                                    src="https://www.youtube.com/embed/_gQTjtjEt30"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                                } @case("uploadMSProjectFile") {
-                                <div class="video-title">8) Upload MS Project File</div>
-                                <iframe
-                                    width="860"
-                                    height="505"
-                                    src="https://www.youtube.com/embed/Wx08PECJM4I"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                                } @case("uploadExcelFile") {
-                                <div class="video-title">9) Upload Excel File</div>
-                                <iframe
-                                    width="860"
-                                    height="505"
-                                    src="https://www.youtube.com/embed/SoOfNeLwvbk"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                                }}
+                        <div *ngIf="!isAuthorized && !loginError" class="card rounded-2">
+                            <div class="card-body">
+                                <div class="video-title">Request Access</div>
+                                <form data-action="contact-us" method="post" class="form-submit-init" novalidate="true">
+                                    <div class="row g-gs">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Full Name</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Email</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Phone</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" name="phone" class="form-control" placeholder="(555) 222-1234" required="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="form-label-group">
+                                                    <label class="form-label">Tell us a bit about your query</label>
+                                                    <span> <span id="char-count">0</span>/ <span id="char-max" data-char-max="255">255</span> </span>
+                                                </div>
+                                                <div class="form-control-wrap">
+                                                    <textarea
+                                                        id="textarea-box"
+                                                        name="message"
+                                                        class="form-control"
+                                                        placeholder="Enter your message"
+                                                        required=""
+                                                    ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group msg">
+                                                <button class="btn btn-primary" type="submit" id="submit-btn">Send Message</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                    <div *ngIf="!isAuthorized && !loginError" class="card rounded-2">
-                        <div class="card-body">
-                            <div class="video-title">Request Access</div>
-                            <form data-action="contact-us" method="post" class="form-submit-init" novalidate="true">
-                                <div class="row g-gs">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Full Name</label>
-                                            <div class="form-control-wrap">
-                                                <input type="text" name="name" class="form-control" placeholder="Enter your name" required="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Email</label>
-                                            <div class="form-control-wrap">
-                                                <input type="email" name="email" class="form-control" placeholder="Enter your email" required="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Phone</label>
-                                            <div class="form-control-wrap">
-                                                <input type="text" name="phone" class="form-control" placeholder="(555) 222-1234" required="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="form-label-group">
-                                                <label class="form-label">Tell us a bit about your query</label>
-                                                <span> <span id="char-count">0</span>/ <span id="char-max" data-char-max="255">255</span> </span>
-                                            </div>
-                                            <div class="form-control-wrap">
-                                                <textarea
-                                                    id="textarea-box"
-                                                    name="message"
-                                                    class="form-control"
-                                                    placeholder="Enter your message"
-                                                    required=""
-                                                ></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group msg">
-                                            <button class="btn btn-primary" type="submit" id="submit-btn">Send Message</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                    <div class="col-2 menu">
+                        <div class="video-list">
+                            <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
+                            <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
+                            <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
+                            <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">
+                                Application Layout
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
-<ng-container *ngIf="!showLoading; else loadingMsg">
+        </main>
+    </div>
+</ng-container>
+<!-- <ng-container *ngIf="!showLoading; else loadingMsg">
     <div class="cookie-banner">
         <i class="fa fa-info-circle fa-2x"></i>
         Having problems logging in? To use this site you must explicitly enable third party cookies. Please check for browser specific settings.
@@ -247,7 +253,7 @@
             <iframe src="https://mindmup.github.io/3rdpartycookiecheck/start.html" style="display: none"></iframe>
         </span>
     </div>
-</ng-container>
+</ng-container> -->
 <ng-template #loadingMsg>
     <div class="loading-container">
         <div class="loading-msg">Loading...</div>
