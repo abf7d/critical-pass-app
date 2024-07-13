@@ -3,6 +3,7 @@ import { Router, CanActivate } from '@angular/router';
 import { combineLatest, filter, firstValueFrom, forkJoin, map } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthStateService, ClaimsService, MsalService } from '@critical-pass/auth';
+import { REDIRECT_URL_KEY } from '../constants';
 
 @Injectable({
     providedIn: 'root',
@@ -28,6 +29,17 @@ export class RedirectGuard implements CanActivate {
                         return true;
                     }
                     if (isAuthorized) {
+                        const rediect = this.checkRedirectUrl();
+                        if (rediect) {
+                            return true;
+                        }
+                        if (this.authStore.redirectUrl) {
+                            const rediectUrl = this.authStore.redirectUrl;
+                            this.authStore.redirectUrl = null;
+                            this.router.navigateByUrl(rediectUrl);
+                            return true;
+                        }
+
                         this.router.navigate(['/welcome']);
                         return true;
                     } else {
@@ -38,5 +50,27 @@ export class RedirectGuard implements CanActivate {
             );
             return firstValueFrom(observable$);
         });
+    }
+
+    private checkRedirectUrl(): boolean {
+        let redirectUrl = sessionStorage.getItem(REDIRECT_URL_KEY);
+
+        //THIS IS NOT WORKING, IT IS GETTING THE URL FROM THE REDIRECT URL KEY, BuT is not redirecting to the url
+        if (redirectUrl) {
+            this.authStore.redirectUrl = redirectUrl;
+            redirectUrl = this.stripBaseHref(redirectUrl);
+            sessionStorage.removeItem(REDIRECT_URL_KEY); // Clear the stored URL
+            this.router.navigateByUrl(redirectUrl);
+            return true;
+        }
+        return false;
+    }
+
+    private stripBaseHref(url: string): string {
+        const baseHref = this.router.url.slice(0, this.router.url.indexOf('/', 1));
+        if (url.startsWith(baseHref)) {
+            return url.slice(baseHref.length);
+        }
+        return url;
     }
 }

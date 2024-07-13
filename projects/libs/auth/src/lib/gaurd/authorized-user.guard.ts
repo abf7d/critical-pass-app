@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Router, CanLoad, Route, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, CanLoad, Route, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ClaimsService, MsalService } from '@critical-pass/auth';
+import { environment } from '@critical-pass/shared/environments';
+import * as CONST from '../constants';
 
 @Injectable({
     providedIn: 'root',
 })
-export class AuthorizedUserGuard implements CanLoad, CanActivate {
+export class AuthorizedUserGuard implements CanActivate {
     jwtHelper: JwtHelperService;
     constructor(
         private authService: MsalService,
@@ -17,7 +19,7 @@ export class AuthorizedUserGuard implements CanLoad, CanActivate {
         this.jwtHelper = new JwtHelperService();
     }
 
-    canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
         return this.authService
             .getAuthToken()
             .then(token => {
@@ -25,33 +27,20 @@ export class AuthorizedUserGuard implements CanLoad, CanActivate {
                 if (!isLoggedIn) {
                     // claims need to include user id in name so the someone else's claims can't be reused
                     this.accountData.clearClaims();
-                    this.router.navigate(['/home']);
+                    sessionStorage.setItem(CONST.REDIRECT_URL_KEY, state.url);
+                    this.authService.login();
                     return false;
                 }
                 // Check if token has expired, if so, return false
                 return this.accountData.isAdmin() || this.accountData.isAuthorized();
             })
             .catch(error => {
-                this.router.navigate(['/home']);
-                return false;
-            });
-    }
-
-    canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-        return this.authService
-            .getAuthToken()
-            .then(token => {
-                const isLoggedIn = !this.authService.accessExpired();
-                if (!isLoggedIn) {
-                    // claims need to include user id in name so the someone else's claims can't be reused
-                    this.accountData.clearClaims();
-                    this.router.navigate(['/home']);
+                this.accountData.clearClaims();
+                if (error.errorCode === 'no_account_error') {
+                    sessionStorage.setItem(CONST.REDIRECT_URL_KEY, state.url);
+                    this.authService.login();
                     return false;
                 }
-                // Check if token has expired, if so, return false
-                return this.accountData.isAdmin() || this.accountData.isAuthorized();
-            })
-            .catch(error => {
                 this.router.navigate(['/home']);
                 return false;
             });
