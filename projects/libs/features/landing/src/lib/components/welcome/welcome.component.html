@@ -22,8 +22,8 @@
                     <div class="col-3" [hidden]="!isAuthorized && !loginError">
                         <div>
                             <div>Welcome {{ name }}</div>
-                            <div>To get started a watch the video or select an action from the top menu on the right.</div>
-                            <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
+                            <div>To get started a watch the video or continue on to the application by clicking the Open App button below.</div>
+                            <!-- <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div> -->
                             <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">Open App</button>
                             <button class="logout-btn" (click)="logout()">Logout</button>
                         </div>
@@ -42,12 +42,22 @@
                                 <div>
                                     @switch (activeVideo) { @case ("arrow1") {
                                     <!-- <div class="video-title">Drawing an Arrow Diagram</div> -->
-                                    <iframe
+                                    <!-- <iframe
                                         width="860"
                                         height="505"
                                         src="https://www.youtube.com/embed/NR0d03raJD4"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe> -->
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/6vb-MKcynoM?vq=hd720p&amp;hd=1&amp;si=zGOsVuxj4lIEGBtL"
+                                        title="Draw an Arrow Diagram"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
                                         allowfullscreen
                                     ></iframe>
                                     } @case ("arrowControls") {
@@ -55,11 +65,22 @@
                                     <iframe
                                         width="860"
                                         height="505"
+                                        src="https://www.youtube.com/embed/cB35uUIFoP8?vq=hd720p&amp;hd=1&amp;si=jIsxPNEwoc-cbh1L"
+                                        title="Arrow Diagram Controls"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen
+                                    ></iframe>
+
+                                    <!-- <iframe
+                                        width="860"
+                                        height="505"
                                         src="https://www.youtube.com/embed/T8w-A7Xke4U"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen
-                                    ></iframe>
+                                    ></iframe> -->
                                     } @case("plannedCompletionDate") {
                                     <div class="video-title">3) Planned Completion Date (remove this)</div>
                                     <iframe
@@ -125,12 +146,22 @@
                                     ></iframe>
                                     } @case("uploadExcelFile") {
                                     <!-- <div class="video-title">9) Upload Excel File</div> -->
-                                    <iframe
+                                    <!-- <iframe
                                         width="860"
                                         height="505"
                                         src="https://www.youtube.com/embed/SoOfNeLwvbk"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe> -->
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/tRR8aRHb4L4?vq=hd720p&amp;hd=1&amp;si=LPBhkhIOGu3Vu_JP"
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
                                         allowfullscreen
                                     ></iframe>
                                     }}
@@ -196,9 +227,9 @@
                     </div>
                     <div class="col-2 menu">
                         <div class="video-list">
-                            <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
                             <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
                             <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
+                            <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
                             <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">
                                 Application Layout
                             </div>

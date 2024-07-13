@@ -4,6 +4,7 @@ export const environment = {
     clientDeugLevel: 1, // 1 is debug
     serverDebugLevel: 7, // 7 is off
     serverLoggerApi: 'https://localhost:44393/api/logger',
+    baseUrl: 'https://localhost:4200',
     production: false,
     mappingApi: 'https://localhost:44342/api/', //'https://criticalpathapi.azurewebsites.net/api/',  // 'http://localhost:60739/api/', //
     projectBuilderApi: 'https://localhost:44393/api/',

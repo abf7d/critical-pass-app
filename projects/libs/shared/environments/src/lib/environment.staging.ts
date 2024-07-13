@@ -5,6 +5,7 @@ export const environment = {
     clientDeugLevel: 7, // 1 is debug
     serverDebugLevel: 7, // 7 is off
     serverLoggerApi: 'https://<place-holder>',
+    baseUrl: 'https://app.criticalpass.io',
     mappingApi: 'https://criticalpathapi.azurewebsites.net/api/', // for msproj files and building arrow diagram
     authority: 'https://criticalplayground.b2clogin.com/criticalplayground.onmicrosoft.com/B2C_1_DefaultSignInSignUp2',
     knownAuthorities: ['criticalplayground.b2clogin.com'],
