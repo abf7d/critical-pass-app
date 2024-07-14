@@ -6,9 +6,9 @@
         <div *ngIf="isElectron" (click)="navigate('app-data/(sidebar:databar)')">App Data</div>
     </div>
     <div class="nav-buttons">
+        <div [routerLink]="['/welcome']">Get Started</div>
         <div [routerLink]="['/tutorials']">Tutorials</div>
         <div><a href="https://forms.gle/j6RavsnuE3bkytBS8">Feedback</a></div>
-        <div [routerLink]="['/about']">About</div>
         <div [routerLink]="['/donate']">Donate</div>
     </div>
     <div><div (click)="logout()">Log out</div></div>

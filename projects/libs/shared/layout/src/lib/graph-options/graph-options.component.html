@@ -6,16 +6,16 @@
                 <input class="form-check-input" (click)="setArrowUperText('name')" type="radio" id="name" value="name" name="top-text" />
                 Name
             </label>
-            <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('id') }">
-                <input class="form-check-input" (click)="setArrowUperText('id')" type="radio" id="id" value="id" name="top-text" />
-                ID
-            </label>
             <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('duration') }">
                 <input class="form-check-input" (click)="setArrowUperText('duration')" type="radio" id="duration" value="duration" name="top-text" />
                 Duration
             </label>
         </div>
         <div class="btn-group">
+            <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('id') }">
+                <input class="form-check-input" (click)="setArrowUperText('id')" type="radio" id="id" value="id" name="top-text" />
+                ID
+            </label>
             <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('abbreviated') }">
                 <input class="form-check-input" (click)="setArrowUperText('abbreviated')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
                 Abrv.
@@ -67,7 +67,7 @@
             </label>
             <label class="btn btn-secondary" [ngClass]="{ active: project.profile.view.showEftLft === 'eft' }">
                 <input class="form-check-input" (click)="setNodeDisplayText('eft')" type="radio" id="eft" value="eft" name="top-text" />
-                EFT/LFT
+                EFT
             </label>
             <label class="btn btn-secondary" [ngClass]="{ active: project.profile.view.showEftLft === 'pcd' }">
                 <input class="form-check-input" (click)="setNodeDisplayText('pcd')" type="radio" id="pcd" value="pcd" name="top-text" />
