@@ -1,12 +1,5 @@
 <ng-container *ngIf="!showLoading; else loadingMsg">
     <div class="page">
-        <header>
-            <div class="top-header">
-                <div class="container">
-                    <img class="logo-img logo-dark" src="assets/img/logo-dark.png" alt="brand-logo" />
-                </div>
-            </div>
-        </header>
         <main>
             <div class="container">
                 <div class="row video-ui">
@@ -21,150 +14,164 @@
                     </div>
                     <div class="col-3" [hidden]="!isAuthorized && !loginError">
                         <div>
-                            <div>Welcome {{ name }}</div>
-                            <div>To get started a watch the video or continue on to the application by clicking the Open App button below.</div>
-                            <!-- <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div> -->
-                            <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">Open App</button>
-                            <button class="logout-btn" (click)="logout()">Logout</button>
+                            <h2>Welcome {{ name }}</h2>
+                            <div>
+                                To get started a watch a training video or dive into an example project. Click the right menu to see more videos. A link to the
+                                library of examples is provided below. Once you are ready open the app with the button below.
+                            </div>
+                            <div>
+                                <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">Open App</button>
+                            </div>
+                            <div>
+                                <button class="logout-btn" (click)="logout()">Logout</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <!-- <div>Request Access</div> -->
+                    <div class="col-8">
+                        <div *ngIf="isAuthorized && !loginError" class="materials">
+                            <div>
+                                <h3>Training Videos</h3>
+                                <div class="video">
+                                    <div>
+                                        @switch (activeVideo) { @case ("arrow1") {
 
-                        <!-- <div>Email address</div>
-                        <div><input type="text" /></div>
-                        <div class="msg">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <button class="logout-btn" (click)="logout()">Request Access</button>
-                        </div> -->
-                        <div *ngIf="isAuthorized && !loginError">
-                            <div class="video">
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            src="https://www.youtube.com/embed/6vb-MKcynoM?vq=hd720p&amp;hd=1&amp;si=zGOsVuxj4lIEGBtL"
+                                            title="Draw an Arrow Diagram"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin"
+                                            allowfullscreen
+                                        ></iframe>
+                                        } @case ("arrowControls") {
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            src="https://www.youtube.com/embed/cB35uUIFoP8?vq=hd720p&amp;hd=1&amp;si=jIsxPNEwoc-cbh1L"
+                                            title="Arrow Diagram Controls"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin"
+                                            allowfullscreen
+                                        ></iframe>
+
+                                        } @case("plannedCompletionDate") {
+                                        <div class="video-title">3) Planned Completion Date (remove this)</div>
+                                        <iframe
+                                            width="760"
+                                            height="455"
+                                            src="https://www.youtube.com/embed/9tYdMbOTQh0"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen
+                                        ></iframe>
+                                        } @case("applicationLayout") {
+                                        <iframe
+                                            width="760"
+                                            height="455"
+                                            src="https://www.youtube.com/embed/OQCrEB8gFzw"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen
+                                        ></iframe>
+
+                                        } @case("addSubprojects") {
+                                        <div class="video-title">5) Creating / Viewing Subprojects</div>
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            height="455"
+                                            src="https://www.youtube.com/embed/EyuTQOcZ8Qs"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen
+                                        ></iframe>
+
+                                        } @case("projectNameDescription") {
+                                        <div class="video-title">6) Project Name / Description and Shallow S</div>
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            src="https://www.youtube.com/embed/xgHVsDu_omU"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen
+                                        ></iframe>
+                                        } @case("historyTracking") {
+                                        <div class="video-title">7) History Tracking</div>
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            src="https://www.youtube.com/embed/_gQTjtjEt30"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen
+                                        ></iframe>
+                                        } @case("uploadMSProjectFile") {
+                                        <div class="video-title">8) Upload MS Project File</div>
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            src="https://www.youtube.com/embed/Wx08PECJM4I"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen
+                                        ></iframe>
+                                        } @case("uploadExcelFile") {
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            src="https://www.youtube.com/embed/tRR8aRHb4L4?vq=hd720p&amp;hd=1&amp;si=LPBhkhIOGu3Vu_JP"
+                                            title="YouTube video player"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin"
+                                            allowfullscreen
+                                        ></iframe>
+                                        }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Example Projects</h3>
+                                <a href="">Full Example Library</a>
                                 <div>
-                                    @switch (activeVideo) { @case ("arrow1") {
-                                    <!-- <div class="video-title">Drawing an Arrow Diagram</div> -->
-                                    <!-- <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/NR0d03raJD4"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe> -->
-                                    <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/6vb-MKcynoM?vq=hd720p&amp;hd=1&amp;si=zGOsVuxj4lIEGBtL"
-                                        title="Draw an Arrow Diagram"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerpolicy="strict-origin-when-cross-origin"
-                                        allowfullscreen
-                                    ></iframe>
-                                    } @case ("arrowControls") {
-                                    <!-- <div class="video-title">2) Drawing an Arrow Diagram (continued)</div> -->
-                                    <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/cB35uUIFoP8?vq=hd720p&amp;hd=1&amp;si=jIsxPNEwoc-cbh1L"
-                                        title="Arrow Diagram Controls"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerpolicy="strict-origin-when-cross-origin"
-                                        allowfullscreen
-                                    ></iframe>
-
-                                    <!-- <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/T8w-A7Xke4U"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe> -->
-                                    } @case("plannedCompletionDate") {
-                                    <div class="video-title">3) Planned Completion Date (remove this)</div>
-                                    <iframe
-                                        width="760"
-                                        height="455"
-                                        src="https://www.youtube.com/embed/9tYdMbOTQh0"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
-                                    } @case("applicationLayout") {
-                                    <!-- <div class="video-title">4) Interface Controls (remove this)</div> -->
-                                    <iframe
-                                        width="760"
-                                        height="455"
-                                        src="https://www.youtube.com/embed/OQCrEB8gFzw"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
-
-                                    } @case("addSubprojects") {
-                                    <div class="video-title">5) Creating / Viewing Subprojects</div>
-                                    <iframe
-                                        width="860"
-                                        height="505"
-                                        height="455"
-                                        src="https://www.youtube.com/embed/EyuTQOcZ8Qs"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
-
-                                    } @case("projectNameDescription") {
-                                    <div class="video-title">6) Project Name / Description and Shallow S</div>
-                                    <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/xgHVsDu_omU"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
-                                    } @case("historyTracking") {
-                                    <div class="video-title">7) History Tracking</div>
-                                    <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/_gQTjtjEt30"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
-                                    } @case("uploadMSProjectFile") {
-                                    <div class="video-title">8) Upload MS Project File</div>
-                                    <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/Wx08PECJM4I"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
-                                    } @case("uploadExcelFile") {
-                                    <!-- <div class="video-title">9) Upload Excel File</div> -->
-                                    <!-- <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/SoOfNeLwvbk"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe> -->
-                                    <iframe
-                                        width="860"
-                                        height="505"
-                                        src="https://www.youtube.com/embed/tRR8aRHb4L4?vq=hd720p&amp;hd=1&amp;si=LPBhkhIOGu3Vu_JP"
-                                        title="YouTube video player"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerpolicy="strict-origin-when-cross-origin"
-                                        allowfullscreen
-                                    ></iframe>
-                                    }}
+                                    <div [ngSwitch]="projectLoadState">
+                                        <div *ngSwitchCase="'loading'">
+                                            <div class="page-content">
+                                                <div class="loading-placeholder"></div>
+                                                <div class="loading-txt">Loading</div>
+                                            </div>
+                                        </div>
+                                        <div *ngSwitchCase="'error'">
+                                            <div class="page-content">
+                                                <div class="loading-txt error">Error</div>
+                                            </div>
+                                        </div>
+                                        <div *ngSwitchCase="'success'">
+                                            <div class="page-content">
+                                                <div *ngFor="let project of projects" class="user-proj">
+                                                    <a (click)="navigate(project.profile.id)">
+                                                        <cp-arrow-snapshot [project]="project" [width]="330" [height]="220"></cp-arrow-snapshot>
+                                                    </a>
+                                                    <div class="simple-label">{{ project.profile.name }} <span class="is-writable"> (w)</span></div>
+                                                    <div class="project-description">
+                                                        <i class="fa fa-code-fork network-icon" (click)="navigateSketch(project.profile.id)"></i>
+                                                        <i class="fas fa-male assign-icon" (click)="navigateAssign(project.profile.id)"></i>
+                                                        <i class="fa fa-network-wired" (click)="navigateMetaGraph(project.profile.id)"></i>
+                                                        {{ project.profile.description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngSwitchDefault>
+                                            <div class="page-content">
+                                                <div class="loading-txt error">Unloaded</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -225,13 +232,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 menu">
+                    <div class="col menu">
                         <div class="video-list">
                             <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
                             <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
                             <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
                             <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">
                                 Application Layout
+                            </div>
+                            <div>
+                                <a href="">More Videos...</a>
                             </div>
                         </div>
                     </div>
@@ -240,51 +250,6 @@
         </main>
     </div>
 </ng-container>
-<!-- <ng-container *ngIf="!showLoading; else loadingMsg">
-    <div class="cookie-banner">
-        <i class="fa fa-info-circle fa-2x"></i>
-        Having problems logging in? To use this site you must explicitly enable third party cookies. Please check for browser specific settings.
-    </div>
-    <div class="background-container">
-        <div class="content">
-            <div class="title">
-                <img width="100" class="cpimage" src="assets/img/cp3.png" />
-                <h1 class="app-name">Critical Pass</h1>
-                <p>design • calculate • manage</p>
-            </div>
-            <div class="loading" [hidden]="!loading">
-                <div class="loader-txt">Loading...</div>
-                <div class="loader"></div>
-            </div>
-            <div class="cookie-problems" [hidden]="!loginError">
-                We encountered difficulties logging on.
-                <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> for assistance</div>
-                <button class="logout-btn" (click)="logout()">Logout</button>
-            </div>
-            <div class="not-authorized" [hidden]="isAuthorized || loginError">
-                <h4 class="alert-text">Not Authorized</h4>
-                <div>You have created an account but still need to request authorization.</div>
-                <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
-                <button class="logout-btn" (click)="logout()">Logout</button>
-            </div>
-            <div class="logged-in" [hidden]="loading || isAuthorized === false">
-                <h4 class="alert-text">{{ name }}</h4>
-                <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">View Library</button>
-                <button class="logout-btn" (click)="logout()">Logout</button>
-                <div class="cookie-problems cookie-msg" [hidden]="!thirdPartyCookiesBlocked">
-                    Your browser is blocking third party cookies. If you experience problems logging in please see your browser settings to allow and enable
-                    login.
-                </div>
-            </div>
-            <div class="donate">
-                <a class="donate-btn" [routerLink]="['/donate']">Donate</a>
-            </div>
-        </div>
-        <span id="result">
-            <iframe src="https://mindmup.github.io/3rdpartycookiecheck/start.html" style="display: none"></iframe>
-        </span>
-    </div>
-</ng-container> -->
 <ng-template #loadingMsg>
     <div class="loading-container">
         <div class="loading-msg">Loading...</div>

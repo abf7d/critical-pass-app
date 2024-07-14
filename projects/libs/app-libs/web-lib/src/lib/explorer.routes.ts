@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent, LoginComponent, LoginErrorComponent, LoginRedirectComponent, RequestAccessComponent } from '@critical-pass/features/landing';
 import { WelcomeComponent, AboutComponent, TutorialsComponent, DonateComponent } from '@critical-pass/features/landing';
 import { AuthorizedUserGuard, RedirectGuard } from '@critical-pass/auth';
+import { TopNavLayoutComponent } from '@critical-pass/shared/layout';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,7 +16,8 @@ export const routes: Routes = [
     },
     {
         path: 'welcome',
-        component: WelcomeComponent,
+        component: TopNavLayoutComponent,
+        children: [{ path: '', component: WelcomeComponent }],
         canActivate: [AuthorizedUserGuard],
     },
     {

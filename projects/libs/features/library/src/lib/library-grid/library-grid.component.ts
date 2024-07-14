@@ -5,9 +5,8 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LibraryStoreService } from '../library-store/library-store.service';
 import * as CONST from '../constants';
-import { PROJECT_API_TOKEN, ProjectApiService } from '@critical-pass/shared/data-access';
+import { PROJECT_API_TOKEN, ProjectApi, ProjectApiService } from '@critical-pass/shared/data-access';
 import { NodeConnectorService } from '@critical-pass/project/processor';
-import { ProjectApi } from '../../../../../shared/data-access/src/lib/types/project-api';
 @Component({
     selector: 'cp-library-grid',
     templateUrl: './library-grid.component.html',

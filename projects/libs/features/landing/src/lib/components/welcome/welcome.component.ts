@@ -1,10 +1,12 @@
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
 import { AuthStateService, MsalService } from '@critical-pass/auth';
 import * as CONST from '../../constants';
-import { ClaimsApiService } from '@critical-pass/shared/data-access';
+import { ClaimsApiService, PROJECT_API_TOKEN, ProjectApi, ProjectListApiService } from '@critical-pass/shared/data-access';
+import { Project } from '@critical-pass/project/types';
+import { NodeConnectorService } from '@critical-pass/project/processor';
 @Component({
     selector: 'cp-welcome',
     templateUrl: './welcome.component.html',
@@ -25,12 +27,19 @@ export class WelcomeComponent implements OnInit {
     public isAuthorized$: BehaviorSubject<boolean | null>;
     public loginError$: BehaviorSubject<boolean | null>;
     public activeVideo: string = 'arrow1';
+    public projectLists: string[] = [];
+    public projectLoadState: string = 'loading';
+    public projects: Project[] = [];
 
     constructor(
         private authService: MsalService,
         private router: Router,
         private authStore: AuthStateService,
         private claimsApi: ClaimsApiService,
+        private projListApi: ProjectListApiService,
+        @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
+        private ngZone: NgZone,
+        private nodeConnector: NodeConnectorService,
     ) {
         this.isLoggedIn$ = this.authStore.isLoggedIn$;
         this.errorLoadingProject = false;
@@ -44,28 +53,7 @@ export class WelcomeComponent implements OnInit {
         console.log('hasClaims', this.authService.hasClaims(), 'hasError', this.authService.hasError(), 'isAuth', this.authService.isAuthorized());
     }
 
-    // check url for token on nginit or in constructor
-    // if there is a token, call getClaims if there isn't redirect to login
-    // When this page loads,show loading message
-    // The token should be extracted and the apge refreshed or togled visible I should make a call to get the claims
-    //
     public ngOnInit() {
-        // this.claimsApi.getClaims().subscribe(
-        //     claims => {
-        //         console.log(claims);
-        //     },
-        //     error => console.error(error),
-        // );
-        // if (!this.isAuthorized) {
-        //     this.router.navigate([CONST.HOME_ROUTE]);
-        // }
-        //check if url has token
-        // this.isAuthorized$.pipe(take(2)).subscribe((isAuthorized: boolean | null) => {
-        //     console.error('isAuthorized', isAuthorized);
-        //     if (!isAuthorized) {
-        //         this.router.navigate([CONST.HOME_ROUTE]);
-        //     }
-        // });
         this.loading = false;
         this.isLoggedIn$.subscribe((loggedIn: boolean | null) => {
             this.name = this.authService.getUserName() ?? '';
@@ -78,6 +66,49 @@ export class WelcomeComponent implements OnInit {
         this.isAuthorized$.pipe(filter(auth => auth !== null)).subscribe(isAuthorized => {
             this.isAuthorized = isAuthorized;
             this.showLoading = false;
+        });
+
+        this.projectLoadState = 'loading';
+        this.projListApi.getGroupLists('').subscribe(
+            lists => {
+                this.projectLists = lists;
+                if (lists.length > 0) {
+                    this.loadProjects(0, lists[0]);
+                }
+            },
+            error => {
+                this.projectLoadState = 'error';
+                console.error(error);
+            },
+        );
+    }
+
+    private loadProjects(currentPage: number, listName: string | null = null) {
+        const featuredExampleSize = 2;
+
+        this.projectApi.list(currentPage, featuredExampleSize, listName).subscribe(
+            projects => {
+                if (projects !== null) {
+                    this.initProjects(projects.items);
+                }
+            },
+            error => {
+                this.projectLoadState = 'error';
+                console.error(error);
+            },
+        );
+    }
+
+    private initProjects(library: Project[]) {
+        // ngZone added for electron change detection
+        this.ngZone.run(() => {
+            const projects: Project[] = [];
+            for (const project of library) {
+                this.nodeConnector.connectArrowsToNodes(project);
+                projects.push(project);
+            }
+            this.projects = projects;
+            this.projectLoadState = 'success';
         });
     }
 
@@ -95,6 +126,22 @@ export class WelcomeComponent implements OnInit {
             this.errorLoadingProject = false;
             this.router.navigateByUrl(CONST.LIBRARY_ROUTE);
         }
+    }
+
+    public navigate(id: number) {
+        this.router.navigateByUrl(`profile/(${id}//sidebar:grid/${id})`);
+    }
+
+    public navigateSketch(id: number) {
+        this.router.navigateByUrl(`history/(${id}//sidebar:arrow/${id})`);
+    }
+
+    public navigateAssign(id: number) {
+        this.router.navigateByUrl(`resources/(${id}//sidebar:assignbar/${id})`);
+    }
+
+    public navigateMetaGraph(id: number) {
+        this.router.navigateByUrl(`network/(${id}//sidebar:meta/${id})`);
     }
 
     @HostListener('window:message', ['$event'])

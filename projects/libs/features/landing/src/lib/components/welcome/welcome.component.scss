@@ -309,21 +309,21 @@ textarea.form-control {
     color: #fff;
     background-color: #5f8e3c;
 }
-.container,
-.container-fluid,
-.container-xxl,
-.container-xl,
-.container-lg,
-.container-md,
-.container-sm {
-    --bs-gutter-x: 1.875rem;
-    --bs-gutter-y: 0;
-    width: 100%;
-    padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
-    margin-right: auto;
-    margin-left: auto;
-}
+// .container,
+// .container-fluid,
+// .container-xxl,
+// .container-xl,
+// .container-lg,
+// .container-md,
+// .container-sm {
+//     --bs-gutter-x: 1.875rem;
+//     --bs-gutter-y: 0;
+//     width: 100%;
+//     padding-right: calc(var(--bs-gutter-x) * 0.5);
+//     padding-left: calc(var(--bs-gutter-x) * 0.5);
+//     margin-right: auto;
+//     margin-left: auto;
+// }
 @media (min-width: 1400px) {
     .container-xxl,
     .container-xl,
@@ -331,19 +331,16 @@ textarea.form-control {
     .container-md,
     .container-sm,
     .container {
-        max-width: 1350px;
+        max-width: 1444px;
     }
 }
-@media (min-width: 768px) {
-    .container * {
-        font-size: 1.25rem;
-    }
-}
+// @media (min-width: 768px) {
+//     .container * {
+//         font-size: 1.25rem;
+//     }
+// }
 .top-header {
     border-bottom: 1px solid #e5e7eb;
-}
-main {
-    padding-top: 97px;
 }
 
 .video-title {
@@ -351,8 +348,59 @@ main {
 }
 .video-ui {
     position: relative;
+    background-color: #f9f9f9;
+    padding-top: 58px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .menu {
+    margin-left: -59px;
+    width: 272px;
+}
+.user-proj {
+    text-align: left;
+    width: 370px;
+}
+.page-content {
+    display: flex;
+    grid-gap: 20px;
+    color: #666;
+    width: 789px;
+}
+.project-description {
+    i {
+        cursor: pointer;
+        padding-right: 5px;
+    }
+}
+.materials {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.loading-placeholder {
+    height: 343px;
+    width: 789px;
+    background-color: #cacaca;
+}
+.loading-txt {
     position: absolute;
-    right: -85px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%
+}
+.page-content {
+    position: relative;;
+}
+.video-list {
+    padding-top: 32px;
+}
+.simple-label {
+    font-size: 15px;
+    font-weight: 700;
+}
+.project-description {
+    height: 118px;
+    overflow: hidden;
+    line-height: 23px;
 }

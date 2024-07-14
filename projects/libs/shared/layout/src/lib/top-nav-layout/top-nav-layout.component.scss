@@ -1,0 +1,86 @@
+$left-menu-width: 225px;
+$logo-menu-height: 86px;
+$main-content-width: 1675px;
+
+.profile-container {
+  display: grid;
+  grid-template-rows: 86px auto 1fr;
+  grid-template-columns: $left-menu-width 1fr;
+  background-color: white;
+  height: 100%;
+  margin: auto;
+}
+
+:host ::ng-deep .profile-container > router-outlet + * {
+  grid-column: 1/-1;
+}
+
+.nav-header {
+  grid-column: 2 / -1;
+  background-color: #333;
+  z-index: 100;
+}
+
+.logo-block {
+  background-color: #333;
+  width: $left-menu-width;
+  top: 0px;
+  height: $logo-menu-height;
+  grid-column: 1/2;
+  position: fixed;
+  padding-top: 23px;
+  z-index: 1;
+
+  .cp-logo {
+    img {
+      width: 192px;
+      margin-top: -10px;
+      margin-left: 14px;
+      margin-right: 7px;
+    }
+  }
+  .cp-brand {
+    font-size: 20px;
+    line-height: 20px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+      Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  }
+}
+
+.window {
+  height: calc(100vh - 75px);
+  width: 100%;
+  overflow-y: auto;
+}
+
+cp-top-nav {
+  height: 100%;
+  display: flex;
+}
+.left-menu {
+  z-index: 1;
+  overflow-x: hidden;
+}
+.nav-header {
+  z-index: 0;
+}
+
+.footer {
+  grid-row: 3 / 4;
+  grid-column: 2 / 6;
+  background-color: #f9f9f9;
+}
+
+.nav-header {
+    left: 225px;
+    background-color: #333;
+    top: 0px;
+    height: 86px;
+    grid-column: 1 / 2;
+    position: fixed;
+    padding-top: px;
+    z-index: 1;
+    width: 100%;
+}

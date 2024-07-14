@@ -8,7 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { AboutModule } from './about/about.module';
 
 @NgModule({
-    imports: [CommonModule, HomeModule, WelcomeModule, TutorialsModule, DonateModule, AboutModule],
+    imports: [CommonModule, HomeModule, WelcomeModule, TutorialsModule, DonateModule /*AboutModule*/],
     declarations: [AboutComponent],
     exports: [HomeModule],
 })
