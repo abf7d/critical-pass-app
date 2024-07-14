@@ -309,21 +309,7 @@ textarea.form-control {
     color: #fff;
     background-color: #5f8e3c;
 }
-// .container,
-// .container-fluid,
-// .container-xxl,
-// .container-xl,
-// .container-lg,
-// .container-md,
-// .container-sm {
-//     --bs-gutter-x: 1.875rem;
-//     --bs-gutter-y: 0;
-//     width: 100%;
-//     padding-right: calc(var(--bs-gutter-x) * 0.5);
-//     padding-left: calc(var(--bs-gutter-x) * 0.5);
-//     margin-right: auto;
-//     margin-left: auto;
-// }
+
 @media (min-width: 1400px) {
     .container-xxl,
     .container-xl,
@@ -334,11 +320,7 @@ textarea.form-control {
         max-width: 1444px;
     }
 }
-// @media (min-width: 768px) {
-//     .container * {
-//         font-size: 1.25rem;
-//     }
-// }
+
 .top-header {
     border-bottom: 1px solid #e5e7eb;
 }
@@ -354,7 +336,7 @@ textarea.form-control {
     padding-right: 15px;
 }
 .menu {
-    margin-left: -59px;
+    margin-left: -73px;
     width: 272px;
 }
 .user-proj {

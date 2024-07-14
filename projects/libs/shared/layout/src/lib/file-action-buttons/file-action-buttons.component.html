@@ -1,4 +1,4 @@
-<button class="btn btn-secondary" (click)="uploadFile.value = ''; uploadFile.click()" [class.disabled]="disableButtons">Load from File</button>
+<button class="btn btn-secondary" (click)="uploadFile.value = ''; uploadFile.click()" [class.disabled]="disableButtons">Load File</button>
 <input class="file-input" type="file" #uploadFile (change)="loadFile($event.target)" accept=".xlsx, .json" />
 
 <div class="right">
