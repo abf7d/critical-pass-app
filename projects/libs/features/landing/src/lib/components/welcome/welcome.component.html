@@ -138,7 +138,7 @@
                             </div>
                             <div>
                                 <h3>Example Projects</h3>
-                                <a href="">Full Example Library</a>
+                                <a (click)="navigateToExamples()" href="javascript:void(0)">Full Example Library</a>
                                 <div>
                                     <div [ngSwitch]="projectLoadState">
                                         <div *ngSwitchCase="'loading'">
@@ -243,7 +243,7 @@
                                 Application Layout
                             </div>
                             <div>
-                                <a href="">More Videos...</a>
+                                <a routerLink="/tutorials">More Videos...</a>
                             </div>
                         </div>
                     </div>

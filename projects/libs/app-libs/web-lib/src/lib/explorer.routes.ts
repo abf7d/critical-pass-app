@@ -39,7 +39,9 @@ export const routes: Routes = [
     },
     {
         path: 'tutorials',
-        component: TutorialsComponent,
+        component: TopNavLayoutComponent,
+        children: [{ path: '', component: TutorialsComponent }],
+        canActivate: [AuthorizedUserGuard],
     },
     {
         path: 'donate',

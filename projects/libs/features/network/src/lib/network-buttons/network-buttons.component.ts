@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '@critical-pass/project/types';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { CORE_CONST } from '@critical-pass/core';
-import { EventService, EVENT_SERVICE_TOKEN, NETWORK_API_TOKEN, NetworkApi } from '@critical-pass/shared/data-access';
+import { EventService, EVENT_SERVICE_TOKEN, NETWORK_API_TOKEN, NetworkApi, DASHBOARD_TOKEN, DashboardService } from '@critical-pass/shared/data-access';
 import { NetworkFileManagerService, NetworkJsonFileManagerService, ProjectFileManagerService } from '@critical-pass/shared/file-management';
 import { NodeConnectorService } from '@critical-pass/project/processor';
 import { UTIL_CONST } from '@critical-pass/shared/project-utils';
@@ -21,6 +21,7 @@ export class NetworkButtonsComponent implements OnInit {
     constructor(
         @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
         @Inject(NETWORK_API_TOKEN) private networkApi: NetworkApi,
+        @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         private route: ActivatedRoute,
         private router: Router,
         private fileManager: NetworkFileManagerService,
@@ -76,6 +77,7 @@ export class NetworkButtonsComponent implements OnInit {
             this.eventService.get(UTIL_CONST.NETWORK_SUB_PROJECT_TRACKER).next(mostRecentId);
             this.networkArray$.next([...projects]);
             this.filteredNetworkArray$.next([...projects]);
+            this.dashboard.updateProject(projects[0], true);
         });
         // }
     }

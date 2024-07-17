@@ -1,4 +1,146 @@
-<div class="videos">
+<div class="page">
+    <main>
+        <div class="container">
+            <div class="row video-ui">
+                <div class="col-3">
+                    <div class="video-list">
+                        <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
+                        <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
+                        <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
+                        <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">Application Layout</div>
+                        <div>
+                            <a href="">More Videos...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="materials">
+                        <div>
+                            <h3>Training Videos</h3>
+                            <div class="video">
+                                <div>
+                                    @switch (activeVideo) { @case ("arrow1") {
+
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/6vb-MKcynoM?vq=hd720p&amp;hd=1&amp;si=zGOsVuxj4lIEGBtL"
+                                        title="Draw an Arrow Diagram"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case ("arrowControls") {
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/cB35uUIFoP8?vq=hd720p&amp;hd=1&amp;si=jIsxPNEwoc-cbh1L"
+                                        title="Arrow Diagram Controls"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen
+                                    ></iframe>
+
+                                    } @case("plannedCompletionDate") {
+                                    <div class="video-title">3) Planned Completion Date (remove this)</div>
+                                    <iframe
+                                        width="760"
+                                        height="455"
+                                        src="https://www.youtube.com/embed/9tYdMbOTQh0"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("applicationLayout") {
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/R3kPmTzawCE?vq=hd720p&amp;hd=1&amp;si=HmDHijxNQPRuTAhI"
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen
+                                    ></iframe>
+
+                                    } @case("addSubprojects") {
+                                    <div class="video-title">5) Creating / Viewing Subprojects</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        height="455"
+                                        src="https://www.youtube.com/embed/EyuTQOcZ8Qs"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+
+                                    } @case("projectNameDescription") {
+                                    <div class="video-title">6) Project Name / Description and Shallow S</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/xgHVsDu_omU"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("historyTracking") {
+                                    <div class="video-title">7) History Tracking</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/_gQTjtjEt30"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("uploadMSProjectFile") {
+                                    <div class="video-title">8) Upload MS Project File</div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/Wx08PECJM4I"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                    } @case("uploadExcelFile") {
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        src="https://www.youtube.com/embed/tRR8aRHb4L4?vq=hd720p&amp;hd=1&amp;si=LPBhkhIOGu3Vu_JP"
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen
+                                    ></iframe>
+                                    }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col menu">
+                    <div class="video-list">
+                        <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
+                        <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
+                        <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
+                        <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">Application Layout</div>
+                        <div>
+                            <a href="">More Videos...</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- <div class="videos">
     <div class="video">
         <div>
             <div class="video-title">1) Drawing an Arrow Diagram</div>
@@ -116,4 +258,4 @@
             ></iframe>
         </div>
     </div>
-</div>
+</div> -->

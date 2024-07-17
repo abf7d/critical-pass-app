@@ -144,6 +144,10 @@ export class WelcomeComponent implements OnInit {
         this.router.navigateByUrl(`network/(${id}//sidebar:meta/${id})`);
     }
 
+    public navigateToExamples() {
+        this.router.navigateByUrl('/library/lists/default/(grid/0//sidebar:libar/0)');
+    }
+
     @HostListener('window:message', ['$event'])
     public receiveMessage(event: any) {
         if (event.data === CONST.COOKIES_BLOCKED_ID) {

@@ -5,4 +5,6 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './tutorials.component.html',
     styleUrls: ['./tutorials.component.scss'],
 })
-export class TutorialsComponent {}
+export class TutorialsComponent {
+    public activeVideo: string = 'arrow1';
+}
