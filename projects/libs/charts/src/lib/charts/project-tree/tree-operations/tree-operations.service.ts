@@ -102,6 +102,7 @@ export class TreeOperationsService {
             const removeThisNode = this.st.selected;
             this.st.selected = this.st.selected!.parent;
             this.st.selected!.children = this.st.selected!.children.filter(x => x.id !== removeThisNode!.id);
+            this.pruneNode(this.st.head!, removeThisNode!.id);
             return this.getHistoryArray(this.st.head!);
         }
         return [];
@@ -115,6 +116,21 @@ export class TreeOperationsService {
         projCopy.profile.view.lassoOn = node.data!.profile.view.lassoOn;
         nodeCopy.data = projCopy;
         return nodeCopy;
+    }
+
+    private pruneNode(node: TreeNode, id: number) {
+        if (node.id === id) {
+            return true;
+        }
+        let hasNode = false;
+        for (const child of node.children) {
+            hasNode = this.pruneNode(child, id);
+        }
+        if (hasNode) {
+            node.children = node.children.filter(x => x.id !== id);
+        }
+
+        return false;
     }
     private createNode(project: Project): TreeNode {
         const currentNode = this.st.selected!;

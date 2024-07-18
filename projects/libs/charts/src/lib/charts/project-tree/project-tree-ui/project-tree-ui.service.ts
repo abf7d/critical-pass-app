@@ -166,6 +166,7 @@ export class ProjectTreeUiService {
         this.eventService.get(CONST.COMMIT_KEY).next(null);
         this.eventService.get(CONST.BRANCH_KEY).next(null);
         this.eventService.get(CONST.RESET_KEY).next(null);
+        this.eventService.get(CONST.HISTORY_ARRAY_KEY).next(null);
     }
 
     public initSvg(width: number, height: number, el: any): void {
