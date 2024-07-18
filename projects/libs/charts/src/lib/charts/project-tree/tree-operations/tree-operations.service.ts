@@ -96,6 +96,17 @@ export class TreeOperationsService {
         this.st.selected = this.copyNode(copyNode);
         return copyNode;
     }
+
+    public deleteNode(): TreeNode[] {
+        if (this.st.selected!.parent != null) {
+            const removeThisNode = this.st.selected;
+            this.st.selected = this.st.selected!.parent;
+            this.st.selected!.children = this.st.selected!.children.filter(x => x.id !== removeThisNode!.id);
+            return this.getHistoryArray(this.st.head!);
+        }
+        return [];
+    }
+
     public copyNode(node: TreeNode) {
         const projCopy = new ProjectSerializerService().fromJson(node.data);
         const nodeCopy = new ProjectTreeNodeSerializerService().fromJson(node);

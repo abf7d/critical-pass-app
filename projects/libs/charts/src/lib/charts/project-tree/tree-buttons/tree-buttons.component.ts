@@ -29,7 +29,7 @@ export class TreeButtonsComponent implements OnInit {
     public branch(): void {
         this.eventService.get(CONST.BRANCH_KEY).next(true);
     }
-    public reset(): void {
+    public deleteNode(): void {
         this.eventService.get(CONST.RESET_KEY).next(true);
     }
     public downloadHistory() {

@@ -81,13 +81,19 @@ export class ProjectTreeUiService {
     }
 
     private reset() {
-        const seedNode = this.ops.reset();
-        const curWorkingProj = this.projectSerializer.fromJson(seedNode.data);
-        this.dashboard.updateProject(curWorkingProj, true);
+        let historyArray: TreeNode[] = [];
+        if (this.st.selected === this.st.head) {
+            const seedNode = this.ops.reset();
+            const curWorkingProj = this.projectSerializer.fromJson(seedNode.data);
+            this.dashboard.updateProject(curWorkingProj, true);
+        } else {
+            historyArray = this.ops.deleteNode();
+            this.dashboard.updateProject(this.st.selected!.data!, true);
+        }
         if (this.st.selected !== null) {
             this.selectedNode$.next(this.st.selected.id);
         }
-        this.eventService.get(CONST.HISTORY_ARRAY_KEY).next([]);
+        this.eventService.get(CONST.HISTORY_ARRAY_KEY).next(historyArray);
         this.drawChart();
     }
 
