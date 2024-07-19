@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
 import { AuthStateService, MsalService } from '@critical-pass/auth';
 import * as CONST from '../../constants';
-import { ClaimsApiService, PROJECT_API_TOKEN, ProjectApi, ProjectListApiService } from '@critical-pass/shared/data-access';
+import { PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/shared/data-access';
 import { Project } from '@critical-pass/project/types';
 import { NodeConnectorService } from '@critical-pass/project/processor';
 @Component({
@@ -35,8 +35,6 @@ export class WelcomeComponent implements OnInit {
         private authService: MsalService,
         private router: Router,
         private authStore: AuthStateService,
-        private claimsApi: ClaimsApiService,
-        private projListApi: ProjectListApiService,
         @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
         private ngZone: NgZone,
         private nodeConnector: NodeConnectorService,
@@ -69,18 +67,7 @@ export class WelcomeComponent implements OnInit {
         });
 
         this.projectLoadState = 'loading';
-        this.projListApi.getGroupLists('').subscribe(
-            lists => {
-                this.projectLists = lists;
-                if (lists.length > 0) {
-                    this.loadProjects(0, lists[0]);
-                }
-            },
-            error => {
-                this.projectLoadState = 'error';
-                console.error(error);
-            },
-        );
+        this.loadProjects(0, CONST.WELCOME_EXAMPLES_LIST_NAME);
     }
 
     private loadProjects(currentPage: number, listName: string | null = null) {
