@@ -6,6 +6,12 @@
         <a class="btn btn-secondary" href="javascript:void(0)" (click)="navToSingleGraph()">Base Controls</a>
         <a class="btn btn-secondary" href="javascript:void(0)" (click)="navToMetaGraph()">Meta Controls</a>
     </div>
+    <div class="undo-redo">
+        <i *ngIf="canRedo" class="fas fa-redo" (click)="redo()"></i>
+        <i *ngIf="!canRedo" class="fas fa-redo disabled"></i>
+        <i *ngIf="canUndo" class="fas fa-undo" (click)="undo()"></i>
+        <i *ngIf="!canUndo" class="fas fa-undo disabled"></i>
+    </div>
     <div class="baseline">
         <input class="auto-resources" type="number" [(ngModel)]="resourceCount" />
         <button class="btn btn-secondary" (click)="autoAssignResourceCount()" [class.disabled]="disableButtons">Set Resource Count</button>

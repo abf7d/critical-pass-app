@@ -205,3 +205,12 @@ a.btn-primary {
 .btn-row div.baseline > * {
     margin: 0 2px;
 }
+.undo-redo {
+    & > i { cursor: pointer; }
+    align-items: center;
+    gap: 7px;
+    .disabled {
+        color: #999;
+        cursor: not-allowed;
+    }
+  }
