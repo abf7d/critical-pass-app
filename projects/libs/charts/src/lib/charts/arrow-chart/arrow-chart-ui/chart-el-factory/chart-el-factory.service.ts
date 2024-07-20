@@ -68,8 +68,8 @@ export class ChartElFactory {
                 this.controller.onNodeGroupDrag([event.x, event.y], event.dx, event.dy, d as Integration, project);
             })
             .on('end', (event: any, d: unknown) => {
-                this.controller.onNodeGroupMouseUp(d as Integration, project);
-                this.dashboard.updateProject(project, true);
+                const recordAction = this.controller.onNodeGroupMouseUp(d as Integration, project);
+                this.dashboard.updateProject(project, true, recordAction);
             });
         enterNodes
             .on('mousedown', (event: any, d: Integration) => {

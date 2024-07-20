@@ -136,6 +136,7 @@ export class SelectedActivityControllerService {
         childProject.profile.parentProjectId = project.profile.id;
 
         childProject.profile.view.autoZoom = true;
+        this.dashboard.resetUndoRedo();
         this.dashboard.updateProject(childProject, true);
         this.dashboard.secondaryProject$.next(project);
     }
@@ -161,6 +162,7 @@ export class SelectedActivityControllerService {
         subProj.profile.subProject.activityParentId = activity.profile.id;
         subProj.profile.parentProjectId = project.profile.id;
 
+        this.dashboard.resetUndoRedo();
         this.dashboard.updateProject(subProj, true);
 
         // TODO: do we need to compile the project here?

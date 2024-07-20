@@ -68,6 +68,7 @@ export class ProjectTreeUiService {
         if (this.st.selected !== null) {
             this.selectedNode$.next(this.st.selected.id);
         }
+        this.dashboard.resetUndoRedo();
         this.drawChart();
     }
 
@@ -77,6 +78,7 @@ export class ProjectTreeUiService {
         if (this.st.selected !== null) {
             this.selectedNode$.next(this.st.selected.id);
         }
+        this.dashboard.resetUndoRedo();
         this.drawChart();
     }
 
@@ -94,6 +96,7 @@ export class ProjectTreeUiService {
             this.selectedNode$.next(this.st.selected.id);
         }
         this.eventService.get(CONST.HISTORY_ARRAY_KEY).next(historyArray);
+        this.dashboard.resetUndoRedo();
         this.drawChart();
     }
 
@@ -101,6 +104,7 @@ export class ProjectTreeUiService {
         this.st = this.st ?? new ProjectTreeFactory().create();
         const workingProj = this.ops.loadState(this.st, nodes);
         this.dashboard.updateProject(workingProj, true);
+        this.dashboard.resetUndoRedo();
         this.eventService.get(CONST.HISTORY_ARRAY_KEY).next(nodes);
         this.drawChart();
     }

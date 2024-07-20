@@ -37,6 +37,7 @@ export class HistoryLayoutComponent implements OnInit {
         return this.refresh < 2;
     }
     public load(node: TreeNode): void {
+        this.dashboard.resetUndoRedo();
         this.dashboard.updateProject(node.data!, false);
         this.selectedTreeNode$.next(node.id);
     }
@@ -44,6 +45,7 @@ export class HistoryLayoutComponent implements OnInit {
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
+        this.dashboard.resetUndoRedo();
         this.eventService.onDestroy();
     }
 }

@@ -124,7 +124,7 @@ export class TreeOperationsService {
         }
         let hasNode = false;
         for (const child of node.children) {
-            hasNode = this.pruneNode(child, id);
+            hasNode = hasNode || this.pruneNode(child, id);
         }
         if (hasNode) {
             node.children = node.children.filter(x => x.id !== id);

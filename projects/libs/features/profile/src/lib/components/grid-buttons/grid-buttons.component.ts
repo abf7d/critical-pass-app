@@ -54,7 +54,7 @@ export class GridButtonsComponent implements OnInit {
         // the buttonEvents should bring in activityBuilder itself or one level removed projectUtils
         if (this.project) {
             this.activityBuilder.addActivity(this.project);
-            this.dashboard.updateProject(this.project, false);
+            this.dashboard.updateProject(this.project, false, true);
         }
     }
     public buildArrowChart() {
@@ -62,7 +62,7 @@ export class GridButtonsComponent implements OnInit {
         this.buttonEvents.compileArrowGraph(this.project).subscribe(
             p => {
                 if (p) {
-                    this.dashboard.updateProject(p, false);
+                    this.dashboard.updateProject(p, false, true);
                     this.isProcessing = false;
                     this.toastr.success('Build Arrow Chart', 'Success!');
                 } else {
@@ -85,7 +85,7 @@ export class GridButtonsComponent implements OnInit {
             if (firstFile !== null) {
                 this.buttonEvents.compileMsProject(firstFile).subscribe(
                     p => {
-                        this.dashboard.updateProject(p, false);
+                        this.dashboard.updateProject(p, false, true);
                         this.isProcessing = false;
                         this.toastr.success('Processing MS Project', 'Success!');
                     },
@@ -119,7 +119,7 @@ export class GridButtonsComponent implements OnInit {
             this.idGenerator.resetIds(this.project);
             this.depCrawler.setDependencyDataFromGraph(this.project);
             this.sorter.reorderIds(this.project);
-            this.dashboard.updateProject(this.project, false);
+            this.dashboard.updateProject(this.project, false, true);
         }
     }
     public processCritPathFile(event: any) {
@@ -130,7 +130,7 @@ export class GridButtonsComponent implements OnInit {
             this.fileManager
                 .import(firstFile)
                 .then(project => {
-                    this.dashboard.updateProject(project, true);
+                    this.dashboard.updateProject(project, true, true);
                     this.toastr.success('Processing File', 'Success!');
                 })
                 .catch(error => this.toastr.success('Processing File', 'Error occured'));

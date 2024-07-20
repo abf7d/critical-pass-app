@@ -70,7 +70,7 @@ export class ArrowChartUIService {
             if (autoArrange === true) {
                 this.nodeArranger.arrangeNodes(this.proj);
             }
-            this.dashboard.updateProject(this.proj, true);
+            this.dashboard.updateProject(this.proj, true, true);
         }
     }
 

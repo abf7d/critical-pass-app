@@ -58,7 +58,7 @@ export class HistoryResolver implements Resolve<any> {
                             this.eventService.get('project.tree.history.file').next(history);
                         } else {
                             this.nodeConnector.connectArrowsToNodes(project);
-                            this.dashboard.activeProject$.next(project);
+                            this.dashboard.initializeActiveProject(project);
                             this.eventService.get('project.tree.history.file').next(null);
                         }
                     }),

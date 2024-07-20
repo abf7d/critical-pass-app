@@ -50,7 +50,7 @@ export class EventBinderService {
         if (!proceed) {
             return;
         }
-        this.dashboard.updateProject(project, true);
+        this.dashboard.updateProject(project, true, true);
     }
 
     private mousemove(event: any): void {
@@ -72,19 +72,19 @@ export class EventBinderService {
             if (this.st.selected_node != null) {
                 this.controller.splitUpNode(this.st.selected_node, project);
             }
-            this.dashboard.updateProject(project, true);
+            this.dashboard.updateProject(project, true, true);
         }
         // Make node a dummy
         if ((this.st.lastKeyDown === Key.Ctrl || this.st.macMetaDown) && event.keyCode === Key.D) {
             event.preventDefault();
             this.controller.makeDummy();
-            this.dashboard.updateProject(project, true);
+            this.dashboard.updateProject(project, true, true);
         }
         // Make node a milestone
         if ((this.st.lastKeyDown === Key.Ctrl || this.st.macMetaDown) && event.keyCode === Key.M) {
             event.preventDefault();
             this.controller.makeMilestone(project);
-            this.dashboard.updateProject(project, true);
+            this.dashboard.updateProject(project, true, true);
         }
 
         // On a mac you don't check lastKeyDown, you check if metaKey is true for cmd key.
@@ -92,7 +92,7 @@ export class EventBinderService {
         if (event.keyCode === Key.Backspace && event.metaKey) {
             if (this.st.allowDeletes) {
                 this.controller.deleteSelectedNodeOrLink(project);
-                this.dashboard.updateProject(project, true);
+                this.dashboard.updateProject(project, true, true);
             }
         }
 
@@ -115,7 +115,7 @@ export class EventBinderService {
             case Key.Delete:
                 if (this.st.allowDeletes) {
                     this.controller.deleteSelectedNodeOrLink(project);
-                    this.dashboard.updateProject(project, true);
+                    this.dashboard.updateProject(project, true, true);
                 }
                 break;
         }

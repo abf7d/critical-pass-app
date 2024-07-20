@@ -41,6 +41,7 @@ export class ParentProjectComponent implements OnInit, OnDestroy {
         const mainProj = this.project.profile.parentProject;
         if (mainProj !== null) {
             mainProj.profile.view.autoZoom = true;
+            this.dashboard.resetUndoRedo();
             this.dashboard.updateProject(mainProj, false);
             const parentProj = mainProj.profile.parentProject;
             if (parentProj !== null) this.compiler.compile(parentProj);

@@ -10,3 +10,4 @@ export * from './parent-compiler/parent-compiler.service';
 export * from './node-arranger/node-arranger.service';
 export * from './indirect-cost-calculator/indirect-cost-calculator.service';
 export * from './tag-manager/tag-manager.service';
+export * from './project-undo-redo/project-undo-redo.service';

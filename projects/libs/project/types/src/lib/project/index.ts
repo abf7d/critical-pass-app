@@ -7,3 +7,4 @@ export * from './phase/phase';
 export * from './role/role';
 export * from './tag';
 export * from './profile';
+export * from './profile/view';

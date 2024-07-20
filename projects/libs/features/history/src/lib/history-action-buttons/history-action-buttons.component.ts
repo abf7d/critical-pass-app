@@ -125,4 +125,7 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
     public navToMetaGraph() {
         this.router.navigateByUrl(`history/(${this.id}//sidebar:lasso/${this.id})`);
     }
+    public override ngOnDestroy(): void {
+        super.ngOnDestroy();
+    }
 }

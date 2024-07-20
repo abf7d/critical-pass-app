@@ -1,4 +1,4 @@
-import { Component, Inject, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { API_CONST, PROJECT_API_TOKEN, PROJECT_STORAGE_TOKEN, ProjectApi, ProjectApiService, ProjectStorage } from '@critical-pass/shared/data-access';
@@ -22,6 +22,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     public project!: Project;
     public peekProj!: Project;
     public subscription!: Subscription;
+    public canUndoRedoSub!: Subscription;
     public alertMessage: string;
     public actionText: string;
     public disableButtons!: boolean;
@@ -29,6 +30,8 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     public showHelp: boolean;
     public timestamp!: Date | null;
     public saveTooltip: string = CORE_CONST.OWNER_TOOLTIP;
+    public canUndo: boolean = false;
+    public canRedo: boolean = false;
 
     constructor(
         protected router: Router,
@@ -54,7 +57,12 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
             this.isParentProject = !!project.profile.parentProject;
             this.saveTooltip = this.isParentProject ? CORE_CONST.PARENT_PROJ_TOOLTIP : CORE_CONST.OWNER_TOOLTIP;
         });
+        this.canUndoRedoSub = this.dashboard.canUndoRedo$.subscribe(canUndoRedo => {
+            this.canUndo = canUndoRedo.canUndo;
+            this.canRedo = canUndoRedo.canRedo;
+        });
         this.showPeek = false;
+        this.dashboard.allowUndoRedo = true;
     }
 
     public async peekStorage() {
@@ -113,6 +121,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
                 if (result !== null) {
                     this.project.profile.timestamp = result.profile.timestamp;
                     this.sanitizer.updateIds(this.project, result);
+                    this.dashboard.resetUndoRedo();
                     this.dashboard.updateProject(this.project, false);
                 }
                 this.setSaveState('', '', false, true);
@@ -139,6 +148,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
                 this.router.navigateByUrl(CORE_CONST.LIBRARY_ROUTE);
                 if (result !== null) {
                     this.sanitizer.updateIds(this.project, result);
+                    this.dashboard.resetUndoRedo();
                     this.dashboard.updateProject(this.project, false);
                 }
                 this.setSaveState('', '', false, true);
@@ -167,6 +177,24 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
             },
         );
     }
+    public undo() {
+        this.dashboard.undo();
+    }
+    public redo() {
+        this.dashboard.redo();
+    }
+
+    @HostListener('window:keydown', ['$event'])
+    handleKeyDown(event: KeyboardEvent) {
+        if (event.ctrlKey && event.key === 'z') {
+            // Use event.metaKey on Mac
+            this.dashboard.undo();
+        }
+        if (event.ctrlKey && event.key === 'y') {
+            // Use event.metaKey on Mac
+            this.dashboard.redo();
+        }
+    }
 
     public setSaveState(actionTxt: string, alertMsg: string, disabled: boolean, clearMsg: boolean = false) {
         this.actionText = actionTxt;
@@ -180,5 +208,7 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
+        this.canUndoRedoSub?.unsubscribe();
+        this.dashboard.resetUndoRedo();
     }
 }

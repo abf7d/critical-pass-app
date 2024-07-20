@@ -174,3 +174,12 @@
     background-color: #6c757d;
     border-color: #6c757d;
   }
+  .undo-redo {
+    & > i { cursor: pointer; }
+    align-items: center;
+    gap: 7px;
+    .disabled {
+        color: #999;
+        cursor: not-allowed;
+    }
+  }

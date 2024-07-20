@@ -36,7 +36,7 @@ export class ProjectResolver implements Resolve<any> {
                 .pipe(
                     tap(project => {
                         this.nodeConnector.connectArrowsToNodes(project);
-                        this.dashboard.activeProject$.next(project);
+                        this.dashboard.initializeActiveProject(project);
                     }),
                     first(),
                 )

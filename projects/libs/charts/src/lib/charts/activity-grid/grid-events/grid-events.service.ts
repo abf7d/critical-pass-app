@@ -141,7 +141,7 @@ export class GridEventsService {
     public removeActivity(activity: Activity, project: Project): void {
         if (activity.chartInfo.milestoneNodeId !== null) {
             this.milestoneFactory.removeMilestoneByActivity(activity, project);
-            this.dashboard.updateProject(project, true);
+            this.dashboard.updateProject(project, true, true);
             return;
         }
         const arrow = project.activities.find(a => a.profile.id === activity.profile.id);
@@ -161,11 +161,11 @@ export class GridEventsService {
             const indexT = project.integrations.indexOf(target);
             project.integrations.splice(indexT, 1);
         }
-        this.dashboard.updateProject(project, true);
+        this.dashboard.updateProject(project, true, true);
     }
 
     public updateProject(project: Project, processRisk: boolean): void {
-        this.dashboard.updateProject(project, processRisk);
+        this.dashboard.updateProject(project, processRisk, true);
     }
 
     public sortBy(column: string, project: Project): void {

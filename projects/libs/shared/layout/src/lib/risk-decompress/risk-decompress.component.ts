@@ -49,16 +49,16 @@ export class RiskDecompressComponent implements OnInit {
 
     public calculateRisk(): void {
         this.endNodesLocator.setStartEndNodesFromLongestPath(this.project);
-        this.dashboard.updateProject(this.project, true);
+        this.dashboard.updateProject(this.project, true, true);
     }
 
     public setStart(event: any): void {
         this.project.profile.start = +event.value;
-        this.dashboard.updateProject(this.project, true);
+        this.dashboard.updateProject(this.project, true, true);
     }
     public setEnd(event: any): void {
         this.project.profile.end = +event.value;
-        this.dashboard.updateProject(this.project, true);
+        this.dashboard.updateProject(this.project, true, true);
     }
 
     public arrangeNodes(): void {
@@ -73,7 +73,7 @@ export class RiskDecompressComponent implements OnInit {
             bump: this.bump,
         };
         const decrossFailed = this.nodeArranger.arrangeNodes(this.project, layoutOptions);
-        this.dashboard.updateProject(this.project, false);
+        this.dashboard.updateProject(this.project, false, true);
         if (decrossFailed) {
             this.toastr.error('Decrossing arrows took too long', 'Ignored Decross.');
         }
