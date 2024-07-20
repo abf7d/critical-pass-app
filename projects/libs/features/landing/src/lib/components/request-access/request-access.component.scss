@@ -269,10 +269,10 @@ img {
     align-items: flex-start;
 }
 textarea,
-input {
+input[type=text] {
     width: 100%;
 }
-input {
+input[type=text]{
     margin-bottom: 20px;
 }
 .msg {

@@ -14,7 +14,9 @@
                         <div>Welcome</div>
                         <h4 class="alert-text">You are not yet authorized</h4>
                         <div>You have created an account but still need to request authorization.</div>
-                        <div class="contact">Contact <span class="address"> info&#64;criticalpath.design </span> to request access</div>
+                        <div class="contact">
+                            Fill out the form and submit a request or contact <span class="address"> info&#64;criticalpass.io </span> to request access
+                        </div>
                         <button class="logout-btn" (click)="logout()">Logout</button>
                     </div>
                 </div>
@@ -65,7 +67,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-10">
+                                        <div class="approval">
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" id="consent" [(ngModel)]="hasConsented" type="checkbox" />
+                                                <label class="form-check-label" for="consent"> I would like to recieve a reply notification email </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
                                         <div class="form-group msg">
                                             <button class="btn btn-primary" type="submit" id="submit-btn">Send Message</button>
                                         </div>

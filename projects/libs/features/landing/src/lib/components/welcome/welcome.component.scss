@@ -336,7 +336,6 @@ textarea.form-control {
     padding-right: 15px;
 }
 .menu {
-    margin-left: -73px;
     width: 272px;
 }
 .user-proj {
@@ -357,8 +356,6 @@ textarea.form-control {
 }
 .materials {
     display: flex;
-    flex-direction: column;
-    gap: 50px;
 }
 .loading-placeholder {
     height: 343px;
@@ -385,4 +382,10 @@ textarea.form-control {
     height: 118px;
     overflow: hidden;
     line-height: 23px;
+}
+.video-list {
+    & > div {
+        text-wrap: nowrap;
+        padding-left: 16px;
+    }
 }

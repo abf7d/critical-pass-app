@@ -3,7 +3,7 @@
         <main>
             <div class="container">
                 <div class="row video-ui">
-                    <div class="col-3" [hidden]="isAuthorized || loginError">
+                    <div class="col-xl-3 col-lg-12" [hidden]="isAuthorized || loginError">
                         <div>
                             <div>Welcome</div>
                             <h4 class="alert-text">You are not yet authorized</h4>
@@ -12,12 +12,12 @@
                             <button class="logout-btn" (click)="logout()">Logout</button>
                         </div>
                     </div>
-                    <div class="col-3" [hidden]="!isAuthorized && !loginError">
+                    <div class="col-xl-3 col-lg-12" [hidden]="!isAuthorized && !loginError">
                         <div>
                             <h2>Welcome {{ name }}</h2>
                             <div>
-                                To get started a watch a training video or dive into an example project. Click the right menu to see more videos. A link to the
-                                library of examples is provided below. Once you are ready open the app with the button below.
+                                To get started a watch a training video or dive into an example project by clicking a chart. Click the right menu to see more
+                                videos. A link to the library of examples is provided below. Once you are ready click on the "Open App" button below.
                             </div>
                             <div>
                                 <button class="lib-btn" [ngClass]="{ disabled: !isAuthorized }" (click)="loadLibrary()">Open App</button>
@@ -27,9 +27,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
-                        <div *ngIf="isAuthorized && !loginError" class="materials">
-                            <div>
+                    <div class="col-xl-8 col-lg-12">
+                        <div *ngIf="isAuthorized && !loginError" class="materials row">
+                            <div class="col-xl-11 col-lg-12">
                                 <h3>Training Videos</h3>
                                 <div class="video">
                                     <div>
@@ -136,9 +136,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="col-xl-1 col-lg-12 menu">
+                                <div class="video-list">
+                                    <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
+                                    <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
+                                    <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
+                                    <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">
+                                        Application Layout
+                                    </div>
+                                    <div>
+                                        <a routerLink="/tutorials">More Videos...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-12">
                                 <h3>Example Projects</h3>
-                                <a (click)="navigateToExamples()" href="javascript:void(0)">Full Example Library</a>
+                                <a (click)="navigateToExamples()" href="javascript:void(0)">More Examples</a>
                                 <div>
                                     <div [ngSwitch]="projectLoadState">
                                         <div *ngSwitchCase="'loading'">
@@ -175,75 +190,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div *ngIf="!isAuthorized && !loginError" class="card rounded-2">
-                            <div class="card-body">
-                                <div class="video-title">Request Access</div>
-                                <form data-action="contact-us" method="post" class="form-submit-init" novalidate="true">
-                                    <div class="row g-gs">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Full Name</label>
-                                                <div class="form-control-wrap">
-                                                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Email</label>
-                                                <div class="form-control-wrap">
-                                                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Phone</label>
-                                                <div class="form-control-wrap">
-                                                    <input type="text" name="phone" class="form-control" placeholder="(555) 222-1234" required="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <div class="form-label-group">
-                                                    <label class="form-label">Tell us a bit about your query</label>
-                                                    <span> <span id="char-count">0</span>/ <span id="char-max" data-char-max="255">255</span> </span>
-                                                </div>
-                                                <div class="form-control-wrap">
-                                                    <textarea
-                                                        id="textarea-box"
-                                                        name="message"
-                                                        class="form-control"
-                                                        placeholder="Enter your message"
-                                                        required=""
-                                                    ></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group msg">
-                                                <button class="btn btn-primary" type="submit" id="submit-btn">Send Message</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col menu">
-                        <div class="video-list">
-                            <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
-                            <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
-                            <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
-                            <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">
-                                Application Layout
-                            </div>
-                            <div>
-                                <a routerLink="/tutorials">More Videos...</a>
                             </div>
                         </div>
                     </div>
