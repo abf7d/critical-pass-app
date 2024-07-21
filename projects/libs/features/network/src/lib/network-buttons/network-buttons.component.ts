@@ -65,20 +65,37 @@ export class NetworkButtonsComponent implements OnInit {
         }
     }
     public loadFileByUpload(firstFile: File) {
-        this.jsonFileManager.import(firstFile).then(projects => {
-            projects.forEach(project => {
-                this.nodeConnector.connectArrowsToNodes(project);
+        const extension = firstFile.name.split('.').pop();
+        if (extension === FILE_CONST.EXT.XLSX) {
+            this.fileManager.import(firstFile).then(projects => {
+                projects.forEach(project => {
+                    this.nodeConnector.connectArrowsToNodes(project);
+                });
+                let mostRecentId = Math.min(...projects.map(p => p.profile.id));
+                if (mostRecentId >= 0) {
+                    mostRecentId = -1;
+                }
+                mostRecentId -= 1;
+                this.eventService.get(UTIL_CONST.NETWORK_SUB_PROJECT_TRACKER).next(mostRecentId);
+                this.networkArray$.next([...projects]);
+                this.filteredNetworkArray$.next([...projects]);
+                this.dashboard.updateProject(projects[0], true);
             });
-            let mostRecentId = Math.min(...projects.map(p => p.profile.id));
-            if (mostRecentId >= 0) {
-                mostRecentId = -1;
-            }
-            mostRecentId -= 1;
-            this.eventService.get(UTIL_CONST.NETWORK_SUB_PROJECT_TRACKER).next(mostRecentId);
-            this.networkArray$.next([...projects]);
-            this.filteredNetworkArray$.next([...projects]);
-            this.dashboard.updateProject(projects[0], true);
-        });
-        // }
+        } else if (extension === FILE_CONST.EXT.JSON) {
+            this.jsonFileManager.import(firstFile).then(projects => {
+                projects.forEach(project => {
+                    this.nodeConnector.connectArrowsToNodes(project);
+                });
+                let mostRecentId = Math.min(...projects.map(p => p.profile.id));
+                if (mostRecentId >= 0) {
+                    mostRecentId = -1;
+                }
+                mostRecentId -= 1;
+                this.eventService.get(UTIL_CONST.NETWORK_SUB_PROJECT_TRACKER).next(mostRecentId);
+                this.networkArray$.next([...projects]);
+                this.filteredNetworkArray$.next([...projects]);
+                this.dashboard.updateProject(projects[0], true);
+            });
+        }
     }
 }

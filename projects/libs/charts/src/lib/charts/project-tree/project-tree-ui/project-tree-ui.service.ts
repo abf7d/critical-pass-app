@@ -8,6 +8,7 @@ import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN } 
 import * as CONST from '../../../constants/constants';
 import { Project, TreeNode } from '@critical-pass/project/types';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root',
@@ -29,6 +30,7 @@ export class ProjectTreeUiService {
         @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
         private projectSerializer: ProjectSerializerService,
         private ops: TreeOperationsService,
+        private toastr: ToastrService,
         private ngZone: NgZone,
     ) {}
 
@@ -101,12 +103,17 @@ export class ProjectTreeUiService {
     }
 
     private loadTree(nodes: TreeNode[]) {
-        this.st = this.st ?? new ProjectTreeFactory().create();
-        const workingProj = this.ops.loadState(this.st, nodes);
-        this.dashboard.updateProject(workingProj, true);
-        this.dashboard.resetUndoRedo();
-        this.eventService.get(CONST.HISTORY_ARRAY_KEY).next(nodes);
-        this.drawChart();
+        try {
+            this.st = this.st ?? new ProjectTreeFactory().create();
+            const workingProj = this.ops.loadState(this.st, nodes);
+            this.dashboard.updateProject(workingProj, true);
+            this.dashboard.resetUndoRedo();
+            this.eventService.get(CONST.HISTORY_ARRAY_KEY).next(nodes);
+            this.drawChart();
+        } catch (e) {
+            console.error('Exception', e);
+            this.toastr.error('Loading file failed, check file format', 'Error');
+        }
     }
 
     private selectNode(id: number) {

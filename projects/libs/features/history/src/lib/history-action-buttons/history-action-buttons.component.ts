@@ -106,7 +106,7 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
                 this.eventService.get(CHART_KEYS.LOAD_TREE_KEY).next(nodes);
             });
         } else if (extension === FILE_CONST.EXT.JSON) {
-            this.jsonFileManager.import(firstFile).then(nodes => {
+            this.jsonFileManager.importFromTreeNodeList(firstFile).then(nodes => {
                 this.eventService.get(CHART_KEYS.LOAD_TREE_KEY).next(nodes);
             });
         }

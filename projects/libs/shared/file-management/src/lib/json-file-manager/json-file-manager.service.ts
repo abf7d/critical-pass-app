@@ -53,7 +53,7 @@ export class JsonFileManagerService implements FileManagerBaseService<TreeNode[]
             };
         });
     }
-    public export(content: TreeNode[]): void {
+    public export(content: TreeNode[], subExension: string = 'history'): void {
         // If you wish to save project list instead of treenodes, skip node serialization
         const newNodes = content.map(x => {
             const node = this.treeSerializer.fromJson(x);
@@ -71,7 +71,7 @@ export class JsonFileManagerService implements FileManagerBaseService<TreeNode[]
         const blob = new Blob([projectTxt], { type: 'application/json' });
         const downloadLink = document.createElement('a');
         downloadLink.href = window.URL.createObjectURL(blob);
-        downloadLink.download = 'data.json'; // Specify the desired filename
+        downloadLink.download = `${subExension}.critical-pass.json`; // Specify the desired filename
         downloadLink.click();
     }
 

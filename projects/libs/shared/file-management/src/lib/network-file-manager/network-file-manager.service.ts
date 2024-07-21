@@ -12,7 +12,7 @@ import { HistoryWorkbook } from '../types/history-workbook';
 export class NetworkFileManagerService implements FileManagerBaseService<Project[]> {
     constructor(private mapper: NetworkMapperService) {}
 
-    public export(history: Project[]): void {
+    public export(history: Project[], subExension: string = 'network'): void {
         let arrowProfiles: any[] = [];
         let arrowChartInfos: any[] = [];
         let nodes: any[] = [];
@@ -79,7 +79,7 @@ export class NetworkFileManagerService implements FileManagerBaseService<Project
         XLSX.utils.book_append_sheet(wb, tagPoolWs, CONST.TAB_POOL_WS_NAME);
         XLSX.utils.book_append_sheet(wb, activityTagsWs, CONST.ACTIVITY_TAG_WS_NAME);
 
-        const name = 'project-network';
+        const name = `${subExension}.critical-pass`;
         XLSX.writeFile(wb, name + '.xlsx');
     }
 

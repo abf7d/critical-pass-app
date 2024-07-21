@@ -19,7 +19,7 @@ export class ProjectFileManagerService implements FileManagerBaseService<Project
         private serializer: ProjectSerializerService,
         private projSanitizer: ProjectSanatizerService,
     ) {}
-    public export(project: Project) {
+    public export(project: Project, subExension: string = 'profile') {
         const profiles = project.activities.map(x => {
             return { ...x.profile, graphId: project.profile.id };
         });
@@ -27,7 +27,7 @@ export class ProjectFileManagerService implements FileManagerBaseService<Project
             return { ...a.chartInfo, id: a.profile.id, graphId: project.profile.id };
         });
         const nodes = project.integrations;
-        const name = project.profile.name || 'critical-pass-project';
+        const name = project.profile.name || 'critical-pass';
 
         const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(profiles);
         const nds: XLSX.WorkSheet = XLSX.utils.json_to_sheet(nodes);
@@ -40,7 +40,7 @@ export class ProjectFileManagerService implements FileManagerBaseService<Project
         XLSX.utils.book_append_sheet(wb, arrows, CONST.ARROW_WS_NAME);
         XLSX.utils.book_append_sheet(wb, nds, CONST.INTEGRATION_WS_NAME);
         XLSX.utils.book_append_sheet(wb, proj, CONST.PROFILE_WS_NAME);
-        XLSX.writeFile(wb, name + '.xlsx');
+        XLSX.writeFile(wb, `${name}.${subExension}.xlsx`);
     }
     public import(file: File): Promise<Project> {
         return new Promise<Project>((resolve, reject) => {
@@ -74,7 +74,7 @@ export class ProjectFileManagerService implements FileManagerBaseService<Project
 
     public exportToJSON(project: Project[] | Project) {
         let contentTxt: string = '';
-        let name = 'critical-pass-project';
+        let name = 'critical-pass';
         if (!Array.isArray(project)) {
             const copy = this.serializer.fromJson(project) as any;
             this.projSanitizer.sanatizeForSave(copy);

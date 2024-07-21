@@ -12,7 +12,7 @@ import { HistoryWorkbook } from '../types/history-workbook';
 export class HistoryFileManagerService implements FileManagerBaseService<TreeNode[]> {
     constructor(private mapper: HistoryMapperService) {}
 
-    public export(history: TreeNode[]): void {
+    public export(history: TreeNode[], subExension: string = 'history'): void {
         let arrowProfiles: any[] = [];
         let arrowChartInfos: any[] = [];
         let nodes: any[] = [];
@@ -79,7 +79,7 @@ export class HistoryFileManagerService implements FileManagerBaseService<TreeNod
         XLSX.utils.book_append_sheet(wb, tagPoolWs, CONST.TAB_POOL_WS_NAME);
         XLSX.utils.book_append_sheet(wb, activityTagsWs, CONST.ACTIVITY_TAG_WS_NAME);
 
-        const name = 'critical-pass-project';
+        const name = `${subExension}.critical-pass`;
         XLSX.writeFile(wb, name + '.xlsx');
     }
 

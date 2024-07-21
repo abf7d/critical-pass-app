@@ -40,7 +40,7 @@ export class NetworkJsonFileManagerService implements FileManagerBaseService<Pro
             };
         });
     }
-    public export(content: Project[]): void {
+    public export(content: Project[], subExension: string = 'network'): void {
         const newProjects = content.map(x => {
             const proj = this.projSerializer.fromJson(x);
             this.sanitizer.sanatizeForSave(proj);
@@ -50,7 +50,7 @@ export class NetworkJsonFileManagerService implements FileManagerBaseService<Pro
         const blob = new Blob([projectTxt], { type: 'application/json' });
         const downloadLink = document.createElement('a');
         downloadLink.href = window.URL.createObjectURL(blob);
-        downloadLink.download = 'data.json';
+        downloadLink.download = `${subExension}.critical-pass.json`;
         downloadLink.click();
     }
 }

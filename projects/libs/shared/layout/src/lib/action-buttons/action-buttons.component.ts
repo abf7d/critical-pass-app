@@ -66,6 +66,10 @@ export class ActionButtonsComponent implements OnInit, OnDestroy {
     }
 
     public async peekStorage() {
+        if (this.peekProj && !this.showPeek) {
+            this.showPeek = true;
+            return;
+        }
         if (!this.peekProj) {
             const project = await this.storageApi.get(API_CONST.LOCAL_STORAGE);
 
