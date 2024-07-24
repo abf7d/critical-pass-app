@@ -327,31 +327,3 @@ main {
 }
 
 .video-title { padding-bottom: 15px;}
-.flex-end {
-    display: flex;
-    align-items: flex-end;
-    padding-top: 20px;
-    .form-group {
-        width: 100%;
-    }
-    .form-control-wrap > input {
-        width: 100%;
-    }
-}
-
-.validation-error {
-    color: red;
-}
-.no-access-card {
-    position: relative;
-}
-.no-access-card {
-    height: 697px;
-}
-.no-access-txt {
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}

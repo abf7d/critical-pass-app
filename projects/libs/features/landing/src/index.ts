@@ -8,3 +8,4 @@ export * from './lib/components/login/login.component';
 export * from './lib/components/login-redirect/login-redirect.component';
 export * from './lib/components/request-access/request-access.component';
 export * from './lib/components/login-error/login-error.component';
+export * from './lib/components/contact-us/contact-us.component';
