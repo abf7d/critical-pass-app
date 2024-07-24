@@ -18,6 +18,7 @@ export class RequestAccessComponent {
     public hasError: boolean = false;
     public hasAccess: boolean = false;
     public loading: boolean = true;
+    public loadMsg: string = 'loading';
 
     maxLengthMessage = 255;
     remainingCharacters: number = 255;
@@ -29,7 +30,7 @@ export class RequestAccessComponent {
         this.form = this.fb.group({
             name: ['', [Validators.required, Validators.maxLength(100)]],
             email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
-            phone: [''],
+            phone: ['', []],
             message: ['', [Validators.required, Validators.maxLength(this.maxLengthMessage)]],
             consent: [false],
         });
@@ -38,10 +39,22 @@ export class RequestAccessComponent {
         this.form.get('message')!.valueChanges.subscribe(value => {
             this.remainingCharacters = this.maxLengthMessage - (value ? value.length : 0);
         });
-        this.emailApi.getAccess('request-access').subscribe(hasAccess => {
-            this.hasAccess = hasAccess;
-            this.loading = false;
-        });
+        this.emailApi.getAccess('request-access').subscribe(
+            hasAccess => {
+                if (hasAccess) this.loadMsg = 'allowed';
+                else this.loadMsg = 'blocked';
+            },
+            error => {
+                if (error.status === 429) {
+                    // Handle HTTP 429: Too Many Requests
+                    this.loadMsg = 'blocked';
+                    // Implement additional actions here, e.g., disabling the request button
+                } else {
+                    // General error handling
+                    this.loadMsg = 'error'; // General error message
+                }
+            },
+        );
     }
     public logout() {
         this.authService.logout();
@@ -55,10 +68,11 @@ export class RequestAccessComponent {
             this.emailApi.contactUs(contactInfo).subscribe(
                 message => {
                     console.log('Email sent successfully');
+                    this.loadMsg = 'success';
                 },
                 error => {
                     console.error('Error sending email', error);
-                    this.hasError = true;
+                    this.loadMsg = 'error';
                 },
             );
         } else {

@@ -22,11 +22,15 @@
                 </div>
                 <div class="col-8">
                     <div class="card rounded-2 no-access-card">
+                        @switch (loadMsg) { @case ("blocked") {
                         <div class="no-access-txt">To request access, please contact info&#64;criticalpass.io</div>
-                        <div class="no-access-txt">Loading</div>
-                        <div class="no-access-txt">Error Loading Form To request access, please contact info&#64;criticalpass.io</div>
-                    </div>
-                    <div class="card rounded-2">
+                        } @case("error"){
+                        <div class="no-access-txt">We are encountering diffuculty. To request access, please contact info&#64;criticalpass.io</div>
+                        } @case("success"){
+                        <div class="no-access-txt">Your request has been sent. Thank you!</div>
+                        } @case("loading"){
+                        <div class="no-access-txt">Loading...</div>
+                        } @case("allowed") {
                         <div class="card-body">
                             <div class="video-title">Request Access {{hasAccess}}</div>
                             <form [formGroup]="form" (ngSubmit)="onSubmit()" data-action="contact-us" method="post" class="form-submit-init" novalidate="true">
@@ -82,7 +86,6 @@
                                                     name="phone"
                                                     class="form-control"
                                                     placeholder="(555) 222-1234"
-                                                    required=""
                                                     type="tel"
                                                     id="phone"
                                                     formControlName="phone"
@@ -134,6 +137,9 @@
                                 </div>
                             </form>
                         </div>
+                        } @default{
+                        <div class="no-access-txt">To request access, please contact info&#64;criticalpass.io</div>
+                        } }
                     </div>
                 </div>
             </div>

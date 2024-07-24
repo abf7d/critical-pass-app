@@ -16,10 +16,10 @@ export class EmailApiService {
         this.baseUrl = environment.criticalPathApi;
     }
 
-    public contactUs(form: ContactForm): Observable<string> {
+    public contactUs(form: ContactForm): Observable<ResultMessage> {
         const body = JSON.stringify(form);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.httpClient.post<string>(urlJoin(this.baseUrl, CONST.CONTACT_US_ENDPOINT), body, { headers });
+        return this.httpClient.post<ResultMessage>(urlJoin(this.baseUrl, CONST.CONTACT_US_ENDPOINT), body, { headers });
     }
 
     public getAccess(formName: string): Observable<boolean> {
@@ -27,4 +27,8 @@ export class EmailApiService {
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this.httpClient.get<boolean>(urlJoin(this.baseUrl, CONST.GET_ACCESS_ENDPOINT), { headers, params });
     }
+}
+
+export interface ResultMessage {
+    message: string;
 }
