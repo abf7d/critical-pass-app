@@ -19,4 +19,5 @@ export * from './lib/types/network-api';
 export * from './lib/types/project-storage';
 export * from './lib/types/contact-form';
 export * from './lib/api/email-api/email-api.service';
+export * from './lib/types/library-filters';
 export * as API_CONST from './lib/constants/constants';

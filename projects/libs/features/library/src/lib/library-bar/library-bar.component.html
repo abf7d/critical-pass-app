@@ -9,7 +9,16 @@
         <i [hidden]="+currentPage >= maxPage" class="fa fa-chevron-right fa-2x pointer enabled-a" (click)="pageRight()" inverse="true"></i>
         <i [hidden]="+currentPage < maxPage" class="fa fa-chevron-right fa-2x pointer disabled-a" inverse="true"></i>
     </div>
-
+    <a class="btn btn-secondary filters">
+        <span (click)="setSortDirection('asc')" [ngClass]="{'selected-owner': sortDirection === 'asc'}"><i class="fa fa-arrow-up"></i>ASC </span>
+        <span (click)="setSortDirection('desc')" [ngClass]="{'selected-owner': sortDirection === 'desc'}"><i class="fa fa-arrow-down"></i>DESC </span>
+        <div *ngIf="isAdmin">
+            <select name="" id="" [(ngModel)]="filterByOwner" (change)="onFilterChange($event)">
+                <option value="myproj">My Proj</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+    </a>
     <a class="btn btn-secondary" (click)="navigate('profile/(-1//sidebar:arrow/-1)')">New Project</a>
     <a class="btn btn-secondary" (click)="navigate('history/(-1//sidebar:arrow/-1)')">Scenario Planning</a>
     <a class="btn btn-secondary" (click)="navigate('network/(-1//sidebar:meta/-1)')">Network Analysis</a>

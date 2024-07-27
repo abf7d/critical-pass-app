@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, Inject, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '@critical-pass/project/types';
-import { Subscription } from 'rxjs';
+import { Subscription, combineLatest, forkJoin } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LibraryStoreService } from '../library-store/library-store.service';
 import * as CONST from '../constants';
-import { PROJECT_API_TOKEN, ProjectApi, ProjectApiService } from '@critical-pass/shared/data-access';
+import { LibraryFilters, PROJECT_API_TOKEN, ProjectApi, ProjectApiService } from '@critical-pass/shared/data-access';
 import { NodeConnectorService } from '@critical-pass/project/processor';
 @Component({
     selector: 'cp-library-grid',
@@ -19,6 +19,8 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
     public subscription!: Subscription;
     public pageNumSub!: Subscription;
     public listName: string | null = null;
+    public filterByOwner!: string;
+    public sortDirection!: string;
     constructor(
         @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
         private router: Router,
@@ -31,10 +33,35 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
     public ngOnInit(): void {
         this.pageSize = CONST.LIBRARY_PAGE_SIZE;
         this.projects = [];
-        this.activatedRoute!.parent!.paramMap.subscribe(params => {
-            const listName = params.get('listName');
+        const queryParams$ = this.activatedRoute!.parent!.queryParamMap;
+        const routeParams$ = this.activatedRoute!.parent!.paramMap;
+        combineLatest([queryParams$, routeParams$]).subscribe(([queryParams, routeParams]) => {
+            const listName = routeParams.get('listName');
+            let sortDirection = (queryParams as any).params['sort'] || null;
+            let ownerFilter = (queryParams as any).params['filter'] || null;
+
+            if (ownerFilter === null) {
+                const storedFilter = localStorage.getItem('filterByOwner');
+                ownerFilter = storedFilter ? storedFilter : 'all';
+            }
+            if (sortDirection === null) {
+                const storedDir = localStorage.getItem('sortDirection');
+                sortDirection = storedDir ? storedDir : 'asc';
+            }
+
             this.pageNumSub = this.libraryStore.pageNumber$.pipe(filter(x => x !== null)).subscribe(currentPage => {
-                if (currentPage !== null) this.loadProjects(currentPage, listName);
+                if (currentPage !== null) {
+                    this.pageSize, listName;
+                    const filters: LibraryFilters = {
+                        page: currentPage,
+                        pageSize: this.pageSize,
+                        listName,
+                        sortDirection: sortDirection,
+                        ownerFilter: ownerFilter,
+                        searchFilter: null,
+                    };
+                    this.loadProjects(filters);
+                }
             });
         });
     }
@@ -55,12 +82,12 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl(`network/(${id}//sidebar:meta/${id})`);
     }
 
-    private loadProjects(currentPage: number, listName: string | null = null) {
+    private loadProjects(filters: LibraryFilters) {
         this.loadResult = 'Loading';
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
-        this.subscription = this.projectApi.list(currentPage, this.pageSize, listName).subscribe(projects => {
+        this.subscription = this.projectApi.list(filters).subscribe(projects => {
             if (projects !== null) {
                 this.libraryStore.maxProjectCount$.next(projects.totalCount);
                 this.initProjects(projects.items);

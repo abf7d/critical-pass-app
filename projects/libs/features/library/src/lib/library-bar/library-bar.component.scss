@@ -28,3 +28,17 @@ cp-arrow-snapshot {
 [hidden] {
     display: none;
 }
+.search-txt {
+    width: 161px;
+    padding-left: 7px;
+    margin-right: 6px;
+}
+.filters {
+    display: flex;
+    gap: 9px;
+    padding-left: 18px;
+    justify-content: center;
+}
+.selected-owner {
+    background-color: #999;
+}

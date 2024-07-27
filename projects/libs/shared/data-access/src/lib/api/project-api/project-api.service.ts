@@ -7,6 +7,7 @@ import { Project, ProjectLibrary } from '@critical-pass/project/types';
 import * as CONST from '../../constants/constants';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
 import { ProjectApi } from '../../types/project-api';
+import { LibraryFilters } from '../../types/library-filters';
 
 @Injectable({
     providedIn: 'root',
@@ -23,11 +24,21 @@ export class ProjectApiService implements ProjectApi {
     public get(id: number): Observable<Project> {
         return this.httpClient.get(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT, id.toString())).pipe(map((data: any) => this.serializer.fromJson(data)));
     }
-    public list(page: number, pageSize: number, listName: string | null): Observable<ProjectLibrary> {
+    public list(filters: LibraryFilters): Observable<ProjectLibrary> {
         console.log('web-project-api.service.ts: list()');
         let params = new HttpParams();
+        const { page, pageSize, listName, sortDirection, ownerFilter, searchFilter } = filters;
         if (listName) {
-            params = params.set('filter', listName);
+            params = params.set('list', listName);
+        }
+        if (sortDirection) {
+            params = params.set('sortDir', sortDirection);
+        }
+        if (ownerFilter) {
+            params = params.set('owner', ownerFilter);
+        }
+        if (searchFilter) {
+            params = params.set('search', searchFilter);
         }
         return this.httpClient
             .get(urlJoin(this.baseUrl, CONST.LIBRARY_ENDPOINT, page.toString(), pageSize.toString()), {

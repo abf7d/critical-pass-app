@@ -7,3 +7,4 @@ export * from './lib/pipes/is-nan-pipe';
 export * from './lib/logger/logger.service';
 export * from './lib/app-config/app.config';
 export * from './lib/env-service/environment.service';
+export * from './lib/monitor/app-insights-monitor.service';

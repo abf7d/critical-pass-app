@@ -8,6 +8,7 @@ import * as CONST from '../constants';
 import { API_CONST, PROJECT_STORAGE_TOKEN, ProjectStorage } from '@critical-pass/shared/data-access';
 import { ProjectStorageApiService } from '@critical-pass/shared/data-access';
 import { HttpClient } from '@angular/common/http';
+import { ClaimsService } from '@critical-pass/auth';
 
 @Component({
     selector: 'cp-library-bar',
@@ -23,6 +24,9 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
 
     public showPeek!: boolean;
     public peekProj!: Project | null;
+    public isAdmin!: boolean;
+    public filterByOwner: string = 'all';
+    public sortDirection: string = 'asc';
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -30,11 +34,17 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
         private router: Router,
         @Inject(PROJECT_STORAGE_TOKEN) private storageApi: ProjectStorage,
         private httpClient: HttpClient,
+        private claimsService: ClaimsService,
     ) {}
 
     public ngOnInit(): void {
+        this.isAdmin = this.claimsService.isAdmin();
         this.pageSize = CONST.LIBRARY_PAGE_SIZE;
         this.showPeek = false;
+        const storedFilter = localStorage.getItem('filterByOwner');
+        this.filterByOwner = storedFilter ? storedFilter : 'all';
+        const sortDirection = localStorage.getItem('sortDirection');
+        this.sortDirection = sortDirection ? sortDirection : 'asc';
 
         this.activatedRoute.params.subscribe(params => {
             this.currentPage = +params['page'];
@@ -51,10 +61,14 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
         this.maxPage = max - 1;
     }
     public pageRight(): void {
-        this.router.navigateByUrl(`/library/(grid/${this.currentPage + 1}//sidebar:libar/${this.currentPage + 1})`);
+        this.router.navigateByUrl(
+            `/library/(grid/${this.currentPage + 1}//sidebar:libar/${this.currentPage + 1})?sort=${this.sortDirection}&filter=${this.filterByOwner}`,
+        );
     }
     public pageLeft(): void {
-        this.router.navigateByUrl(`/library/(grid/${this.currentPage - 1}//sidebar:libar/${this.currentPage - 1})`);
+        this.router.navigateByUrl(
+            `/library/(grid/${this.currentPage - 1}//sidebar:libar/${this.currentPage - 1})?sort=${this.sortDirection}&filter=${this.filterByOwner}`,
+        );
     }
     public hasSavedWork(): boolean {
         const proj = this.storageApi.get(API_CONST.LOCAL_STORAGE);
@@ -70,5 +84,17 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
     }
     public navigate(url: string): void {
         this.router.navigateByUrl(url);
+    }
+
+    public onFilterChange(event: Event) {
+        const selectElement = event.target as HTMLSelectElement;
+        this.filterByOwner = selectElement.value;
+        localStorage.setItem('filterByOwner', this.filterByOwner);
+        this.router.navigateByUrl(`/library/(grid/${this.currentPage + 1}//sidebar:libar/0)?sort=${this.sortDirection}&filter=${this.filterByOwner}`);
+    }
+    public setSortDirection(dir: string) {
+        this.sortDirection = dir;
+        localStorage.setItem('sortDirection', this.sortDirection);
+        this.router.navigateByUrl(`/library/(grid/${this.currentPage + 1}//sidebar:libar/0)?sort=${this.sortDirection}&filter=${this.filterByOwner}`);
     }
 }

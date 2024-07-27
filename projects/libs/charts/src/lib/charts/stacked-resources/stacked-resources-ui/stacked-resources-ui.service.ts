@@ -101,7 +101,7 @@ export class StackedResourcesUiService {
                 .append('text')
                 .attr('class', 'missing-data')
                 .attr('y', (this.st.innerHeight! + this.st.margin.top + this.st.margin.bottom) / 3 + 10)
-                .attr('x', (this.st.innerWidth! + this.st.margin.left + this.st.margin.right) / 2 + 100)
+                .attr('x', (this.st.innerWidth! + this.st.margin.left + this.st.margin.right) / 2 + 125)
                 .style('text-anchor', 'end')
                 .text('No data exists for Stacked Resources');
             return;

@@ -223,7 +223,7 @@ export class RiskDonutUiService {
                 .attr('class', 'missing-data')
                 .append('text')
                 .attr('y', this.height / 3)
-                .attr('x', this.width / 2 + 80)
+                .attr('x', this.width / 2 + 110)
                 .style('text-anchor', 'end')
                 .text(message);
             return;

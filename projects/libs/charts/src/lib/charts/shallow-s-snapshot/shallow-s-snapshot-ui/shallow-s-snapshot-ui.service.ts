@@ -80,7 +80,7 @@ export class ShallowSSnapshotUiService {
                 .append('text')
                 .attr('class', 'missing-data')
                 .attr('y', this.height / 3)
-                .attr('x', this.width / 2 + 100)
+                .attr('x', this.width / 2 + 142)
                 .style('text-anchor', 'end')
                 .text(message);
             return;

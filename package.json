@@ -44,6 +44,8 @@
         "@auth0/angular-jwt": "^5.2.0",
         "@azure/msal-browser": "^2.32.1",
         "@fortawesome/fontawesome-free": "^5.15.4",
+        "@microsoft/applicationinsights-angularplugin-js": "^15.3.0",
+        "@microsoft/applicationinsights-web": "^3.3.0",
         "ag-grid-angular": "^29.0.0",
         "ag-grid-community": "^29.0.0",
         "bootstrap": "^4.6.2",

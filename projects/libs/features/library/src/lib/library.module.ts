@@ -5,9 +5,10 @@ import { LibraryGridComponent } from './library-grid/library-grid.component';
 import { LibraryBarComponent } from './library-bar/library-bar.component';
 import { ArrowSnapshotModule } from '@critical-pass/charts';
 import { LibraryListBarComponent } from './library-list-bar/library-list-bar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [LibraryGridComponent, LibraryBarComponent, LibraryListBarComponent],
-    imports: [CommonModule, LibraryRoutingModule, ArrowSnapshotModule],
+    imports: [CommonModule, LibraryRoutingModule, ArrowSnapshotModule, FormsModule],
 })
 export class LibraryModule {}

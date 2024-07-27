@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
 import { AuthStateService, MsalService } from '@critical-pass/auth';
 import * as CONST from '../../constants';
-import { PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/shared/data-access';
+import { LibraryFilters, PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/shared/data-access';
 import { Project } from '@critical-pass/project/types';
 import { NodeConnectorService } from '@critical-pass/project/processor';
 @Component({
@@ -73,7 +73,15 @@ export class WelcomeComponent implements OnInit {
     private loadProjects(currentPage: number, listName: string | null = null) {
         const featuredExampleSize = 2;
 
-        this.projectApi.list(currentPage, featuredExampleSize, listName).subscribe(
+        const filters: LibraryFilters = {
+            page: currentPage,
+            pageSize: featuredExampleSize,
+            listName,
+            sortDirection: null,
+            ownerFilter: null,
+            searchFilter: null,
+        };
+        this.projectApi.list(filters).subscribe(
             projects => {
                 if (projects !== null) {
                     this.initProjects(projects.items);
