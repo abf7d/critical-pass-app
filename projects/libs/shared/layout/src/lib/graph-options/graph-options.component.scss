@@ -89,3 +89,13 @@
 .z-index-top {
     z-index: 2;
 }
+.tag-label {
+    white-space: nowrap;
+}
+.peek {
+    display: inline-block;
+}
+.tag-radio {
+    width: 100%;
+    display: flex;
+}

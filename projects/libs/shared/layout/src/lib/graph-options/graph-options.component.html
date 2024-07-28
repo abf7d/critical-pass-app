@@ -42,9 +42,9 @@
                             [value]="'resource'"
                             [(ngModel)]="groupTextValue"
                         />
-                        <label class="custom-control-label" for="tag-group-resource">Resource</label>
+                        <label class="custom-control-label tag-label" for="tag-group-resource">Base Resources</label>
                     </div>
-                    <div *ngFor="let group of tagGroups; let i = index" class="custom-control custom-radio">
+                    <div *ngFor="let group of tagGroups; let i = index" class="custom-control custom-radio tag-radio">
                         <input
                             id="tag-group-{{i}}"
                             type="radio"
@@ -54,7 +54,7 @@
                             [value]="i"
                             [(ngModel)]="groupTextValue"
                         />
-                        <label class="custom-control-label" for="tag-group-{{i}}">{{group.name}}</label>
+                        <label class="custom-control-label tag-label" for="tag-group-{{i}}">{{group.name}}</label>
                     </div>
                 </div>
             </label>
