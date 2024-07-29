@@ -1,11 +1,12 @@
 import * as Msal from '@azure/msal-browser';
 import { Injectable } from '@angular/core';
 import { environment } from '@critical-pass/shared/environments';
+import { LoggerService } from '@critical-pass/core';
 @Injectable({
     providedIn: 'root',
 })
 export class MsalConfigFactoryService {
-    constructor() {}
+    constructor(private logger: LoggerService) {}
     get(): Msal.Configuration {
         return {
             auth: {
@@ -28,16 +29,16 @@ export class MsalConfigFactoryService {
                         }
                         switch (level) {
                             case Msal.LogLevel.Error:
-                                console.error(message);
+                                this.logger.error(message);
                                 return;
                             case Msal.LogLevel.Info:
-                                console.info(message);
+                                this.logger.info(message);
                                 return;
                             case Msal.LogLevel.Verbose:
-                                console.debug(message);
+                                this.logger.debug(message);
                                 return;
                             case Msal.LogLevel.Warning:
-                                console.warn(message);
+                                this.logger.warn(message);
                                 return;
                         }
                     },

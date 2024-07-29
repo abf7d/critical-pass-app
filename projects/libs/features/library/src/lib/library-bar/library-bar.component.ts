@@ -9,6 +9,7 @@ import { API_CONST, PROJECT_STORAGE_TOKEN, ProjectStorage } from '@critical-pass
 import { ProjectStorageApiService } from '@critical-pass/shared/data-access';
 import { HttpClient } from '@angular/common/http';
 import { ClaimsService } from '@critical-pass/auth';
+import { environment } from '@critical-pass/shared/environments';
 
 @Component({
     selector: 'cp-library-bar',
@@ -27,6 +28,7 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
     public isAdmin!: boolean;
     public filterByOwner: string = 'all';
     public sortDirection: string = 'asc';
+    public enableJira: boolean = false;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -38,6 +40,7 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit(): void {
+        this.enableJira = environment.enableJira;
         this.isAdmin = this.claimsService.isAdmin();
         this.pageSize = CONST.LIBRARY_PAGE_SIZE;
         this.showPeek = false;

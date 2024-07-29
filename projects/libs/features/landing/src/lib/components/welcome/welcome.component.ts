@@ -77,7 +77,7 @@ export class WelcomeComponent implements OnInit {
             page: currentPage,
             pageSize: featuredExampleSize,
             listName,
-            sortDirection: null,
+            sortDirection: 'desc',
             ownerFilter: null,
             searchFilter: null,
         };

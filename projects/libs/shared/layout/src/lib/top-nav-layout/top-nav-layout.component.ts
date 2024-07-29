@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { environment } from '@critical-pass/shared/environments';
 
 @Component({
     selector: 'da-top-nav-layout',
@@ -7,4 +9,9 @@ import { CommonModule } from '@angular/common';
     templateUrl: './top-nav-layout.component.html',
     styleUrl: './top-nav-layout.component.scss',
 })
-export class TopNavLayoutComponent {}
+export class TopNavLayoutComponent {
+    constructor(private router: Router) {}
+    public navigateHome(): void {
+        window.location.href = environment.postLogoutUrl;
+    }
+}

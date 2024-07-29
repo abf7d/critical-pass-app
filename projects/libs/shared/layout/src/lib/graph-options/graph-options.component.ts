@@ -129,4 +129,11 @@ export class GraphOptionsComponent implements OnInit, OnDestroy {
             }
         }
     }
+    public deselectMenu(event: any) {
+        if (event.target.classList.contains('tag-toggle')) {
+            this.showTagGroups = !this.showTagGroups;
+        } else {
+            this.showTagGroups = false;
+        }
+    }
 }

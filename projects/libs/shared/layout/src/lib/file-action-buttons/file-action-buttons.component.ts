@@ -11,10 +11,11 @@ import { EnvironmentService } from '../../../../../core/src/lib/env-service/envi
 })
 export class FileActionButtonsComponent {
     @Input() public disableButtons: boolean = false;
+    @Input() public enableSave: boolean = true;
     @Output() public save: EventEmitter<string> = new EventEmitter();
     @Output() public load: EventEmitter<File> = new EventEmitter();
     public showHelp = false;
-    public fileType = FILE_CONST.EXT.XLSX;
+    public fileType = FILE_CONST.EXT.JSON;
     public isSelFileType = false;
     public resourceCount: number | null = null;
     public allowSave = false;
@@ -24,7 +25,9 @@ export class FileActionButtonsComponent {
         this.saveMenuHeight = this.allowSave ? '70px' : '50px';
     }
     public saveDataTo() {
-        this.save.emit(this.fileType);
+        if (this.enableSave) {
+            this.save.emit(this.fileType);
+        }
     }
     public loadFile(event: any) {
         const files = event.files as FileList;

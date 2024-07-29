@@ -19,7 +19,6 @@ export class NetworkApiService implements NetworkApi {
     }
 
     public get(id: number): Observable<Project[] | null> {
-        console.log('web get history entry');
         return of(null);
     }
     public list(page: number, pageSize: number, listName: string | null): Observable<RecordEntry[] | null> {

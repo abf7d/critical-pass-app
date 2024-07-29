@@ -25,7 +25,6 @@ export class ProjectApiService implements ProjectApi {
         return this.httpClient.get(urlJoin(this.baseUrl, CONST.PROJECT_ENDPOINT, id.toString())).pipe(map((data: any) => this.serializer.fromJson(data)));
     }
     public list(filters: LibraryFilters): Observable<ProjectLibrary> {
-        console.log('web-project-api.service.ts: list()');
         let params = new HttpParams();
         const { page, pageSize, listName, sortDirection, ownerFilter, searchFilter } = filters;
         if (listName) {

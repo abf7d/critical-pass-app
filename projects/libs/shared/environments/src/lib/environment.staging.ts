@@ -22,4 +22,5 @@ export const environment = {
     logLevel: NgxLoggerLevel.ERROR,
     appInsightsInstrKey: '1fed53fa-9630-48dc-b30c-7c4685489b46',
     appInsightsOn: true,
+    enableJira: false,
 };

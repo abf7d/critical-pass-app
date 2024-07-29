@@ -48,7 +48,6 @@ export class RequestAccessComponent {
                 if (error.status === 429) {
                     // Handle HTTP 429: Too Many Requests
                     this.loadMsg = 'blocked';
-                    // Implement additional actions here, e.g., disabling the request button
                 } else {
                     // General error handling
                     this.loadMsg = 'error'; // General error message

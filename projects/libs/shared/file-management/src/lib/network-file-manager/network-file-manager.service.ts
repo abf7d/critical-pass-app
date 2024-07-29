@@ -79,7 +79,7 @@ export class NetworkFileManagerService implements FileManagerBaseService<Project
         XLSX.utils.book_append_sheet(wb, tagPoolWs, CONST.TAB_POOL_WS_NAME);
         XLSX.utils.book_append_sheet(wb, activityTagsWs, CONST.ACTIVITY_TAG_WS_NAME);
 
-        const name = `${subExension}.critical-pass`;
+        const name = `${subExension}.cp`;
         XLSX.writeFile(wb, name + '.xlsx');
     }
 

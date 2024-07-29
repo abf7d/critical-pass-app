@@ -6,7 +6,7 @@ import { ButtonEventsService } from './button-events/button-events.service';
 import { ToastrService } from 'ngx-toastr';
 import { Project } from '@critical-pass/project/types';
 import { ActivitySorterService } from '@critical-pass/project/processor';
-import { ProjectFileManagerService } from '@critical-pass/shared/file-management';
+import { JsonFileManagerService, ProjectFileManagerService } from '@critical-pass/shared/file-management';
 import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN } from '@critical-pass/shared/data-access';
 import { ActivityBuilder, DependencyCrawlerService, IdGeneratorService, PcdAutogenService } from '@critical-pass/shared/project-utils';
 import * as CONST from '../../constants/constants';
@@ -25,7 +25,7 @@ export class GridButtonsComponent implements OnInit {
     @ViewChild('fileUpload', { static: true }) fileUpload!: ElementRef;
 
     constructor(
-        private fileManager: ProjectFileManagerService,
+        private fileManager: JsonFileManagerService,
         private buttonEvents: ButtonEventsService,
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
         @Inject(EVENT_SERVICE_TOKEN) private eventService: EventService,
@@ -128,10 +128,15 @@ export class GridButtonsComponent implements OnInit {
 
         if (firstFile !== null && files.length > 0) {
             this.fileManager
-                .import(firstFile)
-                .then(project => {
-                    this.dashboard.updateProject(project, true, true);
-                    this.toastr.success('Processing File', 'Success!');
+                .importFromProjectList(firstFile)
+                .then(nodes => {
+                    const project = nodes[1].data; // head is 0, take first project at 1
+                    if (project !== null) {
+                        this.dashboard.updateProject(project, true, true);
+                        this.toastr.success('Processing File', 'Success!');
+                    } else {
+                        this.toastr.error('Check File Format', 'Error occured');
+                    }
                 })
                 .catch(error => this.toastr.success('Processing File', 'Error occured'));
         } else {
@@ -139,7 +144,7 @@ export class GridButtonsComponent implements OnInit {
         }
     }
     public downloadCritPathFile() {
-        this.fileManager.export(this.project);
+        this.fileManager.exportProjectList([this.project]);
     }
     public toggleDummies() {
         if (this.project !== null) {

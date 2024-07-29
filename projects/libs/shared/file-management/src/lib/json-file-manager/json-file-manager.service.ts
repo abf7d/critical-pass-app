@@ -35,7 +35,7 @@ export class JsonFileManagerService implements FileManagerBaseService<TreeNode[]
             };
         });
     }
-    private importFromProjectList(file: File): Promise<TreeNode[]> {
+    public importFromProjectList(file: File): Promise<TreeNode[]> {
         return new Promise<TreeNode[]>((resolve, reject) => {
             const reader: FileReader = new FileReader();
             reader.readAsText(file);
@@ -71,10 +71,27 @@ export class JsonFileManagerService implements FileManagerBaseService<TreeNode[]
         const blob = new Blob([projectTxt], { type: 'application/json' });
         const downloadLink = document.createElement('a');
         downloadLink.href = window.URL.createObjectURL(blob);
-        downloadLink.download = `${subExension}.critical-pass.json`; // Specify the desired filename
+        downloadLink.download = `${subExension}.cp.json`; // Specify the desired filename
         downloadLink.click();
     }
+    public exportProjectList(content: Project[], subExension: string = 'profile'): void {
+        // If you wish to save project list instead of treenodes, skip node serialization
+        const projects = content.map(x => {
+            const node = this.projSerializer.fromJson(x);
 
+            if (x) {
+                const proj = this.projSerializer.fromJson(x);
+                this.sanitizer.sanatizeForSave(proj);
+            }
+            return node;
+        });
+        const projectTxt = JSON.stringify(projects);
+        const blob = new Blob([projectTxt], { type: 'application/json' });
+        const downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(blob);
+        downloadLink.download = `${subExension}.cp.json`; // Specify the desired filename
+        downloadLink.click();
+    }
     // TODO: Finish this. It pulls tree nodes from the file, I need to serialize
     // the tree nodes (and their projects seperately) and connect them to form a tree
     public importTree(file: File): Promise<TreeNode[]> {

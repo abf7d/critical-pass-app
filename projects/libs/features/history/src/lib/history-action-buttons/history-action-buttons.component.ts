@@ -32,8 +32,8 @@ import { EnvironmentService } from '@critical-pass/core';
     styleUrls: ['./history-action-buttons.component.scss'],
 })
 export class HistoryActionButtonsComponent extends ActionButtonsComponent {
-    public fileType = FILE_CONST.EXT.XLSX;
-    private history!: TreeNode[];
+    public fileType = FILE_CONST.EXT.JSON;
+    public history!: TreeNode[];
     public isSelFileType = false;
     public resourceCount: number | null = null;
     public allowSave = false;

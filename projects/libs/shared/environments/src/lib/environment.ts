@@ -23,7 +23,8 @@ export const environment = {
 
     jiraClientId: '1SdMM8pTryWCljI1Awm9drfKvnU2BR2H',
     jiraClientSecret: '123',
-    logLevel: NgxLoggerLevel.INFO,
+    logLevel: NgxLoggerLevel.ERROR,
     appInsightsInstrKey: '1fed53fa-9630-48dc-b30c-7c4685489b46',
     appInsightsOn: false,
+    enableJira: true,
 };

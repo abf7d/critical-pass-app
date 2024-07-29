@@ -50,7 +50,7 @@ export class NetworkJsonFileManagerService implements FileManagerBaseService<Pro
         const blob = new Blob([projectTxt], { type: 'application/json' });
         const downloadLink = document.createElement('a');
         downloadLink.href = window.URL.createObjectURL(blob);
-        downloadLink.download = `${subExension}.critical-pass.json`;
+        downloadLink.download = `${subExension}.cp.json`;
         downloadLink.click();
     }
 }

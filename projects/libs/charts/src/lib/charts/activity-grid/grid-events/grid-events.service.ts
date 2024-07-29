@@ -88,19 +88,31 @@ export class GridEventsService {
     }
 
     public updateDate(date: Date | null, profile: ActivityProfile, field: string, project: Project): void {
-        if (!date) return;
         switch (field) {
             case 'finish':
-                profile.finish = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
+                if (date) {
+                    profile.finish = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
+                } else {
+                    profile.finish = '';
+                }
                 profile.finish_dt = date;
                 break;
             case 'start_date':
-                profile.start_date = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
+                if (date) {
+                    profile.start_date = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
+                } else {
+                    profile.start_date = '';
+                }
                 profile.start_date_dt = date;
                 break;
             case 'pcd':
-                profile.planned_completion_date = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
+                if (date) {
+                    profile.planned_completion_date = lightFormat(date, P_CONST.MAIN_DATE_FORMAT);
+                } else {
+                    profile.start_date = '';
+                }
                 profile.planned_completion_date_dt = date;
+
                 break;
         }
         this.dashboard.updateProject(project, true);

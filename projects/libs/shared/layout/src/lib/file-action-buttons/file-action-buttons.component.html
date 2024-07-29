@@ -3,7 +3,7 @@
 
 <div class="right">
     <div #tooltip="matTooltip" matTooltip="Go to Parent to enable buttons. Your changes will be preserved." [matTooltipDisabled]="!disableButtons">
-        <button class="btn btn-primary" [class.disabled]="disableButtons" title="Download as file or save to database">
+        <button class="btn btn-primary" [class.disabled]="disableButtons || !enableSave" title="Download as file or save to database">
             <span (click)="saveDataTo()">Save to</span>
             <a class="btn pos-rel" href="javascript:void(0)"
                 ><i class="fas fa-chevron-up" *ngIf="isSelFileType" (click)="isSelFileType = false"></i>

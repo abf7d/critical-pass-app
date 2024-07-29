@@ -132,6 +132,18 @@
                                             referrerpolicy="strict-origin-when-cross-origin"
                                             allowfullscreen
                                         ></iframe>
+                                        } @case("quickStart") {
+                                        <iframe
+                                            width="860"
+                                            height="505"
+                                            src="https://www.youtube.com/embed/T0jwmYAB8gA?vq=hd720p&amp;hd=1&amp;si=CdoTCesic5FWzQr6"
+                                            title="YouTube video player"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin"
+                                            allowfullscreen
+                                        ></iframe>
+
                                         }}
                                     </div>
                                 </div>
@@ -141,6 +153,7 @@
                                     <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
                                     <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
                                     <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
+                                    <div (click)="activeVideo = 'quickStart'" [ngClass]="{'selected': activeVideo === 'quickStart'}">Quick Start Example</div>
                                     <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">
                                         Application Layout
                                     </div>

@@ -28,7 +28,12 @@
                 <cp-arrow-snapshot [project]="peekProj" [width]="390" [height]="250"></cp-arrow-snapshot>
             </div>
         </div>
-        <da-file-action-buttons [disableButtons]="disableButtons" (save)="downloadHistory($event)" (load)="loadFile($event)"></da-file-action-buttons>
+        <da-file-action-buttons
+            [disableButtons]="disableButtons"
+            (save)="downloadHistory($event)"
+            [enableSave]="!!history"
+            (load)="loadFile($event)"
+        ></da-file-action-buttons>
     </div>
 </div>
 <div class="alert-msg" [class.success]="alertMessage == 'Saved'" [class.error]="alertMessage == 'Error'" [hidden]="alertMessage == ''">{{ alertMessage }}</div>
