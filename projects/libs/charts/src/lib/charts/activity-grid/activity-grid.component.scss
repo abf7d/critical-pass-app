@@ -217,9 +217,13 @@ input.dateinput {
 }
 
 ::ng-deep .mat-icon-button {
-    height: 17px !important;
-    width: 27px !important;
-    line-height: 16px !important;
+    // height: 17px !important;
+    // width: 27px !important;
+    // line-height: 16px !important;
+    height: .8rem !important;
+    margin-top: 8px;
+    width: .8rem !important;
+    display: block;
 }
 
 .picker-toggle {
@@ -263,4 +267,14 @@ input.dateinput {
     color: green;
     font-size: 15px;
     font-weight: bold;
+}
+::ng-deep mat-datepicker-toggle.mat-datepicker-toggle.icon.picker-toggle * {
+    font-size: 0.8rem;
+    height: 30px;
+    width: 30px;
+    margin-top: 4px;
+    margin-left: -2px;
+}
+thead > tr {
+    vertical-align: bottom;
 }

@@ -7,6 +7,7 @@ import * as CONST from '../../constants';
 import { LibraryFilters, PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/shared/data-access';
 import { Project } from '@critical-pass/project/types';
 import { NodeConnectorService } from '@critical-pass/project/processor';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
     selector: 'cp-welcome',
     templateUrl: './welcome.component.html',
@@ -30,6 +31,15 @@ export class WelcomeComponent implements OnInit {
     public projectLists: string[] = [];
     public projectLoadState: string = 'loading';
     public projects: Project[] = [];
+    public selectedVideo: Video;
+
+    public videos: Video[] = [
+        { menuName: 'Draw a Project', type: 'arrow1', id: '6vb-MKcynoM', videoTitle: 'Draw an Arrow Diagram', si: 'zGOsVuxj4lIEGBtL' },
+        { menuName: 'Arrow Controls', type: 'arrowControls', id: 'cB35uUIFoP8', videoTitle: 'Arrow Diagram Controls', si: 'jIsxPNEwoc-cbh1L' },
+        { menuName: 'Import Data', type: 'uploadExcelFile', id: 'tRR8aRHb4L4', videoTitle: 'Import Data into Project', si: 'LPBhkhIOGu3Vu_JP' },
+        { menuName: 'Quick Start Example', type: 'quickStart', id: 'T0jwmYAB8gA', videoTitle: 'Quick Start Example', si: 'CdoTCesic5FWzQr6' },
+        { menuName: 'Application Layout', type: 'applicationLayout', id: 'R3kPmTzawCE', videoTitle: 'Application Layout', si: 'HmDHijxNQPRuTAhI' },
+    ];
 
     constructor(
         private authService: MsalService,
@@ -38,6 +48,7 @@ export class WelcomeComponent implements OnInit {
         @Inject(PROJECT_API_TOKEN) private projectApi: ProjectApi,
         private ngZone: NgZone,
         private nodeConnector: NodeConnectorService,
+        private sanitizer: DomSanitizer,
     ) {
         this.isLoggedIn$ = this.authStore.isLoggedIn$;
         this.errorLoadingProject = false;
@@ -47,8 +58,10 @@ export class WelcomeComponent implements OnInit {
         this.isAuthorized = this.authService.isAuthorized();
         this.isAuthorized$ = this.authStore.isAuthorized$;
         this.loginError$ = this.authStore.loginError$;
-
-        console.log('hasClaims', this.authService.hasClaims(), 'hasError', this.authService.hasError(), 'isAuth', this.authService.isAuthorized());
+        this.videos.forEach((video: Video) => {
+            video.src = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.id}?vq=hd720p&amp;hd=1&amp;si=${video.si}`);
+        });
+        this.selectedVideo = this.videos[0];
     }
 
     public ngOnInit() {
@@ -151,4 +164,13 @@ export class WelcomeComponent implements OnInit {
             this.thirdPartyCookiesBlocked = false;
         }
     }
+}
+
+export interface Video {
+    menuName: string;
+    type: string;
+    id: string;
+    videoTitle: string;
+    si: string;
+    src?: SafeResourceUrl;
 }
