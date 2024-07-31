@@ -60,7 +60,7 @@ export class ProjectTreeUiService {
             .pipe(filter(x => !!x))
             .subscribe(nodes => this.loadTree(nodes));
 
-        this.selectedNode$.pipe(filter(x => !!x)).subscribe(id => this.selectNode(id));
+        this.selectedNode$.pipe(filter(x => x !== undefined)).subscribe(id => this.selectNode(id));
         this.subsInited = true;
     }
 

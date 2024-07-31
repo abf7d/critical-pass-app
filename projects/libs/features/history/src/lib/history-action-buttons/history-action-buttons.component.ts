@@ -18,7 +18,7 @@ import {
     ProjectStorage,
 } from '@critical-pass/shared/data-access';
 import { ProjectSerializerService } from '@critical-pass/shared/serializers';
-import { FileCompilerService, ProjectSanatizerService } from '@critical-pass/shared/project-utils';
+import { DependencyCrawlerService, FileCompilerService, ProjectSanatizerService } from '@critical-pass/shared/project-utils';
 import { HistoryFileManagerService, JsonFileManagerService } from '@critical-pass/shared/file-management';
 import { TreeNode } from '@critical-pass/project/types';
 import { CHART_KEYS, ProjectTreeNodeSerializerService } from '@critical-pass/charts';
@@ -38,6 +38,8 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
     public resourceCount: number | null = null;
     public allowSave = false;
     public saveMenuHeight = '50px';
+    public inferDeps: boolean = true;
+    public isProcessing: boolean = false;
     constructor(
         router: Router,
         @Inject(DASHBOARD_TOKEN) dashboard: DashboardService,
@@ -52,6 +54,7 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         private fileManager: HistoryFileManagerService,
         private jsonFileManager: JsonFileManagerService,
         private treeNodeSerializer: ProjectTreeNodeSerializerService,
+        private dependencyCrawler: DependencyCrawlerService,
         @Inject(HISTORY_API_TOKEN) private historyApi: HistoryApi,
         ngZone: NgZone,
     ) {
@@ -112,12 +115,26 @@ export class HistoryActionButtonsComponent extends ActionButtonsComponent {
         }
     }
     public autoAssignResourceCount() {
-        this.zametekApi.autoAssignResourceCount(this.dashboard.activeProject$.value, this.resourceCount).subscribe(project => {
-            if (project !== null) {
-                this.fCompiler.compileProjectFromFile(project);
-                this.dashboard.updateProject(project, true);
-            }
-        });
+        const project = this.dashboard.activeProject$.value;
+        this.isProcessing = true;
+        if (project !== null && this.inferDeps) {
+            this.dependencyCrawler.setDependencyDataFromGraph(project);
+        }
+        this.zametekApi.autoAssignResourceCount(this.dashboard.activeProject$.value, this.resourceCount).subscribe(
+            project => {
+                if (project !== null) {
+                    this.fCompiler.compileProjectFromFile(project);
+                    this.dashboard.updateProject(project, true);
+                }
+                this.toastr.success('Auto assign resources succeeded.', 'Resources Assigned.');
+                this.isProcessing = false;
+            },
+            error => {
+                this.toastr.error('Auto assign resources failed.', 'Error occured.');
+                console.error(error);
+                this.isProcessing = false;
+            },
+        );
     }
     public navToSingleGraph() {
         this.router.navigateByUrl(`history/(${this.id}//sidebar:arrow/${this.id})`);

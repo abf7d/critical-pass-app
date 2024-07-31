@@ -14,7 +14,19 @@
     </div>
     <div class="baseline">
         <input class="auto-resources" type="number" [(ngModel)]="resourceCount" />
-        <button class="btn btn-secondary" (click)="autoAssignResourceCount()" [class.disabled]="disableButtons">Set Resource Count</button>
+        <button
+            class="btn btn-secondary"
+            #tooltip="matTooltip"
+            matTooltip="Existing assignments override the auto resource number"
+            (click)="autoAssignResourceCount()"
+            [class.disabled]="disableButtons"
+        >
+            Set Resource Count
+        </button>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="infer" [(ngModel)]="inferDeps" />
+            <label class="custom-control-label" for="infer">Infer Dependencies</label>
+        </div>
     </div>
     <div>
         <div class="stash">
@@ -39,4 +51,7 @@
 <div class="alert-msg" [class.success]="alertMessage == 'Saved'" [class.error]="alertMessage == 'Error'" [hidden]="alertMessage == ''">{{ alertMessage }}</div>
 <div class="overlay" [hidden]="actionText === ''">
     <div class="overlay-txt">{{ actionText }}</div>
+</div>
+<div class="overlay" [hidden]="!isProcessing">
+    <div class="overlay-txt">Processing</div>
 </div>
