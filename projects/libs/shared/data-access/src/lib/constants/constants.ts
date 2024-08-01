@@ -9,6 +9,7 @@ export const MS_PROJECT_COMPILE_ENDPOINT: string = 'MsProject/Import';
 export const BUILD_ARROW_GRAPH_ENDPOINT: string = 'MsProject/ArrowGraph';
 export const AUTO_RESOURCE_COUNT_ENDPOINT: string = 'msproject/auto-resource';
 export const CONTACT_US_ENDPOINT: string = 'contact-us';
+export const CONTACT_US_ANON_ENDPOINT: string = 'contact-us-anon';
 export const GET_ACCESS_ENDPOINT: string = 'has-email-access';
 export const UPDATE_PARENT_PROJECT_KEY = 'project.parent.update';
 export const GROUP_LISTS_ENDPOINT: string = 'group-lists';

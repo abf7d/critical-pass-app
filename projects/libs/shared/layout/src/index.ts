@@ -9,3 +9,4 @@ export * from './lib/lasso-bar/lasso-bar.module';
 export * from './lib/lasso-bar/lasso-bar.component';
 export * from './lib/file-action-buttons/file-action-buttons.module';
 export * from './lib/file-action-buttons/file-action-buttons.component';
+export * from './lib/email-form/email-form.component';

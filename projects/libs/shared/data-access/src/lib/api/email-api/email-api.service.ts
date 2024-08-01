@@ -4,7 +4,7 @@ import { ContactForm } from '../../types/contact-form';
 import urlJoin from 'url-join';
 import * as CONST from '../../constants/constants';
 import { environment } from '@critical-pass/shared/environments';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -16,19 +16,21 @@ export class EmailApiService {
         this.baseUrl = environment.criticalPathApi;
     }
 
-    public contactUs(form: ContactForm): Observable<ResultMessage> {
+    public contactUs(form: ContactForm, secure: boolean): Observable<ResultMessage> {
         const body = JSON.stringify(form);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.httpClient.post<ResultMessage>(urlJoin(this.baseUrl, CONST.CONTACT_US_ENDPOINT), body, { headers });
+        const endpoint = secure ? CONST.CONTACT_US_ENDPOINT : CONST.CONTACT_US_ANON_ENDPOINT;
+        return this.httpClient.post<ResultMessage>(urlJoin(this.baseUrl, endpoint), body, { headers });
     }
 
-    public getAccess(formName: string): Observable<boolean> {
+    public getAccess(formName: string): Observable<ResultMessage> {
         const params = new HttpParams().set('formName', formName);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.httpClient.get<boolean>(urlJoin(this.baseUrl, CONST.GET_ACCESS_ENDPOINT), { headers, params });
+        return this.httpClient.get<ResultMessage>(urlJoin(this.baseUrl, CONST.GET_ACCESS_ENDPOINT), { headers, params });
     }
 }
 
 export interface ResultMessage {
     message: string;
+    code?: string;
 }

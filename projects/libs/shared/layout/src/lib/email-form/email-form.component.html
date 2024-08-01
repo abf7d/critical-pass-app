@@ -1,0 +1,96 @@
+<div class="card rounded-2 no-access-card">
+    @switch (loadMsg) { @case ("user-blocked") {
+    <div class="no-access-txt">Thank you for your message! For further requests please contact info&#64;criticalpass.io</div>
+    } @case("global-blocked"){
+    <div class="no-access-txt">To request access, please contact info&#64;criticalpass.io</div>
+    } @case("error"){
+    <div class="no-access-txt">We are encountering diffuculty. To request access, please contact info&#64;criticalpass.io</div>
+    } @case("success"){
+    <div class="no-access-txt">Your request has been sent. Thank you!</div>
+    } @case("loading"){
+    <div class="no-access-txt">Loading...</div>
+    } @case("allowed") {
+    <div class="card-body">
+        <div class="video-title">{{title}}</div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" data-action="contact-us" method="post" class="form-submit-init" novalidate="true">
+            <div class="row g-gs">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <div class="validation-error" *ngIf="form.get('name')?.errors?.['required']">Name is required.</div>
+                        <div class="validation-error" *ngIf="form.get('name')?.errors?.['maxlength']">Name cannot be longer than 100 characters.</div>
+                        <div class="form-control-wrap">
+                            <input type="text" name="name" class="form-control" placeholder="Enter your name" required="" id="name" formControlName="name" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 flex-end">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <div class="validation-error" *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+                        <div class="validation-error" *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email.</div>
+                        <div class="validation-error" *ngIf="form.get('email')?.errors?.['maxlength']">Email cannot be longer than 100 characters.</div>
+                        <div class="form-control-wrap">
+                            <input
+                                type="email"
+                                id="email"
+                                formControlName="email"
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="Enter your email"
+                                required=""
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 flex-end">
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <div class="form-control-wrap">
+                            <input type="text" name="phone" class="form-control" placeholder="(555) 222-1234" type="tel" id="phone" formControlName="phone" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="form-label-group float-right">
+                            <span>
+                                <span id="char-count"> {{ form.get('message')!.value?.length || 0 }}</span> /
+                                <span id="char-max" data-char-max="255">{{ maxLengthMessage }}</span>
+                            </span>
+                        </div>
+                        <div class="validation-error" *ngIf="form.get('message')?.errors?.['required']">Message is required.</div>
+                        <div class="validation-error" *ngIf="form.get('message')?.errors?.['maxlength']">Message cannot be longer than 255 characters.</div>
+                        <div class="form-control-wrap">
+                            <textarea
+                                id="message"
+                                formControlName="message"
+                                name="message"
+                                class="form-control"
+                                placeholder="Enter your message"
+                                required=""
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="approval">
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="consent" formControlName="consent" />
+                            <label class="form-check-label" for="consent"> I would like to recieve a reply notification email </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group msg">
+                        <button class="btn btn-primary" type="submit" id="submit-btn" type="submit" [disabled]="form.invalid">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    } @default{
+    <div class="no-access-txt">To request access, please contact info&#64;criticalpass.io</div>
+    } }
+</div>
