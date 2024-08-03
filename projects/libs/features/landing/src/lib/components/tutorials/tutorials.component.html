@@ -4,19 +4,30 @@
             <div class="row video-ui">
                 <div class="col-3">
                     <div class="video-list">
-                        <div (click)="activeVideo = 'arrow1'" [ngClass]="{'selected': activeVideo === 'arrow1'}">Draw a Project</div>
-                        <div (click)="activeVideo = 'arrowControls'" [ngClass]="{'selected': activeVideo === 'arrowControls'}">Arrow Controls</div>
-                        <div (click)="activeVideo = 'uploadExcelFile'" [ngClass]="{'selected': activeVideo === 'uploadExcelFile'}">Import Data</div>
-                        <div (click)="activeVideo = 'applicationLayout'" [ngClass]="{'selected': activeVideo === 'applicationLayout'}">Application Layout</div>
-                        <div>
-                            <a href="">More Videos...</a>
-                        </div>
+                        @for(video of videos; track video){
+                        <div (click)="selectedVideo = video" [ngClass]="{'selected': selectedVideo === video}">{{video.menuName}}</div>
+                        }
                     </div>
                 </div>
                 <div class="col-8">
                     <div class="materials">
                         <div>
                             <h3>Training Videos</h3>
+                            <div class="video">
+                                <div>
+                                    <iframe
+                                        width="860"
+                                        height="505"
+                                        [src]="selectedVideo.src"
+                                        title="{{selectedVideo.videoTitle}}"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            <!-- <h3>Training Videos</h3>
                             <div class="video">
                                 <div>
                                     @switch (activeVideo) { @case ("arrow1") {
@@ -120,7 +131,7 @@
                                     ></iframe>
                                     }}
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

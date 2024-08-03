@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmailFormComponent } from '../../../../../../shared/layout/src/lib/email-form/email-form.component';
+import { environment } from '@critical-pass/shared/environments';
 
 @Component({
     selector: 'da-contact-us',
@@ -11,5 +12,7 @@ import { EmailFormComponent } from '../../../../../../shared/layout/src/lib/emai
     styleUrl: './contact-us.component.scss',
 })
 export class ContactUsComponent {
-    public hasConsented: boolean = false;
+    public navigateHome(): void {
+        window.location.href = environment.postLogoutUrl;
+    }
 }

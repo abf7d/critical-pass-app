@@ -8,6 +8,7 @@ import { LibraryFilters, PROJECT_API_TOKEN, ProjectApi } from '@critical-pass/sh
 import { Project } from '@critical-pass/project/types';
 import { NodeConnectorService } from '@critical-pass/project/processor';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Video } from '../../types/video';
 @Component({
     selector: 'cp-welcome',
     templateUrl: './welcome.component.html',
@@ -164,13 +165,4 @@ export class WelcomeComponent implements OnInit {
             this.thirdPartyCookiesBlocked = false;
         }
     }
-}
-
-export interface Video {
-    menuName: string;
-    type: string;
-    id: string;
-    videoTitle: string;
-    si: string;
-    src?: SafeResourceUrl;
 }
