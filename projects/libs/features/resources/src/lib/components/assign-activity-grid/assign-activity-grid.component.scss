@@ -232,9 +232,11 @@ tr.selected {
 }
 
 ::ng-deep svg.mat-datepicker-toggle-default-icon {
-    height: 15px;
-    width: 14px;
-    margin-right: 0px;
+    height: 15px !important;
+    width: 14px !important;
+    margin-right: 20px;
+    margin-top: 5px !important;;
+    display: block !important;;
 }
 
 .resource-assignment-project-data {
@@ -282,4 +284,13 @@ tr.selected {
 }
 .grid-area {
     position: relative;
+}
+
+:host {
+    --mdc-icon-button-state-layer-size: 14px;
+    --mdc-icon-button-icon-size: 13px;
+}
+
+.resource-assignment-project-data tr:hover input {
+    background-color: #eee;
 }
