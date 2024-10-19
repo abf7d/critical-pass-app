@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {
     ContactUsComponent,
     HomeComponent,
+    LandingComponent,
     LoginComponent,
     LoginErrorComponent,
     LoginRedirectComponent,
@@ -16,6 +17,10 @@ export const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent,
+    },
+    {
+        path: 'landing',
+        component: LandingComponent,
     },
     {
         path: 'login',
