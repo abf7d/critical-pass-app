@@ -15,6 +15,7 @@
         <!-- <div class="nk-split-page flex-column flex-xl-row"> -->
         <div class="col-md-12 col-lg-8 nk-split-col nk-auth-col">
             <div class="left-login nk-form-card" data-aos="fade-up">
+                <div class="cookie-problems" [hidden]="online$ | async">You are offline. Check your connection.</div>
                 <div class="login-card card rounded-3 card-gutter-md">
                     <div class="card-body p-5">
                         <div class="nk-form-card-head text-center pb-5">
@@ -23,9 +24,9 @@
                                     <img class="logo-img" src="assets/img/logo-dark.png" alt="">
                                 </a>
                             </div>
-                            <h3 class="title mb-2">Sign up to your account</h3>
-                            <p class="text">Already a member? <a href="login.html"
-                                    class="btn-link link-primary">Login</a>.</p>
+                            <h3 class="title mb-2">Sign in to your account</h3>
+                            <!-- <p class="text">Need Access? Submit a <a [routerLink]="['/contact-us']"
+                                    class="btn-link link-primary">Request</a>.</p> -->
                         </div>
                         <form action="#">
                             <div class="row gy-4">
@@ -59,22 +60,36 @@
                                     </div> -->
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <button class="btn btn-block btn-primary" type="submit">Sign Up to Your
-                                            Account</button>
+                                        <button class="btn btn-block btn-primary login-btn" [routerLink]="['/login']">Sign in / Sign up</button>
+                                        <!-- <button class="btn btn-block btn-primary" type="submit">Sign In to Your
+                                            Account</button> -->
                                     </div>
                                 </div>
                             </div>
                         </form>
                         <div class="pt-4 text-center">
                             <div class="small overline-title-sep">
-                                <span class="bg-white px-2 text-base">or register with</span>
+                                <span class="bg-white px-2 text-base">Need access?</span>
                             </div>
                         </div>
                         <div class="pt-4">
                             <a href="#" class="btn btn-outline-gray-50 text-dark w-100">
                                 <img src="images/icon/a.png" alt="" class="icon">
-                                <span>Sign Up with Google</span>
+                                <span><a [routerLink]="['/contact-us']"
+                                    class="btn-link link-primary">Submit Request</a></span>
                             </a>
+                        </div>
+                        <div class="pt-4">
+                            <div class="cookie-problems cookie-msg" [hidden]="!thirdPartyCookiesBlocked">
+                                Your browser is blocking third party cookies. Please see your browser settings to allow and enable login.
+                            </div>
+                            <div class="donate">
+                                <a class="donate-btn link-primary btn btn-outline-gray-50 w-100" [routerLink]="['/donate']">Donate</a>
+                            </div>
+                            
+                            <span id="result">
+                                <iframe src="https://mindmup.github.io/3rdpartycookiecheck/start.html" style="display: none"></iframe>
+                            </span>
                         </div>
                     </div>
                 </div>
