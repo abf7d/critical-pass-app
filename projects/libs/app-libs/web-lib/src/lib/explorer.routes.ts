@@ -16,11 +16,11 @@ export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     {
         path: 'home',
-        component: HomeComponent,
+        component: LandingComponent, // switched default home page to new landing
     },
     {
         path: 'landing',
-        component: LandingComponent,
+        component: HomeComponent,
     },
     {
         path: 'login',
