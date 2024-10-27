@@ -12,7 +12,7 @@
                             <button class="logout-btn" (click)="logout()">Logout</button>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-12" [hidden]="!isAuthorized && !loginError">
+                    <div class="col-xl-3 col-lg-12 col-sm-12" [hidden]="!isAuthorized && !loginError">
                         <div>
                             <h2>Welcome {{ name }}</h2>
                             <div>
@@ -60,7 +60,7 @@
                         <div class="row pt-4">
                             <div class="col-12">
                                 <h3>Example Projects</h3>
-                                <a (click)="navigateToExamples()" href="javascript:void(0)">More Examples</a>
+                                <a (click)="navigateToExamples()" [hidden]="projectLoadState !== 'success'"href="javascript:void(0)">More Examples</a>
                                 <div>
                                     <div [ngSwitch]="projectLoadState">
                                         <div *ngSwitchCase="'loading'">
@@ -71,11 +71,16 @@
                                         </div>
                                         <div *ngSwitchCase="'error'">
                                             <div class="page-content">
-                                                <div class="loading-txt error">Error</div>
+                                                <div class="loading-placeholder"></div>
+                                                <div class="loading-txt error">We were unable to load the sample projects</div>
                                             </div>
                                         </div>
                                         <div *ngSwitchCase="'success'">
-                                            <div class="page-content">
+                                            <div class="page-content" *ngIf="projects?.length === 0">
+                                                <div class="loading-placeholder"></div>
+                                                <div class="loading-txt error">No Example Projects Avaiable</div>
+                                            </div>
+                                            <div *ngIf="projects.length > 0" class="page-content">
                                                 <div *ngFor="let project of projects" class="user-proj">
                                                     <a (click)="navigate(project.profile.id)">
                                                         <cp-arrow-snapshot [project]="project" [width]="330" [height]="220"></cp-arrow-snapshot>
