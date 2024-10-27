@@ -355,3 +355,28 @@ main {
     transform: translate(-50%, -50%);
     text-align: center;
 }
+
+.form-msg-txt{
+    width: 95%;
+    color: #555;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.no-access-card{
+    display: flex;
+    align-items: center;
+    padding-top: 96px;
+
+}
+
+@media(max-width: 1200px){
+    .no-access-card {
+        height: unset;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        padding-top: 20px;
+
+    }
+}

@@ -1,14 +1,36 @@
 <div class="card rounded-2 no-access-card">
     @switch (loadMsg) { @case ("user-blocked") {
-    <div class="no-access-txt">Thank you for your message! For further requests please contact info&#64;criticalpass.io</div>
-    } @case("global-blocked"){
-    <div class="no-access-txt">To request access, please contact info&#64;criticalpass.io</div>
-    } @case("error"){
-    <div class="no-access-txt">We are encountering diffuculty. To request access, please contact info&#64;criticalpass.io</div>
-    } @case("success"){
-    <div class="no-access-txt">Your request has been sent. Thank you!</div>
-    } @case("loading"){
-    <div class="no-access-txt">Loading...</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 form-msg-txt">Thank you for your message! For further requests please contact
+                    info&#64;criticalpass.io</div>
+            </div>
+        </div>
+        } @case("global-blocked"){
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 form-msg-txt">To request access, please contact info&#64;criticalpass.io</div>
+            </div>
+        </div>
+        } @case("error"){
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 form-msg-txt">Email form not avaiable. To request access, please contact
+                    info&#64;criticalpass.io</div>
+            </div>
+        </div>
+        } @case("success"){
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 form-msg-txt">Your request has been sent. Thank you!</div>
+            </div>
+        </div>
+        } @case("loading"){
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 form-msg-txt">Loading...</div>
+            </div>
+        </div>
     } @case("allowed") {
     <div class="card-body">
         <div class="video-title">{{title}}</div>
