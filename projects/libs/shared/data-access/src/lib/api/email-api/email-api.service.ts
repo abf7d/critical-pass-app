@@ -19,7 +19,7 @@ export class EmailApiService {
     public contactUs(form: ContactForm, secure: boolean): Observable<ResultMessage> {
         const body = JSON.stringify(form);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        const endpoint = secure ? CONST.CONTACT_US_ANON_ENDPOINT : CONST.CONTACT_US_ANON_ENDPOINT;
+        const endpoint = secure ? CONST.CONTACT_US_ENDPOINT : CONST.CONTACT_US_ANON_ENDPOINT;
         return this.httpClient.post<ResultMessage>(urlJoin(this.baseUrl, endpoint), body, { headers });
     }
 
