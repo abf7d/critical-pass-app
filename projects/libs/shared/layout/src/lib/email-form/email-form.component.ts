@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MsalService } from '@critical-pass/auth';
@@ -17,6 +17,8 @@ export class EmailFormComponent {
     @Input() public formType: string = 'basic-form';
     @Input() public secure: boolean = false;
     @Input() public title: string = 'Email Form';
+    @Output() public onSubmitResponse = new EventEmitter<string>();
+    
     public hasConsented: boolean = false;
     public form: FormGroup;
     public hasError: boolean = false;
@@ -46,8 +48,14 @@ export class EmailFormComponent {
         this.emailApi.getAccess(this.formType).subscribe(
             status => {
                 if (status?.code === '200') this.loadMsg = 'allowed';
-                else if (status?.code === '400.U') this.loadMsg = 'user-blocked';
-                else this.loadMsg = 'global-blocked';
+                else if (status?.code === '400.U') {
+                    this.loadMsg = 'user-blocked';
+                    this.onSubmitResponse.emit('user-blocked');
+                }
+                else {
+                    this.loadMsg = 'global-blocked';
+                    this.onSubmitResponse.emit('global-blocked');
+                }
             },
             error => {
                 if (error.status === 429) {
@@ -71,8 +79,8 @@ export class EmailFormComponent {
             contactInfo.form = this.formType;
             this.emailApi.contactUs(contactInfo, this.secure).subscribe(
                 message => {
-                    console.log('Email sent successfully');
                     this.loadMsg = 'user-blocked';
+                    this.onSubmitResponse.emit('success');
                 },
                 error => {
                     console.error('Error sending email', error);

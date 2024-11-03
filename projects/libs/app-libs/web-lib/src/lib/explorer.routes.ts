@@ -9,7 +9,7 @@ import {
     RequestAccessComponent,
 } from '@critical-pass/features/landing';
 import { WelcomeComponent, AboutComponent, TutorialsComponent, DonateComponent } from '@critical-pass/features/landing';
-import { AuthorizedUserGuard, RedirectGuard } from '@critical-pass/auth';
+import { AuthorizedUserGuard, LoggedInGuard, RedirectGuard } from '@critical-pass/auth';
 import { TopNavLayoutComponent } from '@critical-pass/shared/layout';
 
 export const routes: Routes = [
@@ -57,7 +57,7 @@ export const routes: Routes = [
         path: 'tutorials',
         component: TopNavLayoutComponent,
         children: [{ path: '', component: TutorialsComponent }],
-        canActivate: [AuthorizedUserGuard],
+        canActivate: [LoggedInGuard],
     },
     {
         path: 'donate',
