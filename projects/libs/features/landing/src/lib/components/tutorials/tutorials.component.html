@@ -5,7 +5,7 @@
                 <div class="col-3">
                     <div class="video-list">
                         @for(video of videos; track video){
-                        <div (click)="selectedVideo = video" [ngClass]="{'selected': selectedVideo === video}">{{video.menuName}}</div>
+                        <div class="pointer" (click)="selectedVideo = video" [ngClass]="{'selected': selectedVideo === video}">{{video.menuName}}</div>
                         }
                     </div>
                 </div>
