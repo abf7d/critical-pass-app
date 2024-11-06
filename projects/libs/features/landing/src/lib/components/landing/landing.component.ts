@@ -9,14 +9,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'da-landing',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './landing.component.html',
-  styleUrl: './landing.component.scss'
+    selector: 'da-landing',
+    standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './landing.component.html',
+    styleUrl: './landing.component.scss',
 })
 export class LandingComponent {
-  public isLoggedIn$: BehaviorSubject<boolean | null>;
+    public isLoggedIn$: BehaviorSubject<boolean | null>;
     public online$: Observable<boolean>;
     public name!: string;
     public isLoggedIn!: boolean;

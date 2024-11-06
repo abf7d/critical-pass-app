@@ -60,7 +60,7 @@
                         <div class="row pt-4">
                             <div class="col-12">
                                 <h3>Example Projects</h3>
-                                <a (click)="navigateToExamples()" [hidden]="projectLoadState !== 'success'"href="javascript:void(0)">More Examples</a>
+                                <a (click)="navigateToExamples()" [hidden]="projectLoadState !== 'success'" href="javascript:void(0)">More Examples</a>
                                 <div>
                                     <div [ngSwitch]="projectLoadState">
                                         <div *ngSwitchCase="'loading'">

@@ -45,3 +45,5 @@ critical-pass-database.db
 
 cypress/screenshots
 cypress/snapshots/**/__diff_output__
+
+.eslintcache
