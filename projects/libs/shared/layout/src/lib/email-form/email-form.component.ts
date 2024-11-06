@@ -18,7 +18,7 @@ export class EmailFormComponent {
     @Input() public secure: boolean = false;
     @Input() public title: string = 'Email Form';
     @Output() public onSubmitResponse = new EventEmitter<string>();
-    
+
     public hasConsented: boolean = false;
     public form: FormGroup;
     public hasError: boolean = false;
@@ -51,8 +51,7 @@ export class EmailFormComponent {
                 else if (status?.code === '400.U') {
                     this.loadMsg = 'user-blocked';
                     this.onSubmitResponse.emit('user-blocked');
-                }
-                else {
+                } else {
                     this.loadMsg = 'global-blocked';
                     this.onSubmitResponse.emit('global-blocked');
                 }
@@ -90,10 +89,6 @@ export class EmailFormComponent {
         } else {
             this.form.value;
             console.log('Form is not valid');
-
-
-
-            
         }
     }
 }
