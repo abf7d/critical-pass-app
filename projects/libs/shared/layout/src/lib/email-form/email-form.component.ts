@@ -90,6 +90,10 @@ export class EmailFormComponent {
         } else {
             this.form.value;
             console.log('Form is not valid');
+
+
+
+            
         }
     }
 }
