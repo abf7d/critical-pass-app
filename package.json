@@ -25,7 +25,8 @@
         "compile-tsc": "tsc -p tsconfig.electron.json --watch",
         "electron:serve": "electron . --serve",
         "start:electron": "concurrently \"npm run start:desktop\" \"wait-on http://localhost:4201 && npm run compile-tsc\" \"wait-on http://localhost:4201 && npm run electron:serve\"",
-        "electron:local": "npm run build:desktop && electron ."
+        "electron:local": "npm run build:desktop && electron .",
+        "postinstall": "husky install"
     },
     "private": true,
     "dependencies": {

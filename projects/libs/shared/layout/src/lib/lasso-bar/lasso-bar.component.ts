@@ -1,11 +1,12 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { DashboardService, DASHBOARD_TOKEN, EventService, EVENT_SERVICE_TOKEN, ProjectStorageApiService, API_CONST } from '@critical-pass/shared/data-access';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Activity, Project } from '@critical-pass/project/types';
 import { CORE_CONST } from '@critical-pass/core';
 import { ProjectExtractorService } from './project-extractor.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'cp-lasso-bar',
@@ -23,6 +24,8 @@ export class LassoBarComponent implements OnInit, OnDestroy {
     public projectName: string = '';
     public isLasso: boolean = false;
     public isSubProjSelected: boolean = false;
+    public sampleFile = 'network';
+    public routerSub!: Subscription;
 
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
@@ -30,18 +33,39 @@ export class LassoBarComponent implements OnInit, OnDestroy {
         private projectExtractor: ProjectExtractorService,
         private router: Router,
         private storageApi: ProjectStorageApiService,
+        private httpClient: HttpClient,
     ) {
         this.networkArray$ = this.eventService.get<Project[]>(CORE_CONST.NETWORK_ARRAY_KEY);
         this.filteredNetworkArray$ = this.eventService.get<Project[]>(CORE_CONST.FILTERED_NETWORK_ARRAY_KEY);
     }
 
     ngOnInit(): void {
+        if (this.router.url.includes('history')) this.sampleFile = 'scenarios';
+
         this.sub = this.dashboard.activeProject$.pipe(filter(x => !!x)).subscribe(project => {
             this.project = project;
             this.projectName = project.profile.name;
             this.activity = project.profile.view.selectedActivity;
             this.isLasso = project.profile.view.lassoOn;
             this.isSubProjSelected = project.profile.view.isSubProjSelected;
+        });
+    }
+
+    public downloadFile(): void {
+        const fileUrl = `assets/sample-data/${this.sampleFile}.xlsx`;
+
+        this.httpClient.get(fileUrl, { responseType: 'blob' }).subscribe(fileBlob => {
+            const blob = new Blob([fileBlob], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a temporary link element
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${this.sampleFile}.xlsx`;
+            a.click();
+
+            // Clean up the URL object
+            window.URL.revokeObjectURL(url);
         });
     }
 
@@ -124,6 +148,7 @@ export class LassoBarComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy() {
         this.sub?.unsubscribe();
+        this.routerSub?.unsubscribe();
     }
     public navToProjProfile() {
         this.storageApi.set(API_CONST.SESSION_STORAGE, this.project!);

@@ -16,7 +16,7 @@
         <input type="text" [value]="projectName" (keypress)="keyPress($event)" (blur)="updateProjectName($event)" />
     </div>
     <div>
-        <a href="https://criticalpass.azurewebsites.net/assets/sample-data/project-network.xlsx">Get Sample Data</a>
+        <a class="dwnld-link" href="javescript::void(0)" (click)="downloadFile()">Get Sample {{sampleFile}} Data</a>
     </div>
     <div>
         <div class="title">Lasso Tool</div>

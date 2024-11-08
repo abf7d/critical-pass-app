@@ -7,6 +7,7 @@ import { ProjectExtractorService } from '../project-extractor/project-extractor.
 import { Activity, Project } from '@critical-pass/project/types';
 import { CORE_CONST } from '@critical-pass/core';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'proj-meta-bar',
@@ -24,6 +25,7 @@ export class NetworkBarComponent implements OnInit, OnDestroy {
     public projectName: string = '';
     public isLasso: boolean = false;
     public isSubProjSelected: boolean = false;
+    public sampleFile = 'network';
 
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
@@ -32,6 +34,7 @@ export class NetworkBarComponent implements OnInit, OnDestroy {
         private router: Router,
         private storageApi: ProjectStorageApiService,
         private toastr: ToastrService,
+        private httpClient: HttpClient,
     ) {
         this.networkArray$ = this.eventService.get<Project[]>(CORE_CONST.NETWORK_ARRAY_KEY);
         this.filteredNetworkArray$ = this.eventService.get<Project[]>(CORE_CONST.FILTERED_NETWORK_ARRAY_KEY);
@@ -44,6 +47,24 @@ export class NetworkBarComponent implements OnInit, OnDestroy {
             this.activity = project.profile.view.selectedActivity;
             this.isLasso = project.profile.view.lassoOn;
             this.isSubProjSelected = project.profile.view.isSubProjSelected;
+        });
+    }
+
+    public downloadFile(): void {
+        const fileUrl = `assets/sample-data/${this.sampleFile}.xlsx`;
+
+        this.httpClient.get(fileUrl, { responseType: 'blob' }).subscribe(fileBlob => {
+            const blob = new Blob([fileBlob], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a temporary link element
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${this.sampleFile}.xlsx`;
+            a.click();
+
+            // Clean up the URL object
+            window.URL.revokeObjectURL(url);
         });
     }
 
