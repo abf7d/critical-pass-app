@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MsalService } from '@critical-pass/auth';
+import { ClaimsService, MsalService } from '@critical-pass/auth';
 import { EnvironmentService } from '@critical-pass/core';
 @Component({
     selector: 'cp-top-nav',
@@ -9,16 +9,19 @@ import { EnvironmentService } from '@critical-pass/core';
 })
 export class TopNavComponent implements OnInit {
     public isElectron: boolean = false;
+    public isAuthorized: boolean = true;
 
     constructor(
         private router: Router,
         private msalService: MsalService,
         private envService: EnvironmentService,
+        private accountData: ClaimsService,
         private ngZone: NgZone,
     ) {}
 
     ngOnInit(): void {
         this.isElectron = this.envService.isElectron;
+        this.isAuthorized = this.accountData.isAdmin() || this.accountData.isAuthorized();
     }
 
     navigate(url: string) {
