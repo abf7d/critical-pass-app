@@ -8,6 +8,7 @@ import { VertexGraphBuilderService } from '../../projects/libs/project/processor
 import { DanglingArrowService } from '../../projects/libs/project/processor/src/lib/dangling-arrow/dangling-arrow.service';
 import { CompletionCalcService } from '../../projects/libs/project/processor/src/lib/completion-calc/completion-calc.service';
 import { ActivityValidatorService } from '../../projects/libs/project/processor/src/lib/activity-validator/activity-validator.service';
+import { ProjectSanatizerService, ProjectUndoRedoService } from '@critical-pass/shared/project-utils';
 // import { ActivityValidatorService } from 'libs/project/processor/src/lib/activity-validator/activity-validator.service';
 // import { CompletionCalcService } from 'libs/project/processor/src/lib/completion-calc/completion-calc.service';
 // import { CriticalPathUtilsService } from 'libs/project/processor/src/lib/critical-path-utils/critical-path-utils.service';
@@ -30,6 +31,9 @@ export function configureDashboard(): DashboardService {
     const activityValidato = new ActivityValidatorService(statsCalc);
     const projSerializer = new ProjectSerializerService();
     const compiler = new ProjectCompilerService(nodeConstructor, dateUtils, projectUtils, riskCompiler, completionCalc, activityValidato);
-    const dashboard = new DashboardService(projSerializer, compiler);
+
+    const projSanitizer = new ProjectSanatizerService();
+    const undoRedo = new ProjectUndoRedoService(projSanitizer, nodeConstructor, projSerializer);
+    const dashboard = new DashboardService(projSerializer, compiler, undoRedo);
     return dashboard;
 }
