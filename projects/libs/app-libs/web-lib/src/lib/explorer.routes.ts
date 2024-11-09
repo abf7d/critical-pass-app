@@ -98,4 +98,9 @@ export const routes: Routes = [
         loadChildren: () => import('@critical-pass/features/jira').then(m => m.JiraModule),
         canActivate: [AuthorizedUserGuard],
     },
+    {
+        path: 'architecture',
+        loadChildren: () => import('@critical-pass/features/architecture').then(m => m.ArchRoutingModule),
+        canActivate: [AuthorizedUserGuard],
+    },
 ];

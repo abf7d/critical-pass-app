@@ -23,6 +23,7 @@
     <a class="btn btn-secondary" (click)="navigate('history/(-1//sidebar:arrow/-1)')">Scenario Planning</a>
     <a class="btn btn-secondary" (click)="navigate('network/(-1//sidebar:meta/-1)')">Network Analysis</a>
     <a class="btn btn-secondary" (click)="navigate('jira')" *ngIf="enableJira">Jira</a>
+    <a class="btn btn-secondary" (click)="navigate('architecture/(-1//sidebar:arch/-1)')">Architecture</a>
     <a class="btn btn-secondary" [hidden]="!hasWork" (click)="navigate('profile/(-3//sidebar:grid/-3)')">Continue work</a>
     <a class="btn btn-secondary" *ngIf="hasWork && showPeek" (click)="showPeek = false">
         <i class="fas fa-chevron-up peek"></i>
