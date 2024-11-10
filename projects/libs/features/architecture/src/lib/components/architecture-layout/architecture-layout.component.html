@@ -1,1 +1,12 @@
-<p>architecture-layout works!</p>
+<div class="arch-container">
+    <div class="work-area">
+        <textarea name="" id="" [(ngModel)]="mainTxt" (change)="updateMainTxt($event)"></textarea>
+    </div>
+    <div class="diagrams">
+        {{mainTxt}}
+        <p>architecture-layout works!</p>
+        <!-- Project should be an objservable because other things will need it -->
+        <!-- <ch-architecture [project]="project" (projUpdate)="updateProj($event)"></ch-architecture> -->
+        <ch-architecture></ch-architecture>
+    </div>
+</div>

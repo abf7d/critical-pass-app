@@ -5,4 +5,5 @@ export interface LibraryFilters {
     sortDirection: string | null;
     ownerFilter: string | null;
     searchFilter: string | null;
+    details: string | null;
 }

@@ -6,6 +6,6 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     imports: [CommonModule],
     templateUrl: './architecture-bar.component.html',
-    styleUrl: './architecture-bar.component.css',
+    styleUrl: './architecture-bar.component.scss',
 })
 export class ArchitectureBarComponent {}

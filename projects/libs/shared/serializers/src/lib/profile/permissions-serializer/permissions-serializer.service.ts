@@ -13,6 +13,8 @@ export class PermissionsSerializerService implements Serializer<Permissions> {
             isOwner: json.isOwner ?? true,
             writable: json.writable ?? true,
             user: json.user ?? '',
+            ownerId: json.ownerId,
+            ownerName: json.ownerName,
         };
         return obj;
     }

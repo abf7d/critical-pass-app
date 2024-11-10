@@ -23,7 +23,6 @@ export class RedirectGuard implements CanActivate {
             const observable$ = combineLatest([this.authStore.isLoggedIn$, this.authStore.isAuthorized$, this.authStore.loginError$]).pipe(
                 filter(([isLoggedIn, isAuthorized, loginError]) => isLoggedIn !== null && (isAuthorized !== null || loginError !== null)),
                 map(([isLoggedIn, isAuthorized, loginError]) => {
-                    console.log('isLoggedIn', isLoggedIn, 'isAuthorized', isAuthorized, 'loginError', loginError);
                     if (loginError) {
                         this.router.navigate(['/login-error']);
                         return true;

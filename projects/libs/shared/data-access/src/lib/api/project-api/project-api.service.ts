@@ -26,7 +26,7 @@ export class ProjectApiService implements ProjectApi {
     }
     public list(filters: LibraryFilters): Observable<ProjectLibrary> {
         let params = new HttpParams();
-        const { page, pageSize, listName, sortDirection, ownerFilter, searchFilter } = filters;
+        const { page, pageSize, listName, sortDirection, ownerFilter, searchFilter, details } = filters;
         if (listName) {
             params = params.set('list', listName);
         }
@@ -38,6 +38,9 @@ export class ProjectApiService implements ProjectApi {
         }
         if (searchFilter) {
             params = params.set('search', searchFilter);
+        }
+        if (details) {
+            params = params.set('details', details);
         }
         return this.httpClient
             .get(urlJoin(this.baseUrl, CONST.LIBRARY_ENDPOINT, page.toString(), pageSize.toString()), {

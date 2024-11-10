@@ -19,7 +19,7 @@
                 <i class="fa fa-code-fork network-icon" (click)="navigateSketch(project.profile.id)"></i>
                 <i class="fas fa-male assign-icon" (click)="navigateAssign(project.profile.id)"></i>
                 <i class="fa fa-network-wired" (click)="navigateMetaGraph(project.profile.id)"></i>
-                {{ project.profile.description }}
+                {{ project.profile.description }} {{project.profile.permissions.ownerName}} {{project.profile.permissions.ownerId}}
             </div>
         </div>
     </div>

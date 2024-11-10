@@ -3,6 +3,8 @@ export interface Permissions {
     isOwner: boolean;
     writable: boolean;
     user: string;
+    ownerName?: string;
+    ownerId?: string;
 
     // constructor() {
     //     this.Permissions = ['owner', 'write'];

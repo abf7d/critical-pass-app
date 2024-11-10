@@ -39,6 +39,7 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
             const listName = routeParams.get('listName');
             let sortDirection = (queryParams as any).params['sort'] || null;
             let ownerFilter = (queryParams as any).params['filter'] || null;
+            let showDetails = (queryParams as any).params['details'] || null;
 
             if (ownerFilter === null) {
                 const storedFilter = localStorage.getItem('filterByOwner');
@@ -47,6 +48,10 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
             if (sortDirection === null) {
                 const storedDir = localStorage.getItem('sortDirection');
                 sortDirection = storedDir ? storedDir : 'asc';
+            }
+            if (showDetails === null) {
+                const storedDetails = localStorage.getItem('showDetails');
+                showDetails = storedDetails !== 'true' ? 'false' : 'true';
             }
 
             this.pageNumSub = this.libraryStore.pageNumber$.pipe(filter(x => x !== null)).subscribe(currentPage => {
@@ -59,6 +64,7 @@ export class LibraryGridComponent implements OnInit, OnDestroy {
                         sortDirection: sortDirection,
                         ownerFilter: ownerFilter,
                         searchFilter: null,
+                        details: showDetails,
                     };
                     this.loadProjects(filters);
                 }
