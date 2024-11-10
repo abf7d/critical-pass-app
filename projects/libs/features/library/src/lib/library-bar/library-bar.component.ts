@@ -29,6 +29,7 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
     public filterByOwner: string = 'all';
     public sortDirection: string = 'asc';
     public enableJira: boolean = false;
+    public showUserDetails: boolean = false;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -48,6 +49,8 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
         this.filterByOwner = storedFilter ? storedFilter : 'all';
         const sortDirection = localStorage.getItem('sortDirection');
         this.sortDirection = sortDirection ? sortDirection : 'asc';
+        const storedDetails = localStorage.getItem('showDetails');
+        this.showUserDetails = storedDetails === 'true';
 
         this.activatedRoute.params.subscribe(params => {
             this.currentPage = +params['page'];
@@ -93,11 +96,24 @@ export class LibraryBarComponent implements OnInit, OnDestroy {
         const selectElement = event.target as HTMLSelectElement;
         this.filterByOwner = selectElement.value;
         localStorage.setItem('filterByOwner', this.filterByOwner);
-        this.router.navigateByUrl(`/library/(grid/${this.currentPage + 1}//sidebar:libar/0)?sort=${this.sortDirection}&filter=${this.filterByOwner}`);
+        this.refreshPageUrl();
     }
     public setSortDirection(dir: string) {
         this.sortDirection = dir;
         localStorage.setItem('sortDirection', this.sortDirection);
-        this.router.navigateByUrl(`/library/(grid/${this.currentPage + 1}//sidebar:libar/0)?sort=${this.sortDirection}&filter=${this.filterByOwner}`);
+        this.refreshPageUrl();
+    }
+
+    public toggleUserDetails() {
+        this.showUserDetails = !this.showUserDetails;
+        const show = JSON.stringify(this.showUserDetails);
+        localStorage.setItem('showDetails', show);
+        this.refreshPageUrl();
+    }
+    private refreshPageUrl() {
+        const show = JSON.stringify(this.showUserDetails);
+        this.router.navigateByUrl(
+            `/library/(grid/${this.currentPage + 1}//sidebar:libar/0)?sort=${this.sortDirection}&filter=${this.filterByOwner}&details=${show}`,
+        );
     }
 }

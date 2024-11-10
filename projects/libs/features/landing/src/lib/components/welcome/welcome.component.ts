@@ -94,6 +94,7 @@ export class WelcomeComponent implements OnInit {
             sortDirection: 'desc',
             ownerFilter: null,
             searchFilter: null,
+            details: 'false',
         };
         this.projectApi.list(filters).subscribe(
             projects => {
