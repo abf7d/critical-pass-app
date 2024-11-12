@@ -4,6 +4,9 @@ import { Project } from '@critical-pass/project/types';
 @Component({
     selector: 'cp-arrow-snapshot',
     template: `<div #chart class="arrow-snapshot"></div>`,
+    host: {
+        class: 'cp-arrow-snapshot',
+    },
     styleUrls: ['./arrow-snapshot.component.scss'],
     providers: [ArrowSnapshotUiService],
     encapsulation: ViewEncapsulation.None,
