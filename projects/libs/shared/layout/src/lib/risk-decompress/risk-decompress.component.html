@@ -24,13 +24,14 @@
     </div>
 </div>
 <div [hidden]="!showArrangeSettings">
+    <div class="end-pts">Chart Dimensions</div>
     <div class="end-pts">
         <div>
-            <div class="subtitle">X Gap</div>
+            <div class="subtitle tooltip-u" title="This number represents the X Gap, which is the horizontal gap between nodes">Width</div>
             <div><input type="number" min="0" max="100" [(ngModel)]="xGap" /></div>
         </div>
         <div>
-            <div class="subtitle">Y Gap</div>
+            <div class="subtitle tooltip-u" title="This number represents the Y Gap, which is the vertical gap between nodes">Height</div>
             <div><input type="number" min="0" max="100" [(ngModel)]="yGap" /></div>
         </div>
     </div>

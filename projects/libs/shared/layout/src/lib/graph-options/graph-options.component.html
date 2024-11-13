@@ -20,8 +20,8 @@
                 <input class="form-check-input" (click)="setArrowUperText('abbreviated')" type="radio" id="abbrv" value="abbreviated" name="top-text" />
                 Abrv.
             </label>
-            <label class="btn btn-secondary" [ngClass]="{ active: isArrowUpperText('wrap') }">
-                <input class="form-check-input" (click)="toggleTextWrap()" type="checkbox" id="abbrv" value="abbreviated" />
+            <label class="btn btn-secondary" [ngClass]="{ active: project.profile.view.wrapText }">
+                <input class="form-check-input" (click)="toggleTextWrap()" type="checkbox" id="wrap" value="wrap" />
                 Wrap
             </label>
         </div>
