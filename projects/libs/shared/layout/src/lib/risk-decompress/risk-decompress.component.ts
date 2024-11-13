@@ -25,7 +25,7 @@ export class RiskDecompressComponent implements OnInit {
     public quad: boolean = false;
     public layering: string = 'longestPath';
     public hasCurves: boolean = true;
-    public bump: boolean = true;
+    public bump: boolean = false;
 
     constructor(
         @Inject(DASHBOARD_TOKEN) private dashboard: DashboardService,
@@ -75,7 +75,7 @@ export class RiskDecompressComponent implements OnInit {
         const decrossFailed = this.nodeArranger.arrangeNodes(this.project, layoutOptions);
         this.dashboard.updateProject(this.project, false, true);
         if (decrossFailed) {
-            this.toastr.error('Decrossing arrows took too long', 'Ignored Decross.');
+            this.toastr.warning('Decrossing arrows took too long', 'Ignored Decross.');
         }
     }
 }
