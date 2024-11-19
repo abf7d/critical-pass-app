@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,4 +8,18 @@ import { CommonModule } from '@angular/common';
     templateUrl: './architecture.component.html',
     styleUrl: './architecture.component.scss',
 })
-export class ArchitectureComponent {}
+export class ArchitectureComponent implements OnInit, OnChanges {
+    @Input() text: string = '';
+    public components: string[] = [];
+
+    ngOnInit() {
+        this.components = this.text.split(' ');
+    }
+    ngOnChanges(changes: SimpleChanges) {
+        this.text = changes['text'].currentValue;
+        this.parseComponents();
+    }
+    private parseComponents() {
+        this.components = this.text.split(' ');
+    }
+}
